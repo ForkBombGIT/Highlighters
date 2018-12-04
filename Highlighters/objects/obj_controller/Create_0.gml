@@ -1,3 +1,4 @@
+randomize();
 //contains all game pieces
 gameEntities = ds_list_create();
 
@@ -8,8 +9,11 @@ newRow = false;
 sideBarOffsetX = 264;
 
 //controls game loop
-prevTime = current_time;
-blockPace = 6;
+blockPrevTime = current_time;
+bombPrevTime = current_time;
+blockPace = 10;
+bombPace = 5;
+fallPace = 1;
 
 var pieceWidth = sprite_get_width(spr_piece);
 cursor = instance_create_layer((sideBarOffsetX) + ((pieceWidth - 1) * (boardWidth / 2) - (pieceWidth / 2)),

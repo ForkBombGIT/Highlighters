@@ -159,6 +159,14 @@
             }
         },
         {
+            "Key": "88a4fe73-1f04-48aa-867b-f363195cb4c8",
+            "Value": {
+                "id": "0c465c51-7ac1-45f1-87da-ef548e830eec",
+                "resourcePath": "scripts\\scr_getRowPos\\scr_getRowPos.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8c6119ae-8f64-4a6b-9915-74321c806cfe",
             "Value": {
                 "id": "32dde1ff-2d9f-421f-a5c9-b11a48327340",
@@ -188,6 +196,14 @@
                 "id": "c0cac5ab-cd99-45c3-b92c-37e7a6481d5a",
                 "resourcePath": "views\\b0c628dc-50a7-4b69-a6f0-11e42641d841.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "ba116602-7fec-4e97-b72c-0f772e266ebd",
+            "Value": {
+                "id": "1e183281-c822-4fcb-9408-2c1facb30b12",
+                "resourcePath": "objects\\par_entity\\par_entity.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -231,10 +247,26 @@
             }
         },
         {
+            "Key": "d2a6b8ab-2c27-4d6a-b1e4-6945e475596f",
+            "Value": {
+                "id": "863fca10-a65d-440a-b1bb-be039f4bb26a",
+                "resourcePath": "scripts\\scr_getColPos\\scr_getColPos.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "de0e940b-3fd2-4c84-822d-49208bce37fb",
             "Value": {
                 "id": "7ac3e907-4b26-4b23-936d-64655ff018eb",
                 "resourcePath": "views\\de0e940b-3fd2-4c84-822d-49208bce37fb.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "e3073d6d-41c6-4ab8-bd75-2b13dd4f0fc9",
+            "Value": {
+                "id": "b77314d5-9ce3-44db-9e55-583574c9fd63",
+                "resourcePath": "views\\e3073d6d-41c6-4ab8-bd75-2b13dd4f0fc9.yy",
                 "resourceType": "GMFolder"
             }
         },
@@ -264,7 +296,8 @@
         }
     ],
     "script_order": [
-        
+        "d2a6b8ab-2c27-4d6a-b1e4-6945e475596f",
+        "88a4fe73-1f04-48aa-867b-f363195cb4c8"
     ],
     "tutorial": ""
 }
