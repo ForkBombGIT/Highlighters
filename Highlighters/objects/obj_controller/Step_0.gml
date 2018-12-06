@@ -38,18 +38,20 @@ if (((current_time - blockPrevTime)/1000) > blockPace){
 #region Piece Switching
 if (keyboard_check_released(vk_space)){
 	var row = ds_list_find_value(gameEntities,obj_cursor.row);
-	var temp = row[@obj_cursor.col];
 	//checks if the pieces are being swapped
-	if (row[@obj_cursor.col] != undefined || row[@obj_cursor.col+1] != undefined){
-		if !(row[@obj_cursor.col].swap && row[@obj_cursor.col+1].swap){
-			//switches spots in array
-			row[@obj_cursor.col] = row[@obj_cursor.col + 1];
-			row[@obj_cursor.col + 1] = temp;
+	if (array_length_1d(row)> 0){
+		if (row[@obj_cursor.col] != undefined || row[@obj_cursor.col+1] != undefined){
+			if !(row[@obj_cursor.col].swap && row[@obj_cursor.col+1].swap){
+				var temp = row[@obj_cursor.col];
+				//switches spots in array
+				row[@obj_cursor.col] = row[@obj_cursor.col + 1];
+				row[@obj_cursor.col + 1] = temp;
 			
-			//starts swap animation
-			row[@obj_cursor.col].targetX = obj_cursor.col;
-			row[@obj_cursor.col + 1].targetX = obj_cursor.col + 1;	
-			row[@obj_cursor.col].swap = true; row[@obj_cursor.col + 1].swap = true;
+				//starts swap animation
+				row[@obj_cursor.col].targetX = obj_cursor.col;
+				row[@obj_cursor.col + 1].targetX = obj_cursor.col + 1;	
+				row[@obj_cursor.col].swap = true; row[@obj_cursor.col + 1].swap = true;
+			}
 		}
 	}
 }
