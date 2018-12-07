@@ -1,2 +1,3 @@
 draw_self();
-draw_text(x,y+15,y);
+var t = string(row) + "," + string(col);
+draw_text(x,y+15,t);

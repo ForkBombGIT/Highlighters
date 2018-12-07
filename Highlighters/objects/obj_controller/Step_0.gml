@@ -7,13 +7,18 @@ if (((current_time - blockPrevTime)/1000) > blockPace){
 										   window_get_height() - sprite_get_width(spr_piece),
 										   "Instances",
 										   obj_piece);	
-										  
+		gamePiece.col = i;
 		pieceRow[i] = gamePiece;
 	}
 	
 	for (var i = boardHeight; i > 0; i--){
 		var t = ds_list_find_value(gameEntities,i - 1);
-		ds_list_set(gameEntities,i,ds_list_find_value(gameEntities,i - 1));	
+		ds_list_set(gameEntities,i,t);
+		
+		if (array_length_1d(t) > 0)
+			for (var j = 0; j < boardWidth; j++)
+				t[@j].row++;	
+		
 	}
 	
 	ds_list_set(gameEntities,0,pieceRow);
@@ -23,16 +28,16 @@ if (((current_time - blockPrevTime)/1000) > blockPace){
 } else newRow = false;
 
 //bomb loop
-//if (((current_time - bombPrevTime)/1000) > bombPace){
-//	var pieceCol = irandom_range(0,boardWidth - 1)
-//	var gamePiece = instance_create_layer(scr_getColPos(pieceCol),
-//											sprite_get_width(spr_piece),
-//											"Instances",
-//											obj_bomb);	
+if (((current_time - bombPrevTime)/1000) > bombPace){
+	var pieceCol = irandom_range(0,boardWidth - 1)
+	var gamePiece = instance_create_layer(scr_getColPos(pieceCol),
+											sprite_get_width(spr_piece),
+											"Instances",
+											obj_bomb);	
 											  
-//	gamePiece.col = pieceCol;
-//	bombPrevTime = current_time;
-//}
+	gamePiece.col = pieceCol;
+	bombPrevTime = current_time;
+}
 #endregion
 
 #region Piece Switching
