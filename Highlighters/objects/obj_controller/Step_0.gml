@@ -1,63 +1,30 @@
-#region Game Loop
+ #region Game Loop
 //block loop
 if (((current_time - blockPrevTime)/1000) > blockPace){
 	var pieceRow, gamePiece;
 	for (var i = 0; i < boardWidth; i++){
-		gamePiece = instance_create_layer((sprite_get_width(spr_piece) * i) + sideBarOffsetX,
-										   window_get_height() - sprite_get_width(spr_piece),
+		gamePiece = instance_create_layer((pieceWidth * i) + sideBarOffsetX,
+										   scr_getRowPos(0),
 										   "Instances",
 										   obj_piece);	
 		gamePiece.col = i;
 		pieceRow[i] = gamePiece;
+		newRow = true;
 	}
-	
-	for (var i = boardHeight; i > 0; i--){
-		var t = ds_list_find_value(gameEntities,i - 1);
-		ds_list_set(gameEntities,i,t);
-		
-		if (array_length_1d(t) > 0)
-			for (var j = 0; j < boardWidth; j++)
-				t[@j].row++;	
-		
-	}
-	
-	ds_list_set(gameEntities,0,pieceRow);
-	
-	newRow = true;
 	blockPrevTime = current_time;
 } else newRow = false;
 
 //bomb loop
 if (((current_time - bombPrevTime)/1000) > bombPace){
-	var pieceCol = irandom_range(0,boardWidth - 1)
+	var pieceCol = irandom_range(0,boardWidth - 1);
 	var gamePiece = instance_create_layer(scr_getColPos(pieceCol),
-											sprite_get_width(spr_piece),
-											"Instances",
-											obj_bomb);	
+										  scr_getRowPos(11),
+										  "Instances",
+										  obj_bomb);	
 											  
 	gamePiece.col = pieceCol;
+	gamePiece.image_index = nextBomb;
+	nextBomb = irandom_range(0,12);
 	bombPrevTime = current_time;
-}
-#endregion
-
-#region Piece Switching
-if (keyboard_check_released(vk_space)){
-	var row = ds_list_find_value(gameEntities,obj_cursor.row);
-	//checks if the pieces are being swapped
-	if (array_length_1d(row)> 0){
-		if (row[@obj_cursor.col] != undefined || row[@obj_cursor.col+1] != undefined){
-			if !(row[@obj_cursor.col].swap && row[@obj_cursor.col+1].swap){
-				var temp = row[@obj_cursor.col];
-				//switches spots in array
-				row[@obj_cursor.col] = row[@obj_cursor.col + 1];
-				row[@obj_cursor.col + 1] = temp;
-			
-				//starts swap animation
-				row[@obj_cursor.col].targetX = obj_cursor.col;
-				row[@obj_cursor.col + 1].targetX = obj_cursor.col + 1;	
-				row[@obj_cursor.col].swap = true; row[@obj_cursor.col + 1].swap = true;
-			}
-		}
-	}
 }
 #endregion

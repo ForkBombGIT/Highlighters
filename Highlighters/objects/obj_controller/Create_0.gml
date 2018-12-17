@@ -1,15 +1,12 @@
 randomize();
-//contains all game pieces
-gameEntities = ds_list_create();
-for (var i = 0; i < 12; i++){
-	ds_list_add(gameEntities,[]);
-}
-
+layer_background_blend(layer_get_id("Background"), $908fff);
 //used for placing pieces
 boardWidth = 6;
 boardHeight = 12;
 newRow = false;
 sideBarOffsetX = 264;
+topOffset = 60;
+bottomOffset = 30;
 
 //controls game loop
 blockPrevTime = current_time;
@@ -17,10 +14,21 @@ bombPrevTime = current_time;
 blockPace = 4;
 bombPace = 2;
 fallPace = 1;
+newRow = false;
 
-var pieceWidth = sprite_get_width(spr_piece);
+//game score
+gameScore = 0;
+
+//game speed
+gameSpeed = 0;
+
+//next bomb
+nextBomb = irandom_range(0,12);
+
+pieceWidth = sprite_get_width(spr_piece);
 cursor = instance_create_layer((sideBarOffsetX) + ((pieceWidth - 1) * (boardWidth / 2) - (pieceWidth / 2)),
 							  ((sprite_get_height(spr_piece) * ((boardHeight) / 2)) + pieceWidth), 
 							    "Instances", 
 							    obj_cursor);
 								
+gui = instance_create_layer(x,y,"Controller",obj_gui);

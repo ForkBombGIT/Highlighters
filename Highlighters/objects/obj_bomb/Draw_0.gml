@@ -1,2 +1,1 @@
-draw_self();
-draw_text(x,y+25,row);
+if (image_index != -1) draw_self();

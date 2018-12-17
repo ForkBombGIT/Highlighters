@@ -1,5 +1,12 @@
 y = scr_getRowPos(row);
-//piece swapping
+
+//move row up
+if (((current_time - timer) / 1000) > obj_controller.bombPace) {
+	if (obj_controller.newRow)
+		if ((position_meeting(scr_getColPos(col),scr_getRowPos(row - 1),par_entity)) || (row == 0)) row++;
+}
+
+#region Swap control
 if (swap){
 	//checks if there is a col value stored in targetX, 
 	//if there is, assign it the x position of the col
@@ -13,15 +20,15 @@ if (swap){
 	else if (x > targetX) x -= swapSpeed;
 	else { x = targetX; swap = false; }
 }
+#endregion
 
-//piece falling
-if (((row - 1) > 0) && ((current_time - timer) / 1000 > obj_controller.fallPace)){
-	var arr = ds_list_find_value(obj_controller.gameEntities,row - 1);
-	show_debug_message(array_length_1d(arr))
-	if (array_length_1d(arr) > 0) {
-		if (arr[@col] == undefined)
-			row--;
+#region Fall Control
+if (((current_time - dropTimer) / 1000) > obj_controller.fallPace){
+	if (!(obj_controller.newRow)){
+		if (!(position_meeting(scr_getColPos(col),scr_getRowPos(row - 1),par_entity))){
+			if (row - 1 > 0) row--; 
+		} 
 	}
-	else row--;
-	timer = current_time;
+	dropTimer = current_time;
 }
+#endregion
