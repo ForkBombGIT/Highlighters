@@ -25,6 +25,9 @@ gameSpeed = 0;
 //next bomb
 nextBomb = irandom_range(0,12);
 
+//for timer
+offset = 0;
+
 pieceWidth = sprite_get_width(spr_piece);
 cursor = instance_create_layer((sideBarOffsetX) + ((pieceWidth - 1) * (boardWidth / 2) - (pieceWidth / 2)),
 							  ((sprite_get_height(spr_piece) * ((boardHeight) / 2)) + pieceWidth), 

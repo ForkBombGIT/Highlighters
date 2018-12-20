@@ -2,7 +2,7 @@ randomize();
 //swapping variables
 swap = false;
 targetX = -1;
-swapSpeed = 12;
+swapSpeed = 8;
 //row moving 
 timer = current_time;
 dropTimer = current_time;
