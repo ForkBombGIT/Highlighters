@@ -4,4 +4,3 @@ numFont = font_add_sprite_ext(spr_numbers, "0123456789'" + chr(34), true, 2);
 //holds pause state
 pause = false;
 screenShot = noone;
-show_debug_message("ping")

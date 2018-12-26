@@ -2,7 +2,7 @@ randomize();
 layer_background_blend(layer_get_id("Background"), $908fff);
 //used for placing pieces
 boardWidth = 6;
-boardHeight = 12;
+boardHeight = 9;
 newRow = false;
 sideBarOffsetX = 264;
 topOffset = 60;

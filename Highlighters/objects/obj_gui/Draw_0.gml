@@ -23,4 +23,5 @@ if !(pause){
 	draw_set_alpha(0.5);
 	draw_rectangle(0,0,768,672,c_black);
 	draw_set_alpha(1);
+	draw_sprite(spr_pause,0,window_get_width()/2,window_get_height()/2);
 }

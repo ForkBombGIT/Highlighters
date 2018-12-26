@@ -6,5 +6,9 @@ sprite_index = spr_bomb;
 image_index = -1;
 
 //holds position of bomb
-row = 11;
+row = 8;
 col = -1;
+
+//used for matches
+matchTimer = -1;
+below = noone;

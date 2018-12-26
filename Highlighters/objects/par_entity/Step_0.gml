@@ -31,10 +31,40 @@ if (!(position_meeting(scr_getColPos(col),scr_getRowPos(row - 1),par_entity))){
 	//is greater than fall pace
 	if (((current_time - dropTimer) / 1000) > obj_controller.fallPace){
 		//checks if at bottom, or if a new row is being added
-		if ((row - 1 > 0) && (!(obj_controller.newRow))){
+		if ((row - 1 >= 0) && (!(obj_controller.newRow))){
 			row--; 
 			dropTimer = -1;
 		}
 	}
 } else dropTimer = -1;
+#endregion
+
+#region Match Control
+left = (col - 1 >= 0) ? instance_position(scr_getColPos(col - 1), scr_getRowPos(row), par_entity) : noone;
+if (instance_exists(left)) 
+	if (left.image_index != image_index) 
+		left = noone;
+		
+right = (col + 1 <= obj_controller.boardWidth - 1) ? instance_position(scr_getColPos(col + 1), scr_getRowPos(row), par_entity) : noone;
+if (instance_exists(right)) 
+	if (right.image_index != image_index) 
+		right = noone;
+		
+down = (row - 1 >= 0) ? instance_position(scr_getColPos(col), scr_getRowPos(row - 1), par_entity) : noone;
+if (instance_exists(down)) 
+	if (down.image_index != image_index) 
+		down = noone;
+		
+up = (row + 1 <= obj_controller.boardHeight - 1) ? instance_position(scr_getColPos(col), scr_getRowPos(row + 1), par_entity) : noone;
+if (instance_exists(up)) 
+	if (up.image_index != image_index) 
+		up = noone;
+
+if (match) {
+	if (instance_exists(left)) left.match = true;
+	if (instance_exists(right)) right.match = true;
+	if (instance_exists(up)) up.match = true;
+	if (instance_exists(down)) down.match = true;
+	instance_destroy();
+}
 #endregion

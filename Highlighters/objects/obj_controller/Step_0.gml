@@ -18,7 +18,7 @@ if (((current_time - blockPrevTime)/1000) > blockPace){
 if (((current_time - bombPrevTime)/1000) > bombPace){
 	var pieceCol = irandom_range(0,boardWidth - 1);
 	var gamePiece = instance_create_layer(scr_getColPos(pieceCol),
-										  scr_getRowPos(11),
+										  scr_getRowPos(8),
 										  "Instances",
 										  obj_bomb);	
 											  

@@ -4,22 +4,22 @@ y = scr_getRowPos(row);
 if (keyboard_check_pressed(vk_anykey)){
 	switch (keyboard_key){
 		case (vk_left):
-			if ((x - sprite_get_width(spr_piece)) > obj_controller.sideBarOffsetX){
+			if (col > 0){
 				col -= 1;
 			}
 			break;
 		case (vk_right):
-			if ((x + sprite_get_width(spr_piece)) < window_get_width() - obj_controller.sideBarOffsetX){
+			if (col < obj_controller.boardWidth - 2){
 				col += 1;
 			}
 			break;
 		case (vk_up):
-			if (y - sprite_get_height(spr_piece) > sprite_get_height(spr_piece) / 2){
+			if (row < obj_controller.boardHeight - 1){
 				row += 1;
 			}
 			break;
 		case (vk_down):
-			if (y + sprite_get_height(spr_piece) < window_get_height() - sprite_get_height(spr_piece)/2){
+			if (row > 0){
 				row -= 1;
 			}
 			break;
