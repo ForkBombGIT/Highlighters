@@ -3,6 +3,8 @@ randomize();
 swap = false;
 targetX = -1;
 swapSpeed = 8;
+//controls fall speed
+fallPace = 1;
 //row moving 
 timer = current_time;
 dropTimer = current_time;

@@ -11,9 +11,8 @@ bottomOffset = 30;
 //controls game loop
 blockPrevTime = current_time;
 bombPrevTime = current_time;
-blockPace = 4;
-bombPace = 2;
-fallPace = 1;
+blockPace = 15;
+bombPace = 5;
 newRow = false;
 
 //game score

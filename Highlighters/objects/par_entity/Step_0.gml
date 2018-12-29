@@ -29,7 +29,7 @@ if (!(position_meeting(scr_getColPos(col),scr_getRowPos(row - 1),par_entity))){
 	if (dropTimer == -1) dropTimer = current_time;
 	//checks if the time since it was detected that there is no block below 
 	//is greater than fall pace
-	if (((current_time - dropTimer) / 1000) > obj_controller.fallPace){
+	if (((current_time - dropTimer) / 1000) > fallPace){
 		//checks if at bottom, or if a new row is being added
 		if ((row - 1 >= 0) && (!(obj_controller.newRow))){
 			row--; 
