@@ -11,4 +11,3 @@ col = -1;
 
 //used for matches
 matchTimer = -1;
-below = noone;

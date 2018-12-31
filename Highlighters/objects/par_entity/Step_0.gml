@@ -1,5 +1,4 @@
 y = scr_getRowPos(row);
-
 //move row up
 if (((current_time - timer) / 1000) > obj_controller.bombPace) {
 	if (obj_controller.newRow) 
@@ -7,7 +6,12 @@ if (((current_time - timer) / 1000) > obj_controller.bombPace) {
 }
 
 #region Swap control
-if (swap){
+if (swap){ 
+	//reset direction variables
+	left = noone;
+	right = noone;
+	up = noone;
+	down = noone
 	//checks if there is a col value stored in targetX, 
 	//if there is, assign it the x position of the col
 	if (targetX < obj_controller.boardWidth) {
@@ -23,48 +27,60 @@ if (swap){
 #endregion
 
 #region Fall Control
+//check if a new row is being added
+if !(obj_controller.newRow){
 //checks if there is no piece below
-if (!(position_meeting(scr_getColPos(col),scr_getRowPos(row - 1),par_entity))){
-	//checks if the timer needs to be set
-	if (dropTimer == -1) dropTimer = current_time;
-	//checks if the time since it was detected that there is no block below 
-	//is greater than fall pace
-	if (((current_time - dropTimer) / 1000) > fallPace){
-		//checks if at bottom, or if a new row is being added
-		if ((row - 1 >= 0) && (!(obj_controller.newRow))){
-			row--; 
-			dropTimer = -1;
+	if (!(position_meeting(scr_getColPos(col),scr_getRowPos(row - 1),par_entity))){
+		//checks if the timer needs to be set
+		if (dropTimer == -1) dropTimer = current_time;
+		//checks if the time since it was detected that there is no block below 
+		//is greater than fall pace
+		if (((current_time - dropTimer) / 1000) > fallPace){
+			//checks if at bottom
+			if (row - 1 >= 0){
+				row--; 
+				dropTimer = -1;
+			}
 		}
-	}
-} else dropTimer = -1;
+	} else dropTimer = -1;
+}
 #endregion
 
 #region Match Control
+//checks for adjacent matching pieces
 left = (col - 1 >= 0) ? instance_position(scr_getColPos(col - 1), scr_getRowPos(row), par_entity) : noone;
 if (instance_exists(left)) 
-	if (left.image_index != image_index) 
+	if (left.image_index != image_index) || (left == id)
 		left = noone;
 		
 right = (col + 1 <= obj_controller.boardWidth - 1) ? instance_position(scr_getColPos(col + 1), scr_getRowPos(row), par_entity) : noone;
 if (instance_exists(right)) 
-	if (right.image_index != image_index) 
+	if (right.image_index != image_index) || (right == id)
 		right = noone;
 		
 down = (row - 1 >= 0) ? instance_position(scr_getColPos(col), scr_getRowPos(row - 1), par_entity) : noone;
 if (instance_exists(down)) 
-	if (down.image_index != image_index) 
+	if (down.image_index != image_index) || (down == id)
 		down = noone;
-		
+
 up = (row + 1 <= obj_controller.boardHeight - 1) ? instance_position(scr_getColPos(col), scr_getRowPos(row + 1), par_entity) : noone;
 if (instance_exists(up)) 
-	if (up.image_index != image_index) 
+	if (up.image_index != image_index) || (up == id)
 		up = noone;
 
+//handles matching, and trigger adjacent matches
 if (match) {
-	if (instance_exists(left)) left.match = true;
-	if (instance_exists(right)) right.match = true;
-	if (instance_exists(up)) up.match = true;
-	if (instance_exists(down)) down.match = true;
-	instance_destroy();
+	if (matchTimer == -1) matchTimer = current_time;
+		if (instance_exists(left)) {left.match = true;}
+		if (instance_exists(right)) {right.match = true;}
+		if (instance_exists(up)) {up.match = true;}
+		if (instance_exists(down)) {down.match = true;}
+	if ((current_time - matchTimer) / 1000 > matchDelay){
+		if (instance_exists(left)) {left.matchTimer = matchTimer;}
+		if (instance_exists(right)) {right.matchTimer = matchTimer;}
+		if (instance_exists(up)) {up.matchTimer = matchTimer;}
+		if (instance_exists(down)) {down.matchTimer = matchTimer;}
+		instance_destroy();
+	}
 }
 #endregion

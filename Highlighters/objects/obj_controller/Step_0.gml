@@ -1,14 +1,13 @@
  #region Game Loop
 //block loop
 if (((current_time - blockPrevTime)/1000) > blockPace){
-	var pieceRow, gamePiece;
+	var gamePiece;
 	for (var i = 0; i < boardWidth; i++){
 		gamePiece = instance_create_layer((pieceWidth * i) + sideBarOffsetX,
 										   scr_getRowPos(0),
 										   "Instances",
 										   obj_piece);	
 		gamePiece.col = i;
-		pieceRow[i] = gamePiece;
 		newRow = true;
 	}
 	blockPrevTime = current_time;

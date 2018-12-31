@@ -46,20 +46,32 @@ if (keyboard_check_pressed(vk_space)){
 	var left = instance_position(scr_getColPos(col),scr_getRowPos(row),par_entity);
 	var right = instance_position(scr_getColPos(col + 1),scr_getRowPos(row),par_entity);
 	
-	//applies swap to left piece
-	if (left){
-		if !(left.swap){
+	//applies swap to both pieces if there are a left and right piece
+	if (instance_exists(right) && instance_exists(left)) { 
+		if (!(right.swap) && !(right.match)) && (!(left.swap) && !(left.match)){
 			left.targetX = col + 1;
 			left.swap = true;
-		}
-	}
-	
-	//applies swap to right piece
-	if (right){
-		if !(right.swap){
+			
 			right.targetX = col;
 			right.swap = true;
+		}	
+	}
+	else {
+		//applies swap to left piece
+		if (instance_exists(left)){
+			if !(left.swap) && !(left.match) {
+				left.targetX = col + 1;
+				left.swap = true;
+			}
 		}
+	
+		//applies swap to right piece
+		if (instance_exists(right)){
+			if !(right.swap) && !(right.match){
+				right.targetX = col;
+				right.swap = true;
+			}
+		} 
 	}
 }
 #endregion
