@@ -2,10 +2,10 @@
 //block loop
 if (((current_time - blockPrevTime)/1000) > blockPace){
 	for (var i = 0; i < boardWidth; i++){
-		var gamePiece = instance_create_layer((pieceWidth * i) + sideBarOffsetX,
-											   scr_getRowPos(0),
-											   "Instances",
-											   obj_piece);	
+		var gamePiece = instance_create_layer(scr_getColPos(i),
+											  scr_getRowPos(0),
+											  "Instances",
+											  obj_piece);	
 		
 		gamePiece.col = i;
 	}
