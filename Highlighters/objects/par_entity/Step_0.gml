@@ -1,6 +1,8 @@
 y = scr_getRowPos(row);
+
 //move row up
 if (((current_time - timer) / 1000) > obj_controller.bombPace) {
+	if (row + 1 > obj_controller.boardHeight) obj_controller.gameover = true;
 	if (obj_controller.newRow) 
 		if ((position_meeting(scr_getColPos(col),scr_getRowPos(row - 1),par_entity)) || (row == 0)) row++;
 }
