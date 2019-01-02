@@ -47,13 +47,20 @@ for (var currRow = 0; currRow < startingRows; currRow++){
 				else break;
 			}
 			//creates piece
-			var gamePiece = instance_create_layer(scr_getColPos(col),
-												  scr_getRowPos(tRow),
-												  "Instances",
-												  obj_piece);	
-		
-			gamePiece.col = col;
-			gamePiece.row = tRow;
+			scr_createEntity(tRow,col,obj_piece);
+		}
+	}
+}
+
+//ensures there are five rows, checks for empty rows
+//and places tiles in viable positions
+for (var currRow = 0; currRow < startingRows; currRow++){
+	if (!scr_checkRow(currRow)) {	
+		for (var col = 0; col < boardWidth; col++) {
+			if (instance_exists(scr_getPieceAtPos(currRow - 1,col))) {
+				//creates piece
+				scr_createEntity(currRow,col,obj_piece);
+			}
 		}
 	}
 }
