@@ -1,5 +1,6 @@
 randomize();
 layer_background_blend(layer_get_id("Background"), $908fff);
+
 //holds gameover state
 gameover = false;
 
@@ -8,20 +9,27 @@ boardWidth = 6;
 boardHeight = 9;
 startingRows = 5;
 newRow = false;
+selectedEntities = obj_start.selectedEntities;
 
 //controls game loop
 blockPrevTime = current_time;
 bombPrevTime = current_time;
-blockPace = 10;
-bombPace = 3;
+maxBlockPace = 30;
+blockPace = maxBlockPace;
+blockPaceDecrement = 2;
+maxBombPace = 11;
+bombPace = maxBombPace;
 newRow = false;
 highest = 0;
+
+//holds the amount of blocks matched
+blocksMatched = 0;
 
 //game score
 gameScore = 0;
 
 //game speed
-gameSpeed = 0;
+gameSpeed = 1;
 
 //next bomb
 nextBomb = irandom_range(0,12);

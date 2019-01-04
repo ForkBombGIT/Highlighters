@@ -1,4 +1,4 @@
-if !(pause) {	
+if !(pause) && (!instance_exists(obj_start)){	
 	//counts time
 	milli = current_time - offset
 	if (milli >= 1000) {offset += 1000; seconds += 1;} 

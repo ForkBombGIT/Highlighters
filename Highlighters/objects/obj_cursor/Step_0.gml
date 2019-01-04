@@ -41,7 +41,7 @@ if (keyboard_check_pressed(vk_anykey)){
 #endregion
 
 #region Piece Swapping
-if (keyboard_check_pressed(vk_space)){
+if (keyboard_check_pressed(ord("X"))){
 	//holds the piece on the left and right of the cursor
 	var left = instance_position(scr_getColPos(col),scr_getRowPos(row),par_entity);
 	var right = instance_position(scr_getColPos(col + 1),scr_getRowPos(row),par_entity);

@@ -4,7 +4,9 @@ y = scr_getRowPos(row);
 if (((current_time - timer) / 1000) > obj_controller.bombPace) {
 	if (row + 1 > obj_controller.boardHeight) obj_controller.gameover = true;
 	if (obj_controller.newRow) 
-		if ((position_meeting(scr_getColPos(col),scr_getRowPos(row - 1),par_entity)) || (row == 0)) row++;
+		if (instance_exists(scr_getPieceAtPos(row - 1,col)) || (row == 0)) 
+			row++;
+		
 }
 
 #region Swap control
@@ -32,16 +34,29 @@ if (swap){
 //check if a new row is being added
 if !(obj_controller.newRow){
 //checks if there is no piece below
-	if (!(position_meeting(scr_getColPos(col),scr_getRowPos(row - 1),par_entity))){
-		//checks if the timer needs to be set
-		if (dropTimer == -1) dropTimer = current_time;
-		//checks if the time since it was detected that there is no block below 
-		//is greater than fall pace
-		if (((current_time - dropTimer) / 1000) > fallPace){
-			//checks if at bottom
-			if (row - 1 >= 0){
-				row--; 
-				dropTimer = -1;
+	if (!instance_exists(scr_getPieceAtPos(row - 1,col))){
+		//ensures a block below is not swapping
+		var leftPiece = scr_getPieceAtPos(row - 1, col - 1);
+		var rightPiece = scr_getPieceAtPos(row - 1, col + 1);
+		var drop = true;
+		
+		if (instance_exists(leftPiece)) 
+			if (leftPiece.swap) drop = false;
+		
+		if (instance_exists(rightPiece)) 
+			if (rightPiece.swap) drop = false;			
+		
+		if (drop) { 
+			//checks if the timer needs to be set
+			if (dropTimer == -1) dropTimer = current_time;
+			//checks if the time since it was detected that there is no block below 
+			//is greater than fall pace
+			if (((current_time - dropTimer) / 1000) > fallPace){
+				//checks if at bottom
+				if (row - 1 >= 0){
+					row--; 
+					dropTimer = -1;
+				}
 			}
 		}
 	} else dropTimer = -1;
@@ -77,7 +92,7 @@ if (match) {
 		if (instance_exists(right)) {right.match = true;}
 		if (instance_exists(up)) {up.match = true;}
 		if (instance_exists(down)) {down.match = true;}
-	if ((current_time - matchTimer) / 1000 > matchDelay){
+	if ((current_time - matchTimer) / 1000 > matchDelay) {
 		if (instance_exists(left)) {left.matchTimer = matchTimer;}
 		if (instance_exists(right)) {right.matchTimer = matchTimer;}
 		if (instance_exists(up)) {up.matchTimer = matchTimer;}
