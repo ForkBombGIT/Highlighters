@@ -1,13 +1,21 @@
-y = scr_getRowPos(row);
+if (!moveUp) y = scr_getRowPos(row);
 
 //move row up
-if (((current_time - timer) / 1000) > obj_controller.bombPace) {
-	if (row + 1 > obj_controller.boardHeight) obj_controller.gameover = true;
-	if (obj_controller.newRow) 
-		if (instance_exists(scr_getPieceAtPos(row - 1,col)) || (row == 0)) 
-			row++;
-		
+if (obj_controller.newRow) {
+	if (instance_exists(scr_getPieceAtPos(row - 1,col)) || (row == -1)) {
+		moveUp = true;		
+	}
 }
+if (moveUp) {
+	var targY = scr_getRowPos(row + 1);
+	if (y >= targY)
+		y -= 1;
+	else {
+		row++;
+		moveUp = false;
+	}
+}
+
 
 #region Swap control
 if (swap){ 
@@ -26,15 +34,15 @@ if (swap){
 	//increment until position is reached
 	if (x < targetX) x += swapSpeed;
 	else if (x > targetX) x -= swapSpeed;
-	else { x = targetX; swap = false; }
+	else { x = targetX; swap = false; image_index -= 4;}
 }
 #endregion
 
 #region Fall Control
 //check if a new row is being added
-if !(obj_controller.newRow){
-//checks if there is no piece below
-	if (!instance_exists(scr_getPieceAtPos(row - 1,col))){
+if !(obj_controller.newRow) && (!moveUp){
+	//checks if there is no piece below
+	if (!instance_exists(scr_getPieceAtPos(row - 1,col)) && (row > 0)){
 		//ensures a block below is not swapping
 		var leftPiece = scr_getPieceAtPos(row - 1, col - 1);
 		var rightPiece = scr_getPieceAtPos(row - 1, col + 1);

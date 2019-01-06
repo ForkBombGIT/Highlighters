@@ -32,7 +32,7 @@ gameScore = 0;
 gameSpeed = 1;
 
 //next bomb
-nextBomb = irandom_range(0,12);
+nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 8;
 
 //for timer
 offset = 0;

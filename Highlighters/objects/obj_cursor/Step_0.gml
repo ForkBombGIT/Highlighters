@@ -41,7 +41,7 @@ if (keyboard_check_pressed(vk_anykey)){
 #endregion
 
 #region Piece Swapping
-if (keyboard_check_pressed(ord("X"))){
+if (keyboard_check_pressed(ord("X")) && (!instance_exists(obj_start))){
 	//holds the piece on the left and right of the cursor
 	var left = instance_position(scr_getColPos(col),scr_getRowPos(row),par_entity);
 	var right = instance_position(scr_getColPos(col + 1),scr_getRowPos(row),par_entity);
@@ -51,9 +51,11 @@ if (keyboard_check_pressed(ord("X"))){
 		if (!(right.swap) && !(right.match)) && (!(left.swap) && !(left.match)){
 			left.targetX = col + 1;
 			left.swap = true;
+			left.image_index += 4;
 			
 			right.targetX = col;
 			right.swap = true;
+			right.image_index += 4;
 		}	
 	}
 	else {
@@ -62,6 +64,7 @@ if (keyboard_check_pressed(ord("X"))){
 			if !(left.swap) && !(left.match) {
 				left.targetX = col + 1;
 				left.swap = true;
+				left.image_index += 4;
 			}
 		}
 	
@@ -70,6 +73,7 @@ if (keyboard_check_pressed(ord("X"))){
 			if !(right.swap) && !(right.match){
 				right.targetX = col;
 				right.swap = true;
+				right.image_index += 4;
 			}
 		} 
 	}

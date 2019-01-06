@@ -5,10 +5,11 @@ targetX = -1;
 targetY = -1;
 swapSpeed = 8;
 //controls fall speed
-fallPace = 1;
+fallPace = 0.5;
 //row moving 
 timer = current_time;
 dropTimer = current_time;
+moveUp = false;
 //position
 row = -1;
 col = -1;

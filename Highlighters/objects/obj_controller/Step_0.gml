@@ -3,7 +3,7 @@
 if (!instance_exists(obj_start)){
 	if (((current_time - blockPrevTime)/1000) > blockPace){
 		for (var i = 0; i < boardWidth; i++){
-			scr_createEntity(0,i,obj_piece);	
+			scr_createEntity(-1,i,obj_piece);	
 		}
 		newRow = true;
 		blockPrevTime = current_time;
@@ -15,7 +15,7 @@ if (!instance_exists(obj_start)){
 		if (!scr_getPieceAtPos(8,pieceCol)) {
 			var gamePiece = scr_createEntity(8,pieceCol,obj_bomb);	
 			gamePiece.image_index = nextBomb;
-			nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)];
+			nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 8;
 		} else gameover = true;
 		bombPrevTime = current_time;
 	}
