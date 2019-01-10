@@ -15,7 +15,7 @@ if (!instance_exists(obj_start)){
 		if (!scr_getPieceAtPos(8,pieceCol)) {
 			var gamePiece = scr_createEntity(8,pieceCol,obj_bomb);	
 			gamePiece.image_index = nextBomb;
-			nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 8;
+			nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
 		} else gameover = true;
 		bombPrevTime = current_time;
 	}

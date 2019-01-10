@@ -32,12 +32,11 @@ gameScore = 0;
 gameSpeed = 1;
 
 //next bomb
-nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 8;
+nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
 
-//for timer
+//for timer, to offset start screen
 offset = 0;
 
-pieceWidth = sprite_get_width(spr_piece);
 cursor = instance_create_layer(x,y,"Instances",obj_cursor);							
 gui = instance_create_layer(x,y,"Controller",obj_gui);
 

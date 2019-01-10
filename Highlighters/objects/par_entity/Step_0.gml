@@ -94,7 +94,7 @@ if (instance_exists(up))
 		up = noone;
 
 //handles matching, and trigger adjacent matches
-if (match) {
+if (match) && !(matchAnim){
 	if (matchTimer == -1) matchTimer = current_time;
 		if (instance_exists(left)) {left.match = true;}
 		if (instance_exists(right)) {right.match = true;}
@@ -105,7 +105,17 @@ if (match) {
 		if (instance_exists(right)) {right.matchTimer = matchTimer;}
 		if (instance_exists(up)) {up.matchTimer = matchTimer;}
 		if (instance_exists(down)) {down.matchTimer = matchTimer;}
-		instance_destroy();
+		matchAnim = true;
+		imageIndex = image_index + 5;
+		image_index = imageIndex;
 	}
 }
+
+if (matchAnim) {
+	image_speed = 0.7;
+	if (image_index > imageIndex + 2)
+		instance_destroy();
+}
+
+
 #endregion
