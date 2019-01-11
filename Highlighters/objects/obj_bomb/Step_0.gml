@@ -1,6 +1,6 @@
 event_inherited(); 
 #region Match Control
-if (!swap) && (!obj_controller.newRow){
+if (!swap) && (!obj_controller.newRow) && (!moveUp){
 	//checks if there is a tile below
 	//that matches
 	if (instance_exists(down)){
