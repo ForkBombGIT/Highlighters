@@ -8,7 +8,7 @@ swapSpeed = 8;
 fallPace = 0.5;
 preLandFrame = image_index;
 landAnimTimer = current_time;
-landAnimDelay = 0.03;
+landAnimDelay = 0.04;
 landAnim = false;
 //row moving 
 timer = current_time;
