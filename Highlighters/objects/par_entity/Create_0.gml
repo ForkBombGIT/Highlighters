@@ -6,6 +6,10 @@ targetY = -1;
 swapSpeed = 8;
 //controls fall speed
 fallPace = 0.5;
+preLandFrame = image_index;
+landAnimTimer = current_time;
+landAnimDelay = 0.03;
+landAnim = false;
 //row moving 
 timer = current_time;
 dropTimer = current_time;

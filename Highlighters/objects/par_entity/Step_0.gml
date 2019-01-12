@@ -54,7 +54,7 @@ if !(obj_controller.newRow) && (!moveUp){
 		if (instance_exists(rightPiece)) 
 			if (rightPiece.swap) drop = false;			
 		
-		if (drop) { 
+		if (drop) {
 			//checks if the timer needs to be set
 			if (dropTimer == -1) dropTimer = current_time;
 			//checks if the time since it was detected that there is no block below 
@@ -63,11 +63,29 @@ if !(obj_controller.newRow) && (!moveUp){
 				//checks if at bottom
 				if (row - 1 >= 0){
 					row--; 
+					if (instance_exists(scr_getPieceAtPos(row - 1,col)) || (row == 0)) {
+						landAnim = true;
+						landAnimTimer = current_time;
+						image_index++;
+						preLandFrame = image_index;
+					}
 					dropTimer = -1;
 				}
 			}
 		}
 	} else dropTimer = -1;
+}
+
+//controls landing animation
+if (landAnim) {
+	if (((current_time - landAnimTimer) / 1000) > landAnimDelay) {
+		image_index++;
+		if (image_index > (preLandFrame + 2)) {
+			image_index-=4;
+			landAnim = false;
+		}
+		landAnimTimer = current_time;
+	}
 }
 #endregion
 
