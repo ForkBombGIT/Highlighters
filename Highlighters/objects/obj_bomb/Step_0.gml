@@ -4,7 +4,7 @@ if (!swap) && (!obj_controller.newRow) && (!moveUp){
 	//checks if there is a tile below
 	//that matches
 	if (instance_exists(down)){
-		if (instance_exists(left) || instance_exists(right)) match = true;
+		if (instance_exists(left) || instance_exists(right) || instance_exists(up)) match = true;
 		else if (!down.swap){
 			if (instance_exists(down.left) || instance_exists(down.right) || instance_exists(down.down)) {
 				down.match = true;

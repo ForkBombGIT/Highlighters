@@ -1,6 +1,6 @@
 if (!moveUp) y = scr_getRowPos(row);
 
-//move row up
+#region New Row
 if (obj_controller.newRow) {
 	if (instance_exists(scr_getPieceAtPos(row - 1,col)) || (row == -1)) {
 		moveUp = true;		
@@ -15,10 +15,18 @@ if (moveUp) {
 		moveUp = false;
 	}
 }
+#endregion
+
+#region Fast Drop
+if ((obj_cursor.col == col) || (obj_cursor.col + 1 == col)) {
+	if (keyboard_check_pressed(ord("Z"))) fallPace = 0.1;
+	if (keyboard_check_released(ord("Z"))) fallPace = orgFallPace;
+}
+#endregion
 
 
 #region Swap control
-if (swap){ 
+if (swap) && !(landAnim){ 
 	//reset direction variables
 	left = noone;
 	right = noone;
@@ -86,7 +94,7 @@ if (landAnim) {
 		}
 		landAnimTimer = current_time;
 	}
-}
+} 
 #endregion
 
 #region Match Control

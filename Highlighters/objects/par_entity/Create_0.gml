@@ -5,7 +5,8 @@ targetX = -1;
 targetY = -1;
 swapSpeed = 8;
 //controls fall speed
-fallPace = 0.5;
+orgFallPace = 1;
+fallPace = orgFallPace;
 preLandFrame = image_index;
 landAnimTimer = current_time;
 landAnimDelay = 0.04;

@@ -1,6 +1,6 @@
 switch (start) {
 	case 0:
-		if (keyboard_check_pressed(vk_anykey)) 
+		if (keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("Z"))) 
 			start = 1;	
 		break;
 	case 1:		
