@@ -1,4 +1,5 @@
 randomize();
+index = -1;
 //swapping variables
 swap = false;
 targetX = -1;
@@ -7,6 +8,7 @@ swapSpeed = 8;
 //controls fall speed
 orgFallPace = 1;
 fallPace = orgFallPace;
+hardDrop = 0.1;
 preLandFrame = image_index;
 landAnimTimer = current_time;
 landAnimDelay = 0.04;
@@ -18,6 +20,7 @@ moveUp = false;
 //position
 row = -1;
 col = -1;
+grounded = false;
 //delay for deletion on match
 matchDelay = 0.2;
 matchTimer = -1;

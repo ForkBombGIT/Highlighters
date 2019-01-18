@@ -6,6 +6,7 @@ if (!instance_exists(obj_start)){
 			scr_createEntity(-1,i,obj_piece);	
 		}
 		newRow = true;
+		rowUp = true;
 		blockPrevTime = current_time;
 	} else newRow = false;
 
@@ -15,6 +16,7 @@ if (!instance_exists(obj_start)){
 		if (!scr_getPieceAtPos(8,pieceCol)) {
 			var gamePiece = scr_createEntity(8,pieceCol,obj_bomb);	
 			gamePiece.image_index = nextBomb;
+			gamePiece.index = nextBomb;
 			nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
 		} else gameover = true;
 		bombPrevTime = current_time;

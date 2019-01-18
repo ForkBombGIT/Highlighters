@@ -1,31 +1,39 @@
 if (!moveUp) y = scr_getRowPos(row);
 
+#region Grounded Management
+if (row == 0) grounded = true;
+else if (instance_exists(scr_getPieceAtPos(row - 1, col))) {
+	if (scr_getPieceAtPos(row - 1, col).grounded) grounded = true;
+} else grounded = false;
+#endregion
+
 #region New Row
 if (obj_controller.newRow) {
-	if (instance_exists(scr_getPieceAtPos(row - 1,col)) || (row == -1)) {
+	if ((grounded) || (row == -1)) {
 		moveUp = true;		
 	}
 }
 if (moveUp) {
 	var targY = scr_getRowPos(row + 1);
+	grounded = true;
 	if (y >= targY)
 		y -= 1;
 	else {
 		row++;
 		moveUp = false;
+		obj_controller.rowUp = false;
 	}
 }
 #endregion
 
 #region Fast Drop
 if ((obj_cursor.col == col) || (obj_cursor.col + 1 == col)) {
-	if (keyboard_check_pressed(ord("Z"))) fallPace = 0.1;
+	if (keyboard_check_pressed(ord("Z"))) fallPace = hardDrop;
 	if (keyboard_check_released(ord("Z"))) fallPace = orgFallPace;
 }
 #endregion
 
-
-#region Swap control
+#region Swap Control
 if (swap) && !(landAnim){ 
 	//reset direction variables
 	left = noone;
@@ -42,54 +50,53 @@ if (swap) && !(landAnim){
 	//increment until position is reached
 	if (x < targetX) x += swapSpeed;
 	else if (x > targetX) x -= swapSpeed;
-	else { x = targetX; swap = false; image_index -= 4;}
+	else { x = targetX; swap = false; image_index = index;}
 }
 #endregion
 
 #region Fall Control
-//check if a new row is being added
-if !(obj_controller.newRow) && (!moveUp){
-	//checks if there is no piece below
-	if (!instance_exists(scr_getPieceAtPos(row - 1,col)) && (row > 0)){
-		//ensures a block below is not swapping
-		var leftPiece = scr_getPieceAtPos(row - 1, col - 1);
-		var rightPiece = scr_getPieceAtPos(row - 1, col + 1);
-		var drop = true;
+//checks if there is no piece below
+if (!instance_exists(scr_getPieceAtPos(row - 1,col)) && (row > 0) && !(obj_controller.rowUp)){
+	//ensures a block below is not swapping
+	var leftPiece = scr_getPieceAtPos(row - 1, col - 1);
+	var rightPiece = scr_getPieceAtPos(row - 1, col + 1);
+	var drop = true;
 		
-		if (instance_exists(leftPiece)) 
-			if (leftPiece.swap) drop = false;
+	if (instance_exists(leftPiece)) 
+		if (leftPiece.swap) drop = false;
 		
-		if (instance_exists(rightPiece)) 
-			if (rightPiece.swap) drop = false;			
+	if (instance_exists(rightPiece)) 
+		if (rightPiece.swap) drop = false;			
 		
-		if (drop) {
-			//checks if the timer needs to be set
-			if (dropTimer == -1) dropTimer = current_time;
-			//checks if the time since it was detected that there is no block below 
-			//is greater than fall pace
-			if (((current_time - dropTimer) / 1000) > fallPace){
-				//checks if at bottom
-				if (row - 1 >= 0){
-					row--; 
-					if (instance_exists(scr_getPieceAtPos(row - 1,col)) || (row == 0)) {
+	if (drop) {
+		//checks if the timer needs to be set
+		if (dropTimer == -1) dropTimer = current_time;
+		//checks if the time since it was detected that there is no block below 
+		//is greater than fall pace
+		if (((current_time - dropTimer) / 1000) > fallPace){
+			//checks if at bottom
+			if (row - 1 >= 0){
+				row--; 
+				if instance_exists(scr_getPieceAtPos(row - 1,col)){ 
+					if ((scr_getPieceAtPos(row - 1,col).grounded) || (row == 0)) {
 						landAnim = true;
 						landAnimTimer = current_time;
 						image_index++;
 						preLandFrame = image_index;
 					}
-					dropTimer = -1;
 				}
+				dropTimer = -1;
 			}
 		}
-	} else dropTimer = -1;
-}
+	}
+} else dropTimer = -1;
 
 //controls landing animation
 if (landAnim) {
 	if (((current_time - landAnimTimer) / 1000) > landAnimDelay) {
 		image_index++;
 		if (image_index > (preLandFrame + 2)) {
-			image_index-=4;
+			image_index = index;
 			landAnim = false;
 		}
 		landAnimTimer = current_time;
@@ -119,8 +126,8 @@ if (instance_exists(up))
 	if (up.image_index != image_index) || (up == id)
 		up = noone;
 
-//handles matching, and trigger adjacent matches
-if (match) && !(matchAnim){
+//handles matching, and trigger adjacent
+if (match) && !(matchAnim) && !(obj_controller.rowUp){
 	if (matchTimer == -1) matchTimer = current_time;
 		if (instance_exists(left)) {left.match = true;}
 		if (instance_exists(right)) {right.match = true;}

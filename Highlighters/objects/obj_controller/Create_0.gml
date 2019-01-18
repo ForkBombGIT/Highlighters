@@ -14,12 +14,13 @@ selectedEntities = obj_start.selectedEntities;
 //controls game loop
 blockPrevTime = current_time;
 bombPrevTime = current_time;
-maxBlockPace = 30;
+maxBlockPace = 10;
 blockPace = maxBlockPace;
 blockPaceDecrement = 2;
 maxBombPace = 11;
 bombPace = maxBombPace;
 newRow = false;
+rowUp = false;
 highest = 0;
 
 //holds the amount of blocks matched
