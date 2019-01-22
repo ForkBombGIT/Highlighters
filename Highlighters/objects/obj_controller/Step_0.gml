@@ -1,14 +1,18 @@
  #region Game Loop
+highest = scr_getHeight();
+
 //block loop
-if (!instance_exists(obj_start)){
-	if (((current_time - blockPrevTime)/1000) > blockPace){
-		for (var i = 0; i < boardWidth; i++){
-			scr_createEntity(-1,i,obj_piece);	
-		}
-		newRow = true;
-		rowUp = true;
-		blockPrevTime = current_time;
-	} else newRow = false;
+if (!instance_exists(obj_startscreen)){
+	if (highest <= boardHeight - 1) {
+		if (((current_time - blockPrevTime)/1000) > blockPace){
+			for (var i = 0; i < boardWidth; i++){
+				scr_createEntity(-1,i,obj_piece);	
+			}
+			newRow = true;
+			rowUp = true;
+			blockPrevTime = current_time;
+		} else newRow = false;
+	} else gameover = true;
 
 	//bomb loop
 	if (((current_time - bombPrevTime)/1000) > bombPace){

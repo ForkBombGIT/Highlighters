@@ -4,10 +4,6 @@ image_speed = 0.5;
 alpha = 0;
 start = 0;
 
-//used for controlling count down frame
-frameState = -1;
-frameTimer = current_time;
-
 //handles color switching for start screen
 colorTimer = current_time;
 colorb = irandom_range(0,10);

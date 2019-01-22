@@ -3,18 +3,19 @@ layer_background_blend(layer_get_id("Background"), $908fff);
 
 //holds gameover state
 gameover = false;
+highestRow = 5;
 
 //used for placing pieces
 boardWidth = 6;
 boardHeight = 9;
 startingRows = 5;
 newRow = false;
-selectedEntities = obj_start.selectedEntities;
+selectedEntities = scr_generateBlocks();
 
 //controls game loop
 blockPrevTime = current_time;
 bombPrevTime = current_time;
-maxBlockPace = 10;
+maxBlockPace = 30;
 blockPace = maxBlockPace;
 blockPaceDecrement = 2;
 maxBombPace = 11;

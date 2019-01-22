@@ -1,7 +1,3 @@
-if (start == 3) {
-	//draws countdown
-	draw_sprite(spr_countdown,image_index,window_get_width()/2,window_get_height()/4);
-} 
 if (start < 2) {
 	//checks if there has been a long enough delay since the last color change
 	if ((current_time - colorTimer) / 1000 > colorDelay){
