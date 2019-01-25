@@ -3,7 +3,7 @@ highest = scr_getHeight();
 
 //block loop
 if (!instance_exists(obj_countdown) && !(global.gameover)){
-	if (highest < boardHeight - 1) {
+	if (highest < boardHeight) {
 		if (obj_gui.seconds >= blockCount){
 			blockCount += blockPace;
 			for (var i = 0; i < boardWidth; i++){
@@ -28,7 +28,7 @@ if (!instance_exists(obj_countdown) && !(global.gameover)){
 }
 //handles gameover logic
 if (global.gameover) {
-	if !(anim) { anim = true; alarm[0] = 15; }
+	if !(anim) { anim = true; alarm[0] = 5; }
 }
 #endregion
 

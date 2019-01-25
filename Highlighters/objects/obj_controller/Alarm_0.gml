@@ -8,4 +8,4 @@ if (scr_checkRow(animRow)) {
 	}
 }
 animRow -= 1;
-alarm[0] = 15;
+alarm[0] = 5;

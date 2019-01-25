@@ -1,5 +1,4 @@
 randomize();
-layer_background_blend(layer_get_id("Background"), $908fff);
 //holds gameover state
 global.gameover = false;
 highestRow = 5;
