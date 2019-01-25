@@ -1,8 +1,8 @@
-if (!instance_exists(obj_startscreen)) && !(countdown) {
-	if !(pause) {	
+if !(countdown) && !(instance_exists(obj_countdown)){
+	if !(pause) && !(global.gameover) {	
 		//counts time
-		milli = current_time - offset
-		if (milli >= 1000) {offset += 1000; seconds += 1;} 
+		milli++;
+		if (milli >= room_speed) {milli = 0; seconds += 1;} 
 		if (seconds >= 60) {seconds = 0; minutes += 1;}	
 	}
 

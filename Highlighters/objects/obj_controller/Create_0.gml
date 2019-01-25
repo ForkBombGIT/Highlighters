@@ -1,9 +1,10 @@
 randomize();
 layer_background_blend(layer_get_id("Background"), $908fff);
-
 //holds gameover state
-gameover = false;
+global.gameover = false;
 highestRow = 5;
+anim = false;
+animRow = 8;
 
 //used for placing pieces
 boardWidth = 6;
@@ -15,14 +16,17 @@ selectedEntities = scr_generateBlocks();
 //controls game loop
 blockPrevTime = current_time;
 bombPrevTime = current_time;
-maxBlockPace = 30;
+maxBlockPace = 5;
 blockPace = maxBlockPace;
+blockCount = maxBlockPace;
 blockPaceDecrement = 2;
 maxBombPace = 11;
 bombPace = maxBombPace;
+bombCount = maxBombPace;
 newRow = false;
 rowUp = false;
 highest = 0;
+spriteSwap = false;
 
 //holds the amount of blocks matched
 blocksMatched = 0;

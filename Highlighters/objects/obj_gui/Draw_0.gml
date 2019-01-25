@@ -15,7 +15,7 @@ if !(pause) {
 	draw_sprite(spr_bomb,obj_controller.nextBomb, window_get_width() - 95, 125);
 	//game speed
 	draw_sprite(spr_speed,0,window_get_width() - 25,200);
-	draw_text(window_get_width() - 80,250,string_replace_all(string_format(obj_controller.gameSpeed,2,0)," ", "0"));
+	draw_text(window_get_width() - 80,250,string_replace_all(string_format(obj_controller.gameSpeed + 1,2,0)," ", "0"));
 } else { 
 	draw_sprite(screenShot,0,0,0);
 	draw_set_alpha(0.5);

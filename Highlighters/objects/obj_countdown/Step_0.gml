@@ -4,7 +4,7 @@ switch (frameState) {
 		frameTimer = current_time;
 		frameState = 0;	
 		image_index = 0;
-		break;
+		break; 
 	case 0:
 		image_index = 0;
 		break;
