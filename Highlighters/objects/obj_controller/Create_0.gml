@@ -1,6 +1,7 @@
 randomize();
 //holds gameover state
 global.gameover = false;
+global.active = false;
 highestRow = 5;
 anim = false;
 animRow = 8;
@@ -15,12 +16,12 @@ selectedEntities = scr_generateBlocks();
 //controls game loop
 blockPrevTime = current_time;
 bombPrevTime = current_time;
-maxBlockPace = 5;
+maxBlockPace = 30;
 blockPace = maxBlockPace;
 blockCount = maxBlockPace;
 blockPaceDecrement = 2;
 maxBombPace = 11;
-bombPace = maxBombPace;
+currentBomb = noone;
 bombCount = maxBombPace;
 newRow = false;
 rowUp = false;

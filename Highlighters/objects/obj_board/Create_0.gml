@@ -1,3 +1,4 @@
-image_speed = 0.3;
+image_speed = 0.016;
 //controls what board is drawn
-board = spr_board1;
+board = 0;
+boards = [spr_board1];

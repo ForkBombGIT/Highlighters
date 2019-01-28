@@ -2,7 +2,7 @@
 highest = scr_getHeight();
 
 //block loop
-if (!instance_exists(obj_countdown) && !(global.gameover)){
+if ((global.active) && !(global.gameover)){
 	if (highest < boardHeight) {
 		if (obj_gui.seconds >= blockCount){
 			blockCount += blockPace;
@@ -15,15 +15,20 @@ if (!instance_exists(obj_countdown) && !(global.gameover)){
 	} else global.gameover = true;
 	
 	//bomb loop
-	if (obj_gui.seconds >= bombCount){
-		bombCount = obj_gui.seconds + bombPace;
+	if (currentBomb == noone){
 		var pieceCol = irandom_range(0,boardWidth - 1);
 		if (!scr_getPieceAtPos(8,pieceCol)) {
-			var gamePiece = scr_createEntity(8,pieceCol,obj_bomb);	
-			gamePiece.image_index = nextBomb;
-			gamePiece.index = nextBomb;
+			currentBomb = scr_createEntity(8,pieceCol,obj_bomb);	
+			currentBomb.image_index = nextBomb;
+			currentBomb.index = nextBomb;
 			nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
 		} else global.gameover = true;
+	} else {
+		if (instance_exists(currentBomb)) {
+			if (currentBomb.grounded) {
+				currentBomb = noone;	
+			}
+		}
 	}
 }
 //handles gameover logic

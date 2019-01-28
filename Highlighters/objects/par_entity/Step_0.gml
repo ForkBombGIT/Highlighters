@@ -3,7 +3,8 @@ if (!moveUp) y = scr_getRowPos(row);
 #region Grounded Management
 if (row == 0) grounded = true;
 else if (instance_exists(scr_getPieceAtPos(row - 1, col))) {
-	if (scr_getPieceAtPos(row - 1, col).grounded) grounded = true;
+	if (row != obj_controller.boardHeight - 1)
+		if (scr_getPieceAtPos(row - 1, col).grounded) grounded = true;
 } else grounded = false;
 #endregion
 
