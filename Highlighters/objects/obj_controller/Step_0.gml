@@ -50,5 +50,4 @@ else if (blocksMatched > 10)	gameSpeed = 1;
 else gameSpeed = 0;
 
 blockPace = maxBlockPace - (blockPaceDecrement * gameSpeed);
-bombPace = maxBombPace - gameSpeed;
 #endregion

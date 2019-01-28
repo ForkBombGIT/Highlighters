@@ -26,5 +26,5 @@ switch (start) {
 		break;
 	case 3:
 		if (!instance_exists(obj_countdown))
-			instance_create_layer(window_get_width()/2,window_get_height()/4,"Controller",obj_countdown);
+			instance_create_layer(408,window_get_height()/4,"Controller",obj_countdown);
 }

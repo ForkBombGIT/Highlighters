@@ -28,9 +28,11 @@ if (moveUp) {
 #endregion
 
 #region Fast Drop
-if ((obj_cursor.col == col) || (obj_cursor.col + 1 == col)) {
-	if (keyboard_check_pressed(ord("Z"))) fallPace = hardDrop;
-	if (keyboard_check_released(ord("Z"))) fallPace = orgFallPace;
+if !(match){
+	if ((obj_cursor.col == col) || (obj_cursor.col + 1 == col)) {
+		if (keyboard_check_pressed(ord("Z"))) fallPace = hardDrop;
+		if (keyboard_check_released(ord("Z"))) fallPace = orgFallPace;
+	}
 }
 #endregion
 
@@ -57,7 +59,10 @@ if (swap) && !(landAnim){
 
 #region Fall Control
 //checks if there is no piece below
-if (!instance_exists(scr_getPieceAtPos(row - 1,col)) && (row > 0) && !(obj_controller.rowUp)){
+if (!instance_exists(scr_getPieceAtPos(row - 1,col)) && 
+					 !(match) && 
+					 (row > 0) && 
+					 !(obj_controller.rowUp)){
 	//ensures a block below is not swapping
 	var leftPiece = scr_getPieceAtPos(row - 1, col - 1);
 	var rightPiece = scr_getPieceAtPos(row - 1, col + 1);

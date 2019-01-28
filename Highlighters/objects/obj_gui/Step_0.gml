@@ -19,7 +19,7 @@ if !(countdown) && !(instance_exists(obj_countdown)){
 	    if !(countdown) instance_deactivate_all(1);
 		else {
 			if (!instance_exists(obj_countdown)) 
-				instance_activate_object(instance_create_layer(window_get_width()/2,
+				instance_activate_object(instance_create_layer(408,
 															   window_get_height()/4,
 															   "GUI",
 															   obj_countdown));

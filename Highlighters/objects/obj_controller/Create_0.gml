@@ -19,14 +19,11 @@ bombPrevTime = current_time;
 maxBlockPace = 30;
 blockPace = maxBlockPace;
 blockCount = maxBlockPace;
-blockPaceDecrement = 2;
-maxBombPace = 11;
+blockPaceDecrement = 4;
 currentBomb = noone;
-bombCount = maxBombPace;
 newRow = false;
 rowUp = false;
 highest = 0;
-spriteSwap = false;
 
 //holds the amount of blocks matched
 blocksMatched = 0;
