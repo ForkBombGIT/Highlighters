@@ -3,12 +3,12 @@ if (!moveUp) y = scr_getRowPos(row);
 #region Grounded Management
 if (row == 0) grounded = true;
 else if (instance_exists(scr_getPieceAtPos(row - 1, col))) {
-	if (row != obj_controller.boardHeight - 1)
+	if (row != obj_controller.boardHeight)
 		if (scr_getPieceAtPos(row - 1, col).grounded) grounded = true;
 } else grounded = false;
 #endregion
 
-if (grounded) fallPace = hardDrop;
+if (grounded) fallPace = 0;
 
 #region New Row
 if (obj_controller.newRow) {
@@ -78,23 +78,39 @@ if (!instance_exists(scr_getPieceAtPos(row - 1,col)) &&
 		if (rightPiece.swap) drop = false;			
 		
 	if (drop) {
-		//checks if the timer needs to be set
-		if (dropTimer == -1) dropTimer = current_time;
-		//checks if the time since it was detected that there is no block below 
-		//is greater than fall pace
-		if (((current_time - dropTimer) / 1000) > fallPace){
-			//checks if at bottom
-			if (row - 1 >= 0){
-				row--; 
-				if instance_exists(scr_getPieceAtPos(row - 1,col)){ 
-					if ((scr_getPieceAtPos(row - 1,col).grounded) || (row == 0)) {
-						landAnim = true;
-						landAnimTimer = current_time;
-						image_index++;
-						preLandFrame = image_index;
+		if (fallPace == 0) {
+			var currRowVal = row;
+			var currRow = noone
+			while (currRowVal != 0) {
+				currRow = scr_getPieceAtPos(--currRowVal, col);
+				if (instance_exists(currRow)) {
+					if (currRow.grounded) {
+						break;	
 					}
 				}
-				dropTimer = -1;
+			}
+			
+			row = currRow.row + 1;
+		}
+		else{
+			//checks if the timer needs to be set
+			if (dropTimer == -1) dropTimer = current_time;
+			//checks if the time since it was detected that there is no block below 
+			//is greater than fall pace
+			if (((current_time - dropTimer) / 1000) > fallPace){
+				//checks if at bottom
+				if (row - 1 >= 0){
+					row--; 
+					if instance_exists(scr_getPieceAtPos(row - 1,col)){ 
+						if ((scr_getPieceAtPos(row - 1,col).grounded) || (row == 0)) {
+							landAnim = true;
+							landAnimTimer = current_time;
+							image_index++;
+							preLandFrame = image_index;
+						}
+					}
+					dropTimer = -1;
+				}
 			}
 		}
 	}
@@ -136,7 +152,7 @@ if (instance_exists(up))
 		up = noone;
 
 //handles matching, and trigger adjacent
-if (match) && (grounded) && !(matchAnim) && !(obj_controller.rowUp){
+if (match) && !(matchAnim) && !(obj_controller.rowUp){
 	if (matchTimer == -1) matchTimer = current_time;
 		if (instance_exists(left)) {left.match = true;}
 		if (instance_exists(right)) {right.match = true;}

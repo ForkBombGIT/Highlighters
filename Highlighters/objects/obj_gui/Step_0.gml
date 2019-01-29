@@ -2,7 +2,7 @@ if !(countdown) && !(instance_exists(obj_countdown)){
 	if !(pause) && !(global.gameover) {	
 		//counts time
 		milli++;
-		if (milli >= room_speed) {milli = 0; seconds += 1;} 
+		if (milli >= room_speed) {milli = 0; seconds++; totalSeconds++} 
 		if (seconds >= 60) {seconds = 0; minutes += 1;}	
 	}
 

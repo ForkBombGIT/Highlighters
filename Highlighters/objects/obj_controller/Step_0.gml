@@ -4,8 +4,8 @@ highest = scr_getHeight();
 //block loop
 if ((global.active) && !(global.gameover)){
 	if (highest < boardHeight) {
-		if (obj_gui.seconds >= blockPace * timeScale){
-			timeScale += 1;
+		if (obj_gui.totalSeconds - lastTime >= blockPace){
+			lastTime = obj_gui.totalSeconds;
 			for (var i = 0; i < boardWidth; i++){
 				scr_createEntity(-1,i,obj_piece);	
 			}
@@ -33,7 +33,7 @@ if ((global.active) && !(global.gameover)){
 }
 //handles gameover logic
 if (global.gameover) {
-	if !(anim) { anim = true; alarms[0] = 5; }
+	if !(anim) { anim = true; alarm[0] = 5; }
 }
 #endregion
 
