@@ -8,6 +8,8 @@ else if (instance_exists(scr_getPieceAtPos(row - 1, col))) {
 } else grounded = false;
 #endregion
 
+if (grounded) fallPace = hardDrop;
+
 #region New Row
 if (obj_controller.newRow) {
 	if ((grounded) || (row == -1)) {
@@ -61,6 +63,7 @@ if (swap) && !(landAnim){
 //checks if there is no piece below
 if (!instance_exists(scr_getPieceAtPos(row - 1,col)) && 
 					 !(match) && 
+					 !(swap)  &&
 					 (row > 0) && 
 					 !(obj_controller.rowUp)){
 	//ensures a block below is not swapping
@@ -114,26 +117,26 @@ if (landAnim) {
 //checks for adjacent matching pieces
 left = (col - 1 >= 0) ? instance_position(scr_getColPos(col - 1), scr_getRowPos(row), par_entity) : noone;
 if (instance_exists(left)) 
-	if (left.image_index != image_index) || (left == id)
+	if ((left.image_index != image_index) || (left == id))
 		left = noone;
 		
 right = (col + 1 <= obj_controller.boardWidth - 1) ? instance_position(scr_getColPos(col + 1), scr_getRowPos(row), par_entity) : noone;
 if (instance_exists(right)) 
-	if (right.image_index != image_index) || (right == id)
+	if ((right.image_index != image_index) || (right == id))
 		right = noone;
 		
 down = (row - 1 >= 0) ? instance_position(scr_getColPos(col), scr_getRowPos(row - 1), par_entity) : noone;
 if (instance_exists(down)) 
-	if (down.image_index != image_index) || (down == id)
+	if ((down.image_index != image_index) || (down == id))
 		down = noone;
 
 up = (row + 1 <= obj_controller.boardHeight - 1) ? instance_position(scr_getColPos(col), scr_getRowPos(row + 1), par_entity) : noone;
 if (instance_exists(up)) 
-	if (up.image_index != image_index) || (up == id)
+	if ((up.image_index != image_index) || (up == id))
 		up = noone;
 
 //handles matching, and trigger adjacent
-if (match) && !(matchAnim) && !(obj_controller.rowUp){
+if (match) && (grounded) && !(matchAnim) && !(obj_controller.rowUp){
 	if (matchTimer == -1) matchTimer = current_time;
 		if (instance_exists(left)) {left.match = true;}
 		if (instance_exists(right)) {right.match = true;}

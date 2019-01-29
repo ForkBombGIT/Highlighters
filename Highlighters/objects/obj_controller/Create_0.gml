@@ -33,6 +33,7 @@ gameScore = 0;
 
 //game speed
 gameSpeed = 1;
+timeScale = 1;
 
 //next bomb
 nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
