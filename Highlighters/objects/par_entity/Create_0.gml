@@ -8,7 +8,7 @@ swapSpeed = 8;
 //controls fall speed
 orgFallPace = 1;
 fallPace = orgFallPace;
-hardDrop = 0.001;
+hardDrop = 0;
 preLandFrame = image_index;
 landAnimTimer = current_time;
 landAnimDelay = 0.04;

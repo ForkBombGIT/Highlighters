@@ -81,7 +81,7 @@ if (!instance_exists(scr_getPieceAtPos(row - 1,col)) &&
 		if (fallPace == 0) {
 			var currRowVal = row;
 			var currRow = noone
-			while (currRowVal != 0) {
+			while (currRowVal != -1) {
 				currRow = scr_getPieceAtPos(--currRowVal, col);
 				if (instance_exists(currRow)) {
 					if (currRow.grounded) {
@@ -90,7 +90,11 @@ if (!instance_exists(scr_getPieceAtPos(row - 1,col)) &&
 				}
 			}
 			
-			row = (!currRowVal) ? 0 : currRow.row + 1;
+			row = currRowVal + 1;
+			landAnim = true;
+			landAnimTimer = current_time;
+			image_index++;
+			preLandFrame = image_index;
 		}
 		else{
 			//checks if the timer needs to be set
