@@ -90,7 +90,7 @@ if (!instance_exists(scr_getPieceAtPos(row - 1,col)) &&
 				}
 			}
 			
-			row = currRow.row + 1;
+			row = (!currRowVal) ? 0 : currRow.row + 1;
 		}
 		else{
 			//checks if the timer needs to be set
