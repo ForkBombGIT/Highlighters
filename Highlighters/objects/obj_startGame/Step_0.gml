@@ -7,11 +7,16 @@ if (keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("Z"))) {
 
 if (keyboard_check_pressed(vk_anykey)) {
 	if (keyboard_key == vk_up) 
-		if (cursor > 0) cursor--;
-		else cursor = 4;
-	else if (keyboard_key == vk_down) 
-		if (cursor < 4) cursor++;
-		else cursor = 0;
+		cursor = clamp(cursor - 1,0,4);
+	else if (keyboard_key == vk_down) {
+		cursor = clamp(cursor + 1,0,4);
+	}
+	else if (keyboard_key == vk_left){
+		if (cursor == 2) board = clamp(board - 1, 0, 2);	
+	}
+	else if (keyboard_key == vk_right){
+		if (cursor == 2) board = clamp(board + 1, 0, 2);	
+	}
 }
 
 if (start) {
