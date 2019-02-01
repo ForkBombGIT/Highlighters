@@ -7,7 +7,7 @@ flash = false;
 //game settings
 board = 0;
 boards = [spr_board1,spr_board2,spr_board3];
-level = 0;
+level = 1;
 track = 0;
 char = 0;
 

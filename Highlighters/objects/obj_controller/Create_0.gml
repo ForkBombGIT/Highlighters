@@ -6,6 +6,19 @@ highestRow = 5;
 anim = false;
 animRow = 8;
 
+//game score
+gameScore = 0;
+
+//game speed
+gameSpeed = obj_startGame.level;
+//holds the amount of blocks matched
+blocksMatched = 0;	
+if (gameSpeed > 1) {
+	if (gameSpeed > 10) blocksMatched = (10 * (gameSpeed - 1)) + 10;	
+	else blocksMatched = 10 * (gameSpeed - 1);	
+}
+show_debug_message(blocksMatched);
+
 //used for placing pieces
 boardWidth = 6;
 boardHeight = 9;
@@ -29,15 +42,6 @@ highest = 0;
 lastTimeBlock = 0;
 lastTimeBomb = 0;
 bombPace = 0.5;
-
-//holds the amount of blocks matched
-blocksMatched = 0;
-
-//game score
-gameScore = 0;
-
-//game speed
-gameSpeed = 1;
 
 //next bomb
 nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;

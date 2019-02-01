@@ -14,7 +14,7 @@ if !(pause) {
 	draw_sprite(spr_bomb,obj_controller.nextBomb, 624, 48);
 	//game speed
 	draw_sprite(spr_speed,0,600,96);
-	draw_text(600,120,string_replace_all(string_format(obj_controller.gameSpeed + 1,2,0)," ", "0"));
+	draw_text(600,120,string_replace_all(string_format(obj_controller.gameSpeed,2,0)," ", "0"));
 } else { 
 	draw_sprite(screenShot,0,0,0);
 	draw_set_alpha(0.5);

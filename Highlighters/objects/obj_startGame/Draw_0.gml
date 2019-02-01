@@ -6,7 +6,7 @@ draw_set_font(numFont);
 draw_sprite(spr_select,0,312,24);
 draw_sprite(spr_level,0,312,96);
 draw_sprite(spr_numbers,12,456,96);
-draw_text(480,96,string_replace(string_format(level + 1,2,0)," ", "0"));
+draw_text(480,96,string_replace(string_format(level,2,0)," ", "0"));
 draw_sprite(spr_numbers,14,528,96);
 draw_sprite(spr_char,0,312,168);
 draw_sprite(spr_numbers,12,456,168);
