@@ -9,5 +9,3 @@ if (scr_checkRow(animRow)) {
 }
 animRow -= 1;
 alarm[0] = 5;
-
-show_debug_message("[p")

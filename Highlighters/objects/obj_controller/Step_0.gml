@@ -1,11 +1,10 @@
  #region Game Loop
 highest = scr_getHeight();
-
 //block loop
 if ((global.active) && !(global.gameover)){
 	if (highest < boardHeight) {
-		if (obj_gui.totalSeconds - lastTime >= blockPace){
-			lastTime = obj_gui.totalSeconds;
+		if (((obj_gui.totalMillis -lastTimeBlock) / room_speed) >= blockPace){
+			lastTimeBlock = obj_gui.totalMillis;
 			for (var i = 0; i < boardWidth; i++){
 				scr_createEntity(-1,i,obj_piece);	
 			}
@@ -18,14 +17,17 @@ if ((global.active) && !(global.gameover)){
 	if (currentBomb == noone){
 		var pieceCol = irandom_range(0,boardWidth - 1);
 		if (!scr_getPieceAtPos(8,pieceCol)) {
-			currentBomb = scr_createEntity(8,pieceCol,obj_bomb);	
-			currentBomb.image_index = nextBomb;
-			currentBomb.index = nextBomb;
-			nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
+			if (((obj_gui.totalMillis - lastTimeBomb) / room_speed) >= bombPace) {
+				currentBomb = scr_createEntity(8,pieceCol,obj_bomb);	
+				currentBomb.image_index = nextBomb;
+				currentBomb.index = nextBomb;
+				nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
+			}	
 		} else global.gameover = true;
 	} else {
 		if (instance_exists(currentBomb)) {
 			if (currentBomb.grounded) {
+				lastTimeBomb = obj_gui.totalMillis;
 				currentBomb = noone;	
 			}
 		} else currentBomb = noone;
@@ -38,7 +40,12 @@ if (global.gameover) {
 #endregion
 
 #region Game Speed
-if (blocksMatched > 90)         gameSpeed = 9;
+if (blocksMatched > 190)        gameSpeed = 15;
+else if (blocksMatched > 170)   gameSpeed = 13;
+else if (blocksMatched > 150)   gameSpeed = 12;
+else if (blocksMatched > 130)   gameSpeed = 11;
+else if (blocksMatched > 110)   gameSpeed = 10;
+else if (blocksMatched > 90)    gameSpeed = 9;
 else if (blocksMatched > 80)	gameSpeed = 8;
 else if (blocksMatched > 70)	gameSpeed = 7;
 else if (blocksMatched > 60)	gameSpeed = 6;

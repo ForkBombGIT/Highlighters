@@ -29,9 +29,4 @@ if (start < 2) {
 	draw_sprite(spr_titlefront,0,window_get_width()/2,window_get_height()/2);
 }
 
-//applies fade
-draw_set_alpha(alpha);
-draw_set_color(c_black);
-draw_rectangle(0,0,768,672,c_black);
-draw_set_color(c_white);
-draw_set_alpha(1);
+if (flash) draw_rectangle(0,0,768,432,c_black);

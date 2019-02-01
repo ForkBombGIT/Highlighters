@@ -9,21 +9,26 @@ animRow = 8;
 //used for placing pieces
 boardWidth = 6;
 boardHeight = 9;
+board = 0;
 startingRows = 5;
 newRow = false;
-selectedEntities = scr_generateBlocks();
+selectedEntities = obj_startGame.selectedEntites;
+instance_destroy(obj_startGame);
 
 //controls game loop
 blockPrevTime = current_time;
 bombPrevTime = current_time;
-maxBlockPace = 30;
+maxBlockPace = 25;
 blockPace = maxBlockPace;
 blockCount = maxBlockPace;
-blockPaceDecrement = 4;
+blockPaceDecrement = 22/15;
 currentBomb = noone;
 newRow = false;
 rowUp = false;
 highest = 0;
+lastTimeBlock = 0;
+lastTimeBomb = 0;
+bombPace = 0.5;
 
 //holds the amount of blocks matched
 blocksMatched = 0;
@@ -33,7 +38,6 @@ gameScore = 0;
 
 //game speed
 gameSpeed = 1;
-lastTime = 0;
 
 //next bomb
 nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
