@@ -1,4 +1,4 @@
-numFont = font_add_sprite_ext(spr_numbers, "0123456789:<>", true, 1); 
+numFont = font_add_sprite_ext(spr_numbers, "0123456789:<>", true, 0); 
 //blocks to be used for run
 selectedEntites = scr_generateBlocks();
 //whether or not to start game
