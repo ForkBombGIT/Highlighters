@@ -18,12 +18,12 @@ if (keyboard_check_pressed(vk_anykey)) {
 	if (keyboard_key == vk_left){
 		switch (cursor) { 
 			case 0:
-				level = clamp(level - 1, 1, 15);	
+				level = clamp(level - 1, 1, maxLevel);	
 				break;
 			case 1:
 				break;
 			case 2:
-				board = clamp(board - 1, 0, 2);	
+				board = clamp(board - 1, 0, maxBoard);	
 				break;
 			case 3:
 				break;
@@ -32,12 +32,12 @@ if (keyboard_check_pressed(vk_anykey)) {
 	else if (keyboard_key == vk_right){
 		switch (cursor) { 
 			case 0:
-				level = clamp(level + 1, 1, 15);
+				level = clamp(level + 1, 1, maxLevel);
 				break;
 			case 1:
 				break;
 			case 2:
-				board = clamp(board + 1, 0, 2);	
+				board = clamp(board + 1, 0, maxBoard);	
 				break;
 			case 3:
 				break;
