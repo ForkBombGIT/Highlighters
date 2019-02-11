@@ -53,7 +53,7 @@ if !(moveUp) {
 #endregion
 
 #region Piece Swapping
-if (keyboard_check_pressed(ord("X")) && (!instance_exists(obj_countdown)) && (!obj_controller.rowUp) && (!global.gameover)){
+if (keyboard_check_pressed(ord("X")) && (global.active) && (!obj_controller.rowUp) && (!global.gameover)){
 	//holds the piece on the left and right of the cursor
 	var left = instance_position(scr_getColPos(col),scr_getRowPos(row),par_entity);
 	var right = instance_position(scr_getColPos(col + 1),scr_getRowPos(row),par_entity);

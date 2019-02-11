@@ -1,7 +1,6 @@
 randomize();
 //holds gameover state
 global.gameover = false;
-global.active = false;
 highestRow = 5;
 anim = false;
 animRow = 8;
@@ -9,16 +8,14 @@ animRow = 8;
 //game score
 gameScore = 0;
 
-//game speed
+//game speed 
 gameSpeed = obj_startGame.level;
-show_debug_message(obj_startGame.level);
 //holds the amount of blocks matched
 blocksMatched = 0;	
 if (gameSpeed > 1) {
 	if (gameSpeed > 10) blocksMatched = (20 * (gameSpeed - 9)) + 90;	
-	else blocksMatched = 10 * (gameSpeed - 1);	
+	else blocksMatched = 10 * (gameSpeed);	
 }
-show_debug_message(blocksMatched);
 
 //used for placing pieces
 boardWidth = 6;

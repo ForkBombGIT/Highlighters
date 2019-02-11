@@ -1,4 +1,4 @@
-if !(countdown) && !(instance_exists(obj_countdown)){
+if !(countdown) && (global.active){
 	if !(pause) && !(global.gameover) {	
 		//counts time
 		milli++;
