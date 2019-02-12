@@ -1,5 +1,6 @@
  #region Game Loop
 highest = scr_getHeight();
+
 //block loop
 if ((global.active) && !(global.gameover)){
 	if (((obj_gui.totalMillis -lastTimeBlock) / room_speed) >= blockPace) {

@@ -4,6 +4,7 @@ global.gameover = false;
 highestRow = 5;
 anim = false;
 animRow = 8;
+flash = false;
 
 //game score
 gameScore = 0;

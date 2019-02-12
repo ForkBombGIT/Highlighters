@@ -6,6 +6,15 @@ if (scr_checkRow(animRow)) {
 			piece.image_index += 8;	
 		}
 	}
+} else {
+	//all rows are changed, flicker then switch screens
+	flash = true;
+	alarm[1] = 2;
 }
-animRow -= 1;
-alarm[0] = 5;
+
+//checks if animRow is at a valid row index
+//if it isnt, apply a longer delay
+if (--animRow < 0)
+	alarm[0] = 30;
+else
+	alarm[0] = 5;
