@@ -1,1 +1,1 @@
-if (flash) draw_rectangle(0,0,768,432,c_black);
+draw_rectangle(0,0,768,432,c_red);
