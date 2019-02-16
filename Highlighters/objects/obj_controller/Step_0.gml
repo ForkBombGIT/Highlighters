@@ -1,17 +1,15 @@
  #region Game Loop
-highest = scr_getHeight();
 
 //block loop
 if ((global.active) && !(global.gameover)){
 	if (((obj_gui.totalMillis -lastTimeBlock) / room_speed) >= blockPace) {
-		if (highest != boardHeight - 1) {
-			lastTimeBlock = obj_gui.totalMillis;
-			for (var i = 0; i < boardWidth; i++){
-				scr_createEntity(-1,i,obj_piece);	
-			}
-			newRow = true;
-			rowUp = true;
-		} else global.gameover = true;
+		lastTimeBlock = obj_gui.totalMillis;
+		for (var i = 0; i < boardWidth; i++){
+			scr_createEntity(-1,i,obj_piece);	
+		}
+		newRow = true;
+		rowUp = true;
+		
 	} else newRow = false;
 	
 	//bomb loop
@@ -23,10 +21,7 @@ if ((global.active) && !(global.gameover)){
 				currentBomb.image_index = nextBomb;
 				currentBomb.index = nextBomb;
 				nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
-			} else {
-				if (!(scr_getPieceAtPos(8,pieceCol)).match && (scr_getPieceAtPos(8,pieceCol)).grounded)
-					global.gameover = true;
-			} 
+			}
 		}
 	} else {
 		if (instance_exists(currentBomb)) {
@@ -39,7 +34,7 @@ if ((global.active) && !(global.gameover)){
 }
 //handles gameover logic
 if (global.gameover) {
-	if !(anim) { anim = true; alarm[0] = 5; }
+	if !(anim) { anim = true; alarm[0] = 30; }
 }
 #endregion
 

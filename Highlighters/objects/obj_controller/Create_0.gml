@@ -31,7 +31,7 @@ instance_destroy(obj_startGame);
 maxBlockPace = 25;
 blockPace = maxBlockPace;
 blockCount = maxBlockPace;
-blockPaceDecrement = 23/20;
+blockPaceDecrement = 22/20;
 currentBomb = noone;
 newRow = false;
 rowUp = false;

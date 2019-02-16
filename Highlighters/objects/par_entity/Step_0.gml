@@ -1,5 +1,5 @@
 if (!moveUp) y = scr_getRowPos(row);
-if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 15) {global.gameover = true; instance_destroy();}
+if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 15) {instance_destroy(); global.gameover = true;}
 #region Grounded Management
 if (row == 0) grounded = true;
 else if (instance_exists(scr_getPieceAtPos(row - 1, col))) {
@@ -156,7 +156,7 @@ if (instance_exists(up))
 		up = noone;
 
 //handles matching, and trigger adjacent
-if (match) && !(matchAnim) && !(obj_controller.rowUp){
+if (match) && !(matchAnim) && !(global.gameover) && !(obj_controller.rowUp){
 	if (matchTimer == -1) matchTimer = current_time;
 		if (instance_exists(left)) {left.match = true;}
 		if (instance_exists(right)) {right.match = true;}
