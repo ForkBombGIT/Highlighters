@@ -7,7 +7,7 @@ switch (start) {
 			
 		}
 		break;
-	case 3:	
+	case 4:	
 		instance_create_layer(0,0,"Instances",obj_startGame);
 		instance_destroy();
 		break;

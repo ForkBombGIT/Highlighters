@@ -159,6 +159,14 @@
             }
         },
         {
+            "Key": "1fa2844e-ca76-4e0c-9a8d-8563dd16ba3f",
+            "Value": {
+                "id": "b3a83146-3802-4f85-92d4-5c6f7c1b3bb9",
+                "resourcePath": "sprites\\spr_endless\\spr_endless.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "212bc82a-5408-4d92-a361-ae1669cf593f",
             "Value": {
                 "id": "68e47c0f-965a-4da1-84a1-0e3643e372c6",
@@ -519,6 +527,14 @@
             }
         },
         {
+            "Key": "ad007b90-ca33-4ae7-972f-55460ccdbebf",
+            "Value": {
+                "id": "cbd4aa68-07bd-4b81-813c-9f485a143e8e",
+                "resourcePath": "sprites\\spr_timetrial\\spr_timetrial.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "b0c628dc-50a7-4b69-a6f0-11e42641d841",
             "Value": {
                 "id": "c0cac5ab-cd99-45c3-b92c-37e7a6481d5a",
@@ -644,6 +660,14 @@
                 "id": "863fca10-a65d-440a-b1bb-be039f4bb26a",
                 "resourcePath": "scripts\\scr_getColPos\\scr_getColPos.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d7714f3e-684a-4309-8b7e-da80a9d16179",
+            "Value": {
+                "id": "890ce336-b788-4b5b-ae63-9cae2bfc7f02",
+                "resourcePath": "sprites\\spr_tutorial\\spr_tutorial.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
