@@ -1,8 +1,13 @@
-if (keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("Z"))) {
+if (keyboard_check_released(ord("X"))) {
 	if (cursor == 4) {
 		flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}
+}
+else if (keyboard_check_released(ord("Z"))) {
+	flash = true;
+	start = -1;
+	if !(alarm[0]) alarm[0] = 2;
 }
 
 #region Cursor Control

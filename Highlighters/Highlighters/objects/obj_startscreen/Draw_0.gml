@@ -38,14 +38,14 @@ else if (start == 2) {
 	
 	#region Menu Control
 	//back to main menu
-	if (keyboard_check_pressed(ord("Z"))){ 
-		start = 0; flash = true;
+	if (keyboard_check_released(ord("Z"))){ 
+		start = 0; flash = true; cursor = 0;
 		if !(alarm[0]) alarm[0] = 2;
 	}	
 	//menu item selection
-	if (keyboard_check_pressed(ord("X"))) {
+	if (keyboard_check_released(ord("X"))) {
 		if (cursor == 0) { 
-			start = 3; flash = true;
+			start = 3; flash = true; cursor = 0;
 			if !(alarm[0]) alarm[0] = 2;
 		} 
 	}
@@ -71,14 +71,14 @@ else if (start == 3) {
 	#endregion
 	
 	#region Menu Control
-	if (keyboard_check_pressed(ord("Z"))){ 
-		start = 2; flash = true;
+	if (keyboard_check_released(ord("Z"))){ 
+		start = 2; flash = true; cursor = 0;
 		if !(alarm[0]) alarm[0] = 2;
 	}
 	//menu item selection
-	if (keyboard_check_pressed(ord("X"))) {
+	if (keyboard_check_released(ord("X"))) {
 		if (cursor == 1) { 
-			start = 4; flash = true;
+			start = 4; flash = true; cursor = 0;
 			if !(alarm[0]) alarm[0] = 2;
 		} 
 	}
