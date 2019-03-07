@@ -3,10 +3,10 @@ event_inherited();
 //sprite set up
 image_speed = 0;
 sprite_index = spr_bomb;
-image_index = -1;
-
+image_index = obj_controller.selectedEntities[irandom_range(0,array_length_1d(obj_controller.selectedEntities) - 1)] * 10;
+index = image_index;
 //holds position of bomb
-row = 8;
+row = -1;
 col = -1;
 
 //used for matches

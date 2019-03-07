@@ -2,35 +2,37 @@
 
 //block loop
 if ((global.active) && !(global.gameover)){
-	if (((obj_gui.totalMillis -lastTimeBlock) / room_speed) >= blockPace) {
+	if (((obj_gui.totalMillis -lastTimeBlock) / room_speed) >= blockPace) || (keyboard_check(vk_space) && !rowUp) {
 		lastTimeBlock = obj_gui.totalMillis;
 		for (var i = 0; i < boardWidth; i++){
-			scr_createEntity(-1,i,obj_piece);	
+			scr_createEntity(-1,i,(irandom_range(0,2) > 0) ? obj_piece : obj_bomb);	
 		}
 		newRow = true;
 		rowUp = true;
 		
-	} else newRow = false;
+	} else {
+		newRow = false;
+	}
 	
 	//bomb loop
-	if (currentBomb == noone){
-		var pieceCol = irandom_range(0,boardWidth - 1);
-		if (((obj_gui.totalMillis - lastTimeBomb) / room_speed) >= bombPace) {
-			if (!scr_getPieceAtPos(8,pieceCol)) {
-				currentBomb = scr_createEntity(8,pieceCol,obj_bomb);	
-				currentBomb.image_index = nextBomb;
-				currentBomb.index = nextBomb;
-				nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
-			}
-		}
-	} else {
-		if (instance_exists(currentBomb)) {
-			if (currentBomb.grounded) {
-				lastTimeBomb = obj_gui.totalMillis;
-				currentBomb = noone;	
-			}
-		} else currentBomb = noone;
-	}
+	//if (currentBomb == noone){
+	//	var pieceCol = irandom_range(0,boardWidth - 1);
+	//	if (((obj_gui.totalMillis - lastTimeBomb) / room_speed) >= bombPace) {
+	//		if (!scr_getPieceAtPos(8,pieceCol)) {
+	//			currentBomb = scr_createEntity(8,pieceCol,obj_bomb);	
+	//			currentBomb.image_index = nextBomb;
+	//			currentBomb.index = nextBomb;
+	//			nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
+	//		}
+	//	}
+	//} else {
+	//	if (instance_exists(currentBomb)) {
+	//		if (currentBomb.grounded) {
+	//			lastTimeBomb = obj_gui.totalMillis;
+	//			currentBomb = noone;	
+	//		}
+	//	} else currentBomb = noone;
+	//}
 }
 //handles gameover logic
 if (global.gameover) {

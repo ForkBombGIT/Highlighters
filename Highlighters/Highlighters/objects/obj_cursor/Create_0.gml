@@ -1,6 +1,6 @@
 //cursor movement
 delayTime = current_time;
-delay = 0.07;
+delay = 0.1;
 
 //cursor location
 row = 4;

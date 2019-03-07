@@ -1,5 +1,5 @@
 if (!moveUp) y = scr_getRowPos(row);
-if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 15) {instance_destroy(); global.gameover = true;}
+if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 15) {grounded = true; global.gameover = true;}
 #region Grounded Management
 if (row == 0) grounded = true;
 else if (instance_exists(scr_getPieceAtPos(row - 1, col))) {
@@ -11,20 +11,22 @@ else if (instance_exists(scr_getPieceAtPos(row - 1, col))) {
 if (grounded || global.gameover) fallPace = 0;
 
 #region New Row
-if (obj_controller.newRow) {
-	if ((grounded) || (row == -1)) {
-		moveUp = true;	
-		row++;
+if !(global.gameover){
+	if (obj_controller.newRow){
+		if ((grounded) || (row == -1)) {
+			moveUp = true;	
+			row++;
+		}
 	}
-}
-if (moveUp) {
-	var targY = scr_getRowPos(row);
-	grounded = true;
-	if (y >= targY)
-		y -= 1;
-	else {
-		moveUp = false;
-		obj_controller.rowUp = false;
+	if (moveUp) {
+		var targY = scr_getRowPos(row);
+		grounded = true;
+		if (y >= targY)
+			y -= 1;
+		else {
+			moveUp = false;
+			alarm[0] = 30;
+		}
 	}
 }
 #endregion
@@ -65,6 +67,7 @@ if (!instance_exists(scr_getPieceAtPos(row - 1,col)) &&
 					 !(match) && 
 					 !(swap)  &&
 					 (row > 0) && 
+					 ! (moveUp) &&
 					 !(obj_controller.rowUp)){
 	//ensures a block below is not swapping
 	var leftPiece = scr_getPieceAtPos(row - 1, col - 1);

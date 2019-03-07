@@ -1,10 +1,10 @@
-if (keyboard_check_released(ord("X"))) {
+if (keyboard_check_released(ord("S"))) {
 	if (cursor == 4) {
 		flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}
 }
-else if (keyboard_check_released(ord("Z"))) {
+else if (keyboard_check_released(ord("A"))) {
 	flash = true;
 	start = -1;
 	if !(alarm[0]) alarm[0] = 2;

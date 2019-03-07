@@ -60,7 +60,7 @@ for (var currRow = 0; currRow < startingRows; currRow++){
 				else break;
 			}
 			//creates piece
-			scr_createEntity(tRow,col,obj_piece);
+			scr_createEntity(tRow,col,(irandom_range(0,20) > 2) ? obj_piece : obj_bomb);
 		}
 	}
 }
@@ -72,7 +72,7 @@ for (var currRow = 0; currRow < startingRows; currRow++){
 		for (var col = 0; col < boardWidth; col++) {
 			if (instance_exists(scr_getPieceAtPos(currRow - 1,col))) {
 				//creates piece
-				scr_createEntity(currRow,col,obj_piece);
+				scr_createEntity(currRow,col,(irandom_range(0,20) > 2) ? obj_piece : obj_bomb);
 			}
 		}
 	}

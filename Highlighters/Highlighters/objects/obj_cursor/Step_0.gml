@@ -15,7 +15,7 @@ if (instance_exists(scr_getPieceAtPos(row,col))) {
 }
 
 //handles sliding cursor up
-if (moveUp) {
+if (moveUp) && !(global.gameover){
 	var target = scr_getRowPos(row + 1)
 	if (y >= target) { y--; moveUp = true; }
 	else { row ++; moveUp = false; }
@@ -24,43 +24,47 @@ if (moveUp) {
 #endregion
 		
 #region Cursor Movement
-if !(moveUp) {
+if !(moveUp) && !(global.gameover){
 	if (keyboard_check_pressed(vk_anykey)){
-		switch (keyboard_key){
-			case (vk_left):
-				if (col > 0){
-					col -= 1;
-				}
-				break;
-			case (vk_right):
-				if (col < obj_controller.boardWidth - 2){
-					col += 1;
-				}
-				break;
-			case (vk_up):
-				if (row < obj_controller.boardHeight - 1){
-					row += 1;
-				}
-				break;
-			case (vk_down):
-				if (row > 0){
-					row -= 1;
-				}
-				break;
+		if ((current_time - delayTime) > delay){
+			delayTime = current_time;
+			switch (keyboard_key){
+				case (vk_left):
+					if (col > 0){
+						col -= 1;
+					}
+					break;
+				case (vk_right):
+					if (col < obj_controller.boardWidth - 2){
+						col += 1;
+					}
+					break;
+				case (vk_up):
+					if (row < obj_controller.boardHeight - 1){
+						row += 1;
+					}
+					break;
+				case (vk_down):
+					if (row > 0){
+						row -= 1;
+					}
+					break;
+			}
 		}
 	}
 }
 #endregion
 
 #region Piece Swapping
-if (keyboard_check_pressed(ord("X")) && (global.active) && (!obj_controller.rowUp) && (!global.gameover)){
+if (keyboard_check_pressed(ord("S")) && (keyboard_check(ord("S"))) && (global.active) && (!global.gameover)){
 	//holds the piece on the left and right of the cursor
-	var left = instance_position(scr_getColPos(col),scr_getRowPos(row),par_entity);
-	var right = instance_position(scr_getColPos(col + 1),scr_getRowPos(row),par_entity);
+	var left = scr_getPieceAtPos(row,col);
+	var right = scr_getPieceAtPos(row,col+1);
 	
 	//applies swap to both pieces if there are a left and right piece
 	if (instance_exists(right) && instance_exists(left)) { 
-		if (!(left.swap) && !(right.swap))   && 
+		if (!(left.swap) && !(right.swap))   &&
+		   (!(left.moveUp) && !(right.moveUp)) &&
 		   (!(left.match) && !(right.match)) {
 			left.targetX = col + 1;
 			left.swap = true;

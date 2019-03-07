@@ -1,1 +1,1 @@
-if (image_index != -1) draw_self();
+draw_self();
