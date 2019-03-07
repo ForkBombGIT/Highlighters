@@ -6,6 +6,9 @@ anim = false;
 animRow = 8;
 flash = false;
 
+//selected character
+char = 0;
+
 //game score
 gameScore = 0;
 
