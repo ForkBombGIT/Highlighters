@@ -1,42 +1,16 @@
-if (!moveUp) y = scr_getRowPos(row);
 if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 15) {grounded = true; global.gameover = true;}
 #region Grounded Management
-if (row == 0) grounded = true;
-else if (instance_exists(scr_getPieceAtPos(row - 1, col))) {
-	if (row != obj_controller.boardHeight)
-		if (scr_getPieceAtPos(row - 1, col).grounded) grounded = true;
-} else grounded = false;
+if (y > scr_getRowPos(0)) bottomEntity = true;
+else if (instance_exists(instance_position(x,y+24,par_entity))) {
+	if (y > scr_getRowPos(8))
+		if (instance_position(x,y+24,par_entity).bottomEntity) bottomEntity = true;
+} else bottomEntity = false;
 #endregion
-
-if (grounded || global.gameover) fallPace = 0;
 
 #region New Row
-if !(global.gameover){
-	if (obj_controller.newRow){
-		if ((grounded) || (row == -1)) {
-			moveUp = true;	
-			row++;
-		}
-	}
-	if (moveUp) {
-		var targY = scr_getRowPos(row);
-		grounded = true;
-		if (y >= targY)
-			y -= 1;
-		else {
-			moveUp = false;
-			alarm[0] = 30;
-		}
-	}
-}
-#endregion
-
-#region Fast Drop
-if !(match){
-	if ((obj_cursor.col == col) || (obj_cursor.col + 1 == col)) {
-		if (keyboard_check_pressed(ord("Z"))) fallPace = hardDrop;
-		if (keyboard_check_released(ord("Z"))) fallPace = orgFallPace;
-	}
+if !(global.gameover) && (global.active){
+	if (bottomEntity)
+		y -= global.riseSpeed;
 }
 #endregion
 
@@ -63,65 +37,12 @@ if (swap) && !(landAnim){
 
 #region Fall Control
 //checks if there is no piece below
-if (!instance_exists(scr_getPieceAtPos(row - 1,col)) && 
+if (!instance_exists(instance_position(x,y+23,par_entity)) && 
 					 !(match) && 
 					 !(swap)  &&
-					 (row > 0) && 
-					 ! (moveUp) &&
-					 !(obj_controller.rowUp)){
-	//ensures a block below is not swapping
-	var leftPiece = scr_getPieceAtPos(row - 1, col - 1);
-	var rightPiece = scr_getPieceAtPos(row - 1, col + 1);
-	var drop = true;
-		
-	if (instance_exists(leftPiece)) 
-		if (leftPiece.swap) drop = false;
-		
-	if (instance_exists(rightPiece)) 
-		if (rightPiece.swap) drop = false;			
-		
-	if (drop) {
-		if (fallPace == 0) {
-			var currRowVal = row;
-			var currRow = noone
-			while (currRowVal != -1) {
-				currRow = scr_getPieceAtPos(--currRowVal, col);
-				if (instance_exists(currRow)) {
-					if (currRow.grounded) {
-						break;	
-					}
-				}
-			}
-			
-			row = currRowVal + 1;
-			landAnim = true;
-			landAnimTimer = current_time;
-			image_index++;
-			preLandFrame = image_index;
-		}
-		else{
-			//checks if the timer needs to be set
-			if (dropTimer == -1) dropTimer = current_time;
-			//checks if the time since it was detected that there is no block below 
-			//is greater than fall pace
-			if (((current_time - dropTimer) / 1000) > fallPace){
-				//checks if at bottom
-				if (row - 1 >= 0){
-					row--; 
-					if instance_exists(scr_getPieceAtPos(row - 1,col)){ 
-						if ((scr_getPieceAtPos(row - 1,col).grounded) || (row == 0)) {
-							landAnim = true;
-							landAnimTimer = current_time;
-							image_index++;
-							preLandFrame = image_index;
-						}
-					}
-					dropTimer = -1;
-				}
-			}
-		}
-	}
-} else dropTimer = -1;
+					 (y != scr_getRowPos(0))) {
+	y += fallSpeed;
+} 
 
 //controls landing animation
 if (landAnim) {
@@ -134,6 +55,7 @@ if (landAnim) {
 		landAnimTimer = current_time;
 	}
 } 
+
 #endregion
 
 #region Match Control
@@ -159,7 +81,7 @@ if (instance_exists(up))
 		up = noone;
 
 //handles matching, and trigger adjacent
-if (match) && !(matchAnim) && !(global.gameover) && !(obj_controller.rowUp){
+if (match) && !(matchAnim) && !(global.gameover){
 	if (matchTimer == -1) matchTimer = current_time;
 		if (instance_exists(left)) {left.match = true;}
 		if (instance_exists(right)) {right.match = true;}

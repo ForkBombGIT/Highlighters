@@ -2,16 +2,10 @@
 
 //block loop
 if ((global.active) && !(global.gameover)){
-	if (((obj_gui.totalMillis -lastTimeBlock) / room_speed) >= blockPace) || (keyboard_check(vk_space) && !rowUp) {
-		lastTimeBlock = obj_gui.totalMillis;
+	if (!instance_exists(instance_position(scr_getColPos(0),scr_getRowPos(0) + 25,par_entity))){
 		for (var i = 0; i < boardWidth; i++){
 			scr_createEntity(-1,i,(irandom_range(0,2) > 0) ? obj_piece : obj_bomb);	
 		}
-		newRow = true;
-		rowUp = true;
-		
-	} else {
-		newRow = false;
 	}
 	
 	//bomb loop

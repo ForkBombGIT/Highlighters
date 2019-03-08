@@ -6,9 +6,7 @@ targetX = -1;
 targetY = -1;
 swapSpeed = 8;
 //controls fall speed
-orgFallPace = 1;
-fallPace = orgFallPace;
-hardDrop = 0;
+bottomEntity = false;
 preLandFrame = image_index;
 landAnimTimer = current_time;
 landAnimDelay = 0.04;
@@ -16,7 +14,6 @@ landAnim = false;
 //row moving 
 timer = current_time;
 dropTimer = current_time;
-moveUp = false;
 //position
 row = -1;
 col = -1;

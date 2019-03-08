@@ -25,6 +25,7 @@ if (gameSpeed > 1) {
 boardWidth = 6;
 boardHeight = 9;
 board = 0;
+global.riseSpeed = 0.1;
 startingRows = 5;
 newRow = false;
 selectedEntities = obj_startGame.selectedEntites;

@@ -1,6 +1,6 @@
 event_inherited(); 
 #region Match Control
-if (!swap) && (global.active) && (grounded) && (!moveUp) && !(keyboard_check(vk_space)){
+if (!swap) && (global.active) && (grounded) && !(keyboard_check(vk_space)){
 	//checks if there is a tile below
 	//that matches
 	if (instance_exists(down)){

@@ -1,30 +1,16 @@
 //updates position based of row and col
 x = scr_getColPos(col) + sprite_get_width(spr_piece) / 2;
-if !(moveUp) y = scr_getRowPos(row);
 
 #region New Row Control
-//move cursor up one on new row
-if (instance_exists(scr_getPieceAtPos(row,col))) {
-	if (object_get_name(scr_getPieceAtPos(row,col).object_index) == "obj_piece")
-		if ((obj_controller.newRow) && (row + 1 < obj_controller.boardHeight)) 
-			moveUp = true;
-} else if (instance_exists(scr_getPieceAtPos(row,col+1))) {
-	if (object_get_name(scr_getPieceAtPos(row,col+1).object_index) == "obj_piece")
-		if ((obj_controller.newRow) && (row + 1 < obj_controller.boardHeight)) 
-			moveUp = true;
-}
 
 //handles sliding cursor up
-if (moveUp) && !(global.gameover){
-	var target = scr_getRowPos(row + 1)
-	if (y >= target) { y--; moveUp = true; }
-	else { row ++; moveUp = false; }
-}
+if !(global.gameover) && (global.active)
+	y -= global.riseSpeed;
 
 #endregion
 		
 #region Cursor Movement
-if !(moveUp) && !(global.gameover){
+if !(global.gameover){
 	if (keyboard_check_pressed(vk_anykey)){
 		if ((current_time - delayTime) > delay){
 			delayTime = current_time;
@@ -40,13 +26,15 @@ if !(moveUp) && !(global.gameover){
 					}
 					break;
 				case (vk_up):
-					if (row < obj_controller.boardHeight - 1){
-						row += 1;
+					if (y - sprite_height > 0){
+						y -= spr_piece.sprite_height;
+						row --;
 					}
 					break;
 				case (vk_down):
-					if (row > 0){
-						row -= 1;
+					if (y + sprite_height < scr_getRowPos(0) + 48){
+						y += spr_piece.sprite_height;
+						row ++;
 					}
 					break;
 			}
