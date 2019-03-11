@@ -46,13 +46,12 @@ if !(global.gameover){
 #region Piece Swapping
 if (keyboard_check_pressed(ord("S")) && (keyboard_check(ord("S"))) && (global.active) && (!global.gameover)){
 	//holds the piece on the left and right of the cursor
-	var left = scr_getPieceAtPos(row,col);
-	var right = scr_getPieceAtPos(row,col+1);
+	var left = instance_position(x-24,y,par_entity);
+	var right = instance_position(x+24,y,par_entity);
 	
 	//applies swap to both pieces if there are a left and right piece
 	if (instance_exists(right) && instance_exists(left)) { 
 		if (!(left.swap) && !(right.swap))   &&
-		   (!(left.moveUp) && !(right.moveUp)) &&
 		   (!(left.match) && !(right.match)) {
 			left.targetX = col + 1;
 			left.swap = true;
