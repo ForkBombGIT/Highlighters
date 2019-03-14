@@ -1,14 +1,6 @@
 //updates position based of row and col
 x = scr_getColPos(col) + sprite_get_width(spr_piece) / 2;
 
-#region New Row Control
-
-//handles sliding cursor up
-if !(global.gameover) && (global.active)
-	y -= global.riseSpeed;
-
-#endregion
-		
 #region Cursor Movement
 if !(global.gameover){
 	if (keyboard_check_pressed(vk_anykey)){
@@ -44,7 +36,7 @@ if !(global.gameover){
 #endregion
 
 #region Piece Swapping
-if (keyboard_check_pressed(ord("S")) && (keyboard_check(ord("S"))) && (global.active) && (!global.gameover)){
+if (keyboard_check_pressed(ord("S")) && (global.active) && (!global.gameover)){
 	//holds the piece on the left and right of the cursor
 	var left = instance_position(x-24,y,par_entity);
 	var right = instance_position(x+24,y,par_entity);

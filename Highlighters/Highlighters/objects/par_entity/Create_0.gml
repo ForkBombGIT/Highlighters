@@ -11,6 +11,7 @@ preLandFrame = image_index;
 landAnimTimer = current_time;
 landAnimDelay = 0.04;
 landAnim = false;
+fallSpeed = 10;
 //row moving 
 timer = current_time;
 dropTimer = current_time;

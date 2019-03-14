@@ -2,11 +2,24 @@
 
 //block loop
 if ((global.active) && !(global.gameover)){
-	if (!instance_exists(instance_position(scr_getColPos(0),scr_getRowPos(0) + 25,par_entity))){
+	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+25,par_entity)){
 		for (var i = 0; i < boardWidth; i++){
 			scr_createEntity(-1,i,(irandom_range(0,2) > 0) ? obj_piece : obj_bomb);	
 		}
 	}
+
+	#region New Row
+	if ((current_time - riseTimer)/1000 > risePace) { 
+		riseTimer = current_time;
+		cursor.y -= global.riseSpeed;
+		for (var i = 0; i < instance_number(par_entity); i++) {
+			var instance = instance_find(par_entity,i);
+			if (instance.bottomEntity){
+				instance.y -= global.riseSpeed;
+			}
+		}
+	}
+	#endregion
 	
 	//bomb loop
 	//if (currentBomb == noone){
@@ -32,28 +45,4 @@ if ((global.active) && !(global.gameover)){
 if (global.gameover) {
 	if !(anim) { anim = true; alarm[0] = 30; }
 }
-#endregion
-
-#region Game Speed
-if (blocksMatched > 290)        gameSpeed = 20;
-else if (blocksMatched > 270)   gameSpeed = 19;
-else if (blocksMatched > 250)   gameSpeed = 18;
-else if (blocksMatched > 230)   gameSpeed = 17;
-else if (blocksMatched > 210)   gameSpeed = 16;
-else if (blocksMatched > 190)   gameSpeed = 15;
-else if (blocksMatched > 170)   gameSpeed = 14;
-else if (blocksMatched > 150)   gameSpeed = 13;
-else if (blocksMatched > 130)   gameSpeed = 12;
-else if (blocksMatched > 110)   gameSpeed = 11;
-else if (blocksMatched > 90)    gameSpeed = 10;
-else if (blocksMatched > 80)	gameSpeed = 9;
-else if (blocksMatched > 70)	gameSpeed = 8;
-else if (blocksMatched > 60)	gameSpeed = 7;
-else if (blocksMatched > 50)	gameSpeed = 6;
-else if (blocksMatched > 40)	gameSpeed = 5;
-else if (blocksMatched > 30)	gameSpeed = 4;
-else if (blocksMatched > 20)	gameSpeed = 3;
-else if (blocksMatched > 10)	gameSpeed = 2;
-
-blockPace = maxBlockPace - (blockPaceDecrement * gameSpeed);
 #endregion

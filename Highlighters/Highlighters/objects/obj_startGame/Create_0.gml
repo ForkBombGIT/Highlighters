@@ -10,6 +10,7 @@ flash = false;
 board = 0;
 boards = [spr_board2,spr_board1,spr_board3,spr_board4];
 backgrounds = [spr_background2,spr_background1,spr_background3,spr_background4];
+characters = [spr_floss];
 level = 1;
 track = 0;
 char = 0;

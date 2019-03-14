@@ -14,6 +14,7 @@ gameScore = 0;
 
 //game speed 
 gameSpeed = obj_startGame.level;
+
 //holds the amount of blocks matched
 blocksMatched = 0;	
 if (gameSpeed > 1) {
@@ -25,27 +26,16 @@ if (gameSpeed > 1) {
 boardWidth = 6;
 boardHeight = 9;
 board = 0;
-global.riseSpeed = 0.1;
+global.riseSpeed = 1;
 startingRows = 5;
 newRow = false;
 selectedEntities = obj_startGame.selectedEntites;
 instance_destroy(obj_startGame);
 
-//controls game loop
-maxBlockPace = 25;
-blockPace = maxBlockPace;
-blockCount = maxBlockPace;
-blockPaceDecrement = 22/20;
-currentBomb = noone;
-newRow = false;
-rowUp = false;
+//controls game loop 
 highest = 0;
-lastTimeBlock = 0;
-lastTimeBomb = 0;
-bombPace = 0.5;
-
-//next bomb
-nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
+risePace = 1;
+riseTimer = current_time;
 
 cursor = instance_create_layer(x,y,"Instances",obj_cursor);							
 gui = instance_create_layer(x,y,"Controller",obj_gui);

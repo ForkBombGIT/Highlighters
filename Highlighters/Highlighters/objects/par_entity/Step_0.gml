@@ -1,17 +1,9 @@
-if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 15) {grounded = true; global.gameover = true;}
+if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 15) {global.gameover = true;}
 #region Grounded Management
 if (y > scr_getRowPos(0)) bottomEntity = true;
-else if (instance_exists(instance_position(x,y+24,par_entity))) {
-	if (y > scr_getRowPos(8))
-		if (instance_position(x,y+24,par_entity).bottomEntity) bottomEntity = true;
-} else bottomEntity = false;
-#endregion
-
-#region New Row
-if !(global.gameover) && (global.active){
-	if (bottomEntity)
-		y -= global.riseSpeed;
-}
+else if (position_meeting(x,y+25,par_entity)) 
+	if (instance_position(x,y+25,par_entity).bottomEntity) bottomEntity = true;
+else bottomEntity = false;
 #endregion
 
 #region Swap Control
@@ -28,7 +20,7 @@ if (swap) && !(landAnim){
 		targetX = scr_getColPos(targetX);
 	}
 	
-	//increment until position is reached
+	//increment untisl position is reached
 	if (x < targetX) x += swapSpeed;
 	else if (x > targetX) x -= swapSpeed;
 	else { x = targetX; swap = false; image_index = index;}
@@ -37,11 +29,11 @@ if (swap) && !(landAnim){
 
 #region Fall Control
 //checks if there is no piece below
-if (!instance_exists(instance_position(x,y+23,par_entity)) && 
+if (!place_meeting(x,y + 25,par_entity) && 
 					 !(match) && 
 					 !(swap)  &&
 					 (y != scr_getRowPos(0))) {
-	y += fallSpeed;
+	//y += fallSpeed;
 } 
 
 //controls landing animation
@@ -60,22 +52,22 @@ if (landAnim) {
 
 #region Match Control
 //checks for adjacent matching pieces
-left = (col - 1 >= 0) ? instance_position(scr_getColPos(col - 1), scr_getRowPos(row), par_entity) : noone;
+left = instance_position(x - 48, y, par_entity);
 if (instance_exists(left)) 
 	if ((left.image_index != image_index) || (left == id))
 		left = noone;
 		
-right = (col + 1 <= obj_controller.boardWidth - 1) ? instance_position(scr_getColPos(col + 1), scr_getRowPos(row), par_entity) : noone;
+right = instance_position(x + 48, y, par_entity);
 if (instance_exists(right)) 
 	if ((right.image_index != image_index) || (right == id))
 		right = noone;
 		
-down = (row - 1 >= 0) ? instance_position(scr_getColPos(col), scr_getRowPos(row - 1), par_entity) : noone;
+down = instance_position(x, y + 48, par_entity);
 if (instance_exists(down)) 
 	if ((down.image_index != image_index) || (down == id))
 		down = noone;
 
-up = (row + 1 <= obj_controller.boardHeight - 1) ? instance_position(scr_getColPos(col), scr_getRowPos(row + 1), par_entity) : noone;
+up = instance_position(x, y - 48, par_entity);
 if (instance_exists(up)) 
 	if ((up.image_index != image_index) || (up == id))
 		up = noone;
