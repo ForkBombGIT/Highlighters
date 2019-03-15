@@ -1,6 +1,9 @@
 //updates position based of row and col
 x = scr_getColPos(col) + sprite_get_width(spr_piece) / 2;
 
+if (global.rise)
+	y -= global.riseSpeed;
+
 #region Cursor Movement
 if !(global.gameover){
 	if (keyboard_check_pressed(vk_anykey)){

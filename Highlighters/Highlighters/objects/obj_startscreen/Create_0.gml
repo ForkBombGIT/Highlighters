@@ -1,5 +1,5 @@
 randomize();
-image_speed = 0.5;
+image_speed = 0.1;
 //controls alpha of screen fade
 start = 0;
 flash = false;
@@ -12,6 +12,10 @@ coloraOrg = irandom_range(0,10) * 16;
 colora = coloraOrg;
 colorDelay = 2;
 transition = false;
+
+//menu animation variables
+cursorImageIndex = 0;
+textImageIndex = 0;
 
 //cursor control
 cursor = 0;

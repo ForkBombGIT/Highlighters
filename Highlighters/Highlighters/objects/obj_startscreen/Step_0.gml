@@ -1,3 +1,15 @@
+#region Menu Animation
+var cursorSpeed = .1;
+if (cursorImageIndex < 4){
+    cursorImageIndex += cursorSpeed;
+} else cursorImageIndex = 0;
+
+var textSpeed = .4;
+if (textImageIndex <= 12){
+    textImageIndex += textSpeed;
+} else textImageIndex = 1;
+#endregion
+
 switch (start) {
 	case 0:
 		if (keyboard_check_released(ord("S"))) {

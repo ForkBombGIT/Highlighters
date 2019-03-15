@@ -26,7 +26,8 @@ if (gameSpeed > 1) {
 boardWidth = 6;
 boardHeight = 9;
 board = 0;
-global.riseSpeed = 1;
+global.riseSpeed = 0.5;
+global.rise = false;
 startingRows = 5;
 newRow = false;
 selectedEntities = obj_startGame.selectedEntites;
@@ -34,7 +35,7 @@ instance_destroy(obj_startGame);
 
 //controls game loop 
 highest = 0;
-risePace = 1;
+risePace = 2;
 riseTimer = current_time;
 
 cursor = instance_create_layer(x,y,"Instances",obj_cursor);							
