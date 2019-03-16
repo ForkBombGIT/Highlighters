@@ -6,8 +6,10 @@ else if (position_meeting(x,y+25,par_entity))
 else bottomEntity = false;
 #endregion
 
-if (global.rise)
+if (riseUp) && (bottomEntity) {
 	y -= global.riseSpeed;
+	riseUp = false;
+}
 	
 #region Swap Control
 if (swap) && !(landAnim){ 

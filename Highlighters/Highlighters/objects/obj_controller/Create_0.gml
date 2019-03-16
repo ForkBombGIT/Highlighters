@@ -26,8 +26,7 @@ if (gameSpeed > 1) {
 boardWidth = 6;
 boardHeight = 9;
 board = 0;
-global.riseSpeed = 0.5;
-global.rise = false;
+global.riseSpeed = 1;
 startingRows = 5;
 newRow = false;
 selectedEntities = obj_startGame.selectedEntites;
@@ -35,10 +34,11 @@ instance_destroy(obj_startGame);
 
 //controls game loop 
 highest = 0;
-risePace = 2;
+risePace = 1.5;
 riseTimer = current_time;
 
-cursor = instance_create_layer(x,y,"Instances",obj_cursor);							
+cursor = instance_create_layer(x,scr_getRowPos(4),"Instances",obj_cursor);		
+cursor.visible = false;
 gui = instance_create_layer(x,y,"Controller",obj_gui);
 
 //initializes blocks
@@ -53,7 +53,7 @@ for (var currRow = 0; currRow < startingRows; currRow++){
 				if (!instance_exists(scr_getPieceAtPos(tRow - 1,col)))
 					tRow -= 1;
 				else break;
-			}
+			} 
 			//creates piece
 			scr_createEntity(tRow,col,(irandom_range(0,20) > 2) ? obj_piece : obj_bomb);
 		}

@@ -11,9 +11,12 @@ if ((global.active) && !(global.gameover)){
 	#region New Row
 	if ((current_time - riseTimer)/1000 > risePace) { 
 		riseTimer = current_time;
-		global.rise = true;
-		show_debug_message("oubg")
-	} else global.rise = false;
+		obj_cursor.riseUp = true;
+		for (var i = 0; i < instance_number(par_entity); i++) {
+			var instance = instance_find(par_entity,i);
+			instance.riseUp = true;
+		}
+	} 
 	#endregion
 	
 	//bomb loop

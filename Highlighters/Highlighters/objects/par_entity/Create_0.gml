@@ -13,6 +13,7 @@ landAnimDelay = 0.04;
 landAnim = false;
 fallSpeed = 10;
 //row moving 
+riseUp = false;
 timer = current_time;
 dropTimer = current_time;
 //position

@@ -3,7 +3,7 @@ if (scr_checkRow(animRow)) {
 		var piece = scr_getPieceAtPos(animRow,j);
 		if (instance_exists(piece)) {
 			piece.image_index = piece.index;
-			piece.image_index += 8;	
+			piece.image_index += 9;	
 		}
 	}
 } else {
