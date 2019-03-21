@@ -1,12 +1,23 @@
-if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 15) {global.gameover = true;}
+#region Gameover
+if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 1) {global.gameover = true;}
+#endregion
 
+#region Rising Pieces
 if (riseUp) && (bottomEntity) {
 	y -= global.riseSpeed;
 	riseUp = false;
 }
+#endregion
+
+#region Grey Pieces
+if (!(swap) && !(global.gameover))
+	if (y <= scr_getRowPos(0))
+		image_index = index;
+	else image_index = index + 6; 
+#endregion
 
 #region Grounded Management
-if (y >= scr_getRowPos(0)) bottomEntity = true;
+if (y >= scr_getRowPos(0)) { bottomEntity = true; }
 else if (position_meeting(x,y+48,par_entity)) {
 	if (instance_position(x,y+48,par_entity).bottomEntity && instance_position(x,y+48,par_entity).id != id) bottomEntity = true;
 }

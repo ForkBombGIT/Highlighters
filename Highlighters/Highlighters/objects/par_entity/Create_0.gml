@@ -16,7 +16,6 @@ riseUp = false;
 //position
 row = -1;
 col = -1;
-grounded = false;
 //delay for deletion on match
 matchDelay = 0.25;
 matchTimer = -1;
