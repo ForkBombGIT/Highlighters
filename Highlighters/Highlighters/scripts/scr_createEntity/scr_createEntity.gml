@@ -9,4 +9,5 @@ var gamePiece = instance_create_layer(scr_getColPos(col),
 		
 gamePiece.col = col;
 gamePiece.row = row;
+gamePiece.bottomEntity = true;
 return gamePiece;

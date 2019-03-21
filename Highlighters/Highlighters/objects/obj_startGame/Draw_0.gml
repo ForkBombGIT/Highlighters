@@ -1,9 +1,7 @@
 draw_sprite(backgrounds[board],image_index,0,0);
 draw_sprite(boards[board],image_index,240,0);
-//draw_sprite(spr_grid,0,0,0);
 draw_sprite(spr_selectCursor,image_speed,288,cursorPositions[cursor]);
 draw_set_font(numFont);
-
 draw_sprite(spr_select,0,312,24);
 draw_sprite(spr_level,0,312,96);
 draw_sprite(spr_numbers,12,456,96);

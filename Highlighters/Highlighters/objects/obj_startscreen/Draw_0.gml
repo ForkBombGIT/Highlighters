@@ -41,8 +41,6 @@ else if (start == 2) {
 	#endregion
 }
 else if (start == 3) {
-	
-	
 	#region Menu Drawing
 	draw_sprite(spr_startcursor,round(cursorImageIndex),72,cursorPositions[cursor]);
 	draw_sprite(spr_tutorial,(cursor == 0) ? round(textImageIndex) : 0,117,69);

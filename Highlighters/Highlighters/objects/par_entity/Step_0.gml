@@ -1,18 +1,22 @@
 if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 15) {global.gameover = true;}
-#region Grounded Management
-if (y > scr_getRowPos(0)) bottomEntity = true;
-else if (position_meeting(x,y+25,par_entity)) 
-	if (instance_position(x,y+25,par_entity).bottomEntity) bottomEntity = true;
-else bottomEntity = false;
-#endregion
 
 if (riseUp) && (bottomEntity) {
 	y -= global.riseSpeed;
 	riseUp = false;
 }
+
+#region Grounded Management
+if (y >= scr_getRowPos(0)) bottomEntity = true;
+else if (position_meeting(x,y+48,par_entity)) {
+	if (instance_position(x,y+48,par_entity).bottomEntity && instance_position(x,y+48,par_entity).id != id) bottomEntity = true;
+}
+else 
+	if !(riseUp) 
+		bottomEntity = false;
+#endregion
 	
 #region Swap Control
-if (swap) && !(landAnim){ 
+if (swap){ 
 	//reset direction variables
 	left = noone;
 	right = noone;
@@ -34,11 +38,8 @@ if (swap) && !(landAnim){
 
 #region Fall Control
 //checks if there is no piece below
-if (!place_meeting(x,y + 25,par_entity) && 
-					 !(match) && 
-					 !(swap)  &&
-					 (y != scr_getRowPos(0))) {
-	//y += fallSpeed;
+if ((!bottomEntity) && !(swap)) {
+	show_debug_message(collision_line(x,y,x,scr_getRowPos(0),par_entity,1,1));
 } 
 
 //controls landing animation
@@ -89,17 +90,17 @@ if (match) && !(matchAnim) && !(global.gameover){
 		if (instance_exists(right)) {right.matchTimer = matchTimer;}
 		if (instance_exists(up)) {up.matchTimer = matchTimer;}
 		if (instance_exists(down)) {down.matchTimer = matchTimer;}
-		matchAnim = true;
-		imageIndex = image_index + 5;
-		image_index = imageIndex;
+		//matchAnim = true;
+		//imageIndex = image_index + 5;
+		//image_index = imageIndex;
 	}
 }
 
-if (matchAnim) {
-	image_speed = 0.7;
-	if (image_index > imageIndex + 2)
-		instance_destroy();
-}
+//if (matchAnim) {
+//	image_speed = 0.7;
+//	if (image_index > imageIndex + 2)
+//		instance_destroy();
+//}
 
 
 #endregion

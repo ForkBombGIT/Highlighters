@@ -1,8 +1,8 @@
 {
-    "id": "5dd0735b-5f54-4c11-a8dd-d886217adf98",
+    "id": "ffadee16-c9dd-4f87-9364-a9810622f731",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "scr_checkGroundedRow",
+    "name": "scr_initRows",
     "IsCompatibility": false,
     "IsDnD": false
 }

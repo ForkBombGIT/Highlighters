@@ -17,7 +17,6 @@ switch (start) {
 			cursor = 0;
 			flash = true;
 			if !(alarm[0]) alarm[0] = 2;
-			
 		}
 		break;
 	case 2:

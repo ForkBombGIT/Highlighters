@@ -2,7 +2,7 @@
 
 //block loop
 if ((global.active) && !(global.gameover)){
-	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+25,par_entity)){
+	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,par_entity)){
 		for (var i = 0; i < boardWidth; i++){
 			scr_createEntity(-1,i,(irandom_range(0,2) > 0) ? obj_piece : obj_bomb);	
 		}
@@ -11,34 +11,15 @@ if ((global.active) && !(global.gameover)){
 	#region New Row
 	if ((current_time - riseTimer)/1000 > risePace) { 
 		riseTimer = current_time;
-		obj_cursor.riseUp = true;
+		if (obj_cursor.y > scr_getRowPos(8)) obj_cursor.riseUp = true;
 		for (var i = 0; i < instance_number(par_entity); i++) {
 			var instance = instance_find(par_entity,i);
 			instance.riseUp = true;
 		}
 	} 
 	#endregion
-	
-	//bomb loop
-	//if (currentBomb == noone){
-	//	var pieceCol = irandom_range(0,boardWidth - 1);
-	//	if (((obj_gui.totalMillis - lastTimeBomb) / room_speed) >= bombPace) {
-	//		if (!scr_getPieceAtPos(8,pieceCol)) {
-	//			currentBomb = scr_createEntity(8,pieceCol,obj_bomb);	
-	//			currentBomb.image_index = nextBomb;
-	//			currentBomb.index = nextBomb;
-	//			nextBomb = selectedEntities[irandom_range(0,array_length_1d(selectedEntities) - 1)] * 10;
-	//		}
-	//	}
-	//} else {
-	//	if (instance_exists(currentBomb)) {
-	//		if (currentBomb.grounded) {
-	//			lastTimeBomb = obj_gui.totalMillis;
-	//			currentBomb = noone;	
-	//		}
-	//	} else currentBomb = noone;
-	//}
 }
+
 //handles gameover logic
 if (global.gameover) {
 	if !(anim) { anim = true; alarm[0] = 30; }

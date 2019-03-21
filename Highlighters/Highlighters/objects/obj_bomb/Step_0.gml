@@ -1,11 +1,11 @@
 event_inherited(); 
 #region Match Control
-if (!swap) && (global.active) && (grounded) && !(keyboard_check(vk_space)){
+if (!swap) && (global.active) && (bottomEntity){
 	//checks if there is a tile below
 	//that matches
 	if (instance_exists(down)){
 		if (instance_exists(left) || instance_exists(right) || instance_exists(up)) match = true;
-		else if (!down.swap && down.grounded){
+		else if (!down.swap && down.bottomEntity){
 			if (instance_exists(down.left) || instance_exists(down.right) || instance_exists(down.down)) {
 				down.match = true;
 				match = true;
@@ -16,7 +16,7 @@ if (!swap) && (global.active) && (grounded) && !(keyboard_check(vk_space)){
 	//that matches
 	if (instance_exists(left)){
 		if (instance_exists(right) || instance_exists(down) || instance_exists(up)) match = true;
-		else if (!left.swap && left.grounded){
+		else if (!left.swap && left.bottomEntity){
 			if (instance_exists(left.left) || instance_exists(left.up) || instance_exists(left.down)) {
 				left.match = true;
 				match = true;
@@ -27,7 +27,7 @@ if (!swap) && (global.active) && (grounded) && !(keyboard_check(vk_space)){
 	//that matches
 	if (instance_exists(right)){
 		if (instance_exists(left) || instance_exists(down) || instance_exists(up)) match = true;
-		else if (!right.swap && right.grounded){
+		else if (!right.swap && right.bottomEntity){
 			if (instance_exists(right.up) || instance_exists(right.right) || instance_exists(right.down)) {
 				right.match = true;
 				match = true;
@@ -37,7 +37,7 @@ if (!swap) && (global.active) && (grounded) && !(keyboard_check(vk_space)){
 	//checks if there is a tile up
 	//that matches
 	if (instance_exists(up)){
-		if (!up.swap && up.grounded){
+		if (!up.swap && up.bottomEntity){
 			if (instance_exists(up.left) || instance_exists(up.right) || instance_exists(up.up)) {
 				up.match = true;
 				match = true;

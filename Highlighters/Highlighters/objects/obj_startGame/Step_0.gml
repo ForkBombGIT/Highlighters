@@ -1,3 +1,4 @@
+#region Input Control
 if (keyboard_check_released(ord("S"))) {
 	if (cursor == 4) {
 		flash = true;
@@ -9,6 +10,7 @@ else if (keyboard_check_released(ord("A"))) {
 	start = -1;
 	if !(alarm[0]) alarm[0] = 2;
 }
+#endregion
 
 #region Cursor Control
 if (keyboard_check_pressed(vk_anykey)) {
