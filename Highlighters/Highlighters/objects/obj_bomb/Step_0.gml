@@ -7,7 +7,6 @@ if (!swap) && (global.active) && (bottomEntity){
 		if (instance_exists(left) || instance_exists(right) || instance_exists(up)) match = true;
 		else if (!down.swap && down.bottomEntity){
 			if (instance_exists(down.left) || instance_exists(down.right) || instance_exists(down.down)) {
-				down.match = true;
 				match = true;
 			}
 		}
@@ -18,7 +17,6 @@ if (!swap) && (global.active) && (bottomEntity){
 		if (instance_exists(right) || instance_exists(down) || instance_exists(up)) match = true;
 		else if (!left.swap && left.bottomEntity){
 			if (instance_exists(left.left) || instance_exists(left.up) || instance_exists(left.down)) {
-				left.match = true;
 				match = true;
 			}
 		} 
@@ -29,7 +27,6 @@ if (!swap) && (global.active) && (bottomEntity){
 		if (instance_exists(left) || instance_exists(down) || instance_exists(up)) match = true;
 		else if (!right.swap && right.bottomEntity){
 			if (instance_exists(right.up) || instance_exists(right.right) || instance_exists(right.down)) {
-				right.match = true;
 				match = true;
 			} 
 		}
@@ -39,11 +36,9 @@ if (!swap) && (global.active) && (bottomEntity){
 	if (instance_exists(up)){
 		if (!up.swap && up.bottomEntity){
 			if (instance_exists(up.left) || instance_exists(up.right) || instance_exists(up.up)) {
-				up.match = true;
 				match = true;
 			}
 		}
 	}
-	
 }
 #endregion

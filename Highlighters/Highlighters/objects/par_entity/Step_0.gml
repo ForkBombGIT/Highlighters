@@ -22,7 +22,7 @@ else if (position_meeting(x,y+48,par_entity)) {
 	if (instance_position(x,y+48,par_entity).bottomEntity && instance_position(x,y+48,par_entity).id != id) bottomEntity = true;
 }
 else 
-	if !(riseUp) 
+	if !(riseUp) && (keyboard_check_released(ord("S")))
 		bottomEntity = false;
 #endregion
 	
@@ -49,8 +49,8 @@ if (swap){
 
 #region Fall Control
 //checks if there is no piece below
-if ((!bottomEntity) && !(swap)) {
-	show_debug_message(collision_line(x,y,x,scr_getRowPos(0),par_entity,1,1));
+if (!(bottomEntity) && !(swap)) {
+	//y = collision_line(x,y,x,scr_getRowPos(0),par_entity,0,1).y + 48;
 } 
 
 //controls landing animation
@@ -88,30 +88,4 @@ up = instance_position(x, y - 48, par_entity);
 if (instance_exists(up)) 
 	if ((up.image_index != image_index) || (up == id))
 		up = noone;
-
-//handles matching, and trigger adjacent
-if (match) && !(matchAnim) && !(global.gameover){
-	if (matchTimer == -1) matchTimer = current_time;
-		if (instance_exists(left)) {left.match = true;}
-		if (instance_exists(right)) {right.match = true;}
-		if (instance_exists(up)) {up.match = true;}
-		if (instance_exists(down)) {down.match = true;}
-	if ((current_time - matchTimer) / 1000 > matchDelay) {
-		if (instance_exists(left)) {left.matchTimer = matchTimer;}
-		if (instance_exists(right)) {right.matchTimer = matchTimer;}
-		if (instance_exists(up)) {up.matchTimer = matchTimer;}
-		if (instance_exists(down)) {down.matchTimer = matchTimer;}
-		//matchAnim = true;
-		//imageIndex = image_index + 5;
-		//image_index = imageIndex;
-	}
-}
-
-//if (matchAnim) {
-//	image_speed = 0.7;
-//	if (image_index > imageIndex + 2)
-//		instance_destroy();
-//}
-
-
 #endregion

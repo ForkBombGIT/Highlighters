@@ -31,14 +31,6 @@
     },
     "resources": [
         {
-            "Key": "00611aac-4914-4aa3-af3a-4ac26ef7b6ea",
-            "Value": {
-                "id": "a3a57047-e93f-4a6f-a53f-7909ed23246b",
-                "resourcePath": "objects\\obj_matchmaker\\obj_matchmaker.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "00d4e6df-4134-45d4-a388-da38f17a0777",
             "Value": {
                 "id": "6e0121f1-e4a1-41be-b55f-553bd2244b80",

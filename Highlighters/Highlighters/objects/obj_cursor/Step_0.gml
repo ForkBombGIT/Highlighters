@@ -7,8 +7,7 @@ if (riseUp) {
 		var yDisplacement = (((abs(instance_nearest(x,y,par_entity).y - y)/spr_piece.sprite_height)) - ((abs(instance_nearest(x,y,par_entity).y - y)/spr_piece.sprite_height) - 1)) * spr_piece.sprite_height;
 		y += yDisplacement;
 	}
-	//else
-		y -= global.riseSpeed;
+	y -= global.riseSpeed;
 	riseUp = false;
 }
 

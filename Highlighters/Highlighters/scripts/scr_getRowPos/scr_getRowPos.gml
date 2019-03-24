@@ -1,5 +1,6 @@
 var row = argument0;
 switch (row){
+	case -2: return 504;
 	case -1: return 456;
 	case 0:	return 408;
 	case 1:	return 360;

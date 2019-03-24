@@ -24,7 +24,8 @@ if (gameSpeed > 1) {
 boardWidth = 6;
 boardHeight = 9;
 board = 0;
-global.riseSpeed = 3;
+global.orgRiseSpeed = 3;
+global.riseSpeed = global.orgRiseSpeed;
 startingRows = 5;
 selectedEntities = obj_startGame.selectedEntites;
 instance_destroy(obj_startGame);
