@@ -20,12 +20,9 @@ if ((global.active) && !(global.gameover)) {
 		}
 	} 
 	
-	
+	//manual new row
 	if (keyboard_check_pressed(vk_space)) {
-		for (var i = 0; i < boardWidth; i++){
-			scr_createEntity(-2,i,(irandom_range(0,2) > 0) ? obj_piece : obj_bomb);	
-		}
-		global.riseSpeed = 72 - abs(432 - instance_position(scr_getColPos(0),432,par_entity).y)
+		global.riseSpeed = abs(432 - (instance_position(scr_getColPos(0),432,par_entity).y + 24));
 		obj_cursor.riseUp = true;
 		for (var i = 0; i < instance_number(par_entity); i++) {
 			var instance = instance_find(par_entity,i);
