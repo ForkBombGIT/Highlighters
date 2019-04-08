@@ -3,7 +3,6 @@ index = -1;
 //swapping variables
 swap = false;
 targetX = -1;
-targetY = -1;
 swapSpeed = 8;
 //controls fall speed
 bottomEntity = false;
@@ -25,5 +24,3 @@ right = noone;
 down = noone;
 up = noone;
 match = false;
-matchAnim = false;
-imageIndex = 0;

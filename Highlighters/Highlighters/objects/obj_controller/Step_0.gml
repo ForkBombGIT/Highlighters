@@ -21,7 +21,7 @@ if ((global.active) && !(global.gameover)) {
 	} 
 	
 	//manual new row
-	if (keyboard_check_pressed(vk_space)) {
+	if (keyboard_check_pressed(ord("A"))) {
 		global.riseSpeed = abs(432 - (instance_position(scr_getColPos(0),432,par_entity).y + 24));
 		obj_cursor.riseUp = true;
 		for (var i = 0; i < instance_number(par_entity); i++) {
