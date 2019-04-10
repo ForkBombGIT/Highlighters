@@ -22,6 +22,8 @@ if ((global.active) && !(global.gameover)) {
 	
 	//manual new row
 	if (keyboard_check_pressed(ord("A"))) {
+		if (scr_checkRow(8)) global.gameover = true;
+		else {
 		global.riseSpeed = abs(432 - (instance_position(scr_getColPos(0),432,par_entity).y + 24));
 		obj_cursor.riseUp = true;
 		for (var i = 0; i < instance_number(par_entity); i++) {
@@ -29,11 +31,12 @@ if ((global.active) && !(global.gameover)) {
 			instance.riseUp = true;
 		}
 		riseTimer = current_time;
+		}
 	}
 }
 
 //handles gameover logic
 if (global.gameover) {
-	if !(anim) { anim = true; alarm[0] = 30; }
+	if !(anim) { anim = true; alarm[0] = 1; }
 }
 #endregion
