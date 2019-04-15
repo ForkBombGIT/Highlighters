@@ -15,9 +15,6 @@ riseUp = false;
 //position
 row = -1;
 col = -1;
-//delay for deletion on match
-matchDelay = 0.25;
-matchTimer = -1;
 //used for matches
 left = noone;
 right = noone;

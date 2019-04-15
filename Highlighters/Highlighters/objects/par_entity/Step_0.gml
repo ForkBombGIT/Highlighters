@@ -18,11 +18,12 @@ if (!(swap) && !(global.gameover))
 
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { bottomEntity = true; }
-else if (position_meeting(x,y+48,par_entity)) {
-	if (instance_position(x,y+48,par_entity).bottomEntity && instance_position(x,y+48,par_entity).id != id) bottomEntity = true;
+else if (place_meeting(x,y+48,par_entity)) {
+	 if (instance_place(x,y+48,par_entity).bottomEntity && 
+		 instance_place(x,y+48,par_entity).id != id) bottomEntity = true;
 }
 else 
-	if !(riseUp) && (keyboard_check_released(ord("S")))
+	if !(riseUp)
 		bottomEntity = false;
 #endregion
 	
@@ -64,5 +65,27 @@ if (landAnim) {
 		landAnimTimer = current_time;
 	}
 } 
+#endregion
 
+#region Match Control
+//checks for adjacent matching pieces
+left = instance_position(x - 48, y, par_entity);
+if (instance_exists(left)) 
+	if ((left.image_index != image_index) || (left == id))
+		left = noone;
+		
+right = instance_position(x + 48, y, par_entity);
+if (instance_exists(right)) 
+	if ((right.image_index != image_index) || (right == id))
+		right = noone;
+		
+down = instance_position(x, y + 48, par_entity);
+if (instance_exists(down)) 
+	if ((down.image_index != image_index) || (down == id))
+		down = noone;
+
+up = instance_position(x, y - 48, par_entity);
+if (instance_exists(up)) 
+	if ((up.image_index != image_index) || (up == id))
+		up = noone;
 #endregion

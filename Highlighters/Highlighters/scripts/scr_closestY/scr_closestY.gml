@@ -1,14 +1,13 @@
-var result = noone;
-var disty = -1;
+var yAxis = argument0;
+var objectToCheck = argument1;
+var closestObj = noone;
+var distanceY = -1;
 
-var yvalue = argument0;
-var object = argument1;
-
-with (object) {
-    if ((result == noone) || (abs(y - yvalue) < disty)) {
-        result = id;
-        disty = abs(y - yvalue);
+with (objectToCheck) {
+    if ((closestObj == noone) || (abs(y - yAxis) < distanceY)) {
+        closestObj = id;
+        distanceY = abs(y - yAxis);
     }
 }
 
-return result;
+return closestObj;
