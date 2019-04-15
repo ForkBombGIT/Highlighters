@@ -12,7 +12,7 @@ if (textImageIndex <= 12){
 
 switch (start) {
 	case 0:
-		if (keyboard_check_released(ord("S"))) {
+		if (keyboard_check_pressed(ord("S"))) {
 			start = 1;
 			cursor = 0;
 			flash = true;
@@ -29,12 +29,12 @@ switch (start) {
 	
 		#region Menu Control
 		//back to main menu
-		if (keyboard_check_released(ord("A"))){ 
+		if (keyboard_check_pressed(ord("A"))){ 
 			start = 0; flash = true; cursor = 0;
 			if !(alarm[0]) alarm[0] = 2;
 		}	
 		//menu item selection
-		if (keyboard_check_released(ord("S"))) {
+		if (keyboard_check_pressed(ord("S"))) {
 			if (cursor == 0) { 
 				start = 3; flash = true; cursor = 0;
 				if !(alarm[0]) alarm[0] = 2;
@@ -51,12 +51,12 @@ switch (start) {
 		#endregion
 	
 		#region Menu Control
-		if (keyboard_check_released(ord("A"))){ 
+		if (keyboard_check_pressed(ord("A"))){ 
 			start = 2; flash = true; cursor = 0;
 			if !(alarm[0]) alarm[0] = 2;
 		}
 		//menu item selection
-		if (keyboard_check_released(ord("S"))) {
+		if (keyboard_check_pressed(ord("S"))) {
 			if (cursor == 1) { 
 				start = 4; flash = true; cursor = 0;
 				if !(alarm[0]) alarm[0] = 2;

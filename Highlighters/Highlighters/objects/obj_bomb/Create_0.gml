@@ -8,6 +8,3 @@ index = image_index;
 //holds position of bomb
 row = -1;
 col = -1;
-
-//used for matches
-matchTimer = -1;
