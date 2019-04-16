@@ -6,9 +6,7 @@ targetX = -1;
 swapSpeed = 8;
 //controls fall speed
 bottomEntity = false;
-preLandFrame = image_index;
-landAnimTimer = current_time;
-landAnimDelay = 0.04;
+landAnimIndex = image_index;
 landAnim = false;
 //row moving 
 riseUp = false;

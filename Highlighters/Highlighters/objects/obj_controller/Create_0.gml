@@ -1,7 +1,6 @@
 randomize();
 //holds gameover state
 global.gameover = false;
-highestRow = 5;
 anim = false;
 animRow = 8;
 flash = false;

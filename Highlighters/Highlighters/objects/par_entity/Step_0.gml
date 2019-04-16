@@ -23,7 +23,7 @@ else if (place_meeting(x,y+48,par_entity)) {
 		 instance_place(x,y+48,par_entity).id != id) bottomEntity = true;
 }
 else 
-	if !(riseUp)
+	if !(riseUp) 
 		bottomEntity = false;
 #endregion
 	
@@ -52,18 +52,17 @@ if (swap){
 //checks if there is no piece below
 if (!(bottomEntity) && !(swap)) {
 	y = scr_closestY(y,par_entity).y + spr_piece.sprite_height;
+	landAnim = true;
+	landAnimIndex = index;
 } 
 
 //controls landing animation
 if (landAnim) {
-	if (((current_time - landAnimTimer) / 1000) > landAnimDelay) {
-		image_index++;
-		if (image_index > (preLandFrame + 2)) {
-			image_index = index;
-			landAnim = false;
-		}
-		landAnimTimer = current_time;
-	}
+	var animSpeed = .25;
+	if (round(landAnimIndex) < index + 4){
+	    landAnimIndex += animSpeed;
+	} else { landAnimIndex = index; landAnim = false; }
+	image_index = round(landAnimIndex);
 } 
 #endregion
 
