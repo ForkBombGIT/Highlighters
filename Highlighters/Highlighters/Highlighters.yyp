@@ -703,6 +703,14 @@
             }
         },
         {
+            "Key": "dc6518b8-0295-42e0-96d9-ce69dee8ce0d",
+            "Value": {
+                "id": "f84dab29-e850-4505-ad59-89a55bffd664",
+                "resourcePath": "sprites\\spr_cognac\\spr_cognac.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "de0e940b-3fd2-4c84-822d-49208bce37fb",
             "Value": {
                 "id": "7ac3e907-4b26-4b23-936d-64655ff018eb",

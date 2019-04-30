@@ -13,7 +13,7 @@ if !(pause) {
 	draw_sprite(spr_speed,0,600,24);
 	draw_text(600,48,string_replace_all(string_format(obj_controller.gameSpeed,2,0)," ", "0"));
 	//draws character
-	draw_sprite(characters[obj_controller.char],0,0,180)
+	draw_sprite(characters[obj_controller.char],0,32,200)
 } else { 
 	draw_sprite(screenShot,0,0,0);
 	draw_set_alpha(0.5);

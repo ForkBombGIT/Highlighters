@@ -20,5 +20,5 @@ draw_sprite(spr_numbers,12,456,264);
 draw_text(480,264,string_replace(string_format(track + 1,2,0)," ", "0"));
 draw_sprite(spr_numbers,14,528,264);
 draw_sprite(spr_start,0,312,360);
-draw_sprite(characters[char],0,0,180);
+draw_sprite(characters[char],0,32,200);
 if (flash) draw_rectangle(0,0,768,432,c_black);

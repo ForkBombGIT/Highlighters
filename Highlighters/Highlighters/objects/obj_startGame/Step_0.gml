@@ -28,6 +28,7 @@ if (keyboard_check_pressed(vk_anykey)) {
 				level = clamp(level - 1, 1, maxLevel);	
 				break;
 			case 1:
+				char = clamp(char - 1, 0, maxChar);	
 				break;
 			case 2:
 				board = clamp(board - 1, 0, maxBoard);	
@@ -42,6 +43,7 @@ if (keyboard_check_pressed(vk_anykey)) {
 				level = clamp(level + 1, 1, maxLevel);
 				break;
 			case 1:
+				char = clamp(char + 1, 0, maxChar);	
 				break;
 			case 2:
 				board = clamp(board + 1, 0, maxBoard);	
