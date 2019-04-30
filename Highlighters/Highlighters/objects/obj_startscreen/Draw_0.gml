@@ -30,8 +30,11 @@ if (start < 2) {
 }
 else if (start == 2) {
 	#region Menu Drawing
-	draw_sprite(spr_grid,0,0,0);
+	//draw_sprite(spr_grid,0,0,0);
 	draw_sprite(spr_mainmenu,0,48,24);
+	draw_sprite(spr_oneplayer,(startCursor == 0) ? round(textImageIndex) : 0,48,312);
+	draw_sprite(spr_options,(startCursor == 1) ? round(textImageIndex) : 0,289,312);
+	draw_sprite(spr_quit,(startCursor == 2) ? round(textImageIndex) : 0,528,312);
 	draw_sprite(spr_ok,18,48,72);
 	draw_sprite(spr_back,0,144,72);
 	#endregion

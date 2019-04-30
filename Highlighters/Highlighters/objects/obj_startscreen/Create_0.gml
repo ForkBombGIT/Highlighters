@@ -18,6 +18,7 @@ cursorImageIndex = 0;
 textImageIndex = 0;
 
 //cursor control
+startCursor = 0;
 cursor = 0;
 cursorPositions = [72,120,168,216,264];
 

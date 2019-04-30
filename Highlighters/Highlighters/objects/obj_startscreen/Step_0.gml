@@ -7,7 +7,7 @@ if (cursorImageIndex < 4){
 var textSpeed = .4;
 if (textImageIndex <= 12){
     textImageIndex += textSpeed;
-} else textImageIndex = 1;
+} else textImageIndex = 2;
 #endregion
 
 switch (start) {
@@ -21,24 +21,27 @@ switch (start) {
 		break;
 	case 2:
 		#region Cursor Movement
-		if (keyboard_check_pressed(vk_down))
-			if (cursor < 4) cursor ++;
-		if (keyboard_check_pressed(vk_up))
-			if (cursor > 0) cursor --;
+		if (keyboard_check_pressed(vk_left))
+			if (startCursor > 0) startCursor --;
+		if (keyboard_check_pressed(vk_right))
+			if (startCursor < 2) startCursor ++;
 		#endregion	
 	
 		#region Menu Control
 		//back to main menu
 		if (keyboard_check_pressed(ord("A"))){ 
-			start = 0; flash = true; cursor = 0;
+			start = 0; flash = true; startCursor = 0;
 			if !(alarm[0]) alarm[0] = 2;
 		}	
 		//menu item selection
 		if (keyboard_check_pressed(ord("S"))) {
-			if (cursor == 0) { 
-				start = 3; flash = true; cursor = 0;
+			if (startCursor == 0) { 
+				start = 3; flash = true; startCursor = 0;
 				if !(alarm[0]) alarm[0] = 2;
 			} 
+			else if (startCursor == 2) {
+				game_end();	
+			}
 		}
 		#endregion
 		break;
