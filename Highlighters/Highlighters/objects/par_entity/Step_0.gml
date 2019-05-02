@@ -3,9 +3,8 @@ if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 1) {global.gameover = tr
 #endregion
 
 #region Rising Pieces
-if (riseUp) && (bottomEntity) {
+if (global.riseUp) {
 	y -= global.riseSpeed;
-	riseUp = false;
 }
 #endregion
 
@@ -23,7 +22,7 @@ else if (place_meeting(x,y+48,par_entity)) {
 		 instance_place(x,y+48,par_entity).id != id) bottomEntity = true;
 }
 else 
-	if !(riseUp) 
+	if !(global.riseUp) 
 		bottomEntity = false;
 #endregion
 	

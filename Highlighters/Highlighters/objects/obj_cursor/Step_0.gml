@@ -2,13 +2,12 @@
 x = scr_getColPos(col) + sprite_get_width(spr_piece) / 2;
 visible = true;
 
-if (riseUp) {
+if (global.riseUp) {
 	if (y - global.riseSpeed < scr_getRowPos(8)) {
 		var yDisplacement = (((abs(instance_nearest(x,y,par_entity).y - y)/spr_piece.sprite_height)) - ((abs(instance_nearest(x,y,par_entity).y - y)/spr_piece.sprite_height) - 1)) * spr_piece.sprite_height;
 		y += yDisplacement;
 	}
 	y -= global.riseSpeed;
-	riseUp = false;
 }
 
 #region Cursor Movement
