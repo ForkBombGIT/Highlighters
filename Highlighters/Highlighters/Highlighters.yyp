@@ -215,6 +215,14 @@
             }
         },
         {
+            "Key": "4236938e-cf94-4fde-90d7-62592786ab35",
+            "Value": {
+                "id": "f984f8b1-aae1-4d58-b99e-4d2640d3d907",
+                "resourcePath": "objects\\obj_matchmaker\\obj_matchmaker.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "424f70c5-c046-4cd7-b114-f6808263c6b4",
             "Value": {
                 "id": "ae0c29fe-32f8-4124-9238-54efcc3af5de",

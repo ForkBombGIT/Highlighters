@@ -8,9 +8,11 @@ if (global.gameover) {
 if ((global.active) && !(global.gameover)) {	
 	//rising row
 	if ((current_time - riseTimer)/1000 > risePace) { 
-		global.riseSpeed = global.orgRiseSpeed;
-		riseTimer = current_time;
-		global.riseUp = true;
+		if (!scr_checkRow(8)) {
+			global.riseSpeed = global.orgRiseSpeed;
+			riseTimer = current_time;
+			global.riseUp = true;
+		} else global.gameover = true;
 	} else global.riseUp = false;
 	
 	//manual new row
