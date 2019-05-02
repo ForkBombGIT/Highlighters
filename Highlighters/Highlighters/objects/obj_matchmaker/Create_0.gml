@@ -2,6 +2,5 @@
 axis = "";
 colorIndex = -1;
 dir = -1;
-origin = noone;
 //holds visted charms
-visited = [];
+visited = ds_list_create();
