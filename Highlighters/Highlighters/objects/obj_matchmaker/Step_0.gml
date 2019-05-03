@@ -13,17 +13,17 @@ while (another) {
 			ds_stack_push(stack,entity.left);
 			continue;
 		}
-		else if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) {
+		if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) {
 			ds_list_add(final,entity.right);
 			ds_stack_push(stack,entity.right);
 			continue;
 		}
-		else if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) {
+		if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) {
 			ds_list_add(final,entity.up);
 			ds_stack_push(stack,entity.up);
 			continue;		
 		}
-		else if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) {
+		if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) {
 			ds_list_add(final,entity.down);
 			ds_stack_push(stack,entity.down);
 			continue;
@@ -34,5 +34,5 @@ while (another) {
 }
 
 if (!another) {
-	//if (!alarm[0]) alarm[0] = 5;	
+	if (!alarm[0]) alarm[0] = 5;	
 }
