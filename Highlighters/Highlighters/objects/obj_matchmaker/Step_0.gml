@@ -14,7 +14,6 @@ if (axis == "h") {
 	if (instance_exists(piece) && 
 	(piece.image_index == colorIndex) && 
 	(ds_list_find_index(visited,piece.id) == -1)) {
-		show_debug_message(ds_list_find_index(visited,piece.id));
 		ds_list_add(visited,piece);
 		switch(dir) {
 			case 0:

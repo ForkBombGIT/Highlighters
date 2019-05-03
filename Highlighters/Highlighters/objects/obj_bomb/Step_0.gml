@@ -1,7 +1,7 @@
 event_inherited(); 
 
 #region Match Control
-if (global.active) && !(match){
+if (global.active) && !(global.riseUp) && !(match){
 	//horizontal match
 	if (instance_exists(left) && (instance_exists(left.left))) {
 		if (object_get_name(left.object_index) == "obj_piece" && 
