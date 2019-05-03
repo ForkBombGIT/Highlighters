@@ -3,61 +3,36 @@ if (global.riseUp) {
 	y -= global.riseSpeed;
 }
 
-//init direction
-if (dir == -1) {
-	dir = 0;
-}
-
-//horizontal behavior
-if (axis == "h") {
-	var piece = instance_position(x,y,par_entity);
-	if (instance_exists(piece) && 
-	(piece.image_index == colorIndex) && 
-	(ds_list_find_index(visited,piece.id) == -1)) {
-		ds_list_add(visited,piece);
-		switch(dir) {
-			case 0:
-				x -= 48;
-			break;
-			case 1:
-				x += 48;
-			break;	
+while (another) {
+	var entity = (ds_stack_size(stack) == 1) ? ds_stack_top(stack) : ds_stack_pop(stack);
+	if (instance_exists(entity)) {	
+		x = entity.x;
+		y = entity.y;
+		if (instance_exists(entity.left) && (ds_list_find_index(final,entity.left) == -1)) {
+			ds_list_add(final,entity.left);
+			ds_stack_push(stack,entity.left);
+			continue;
 		}
-	}
-	else {
-		if (dir == 1) {
-			if !(alarm[0]) alarm[0] = 5;
+		else if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) {
+			ds_list_add(final,entity.right);
+			ds_stack_push(stack,entity.right);
+			continue;
 		}
-		else {
-			x = ds_list_find_value(visited,0).x + 48;
-			dir = 1;
+		else if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) {
+			ds_list_add(final,entity.up);
+			ds_stack_push(stack,entity.up);
+			continue;		
+		}
+		else if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) {
+			ds_list_add(final,entity.down);
+			ds_stack_push(stack,entity.down);
+			continue;
 		}
 	}
 	
+	if (ds_stack_size(stack) == 1) another = false;
 }
-//vertical behavior
-else if (axis == "v") {	
-	var piece = instance_position(x,y,par_entity);
-	if (instance_exists(piece) && 
-	(piece.image_index == colorIndex) && 
-	(ds_list_find_index(visited,piece.id) == -1)) {
-		ds_list_add(visited,piece);
-		switch(dir) {
-			case 0:
-				y += 48;
-			break;
-			case 1:
-				y -= 48;
-			break;	
-		}
-	}
-	else {
-		if (dir == 1) {
-			if !(alarm[0]) alarm[0] = 5;
-		}
-		else {
-			y = ds_list_find_value(visited,0).y - 48;
-			dir = 1;
-		}
-	}
+
+if (!another) {
+	//if (!alarm[0]) alarm[0] = 5;	
 }
