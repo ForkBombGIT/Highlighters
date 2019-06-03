@@ -2,7 +2,7 @@
     "id": "9d9924ac-f850-45c8-92fb-0723a6ed4e13",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "scr_closestY",
+    "name": "scr_collision_line_first",
     "IsCompatibility": false,
     "IsDnD": false
 }

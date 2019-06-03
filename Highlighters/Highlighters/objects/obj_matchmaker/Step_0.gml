@@ -13,26 +13,27 @@ while (another) {
 			ds_stack_push(stack,entity.left);
 			continue;
 		}
-		if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) {
+		else if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) {
 			ds_list_add(final,entity.right);
 			ds_stack_push(stack,entity.right);
 			continue;
 		}
-		if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) {
+		else if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) {
 			ds_list_add(final,entity.up);
 			ds_stack_push(stack,entity.up);
 			continue;		
 		}
-		if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) {
+		else if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) {
 			ds_list_add(final,entity.down);
 			ds_stack_push(stack,entity.down);
 			continue;
 		}
-	}
 	
-	if (ds_stack_size(stack) == 1) another = false;
+		if (ds_stack_size(stack) == 1) 
+			another = false;
+	}
 }
 
 if (!another) {
-	if (!alarm[0]) alarm[0] = 5;	
+	if (!alarm[0]) alarm[0] = 15;	
 }

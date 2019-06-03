@@ -12,34 +12,22 @@ if (global.riseUp) {
 
 #region Cursor Movement
 if !(global.gameover){
-	if (keyboard_check_pressed(vk_anykey)){
-		if ((current_time - delayTime) > delay){
-			delayTime = current_time;
-			switch (keyboard_key){
-				case (vk_left):
-					if (col > 0){
-						col -= 1;
-					}
-					break;
-				case (vk_right):
-					if (col < obj_controller.boardWidth - 2){
-						col += 1;
-					}
-					break;
-				case (vk_up):
-					if (y - spr_piece.sprite_height >= scr_getRowPos(8)){
-						y -= spr_piece.sprite_height;
-						row --;
-					}
-					break;
-				case (vk_down):
-					if (y + spr_piece.sprite_height <= scr_getRowPos(0)){
-						y += spr_piece.sprite_height;
-						row ++;
-					}
-					break;
+	if (keyboard_check(vk_anykey)){
+		if (keyboard_key == vk_left || keyboard_key == vk_right || keyboard_key == vk_up || keyboard_key == vk_down) {
+			//single press behavior
+			if (++keyPressLength == 1) scr_cursorMovement(keyboard_lastkey);
+		} 
+	} else 
+		keyPressLength = 0;
+	
+	// handles long press behavior
+	if (keyPressLength > longPress) {
+		if (keyPressLength > 0) {
+			if ((current_time - delayTime) > delay){
+				delayTime = current_time;
+				scr_cursorMovement(keyboard_key);
 			}
-		}
+		} 
 	}
 }
 #endregion

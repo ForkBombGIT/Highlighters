@@ -2,6 +2,14 @@ event_inherited();
 
 #region Match Control
 if (global.active) && !(global.riseUp) && !(match){
+	if (instance_exists(left) && instance_exists(right)) || 
+	   (instance_exists(left) && instance_exists(up)) || 
+	   (instance_exists(left) && instance_exists(down)) ||
+	   (instance_exists(right) && instance_exists(up)) ||
+	   (instance_exists(right) && instance_exists(down)) || 
+	   (instance_exists(up) && instance_exists(down))
+	   match = true;
+	   
 	if (instance_exists(left)) { 
 		if (instance_exists(left.left) || 
 			instance_exists(left.up)   ||
@@ -10,19 +18,19 @@ if (global.active) && !(global.riseUp) && !(match){
 	}
 	else if (instance_exists(right)) {
 		if (instance_exists(right.right) || 
-			instance_exists(right.up)   ||
+			instance_exists(right.up)    ||
 			instance_exists(right.down)) 
 		match = true;
 	}
 	else if (instance_exists(up)) {
-		if (instance_exists(up.left) || 
-			instance_exists(up.right)   ||
+		if (instance_exists(up.left)  || 
+			instance_exists(up.right) ||
 			instance_exists(up.up)) 
 		match = true;
 	}
 	else if (instance_exists(down)) {
-		if (instance_exists(down.left) || 
-			instance_exists(down.right)   ||
+		if (instance_exists(down.left)  || 
+			instance_exists(down.right) ||
 			instance_exists(down.down)) 
 		match = true;
 	}
