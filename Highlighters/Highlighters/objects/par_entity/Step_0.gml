@@ -5,6 +5,7 @@ if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 1) {global.gameover = tr
 #region Rising Pieces
 if (global.riseUp) {
 	y -= global.riseSpeed;
+	match = false;
 }
 #endregion
 

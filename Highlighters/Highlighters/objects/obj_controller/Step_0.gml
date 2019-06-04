@@ -19,6 +19,7 @@ if ((global.active) && !(global.gameover)) {
 	if (keyboard_check_pressed(ord("A"))) {
 		if (scr_checkRow(8)) global.gameover = true;
 		else {
+			with (obj_matchmaker) {instance_destroy();}
 			global.riseUp = true;
 			global.riseSpeed = abs(432 - (instance_position(scr_getColPos(0),432,par_entity).y + 24));
 			obj_cursor.riseUp = true;

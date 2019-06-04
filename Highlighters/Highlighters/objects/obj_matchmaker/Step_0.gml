@@ -8,32 +8,26 @@ while (another) {
 	if (instance_exists(entity)) {	
 		x = entity.x;
 		y = entity.y;
-		if (instance_exists(entity.left) && (ds_list_find_index(final,entity.left) == -1)) {
-			ds_list_add(final,entity.left);
+		
+		if (ds_list_find_index(final,entity) == -1) 
+			ds_list_add(final,entity);
+			
+		if (instance_exists(entity.left) && (ds_list_find_index(final,entity.left) == -1)) 
 			ds_stack_push(stack,entity.left);
-			continue;
-		}
-		else if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) {
-			ds_list_add(final,entity.right);
+		
+		if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) 
 			ds_stack_push(stack,entity.right);
-			continue;
-		}
-		else if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) {
-			ds_list_add(final,entity.up);
+			
+		if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) 
 			ds_stack_push(stack,entity.up);
-			continue;		
-		}
-		else if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) {
-			ds_list_add(final,entity.down);
+			
+		if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) 
 			ds_stack_push(stack,entity.down);
-			continue;
-		}
-	
-		if (ds_stack_size(stack) == 1) 
-			another = false;
+			
+		if (ds_stack_size(stack) == 1) another = false;
 	}
 }
 
 if (!another) {
-	if (!alarm[0]) alarm[0] = 15;	
+	if (!alarm[0]) alarm[0] = 45;	
 }
