@@ -69,22 +69,22 @@ if (landAnim) {
 if ((bottomEntity) && !(swap)) {
 	left = instance_position(x - 48, y, par_entity);
 	if (instance_exists(left)) 
-		if ((left.image_index != image_index) || (y > scr_getRowPos(0)) || (left == id))
+		if ((left.index != image_index) || (y > scr_getRowPos(0)) || (left == id))
 			left = noone;
 		
 	right = instance_position(x + 48, y, par_entity);
 	if (instance_exists(right)) 
-		if ((right.image_index != image_index) || (y > scr_getRowPos(0)) || (right == id))
+		if ((right.index != image_index) || (y > scr_getRowPos(0)) || (right == id))
 			right = noone;
 		
 	down = instance_position(x, y + 48, par_entity);
 	if (instance_exists(down)) 
-		if ((down.image_index != image_index) || (y > scr_getRowPos(0)) || (down == id))
+		if ((down.index != image_index) || (y > scr_getRowPos(0)) || (down == id) || (down.y > scr_getRowPos(0)))
 			down = noone;
 
 	up = instance_position(x, y - 48, par_entity);
 	if (instance_exists(up)) 
-		if ((up.image_index != image_index) || (y > scr_getRowPos(0)) || (up == id))
-			up = noone;
+		if ((up.index != image_index) || (y > scr_getRowPos(0)) || (up == id))
+			up = noone; 
 }
 #endregion

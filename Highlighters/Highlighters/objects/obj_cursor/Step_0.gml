@@ -17,7 +17,7 @@ if !(global.gameover){
 	if (keyboard_check(vk_anykey)){
 		if (keyboard_key == vk_left || keyboard_key == vk_right || keyboard_key == vk_up || keyboard_key == vk_down) {
 			//single press behavior
-			if (++keyPressLength == 1) scr_cursorMovement(keyboard_lastkey);
+			if (++keyPressLength == 1) { scr_cursorMovement(keyboard_lastkey); }
 		} 
 	} else 
 		keyPressLength = 0;
