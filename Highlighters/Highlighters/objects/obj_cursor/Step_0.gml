@@ -1,3 +1,4 @@
+#region Positioning Control
 //updates position based of row and col
 x = scr_getColPos(col) + sprite_get_width(spr_piece) / 2;
 visible = true;
@@ -9,6 +10,7 @@ if (global.riseUp) {
 	}
 	y -= global.riseSpeed;
 }
+#endregion
 
 #region Cursor Movement
 if !(global.gameover){

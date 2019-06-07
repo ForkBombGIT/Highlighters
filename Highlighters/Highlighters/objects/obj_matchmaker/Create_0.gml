@@ -1,3 +1,5 @@
+//where the match maker is from
+origin = instance_position(x,y,par_entity);
 //checks color to be matched
 colorIndex = -1;
 //controls match search
