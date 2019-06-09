@@ -18,4 +18,5 @@ left = noone;
 right = noone;
 down = noone;
 up = noone;
+adjacent = ds_list_create();
 match = false;
