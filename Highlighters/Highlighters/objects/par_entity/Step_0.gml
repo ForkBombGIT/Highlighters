@@ -1,5 +1,5 @@
 #region Gameover
-if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 1) {global.gameover = true;}
+if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 2) {global.gameover = true;}
 #endregion
 
 #region Rising Pieces
@@ -17,11 +17,10 @@ if (!(swap) && !(global.gameover))
 
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { bottomEntity = true; }
-else if (place_meeting(x,y+25,par_entity)) {
-	 if (instance_place(x,y+25,par_entity).bottomEntity && 
-		 instance_place(x,y+25,par_entity).id != id) bottomEntity = true;
-}
-else 
+else if (place_meeting(x,y+48,par_entity)) {
+	 if (instance_place(x,y+48,par_entity).bottomEntity) 
+		bottomEntity = true;
+} else 
 	if !(global.riseUp) 
 		bottomEntity = false;
 #endregion

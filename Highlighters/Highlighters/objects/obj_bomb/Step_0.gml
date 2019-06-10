@@ -1,5 +1,8 @@
 event_inherited(); 
-
+if (global.riseUp) {
+	instance_destroy(matchmaker);
+	matchmaker = noone;	
+}
 #region Match Control
 if (global.active) && !(global.riseUp) && !(match) && !(swap) {
 	switch (ds_list_size(adjacent)) {

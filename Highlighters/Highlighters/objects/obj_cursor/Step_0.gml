@@ -13,11 +13,14 @@ if (global.riseUp) {
 #endregion
 
 #region Cursor Movement
+show_debug_message(keyPressLength)
 if !(global.gameover){
 	if (keyboard_check(vk_anykey)){
 		if (keyboard_key == vk_left || keyboard_key == vk_right || keyboard_key == vk_up || keyboard_key == vk_down) {
 			//single press behavior
-			if (++keyPressLength == 1) { scr_cursorMovement(keyboard_lastkey); }
+			if (lastKey != keyboard_key) keyPressLength = 0;
+			if (++keyPressLength == 1) { scr_cursorMovement(keyboard_key); }
+			lastKey = keyboard_key;
 		} 
 	} else 
 		keyPressLength = 0;

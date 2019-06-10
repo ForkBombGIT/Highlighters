@@ -1,2 +1,2 @@
 draw_self();
-draw_text(x,y,ds_list_size(adjacent));
+draw_text(x,y,bottomEntity);
