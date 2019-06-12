@@ -1,11 +1,8 @@
-#region Gameover
-if (y < scr_getRowPos(obj_controller.boardHeight - 1) - 2) {global.gameover = true;}
-#endregion
-
 #region Rising Pieces
-if (global.riseUp) {
-	y -= global.riseSpeed;
-}
+if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) 
+	if !(alarm[1]) alarm[1] = (obj_controller.risePace - (current_time - obj_controller.riseTimer)/1000) * 60
+	
+if (global.riseUp) { if !(global.gameover) y -= global.riseSpeed; }
 #endregion
 
 #region Grey Pieces

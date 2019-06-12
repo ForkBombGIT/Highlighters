@@ -1,18 +1,19 @@
  #region Game Loop
 //handles gameover logic
 if (global.gameover) {
-	if !(anim) { anim = true; alarm[0] = 1; }
+	if !(anim) { 
+		anim = true; 
+		alarm[0] = 1; 
+	}
 }
 
 //block loop
 if ((global.active) && !(global.gameover)) {	
 	//rising row
 	if ((current_time - riseTimer)/1000 > risePace) { 
-		if (!scr_checkRow(8)) {
-			global.riseSpeed = global.orgRiseSpeed;
-			riseTimer = current_time;
-			global.riseUp = true;
-		} else global.gameover = true;
+		global.riseSpeed = global.orgRiseSpeed;
+		riseTimer = current_time;
+		global.riseUp = true;
 	} else global.riseUp = false;
 	
 	//manual new row

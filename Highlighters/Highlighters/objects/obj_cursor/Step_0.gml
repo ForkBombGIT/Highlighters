@@ -1,7 +1,7 @@
 #region Positioning Control
 //updates position based of row and col
 x = scr_getColPos(col) + sprite_get_width(spr_piece) / 2;
-visible = true;
+visible = !global.gameover;
 
 if (global.riseUp) {
 	if (y - global.riseSpeed < scr_getRowPos(8)) {
@@ -13,7 +13,6 @@ if (global.riseUp) {
 #endregion
 
 #region Cursor Movement
-show_debug_message(keyPressLength)
 if !(global.gameover){
 	if (keyboard_check(vk_anykey)){
 		if (keyboard_key == vk_left || keyboard_key == vk_right || keyboard_key == vk_up || keyboard_key == vk_down) {
