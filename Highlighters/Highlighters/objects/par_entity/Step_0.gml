@@ -15,15 +15,14 @@ if (!(swap) && !(global.gameover))
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { bottomEntity = true; }
 else if (place_meeting(x,y+48,par_entity)) {
-	 if (instance_place(x,y+48,par_entity).bottomEntity) 
-		bottomEntity = true;
+	 bottomEntity = (instance_place(x,y+48,par_entity).bottomEntity) 
 } else 
 	if !(global.riseUp) 
 		bottomEntity = false;
 #endregion
 	
 #region Swap Control
-if (swap){ 
+if (swap) { 
 	//reset direction variables
 	left = noone; right = noone; up = noone; down = noone
 	ds_list_clear(adjacent);

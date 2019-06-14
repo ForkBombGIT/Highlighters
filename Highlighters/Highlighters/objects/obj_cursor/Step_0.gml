@@ -45,7 +45,8 @@ if (keyboard_check_pressed(ord("S")) && (global.active) && (!global.gameover)){
 	//applies swap to both pieces if there are a left and right piece
 	if (instance_exists(right) && instance_exists(left)) { 
 		if (!(left.swap) && !(right.swap))   &&
-		   (!(left.match) && !(right.match)) {
+		   (!(left.match) && !(right.match)) &&
+		   (left.bottomEntity) && (right.bottomEntity) {
 			left.targetX = col + 1;
 			left.swap = true;
 			left.image_index += 4;
@@ -58,7 +59,7 @@ if (keyboard_check_pressed(ord("S")) && (global.active) && (!global.gameover)){
 	else {
 		//applies swap to left piece
 		if (instance_exists(left)){
-			if !(left.swap) && !(left.match) {
+			if !(left.swap) && !(left.match) && (left.bottomEntity) {
 				left.targetX = col + 1;
 				left.swap = true;
 				left.image_index += 4;
@@ -67,7 +68,7 @@ if (keyboard_check_pressed(ord("S")) && (global.active) && (!global.gameover)){
 	
 		//applies swap to right piece
 		if (instance_exists(right)){
-			if !(right.swap) && !(right.match) {
+			if !(right.swap) && !(right.match) && (right.bottomEntity) {
 				right.targetX = col;
 				right.swap = true;
 				right.image_index += 4;
