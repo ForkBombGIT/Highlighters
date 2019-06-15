@@ -49,10 +49,10 @@ if (!(bottomEntity) && !(swap) && !(global.gameover)) {
 //controls landing animation
 if (landAnim) {
 	var animSpeed = .25;
-	if (round(landAnimIndex) < index + 4){
+	if (round(landAnimIndex) <= index + 3){
 	    landAnimIndex += animSpeed;
 	} else { landAnimIndex = index; landAnim = false; }
-	image_index = round(landAnimIndex);
+	image_index = floor(landAnimIndex);
 } 
 #endregion
 

@@ -32,19 +32,19 @@ else if (start == 2) {
 	#region Menu Drawing
 	//draw_sprite(spr_grid,0,0,0);
 	draw_sprite(spr_mainmenu,0,48,24);
-	draw_sprite(spr_oneplayer,(startCursor == 0) ? round(textImageIndex) : 0,48,312);
-	draw_sprite(spr_options,(startCursor == 1) ? round(textImageIndex) : 0,289,312);
-	draw_sprite(spr_quit,(startCursor == 2) ? round(textImageIndex) : 0,528,312);
+	draw_sprite(spr_oneplayer,(startCursor == 0) ? floor(textImageIndex) : 0,48,312);
+	draw_sprite(spr_options,(startCursor == 1) ? floor(textImageIndex) : 0,289,312);
+	draw_sprite(spr_quit,(startCursor == 2) ? floor(textImageIndex) : 0,528,312);
 	draw_sprite(spr_ok,18,48,72);
 	draw_sprite(spr_back,0,144,72);
 	#endregion
 }
 else if (start == 3) {
 	#region Menu Drawing
-	draw_sprite(spr_startcursor,round(cursorImageIndex),72,cursorPositions[cursor]);
-	draw_sprite(spr_tutorial,(cursor == 0) ? round(textImageIndex) : 0,117,69);
-	draw_sprite(spr_endless,(cursor == 1) ? round(textImageIndex) : 0,117,117);
-	draw_sprite(spr_timetrial,(cursor == 2) ? round(textImageIndex) : 0,117,165);
+	draw_sprite(spr_startcursor,floor(cursorImageIndex),72,cursorPositions[cursor]);
+	draw_sprite(spr_tutorial,(cursor == 0) ? floor(textImageIndex) : 0,117,69);
+	draw_sprite(spr_endless,(cursor == 1) ? floor(textImageIndex) : 0,117,117);
+	draw_sprite(spr_timetrial,(cursor == 2) ? floor(textImageIndex) : 0,117,165);
 	draw_sprite(spr_ok,18,552,384);
 	draw_sprite(spr_back,0,648,384);
 	#endregion
