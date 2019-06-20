@@ -1,11 +1,11 @@
 #region Positioning Control
 //updates position based of row and col
-x = scr_getColPos(col) + sprite_get_width(spr_piece) / 2;
+x = scr_getColPos(col) + sprite_get_width(spr_charm) / 2;
 visible = !global.gameover;
 
 if (global.riseUp) {
 	if (y - global.riseSpeed < scr_getRowPos(8)) {
-		var yDisplacement = (((abs(instance_nearest(x,y,par_entity).y - y)/spr_piece.sprite_height)) - ((abs(instance_nearest(x,y,par_entity).y - y)/spr_piece.sprite_height) - 1)) * spr_piece.sprite_height;
+		var yDisplacement = (((abs(instance_nearest(x,y,par_entity).y - y)/spr_charm.sprite_height)) - ((abs(instance_nearest(x,y,par_entity).y - y)/spr_charm.sprite_height) - 1)) * spr_charm.sprite_height;
 		y += yDisplacement;
 	}
 	y -= global.riseSpeed;
@@ -37,7 +37,7 @@ if !(global.gameover){
 #endregion
 
 #region Piece Swapping
-if (keyboard_check_pressed(ord("S")) && (global.active) && (!global.gameover)){
+if (keyboard_check_pressed(ord(obj_controller.keyA)) && (global.active) && (!global.gameover)){
 	//holds the piece on the left and right of the cursor
 	var left = instance_position(x-24,y,par_entity);
 	var right = instance_position(x+24,y,par_entity);

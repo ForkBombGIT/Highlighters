@@ -2,7 +2,7 @@
     "id": "f69491a5-d72c-4a8e-a62c-1c92e97f194b",
     "modelName": "GMSprite",
     "mvc": "1.12",
-    "name": "spr_piece",
+    "name": "spr_charm",
     "For3D": false,
     "HTile": false,
     "VTile": false,

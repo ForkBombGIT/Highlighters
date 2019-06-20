@@ -690,7 +690,7 @@
             "Key": "cf7736b8-f0b6-4228-b003-0d95c81a0d5a",
             "Value": {
                 "id": "c49740e2-cd69-49f0-ac30-d5c277146eb9",
-                "resourcePath": "objects\\obj_piece\\obj_piece.yy",
+                "resourcePath": "objects\\obj_charm\\obj_charm.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -802,7 +802,7 @@
             "Key": "f69491a5-d72c-4a8e-a62c-1c92e97f194b",
             "Value": {
                 "id": "84e823c9-1b83-40d2-871c-0af86a73ca6b",
-                "resourcePath": "sprites\\spr_piece\\spr_piece.yy",
+                "resourcePath": "sprites\\spr_charm\\spr_charm.yy",
                 "resourceType": "GMSprite"
             }
         },

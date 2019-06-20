@@ -11,14 +11,14 @@ switch (key){
 		}
 		break;
 	case (vk_up):
-		if (y - spr_piece.sprite_height >= scr_getRowPos(8)){
-			y -= spr_piece.sprite_height;
+		if (y - spr_charm.sprite_height >= scr_getRowPos(8)){
+			y -= spr_charm.sprite_height;
 			row --;
 		}
 		break;
 	case (vk_down):
-		if (y + spr_piece.sprite_height <= scr_getRowPos(0)){
-			y += spr_piece.sprite_height;
+		if (y + spr_charm.sprite_height <= scr_getRowPos(0)){
+			y += spr_charm.sprite_height;
 			row ++;
 		}
 		break;

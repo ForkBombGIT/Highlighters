@@ -3,6 +3,7 @@ origin = instance_position(x,y,par_entity);
 //checks color to be matched
 colorIndex = -1;
 //controls match search
+matchSize = 4;
 another = true;
 final = ds_list_create();
 stack = ds_stack_create();

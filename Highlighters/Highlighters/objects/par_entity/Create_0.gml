@@ -8,8 +8,6 @@ swapSpeed = 8;
 bottomEntity = false;
 landAnimIndex = image_index;
 landAnim = false;
-//row moving 
-riseUp = false;
 //position
 row = -1;
 col = -1;

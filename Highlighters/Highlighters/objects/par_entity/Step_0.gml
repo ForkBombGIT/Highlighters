@@ -58,7 +58,7 @@ if (landAnim) {
 
 #region Match Control
 //checks for adjacent matching pieces
-if ((bottomEntity) && !(swap)) {
+if ((bottomEntity) && !(swap) && !(global.gameover)) {
 	ds_list_clear(adjacent);
 	left = instance_position(x - 48, y, par_entity);
 	if (instance_exists(left)) {

@@ -1,4 +1,8 @@
 randomize();
+//holds key settings
+keyA = "S"
+keyB = "A"
+
 //holds gameover state
 global.gameover = false;
 anim = false;
