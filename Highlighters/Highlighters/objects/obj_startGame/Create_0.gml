@@ -20,7 +20,7 @@ track = 0;
 char = 0;
 
 //maximum values
-maxLevel = 99;
+maxLevel = 500;
 maxTrack = 1;
 maxChar = 1;
 maxBoard = 3;

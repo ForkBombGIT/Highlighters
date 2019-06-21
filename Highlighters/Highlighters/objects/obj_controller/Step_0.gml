@@ -7,8 +7,15 @@ if (global.gameover) {
 	}
 }
 
+show_debug_message(global.orgRiseSpeed)
+
 //block loop
 if ((global.active) && !(global.gameover)) {	
+	if (gameScore >= scoreToNextLevel) {
+		scoreToNextLevel = initialScoreToNextLevel * (++gameSpeed)
+		global.orgRiseSpeed = global.orgRiseSpeed + maxRiseSpeed/maxLevel;
+		global.riseSpeed = global.orgRiseSpeed;
+	}
 	//rising row
 	if ((current_time - riseTimer)/1000 > risePace) { 
 		global.riseSpeed = global.orgRiseSpeed;
