@@ -12,7 +12,8 @@ show_debug_message(global.orgRiseSpeed)
 //block loop
 if ((global.active) && !(global.gameover)) {	
 	if (gameScore >= scoreToNextLevel) {
-		scoreToNextLevel = initialScoreToNextLevel * (++gameSpeed)
+		gameSpeed++;
+		scoreToNextLevel = floor(initialScoreToNextLevel * ((nextLevelScale++) * incrementScaler));
 		global.orgRiseSpeed = global.orgRiseSpeed + maxRiseSpeed/maxLevel;
 		global.riseSpeed = global.orgRiseSpeed;
 	}
