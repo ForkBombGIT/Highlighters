@@ -7,8 +7,6 @@ if (global.gameover) {
 	}
 }
 
-show_debug_message(global.orgRiseSpeed)
-
 //block loop
 if ((global.active) && !(global.gameover)) {	
 	if (gameScore >= scoreToNextLevel) {

@@ -6,7 +6,7 @@ if (global.riseUp) { if !(global.gameover) y -= global.riseSpeed; }
 #endregion
 
 #region Grey Pieces
-if (!(swap) && !(global.gameover))
+if (!(swap) && !(global.gameover) && !(match))
 	if (y <= scr_getRowPos(0))
 		image_index = index;
 	else image_index = index + 6; 

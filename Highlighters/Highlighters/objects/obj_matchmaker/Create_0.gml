@@ -11,3 +11,7 @@ final = ds_list_create();
 stack = ds_stack_create();
 ds_list_add(final,instance_position(x,y,par_entity));
 ds_stack_push(stack,instance_position(x,y,par_entity));
+//controls match animation
+listPosition = 0;
+highlightDelay = 5;
+animating = false;

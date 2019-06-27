@@ -40,6 +40,7 @@ while (another) {
 	}
 }
 
-if (!another) {	
-	if !(alarm[0]) alarm[0] = 15;
+//begin highlighting
+if (!another) && !(animating){	
+	if !(alarm[0]) alarm[0] = highlightDelay;
 }
