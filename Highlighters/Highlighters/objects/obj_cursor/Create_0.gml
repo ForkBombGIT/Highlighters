@@ -3,7 +3,7 @@ y = scr_getRowPos(4);
 delayTime = current_time;
 delay = 0.05;
 keyPressLength = 0;
-longPress = 20;
+longPress = 15;
 lastKey = -1;
 //cursor location
 row = 4;
