@@ -42,7 +42,7 @@ if (swap) {
 
 #region Fall Control
 //checks if there is no piece below
-if (!(bottomEntity) && !(swap) && !(global.gameover)) {
+if (!(bottomEntity) && !(match) && !(swap) && !(global.gameover)) {
 	if !alarm[0] alarm[0] = 15;
 } 
 
@@ -58,32 +58,32 @@ if (landAnim) {
 
 #region Match Control
 //checks for adjacent matching pieces
-if ((bottomEntity) && !(swap) && !(global.gameover)) {
+if ((bottomEntity) && !(swap) && !(landAnim) && !(global.gameover)) {
 	ds_list_clear(adjacent);
 	left = instance_position(x - 48, y, par_entity);
 	if (instance_exists(left)) {
-		if ((left.index == image_index) && (y <= scr_getRowPos(0)) && (left != id))
+		if ((left.image_index == image_index) && left.bottomEntity && (left != id))
 			ds_list_add(adjacent,left);
 		else left = noone;
 	} else left = noone;
 	
 	right = instance_position(x + 48, y, par_entity);
 	if (instance_exists(right)) {
-		if ((right.index == image_index) && (y <= scr_getRowPos(0)) && (right != id))
+		if ((right.image_index == image_index) && right.bottomEntity && (right != id))
 			ds_list_add(adjacent,right);
 		else right = noone;
 	} else right = noone;
 	
 	down = instance_position(x, y + 48, par_entity);
 	if (instance_exists(down)) {
-		if ((down.index == image_index) && (y <= scr_getRowPos(0)) && (down != id) && (down.y <= scr_getRowPos(0)))
+		if ((down.image_index == image_index) && down.bottomEntity && (down != id) && (down.y <= scr_getRowPos(0)))
 			ds_list_add(adjacent,down);
 		else down = noone;
 	} else down = noone;
 	
 	up = instance_position(x, y - 48, par_entity);
 	if (instance_exists(up)) {
-		if ((up.index == image_index) && (y <= scr_getRowPos(0)) && (up != id))
+		if ((up.image_index == image_index) && (up.bottomEntity) && (up != id))
 			ds_list_add(adjacent,up);
 		else up = noone;
 	} else up = noone;

@@ -1,9 +1,4 @@
 event_inherited(); 
-//if there is a rise up, destroy matcher maker so matches don't occur
-if (global.riseUp) {
-	instance_destroy(matchmaker);
-	matchmaker = noone;	
-}
 
 #region Match Control
 if (global.active) && !(global.riseUp) && !(match) && !(swap) && !(instance_exists(matchmaker)) {
