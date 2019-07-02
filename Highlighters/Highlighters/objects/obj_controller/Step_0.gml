@@ -1,4 +1,4 @@
- #region Game Loop
+#region Game Loop
 //handles gameover logic
 if (global.gameover) {
 	if !(anim) { 
@@ -11,7 +11,7 @@ if (global.gameover) {
 if ((global.active) && !(global.gameover)) {	
 	if (gameScore >= scoreToNextLevel) {
 		gameSpeed++;
-		scoreToNextLevel = floor(initialScoreToNextLevel * ((nextLevelScale++) * incrementScaler));
+		scoreToNextLevel = floor(initialScoreToNextLevel * ((++nextLevelScale) * incrementScaler));
 		global.orgRiseSpeed = global.orgRiseSpeed + maxRiseSpeed/maxLevel;
 		global.riseSpeed = global.orgRiseSpeed;
 	}
@@ -26,7 +26,6 @@ if ((global.active) && !(global.gameover)) {
 	if (keyboard_check_pressed(ord(keyB))) {
 		if (scr_checkRow(8)) global.gameover = true;
 		else {
-			with (obj_matchmaker) {instance_destroy();}
 			global.riseUp = true;
 			global.riseSpeed = abs(432 - (instance_position(scr_getColPos(0),432,par_entity).y + 24));
 			for (var i = 0; i < instance_number(par_entity); i++) {

@@ -3,8 +3,8 @@ origin = instance_position(x,y,par_entity);
 //checks color to be matched
 colorIndex = -1;
 //controls match search
-baseScoreInc = 100;
-additionalScoreInc = 50;
+baseScoreInc = 10;
+additionalScoreInc = 5;
 matchSize = 4;
 another = true;
 final = ds_list_create();

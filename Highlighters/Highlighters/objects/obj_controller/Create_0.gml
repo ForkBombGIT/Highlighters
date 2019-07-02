@@ -26,7 +26,7 @@ maxLevel = 500;
 //controls game loop 
 risePace = 1.5;
 riseTimer = current_time;
-initialScoreToNextLevel = 1000;
+initialScoreToNextLevel = 100;
 scoreToNextLevel = initialScoreToNextLevel;
 nextLevelScale = 1;
 incrementScaler = 1.1;
