@@ -207,6 +207,14 @@
             }
         },
         {
+            "Key": "3deb53ff-778e-4213-8d49-a73be70e06ff",
+            "Value": {
+                "id": "f6305834-174a-4902-97aa-3af81d516621",
+                "resourcePath": "views\\3deb53ff-778e-4213-8d49-a73be70e06ff.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "40b28b87-3950-4b80-bee6-cf8328a7d3fb",
             "Value": {
                 "id": "8a6a0c76-2792-4715-935b-08c842ec3a37",
@@ -511,6 +519,14 @@
             }
         },
         {
+            "Key": "9e5d4e06-fcc0-4b4d-96f3-04ad642fc249",
+            "Value": {
+                "id": "d9a8a98a-66bc-47ad-9bbb-1aadc82f5558",
+                "resourcePath": "scripts\\scr_partition\\scr_partition.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a4ac93a9-c49b-40a0-82c6-28f018cfe746",
             "Value": {
                 "id": "4f8da672-2829-4aa7-adb6-c152c2cc3dd9",
@@ -628,6 +644,14 @@
                 "id": "c063df59-a4c3-4ccf-b859-4696e38f48e4",
                 "resourcePath": "objects\\obj_controller\\obj_controller.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "bd3824a0-f98b-488e-8225-f7f9a25d13b6",
+            "Value": {
+                "id": "15699e04-7615-4731-a17b-e9e967069a67",
+                "resourcePath": "scripts\\scr_matchListSort\\scr_matchListSort.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -849,7 +873,9 @@
         "ffadee16-c9dd-4f87-9364-a9810622f731",
         "9d9924ac-f850-45c8-92fb-0723a6ed4e13",
         "f52c3817-04db-4721-87e4-6af451187a57",
-        "de0e5e56-e5d6-4c15-beed-11f869cc2a9b"
+        "de0e5e56-e5d6-4c15-beed-11f869cc2a9b",
+        "bd3824a0-f98b-488e-8225-f7f9a25d13b6",
+        "9e5d4e06-fcc0-4b4d-96f3-04ad642fc249"
     ],
     "tutorial": ""
 }

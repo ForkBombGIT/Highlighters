@@ -1,5 +1,6 @@
 if (ds_list_size(final) >= matchSize) {
 	if !(animating) {
+		final = scr_matchListSort(final,0,ds_list_size(final) - 1);
 		for (var i = 0; i < ds_list_size(final); i++) {
 			var entity = ds_list_find_value(final,i);
 			entity.image_index = entity.index + 5;
