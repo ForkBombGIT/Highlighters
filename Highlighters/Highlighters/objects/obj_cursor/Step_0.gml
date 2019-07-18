@@ -13,15 +13,21 @@ if (global.riseUp) {
 #endregion
 
 #region Cursor Movement
+leftB = keyboard_check(vk_left);
+rightB = keyboard_check(vk_right);
+upB = keyboard_check(vk_up);
+downB = keyboard_check(vk_down);
 if !(global.gameover){
-	if (keyboard_check(vk_anykey)){
-		if (keyboard_key == vk_left || keyboard_key == vk_right || keyboard_key == vk_up || keyboard_key == vk_down) {
-			//single press behavior
-			if (lastKey != keyboard_key) keyPressLength = 0;
-			if (++keyPressLength == 1) { scr_cursorMovement(keyboard_key); }
-			lastKey = keyboard_key;
-		} 
-	} else 
+	if (leftB || rightB || upB || downB) {
+		var key = (leftB) ? vk_left : 
+				  ((rightB) ? vk_right :
+				  ((upB) ? vk_up : vk_down));
+		//single press behavior
+		if (lastKey != key) keyPressLength = 0;
+		if (++keyPressLength == 1) { scr_cursorMovement(key); }
+		lastKey = key;
+	} 
+	else 
 		keyPressLength = 0;
 	
 	// handles long press behavior
@@ -37,43 +43,45 @@ if !(global.gameover){
 #endregion
 
 #region Piece Swapping
-if (keyboard_check_pressed(ord(obj_controller.keyA)) && (global.active) && (!global.gameover)){
-	//holds the piece on the left and right of the cursor
-	var left = instance_position(x-24,y,par_entity);
-	var right = instance_position(x+24,y,par_entity);
+if ((keyPressLength < longPress) && (global.active) && (!global.gameover)) {
+	if (keyboard_check_pressed(ord(obj_controller.keyA))){
+		//holds the piece on the left and right of the cursor
+		var left = instance_position(x-24,y,par_entity);
+		var right = instance_position(x+24,y,par_entity);
 	
-	//applies swap to both pieces if there are a left and right piece
-	if (instance_exists(right) && instance_exists(left)) { 
-		if (!(left.swap) && !(right.swap))   &&
-		   (!(left.match) && !(right.match)) &&
-		   (left.bottomEntity) && (right.bottomEntity) {
-			left.targetX = col + 1;
-			left.swap = true;
-			left.image_index += 4;
-			
-			right.targetX = col;
-			right.swap = true;
-			right.image_index += 4;
-		}	
-	}
-	else {
-		//applies swap to left piece
-		if (instance_exists(left)){
-			if !(left.swap) && !(left.match) && (left.bottomEntity) {
+		//applies swap to both pieces if there are a left and right piece
+		if (instance_exists(right) && instance_exists(left)) { 
+			if (!(left.swap) && !(right.swap))   &&
+			   (!(left.match) && !(right.match)) &&
+			   (left.bottomEntity) && (right.bottomEntity) {
 				left.targetX = col + 1;
 				left.swap = true;
 				left.image_index += 4;
-			}
-		}
-	
-		//applies swap to right piece
-		if (instance_exists(right)){
-			if !(right.swap) && !(right.match) && (right.bottomEntity) {
+			
 				right.targetX = col;
 				right.swap = true;
 				right.image_index += 4;
+			}	
+		}
+		else {
+			//applies swap to left piece
+			if (instance_exists(left)){
+				if !(left.swap) && !(left.match) && (left.bottomEntity) {
+					left.targetX = col + 1;
+					left.swap = true;
+					left.image_index += 4;
+				}
 			}
-		} 
+	
+			//applies swap to right piece
+			if (instance_exists(right)){
+				if !(right.swap) && !(right.match) && (right.bottomEntity) {
+					right.targetX = col;
+					right.swap = true;
+					right.image_index += 4;
+				}
+			} 
+		}
 	}
 }
 #endregion
