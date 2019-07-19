@@ -6,7 +6,7 @@ if (ds_list_size(final) >= matchSize) {
 			entity.image_index = entity.index + 5;
 		}
 		animating = true;
-		alarm[0] = highlightDelay;
+		alarm[0] = whiteDelay;
 	}
 	else {
 		if (listPosition <= ds_list_size(final) - 1) {

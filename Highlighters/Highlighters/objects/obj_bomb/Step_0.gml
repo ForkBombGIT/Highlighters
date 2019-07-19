@@ -44,6 +44,6 @@ if (global.active) && !(global.riseUp) && !(match) && !(swap) && !(instance_exis
 // if a match is made, and there is no match maker
 // after small delay, start the match maker
 if ((match) && (matchmaker == noone)) 
-	if !(alarm[1]) alarm[1] = 15;
+	matchmaker = scr_createMatchmaker(x,y,index);
 
 #endregion

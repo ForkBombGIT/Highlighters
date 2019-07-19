@@ -3,9 +3,10 @@ index = -1;
 //swapping variables
 swap = false;
 targetX = -1;
-swapSpeed = 8;
+swapSpeed = 12;
 //controls fall speed
 bottomEntity = false;
+fallDelay = 4;
 //animation variables
 landAnimIndex = image_index;
 landAnim = false;

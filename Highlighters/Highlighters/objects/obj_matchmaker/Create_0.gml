@@ -13,5 +13,6 @@ ds_list_add(final,instance_position(x,y,par_entity));
 ds_stack_push(stack,instance_position(x,y,par_entity));
 //controls match animation
 listPosition = 0;
-highlightDelay = 5;
+highlightDelay = 4;
+whiteDelay = 24;
 animating = false;
