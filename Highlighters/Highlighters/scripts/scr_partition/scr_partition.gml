@@ -8,7 +8,7 @@ var index = low - 1;
 //movves smaller elements below pivot position
 for (var i = low; i < high; i++) {
 	var positionEntity = ds_list_find_value(list,i);
-	if (positionEntity.x < pivot.x) || (positionEntity.y <= pivot.y) {
+	if (positionEntity.x < pivot.x) {
 		index++;
 		var temp = ds_list_find_value(list,index);
 		ds_list_set(list,index,positionEntity);

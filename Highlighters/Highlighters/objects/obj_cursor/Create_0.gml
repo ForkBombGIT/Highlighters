@@ -1,3 +1,5 @@
+image_speed = 2;
+//initialize cursor position
 y = scr_getRowPos(4);
 //cursor movement
 delayTime = current_time;

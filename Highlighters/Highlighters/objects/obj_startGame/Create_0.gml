@@ -12,8 +12,8 @@ flash = false;
 
 //game settings
 board = 0;
-boards = [spr_board2,spr_board1,spr_board3,spr_board4];
-backgrounds = [spr_background2,spr_background1,spr_background3,spr_background4];
+boards = [spr_board1];
+backgrounds = [spr_background1];
 characters = [spr_floss,spr_cognac];
 level = 1;
 track = 0;
@@ -23,7 +23,7 @@ char = 0;
 maxLevel = 500;
 maxTrack = 1;
 maxChar = 1;
-maxBoard = 3;
+maxBoard = 1;
 
 //cursor control
 cursorPositions = [96,168,216,264,360];
