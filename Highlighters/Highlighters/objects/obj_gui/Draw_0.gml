@@ -1,19 +1,19 @@
 if !(pause) {
 	//draws gui
-	draw_set_font(numFont);
+	draw_set_font(timeFont);
 	//time
-	draw_sprite(spr_time,0,72,24);
-	draw_text(72,48,string_replace(string_format(minutes,2,0)," ", "0"));
-	draw_text(72 + sprite_get_width(spr_numbers)*2,48, ":");
-	draw_text(72 + sprite_get_width(spr_numbers)*3,48,string_replace(string_format(seconds,2,0)," ","0"));
+	draw_text(608,369,string_replace(string_format(minutes,2,0)," ", "0"));
+	draw_text(608 + sprite_get_width(spr_timenumbers) * 2,369, ":");
+	draw_text(600 + sprite_get_width(spr_timenumbers) * 3,369,string_replace(string_format(seconds,2,0)," ","0"));
+	draw_set_font(numFont);
 	//score
-	draw_sprite(spr_score,0,72,96);
-	draw_text(72,120,string_replace_all(string_format(obj_controller.gameScore,6,0)," ", "0"));
-	//game speed
-	draw_sprite(spr_speed,0,600,24);
-	draw_text(600,48,string_replace_all(string_format(obj_controller.gameSpeed,2,0)," ", "0"));
+	draw_sprite(spr_score,0,600,72);
+	draw_text(600,96,string_replace_all(string_format(obj_controller.gameScore,6,0)," ", "0"));
+	//game level
+	draw_sprite(spr_speed,0,600,144);
+	draw_text(648,168,string_replace_all(string_format(obj_controller.gameSpeed,3,0)," ", "0"));
 	//draws character
-	//draw_sprite(characters[obj_controller.char],0,32,200)
+	draw_sprite(characters[obj_controller.char],2,600,240)
 } else { 
 	draw_sprite(screenShot,0,0,0);
 	draw_set_alpha(0.5);
