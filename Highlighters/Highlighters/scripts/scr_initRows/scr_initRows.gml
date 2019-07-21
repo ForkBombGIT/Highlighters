@@ -1,11 +1,11 @@
 //initializes blocks
 //creates -1 row
 for (var i = 0; i < boardWidth; i++){
-	scr_createEntity(-1,i,(irandom_range(0,2) > 0) ? obj_charm : obj_bomb);	
+	scr_createEntity(-1,i,(irandom_range(1,10) > 2) ? obj_charm : obj_bomb, obj_controller.selectedEntities[irandom_range(0,array_length_1d(obj_controller.selectedEntities) - 1)] * 11);	
 }
 //loops five times for five starting rows
 for (var currRow = 0; currRow < startingRows; currRow++){
-	for (var col = 0; col < boardWidth; col++){
+	for (var col = 0; col < boardWidth; col++) {
 		if (irandom_range(0,10) > 3) { 
 			var tRow = currRow;
 			//iterates until a block is found below a position
@@ -16,7 +16,7 @@ for (var currRow = 0; currRow < startingRows; currRow++){
 				else break;
 			} 
 			//creates piece
-			scr_createEntity(tRow,col,(irandom_range(0,20) > 2) ? obj_charm : obj_bomb);
+			scr_createEntity(tRow,col,(irandom_range(1,10) > 2) ? obj_charm : obj_bomb, obj_controller.selectedEntities[irandom_range(0,array_length_1d(obj_controller.selectedEntities) - 1)] * 11);
 		}
 	}
 }
@@ -27,7 +27,7 @@ for (var currRow = 0; currRow < startingRows; currRow++){
 		for (var col = 0; col < boardWidth; col++) {
 			if (instance_exists(scr_getPieceAtPos(currRow - 1,col))) {
 				//creates piece
-				scr_createEntity(currRow,col,(irandom_range(0,20) > 2) ? obj_charm : obj_bomb);
+				scr_createEntity(currRow,col,(irandom_range(1,10) > 2) ? obj_charm : obj_bomb, obj_controller.selectedEntities[irandom_range(0,array_length_1d(obj_controller.selectedEntities) - 1)] * 11);
 			}
 		}
 	}

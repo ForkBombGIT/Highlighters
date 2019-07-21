@@ -39,7 +39,7 @@ if ((global.active) && !(global.gameover)) {
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+25,par_entity)){
 		for (var i = 0; i < boardWidth; i++){
-			scr_createEntity(-1,i,(irandom_range(0,2) > 0) ? obj_charm : obj_bomb);	
+			scr_createEntity(-1,i,(irandom_range(1,10) > 2) ? obj_charm : obj_bomb,obj_controller.selectedEntities[irandom_range(0,array_length_1d(obj_controller.selectedEntities) - 1)] * 11);	
 		}
 	}
 }

@@ -14,8 +14,8 @@ if (!(swap) && !(global.gameover) && !(match))
 
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { bottomEntity = true; }
-else if (place_meeting(x,y+48,par_entity)) {
-	 bottomEntity = (instance_place(x,y+48,par_entity).bottomEntity) 
+else if (position_meeting(x,y+25,par_entity)) {
+	 bottomEntity = (instance_position(x,y+25,par_entity).bottomEntity) 
 } else 
 	if !(global.riseUp) 
 		bottomEntity = false;
