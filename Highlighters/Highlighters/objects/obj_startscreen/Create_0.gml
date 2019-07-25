@@ -4,15 +4,6 @@ image_speed = 0.1;
 start = 0;
 flash = false;
 
-//handles color switching for start screen
-colorTimer = current_time;
-colorb = irandom_range(0,10);
-colorbLast = colorb;
-coloraOrg = irandom_range(0,10) * 16;
-colora = coloraOrg;
-colorDelay = 2;
-transition = false;
-
 //menu animation variables
 cursorImageIndex = 0;
 textImageIndex = 0;

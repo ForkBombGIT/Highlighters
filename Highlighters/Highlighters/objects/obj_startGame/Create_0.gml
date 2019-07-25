@@ -13,7 +13,6 @@ flash = false;
 //game settings
 board = 0;
 boards = [spr_board1];
-backgrounds = [spr_background1];
 characters = [spr_cognac];
 level = 1;
 track = 0;

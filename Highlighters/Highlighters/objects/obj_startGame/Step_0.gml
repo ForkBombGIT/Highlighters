@@ -56,5 +56,5 @@ if (keyboard_check_pressed(vk_anykey)) {
 //creates the controller obj and countdown obj when the user is ready
 if (start) {
 	instance_create_layer(x,y,"Instances",obj_controller);	
-	instance_create_layer(408,window_get_height()/4,"Controller",obj_countdown);
+	instance_create_layer(144,window_get_height()/4,"Controller",obj_countdown);
 }

@@ -5,6 +5,6 @@ if (start != -1) {
 }
 else {
 	var startscreen = instance_create_layer(x,y,"Instances",obj_startscreen);
-	startscreen.start = 3;
+	startscreen.start = 0;
 	instance_destroy();
 }
