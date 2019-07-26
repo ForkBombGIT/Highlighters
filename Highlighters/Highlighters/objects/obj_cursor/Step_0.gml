@@ -3,12 +3,25 @@
 x = scr_getColPos(col) + sprite_get_width(spr_charm) / 2;
 visible = !global.gameover;
 
-if (global.riseUp) {
+if (global.forceRise) {
+	if (y == initY - targY) {
+		initY = -1;
+		targY = -1;
+		global.forceRise = false;
+		global.active = true; 
+	}
+	else 
+		y -= global.riseSpeed;		
+}
+else if (global.riseUp) {
+	y -= global.riseSpeed;
+}
+
+if (global.riseUp) || (global.forceRise) {
 	if (y - global.riseSpeed < scr_getRowPos(8)) {
 		var yDisplacement = (((abs(instance_nearest(x,y,par_entity).y - y)/spr_charm.sprite_height)) - ((abs(instance_nearest(x,y,par_entity).y - y)/spr_charm.sprite_height) - 1)) * spr_charm.sprite_height;
 		y += yDisplacement;
 	}
-	y -= global.riseSpeed;
 }
 #endregion
 

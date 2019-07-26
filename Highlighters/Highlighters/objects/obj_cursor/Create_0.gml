@@ -14,3 +14,5 @@ downB = 0;
 //cursor location
 row = 4;
 col = 2;
+targY = -1;
+initY = -1;
