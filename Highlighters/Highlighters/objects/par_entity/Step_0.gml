@@ -1,8 +1,22 @@
 #region Rising Pieces
 if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) 
 	if !(alarm[1]) alarm[1] = (obj_controller.risePace - (current_time - obj_controller.riseTimer)/1000) * 60
-	
-if (global.riseUp) { if !(global.gameover) y -= global.riseSpeed; }
+
+if (global.forceRise) {
+	if (y == initY - targY) {
+		initY = -1;
+		targY = -1;
+		global.forceRise = false;
+		global.active = true; 
+	}
+	else 
+		y -= global.riseSpeed;		
+}
+else if (global.riseUp) { 
+	if !(global.gameover) { 
+		y -= global.riseSpeed; 
+	} 
+}
 #endregion
 
 #region Grey Pieces

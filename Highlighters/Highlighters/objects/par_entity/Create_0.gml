@@ -13,6 +13,8 @@ landAnim = false;
 //position
 row = -1;
 col = -1;
+targY = -1;
+initY = -1;
 //used for matches
 left = noone;
 right = noone;

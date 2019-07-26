@@ -35,6 +35,7 @@ incrementScaler = 1.1;
 global.orgRiseSpeed = 1;
 global.riseSpeed = global.orgRiseSpeed;
 global.riseUp = false;
+global.forceRise = false;
 startingRows = 5;
 selectedEntities = obj_startGame.selectedEntites;
 instance_destroy(obj_startGame);
