@@ -1,21 +1,26 @@
 #region Rising Pieces
 if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) 
-	if !(alarm[1]) alarm[1] = (obj_controller.risePace - (current_time - obj_controller.riseTimer)/1000) * 60
+	if !(alarm[1]) 
+		alarm[1] = (obj_controller.risePace - (current_time - obj_controller.riseTimer)/1000) * 60
 
-if (global.forceRise) {
-	if (y == initY - targY) {
-		initY = -1;
-		targY = -1;
-		global.forceRise = false;
-		global.active = true; 
+if (!global.gameover) {
+	if (global.forceRise) {
+		if (y <= initY - targY) {
+			initY = -1;
+			targY = -1;
+			global.forceRise = false;
+			global.active = true; 
+			obj_controller.riseTimer = current_time;
+		}
+		else {
+			if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) {
+				global.gameover = true;
+			}
+			y -= global.forceRiseSpeed;	
+		}
 	}
-	else 
-		y -= global.riseSpeed;		
-}
-else if (global.riseUp) { 
-	if !(global.gameover) { 
-		y -= global.riseSpeed; 
-	} 
+	else if (global.riseUp) 
+		y -= global.riseSpeed;
 }
 #endregion
 
@@ -31,7 +36,7 @@ if (y >= scr_getRowPos(0)) { bottomEntity = true; }
 else if (position_meeting(x,y+25,par_entity)) {
 	 bottomEntity = (instance_position(x,y+25,par_entity).bottomEntity) 
 } else 
-	if !(global.riseUp) 
+	if !(global.riseUp) && !(global.forceRise)
 		bottomEntity = false;
 #endregion
 	

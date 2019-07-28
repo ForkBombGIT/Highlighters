@@ -16,6 +16,7 @@ while (another) {
 		//sets position to next entity in stack
 		x = entity.x;
 		y = entity.y;
+		entity.landAnim = false;
 		entity.match = true;
 		
 		//adds entity to final list

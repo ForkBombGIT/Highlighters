@@ -1,5 +1,5 @@
 draw_sprite(boards[board],image_index,0,0);
-draw_sprite(characters[char],2,360,240)
+//draw_sprite(characters[char],2,360,240)
 //draw_sprite(spr_grid,0,240,0);
 draw_sprite(spr_selectCursor,image_speed,24,cursorPositions[cursor]);
 draw_set_font(numFont);

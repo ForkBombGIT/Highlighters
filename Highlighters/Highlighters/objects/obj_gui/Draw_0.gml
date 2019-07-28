@@ -8,12 +8,12 @@ if !(pause) {
 	draw_set_font(numFont);
 	//score
 	draw_sprite(spr_score,0,360,72);
-	draw_text(360,96,string_replace_all(string_format(obj_controller.gameScore,6,0)," ", "0"));
+	draw_text(378,96,string_replace_all(string_format(obj_controller.gameScore,6,0)," ", "0"));
 	//game level
 	draw_sprite(spr_speed,0,360,144);
-	draw_text(408,168,string_replace_all(string_format(obj_controller.gameSpeed,3,0)," ", "0"));
+	draw_text(423,168,string_replace_all(string_format(obj_controller.gameSpeed,3,0)," ", "0"));
 	//draws character
-	draw_sprite(characters[obj_controller.char],2,360,240)
+	//draw_sprite(characters[obj_controller.char],2,360,240)
 } else { 
 	draw_sprite(screenShot,0,0,0);
 	draw_set_alpha(0.5);

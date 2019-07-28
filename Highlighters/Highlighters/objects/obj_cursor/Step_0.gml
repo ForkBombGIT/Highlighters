@@ -11,7 +11,7 @@ if (global.forceRise) {
 		global.active = true; 
 	}
 	else 
-		y -= global.riseSpeed;		
+		y -= global.forceRiseSpeed;		
 }
 else if (global.riseUp) {
 	y -= global.riseSpeed;
