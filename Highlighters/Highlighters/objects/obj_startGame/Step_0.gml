@@ -1,3 +1,4 @@
+if (instance_exists(obj_startscreen)) instance_destroy(obj_startscreen);
 #region Input Control
 if (keyboard_check_released(ord("S"))) {
 	if (cursor == 4) {
