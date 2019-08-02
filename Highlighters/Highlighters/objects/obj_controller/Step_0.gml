@@ -7,17 +7,17 @@ if (global.gameover) {
 	}
 }
 
+
+show_debug_message(risePace);
 //block loop
 if ((global.active) && !(global.gameover)) {	
 	if (gameScore >= scoreToNextLevel) {
 		gameSpeed++;
 		scoreToNextLevel = floor(initialScoreToNextLevel * ((++nextLevelScale) * incrementScaler));
-		//global.orgRiseSpeed = global.orgRiseSpeed + maxRiseSpeed/maxLevel;
-		//global.riseSpeed = global.orgRiseSpeed;
+		risePace -= (orgRisePace - minRisePace) / maxLevel;
 	}
 	//rising row
 	if ((current_time - riseTimer)/1000 > risePace) { 
-		global.riseSpeed = global.orgRiseSpeed;
 		riseTimer = current_time;
 		global.riseUp = true;
 	} else global.riseUp = false;

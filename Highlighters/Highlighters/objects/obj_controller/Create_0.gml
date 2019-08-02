@@ -14,17 +14,18 @@ char = 0;
 //game score
 gameScore = 0;
 //game speed 
-gameSpeed = obj_startGame.level;
+gameSpeed = 1;
 
 //game rule variables
 boardWidth = 6;
 boardHeight = 9;
 board = 0;
-maxRiseSpeed = 24;
-maxLevel = 500;
+minRisePace = 0.05;
+maxLevel = 100;
 
 //controls game loop 
-risePace = 1.5;
+orgRisePace = 3.0;
+risePace = orgRisePace;
 riseTimer = current_time;
 initialScoreToNextLevel = 100;
 scoreToNextLevel = initialScoreToNextLevel;
