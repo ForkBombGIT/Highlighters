@@ -367,6 +367,14 @@
             }
         },
         {
+            "Key": "7d38cdcc-a280-479b-8e21-5bec17e94e40",
+            "Value": {
+                "id": "65d3aee9-82b2-487b-a8b7-c8318ce3d3fc",
+                "resourcePath": "scripts\\scr_menuCursorMovement\\scr_menuCursorMovement.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "80b4828c-cc9b-490b-ac6f-d0b27916fc43",
             "Value": {
                 "id": "d3e751cb-a0eb-46fe-a489-1395e3450ba8",
@@ -810,6 +818,7 @@
         "9d9924ac-f850-45c8-92fb-0723a6ed4e13",
         "f52c3817-04db-4721-87e4-6af451187a57",
         "de0e5e56-e5d6-4c15-beed-11f869cc2a9b",
+        "7d38cdcc-a280-479b-8e21-5bec17e94e40",
         "bd3824a0-f98b-488e-8225-f7f9a25d13b6",
         "9e5d4e06-fcc0-4b4d-96f3-04ad642fc249"
     ],

@@ -19,12 +19,17 @@ track = 0;
 char = 0;
 
 //maximum values
-maxLevel = 500;
-maxTrack = 1;
-maxChar = 1;
-maxBoard = 1;
+maxLevel = 100;
+maxTrack = 0;
+maxChar = 0;
+maxBoard = 0;
 
 //cursor control
+delayTime = current_time;
+delay = 0.05;
+keyPressLength = 0;
+longPress = 20;
+lastKey = -1;
 cursorPositions = [96,168,216,264,360];
 cursor = 0;
 image_speed = 0.033;

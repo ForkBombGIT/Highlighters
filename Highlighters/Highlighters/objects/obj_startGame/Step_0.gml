@@ -21,37 +21,23 @@ if (keyboard_check_pressed(vk_anykey)) {
 	else if (keyboard_key == vk_down) {
 		cursor = clamp(cursor + 1,0,4);
 	}
+}
+
+if (keyboard_check(vk_anykey)) {
+	lastKey = keyboard_key;
+	if (lastKey == keyboard_key) {
+		if (++keyPressLength == 1) scr_menuCursorMovement(cursor,keyboard_key);
+	} else keyPressLength = 0;
 	
-	//moving left and right
-	if (keyboard_key == vk_left){
-		switch (cursor) { 
-			case 0:
-				level = clamp(level - 1, 1, maxLevel);	
-				break;
-			case 1:
-				char = clamp(char - 1, 0, maxChar);	
-				break;
-			case 2:
-				board = clamp(board - 1, 0, maxBoard);	
-				break;
-			case 3:
-				break;
+	if (keyPressLength > longPress) {
+		if (keyPressLength > 0) {
+			if ((current_time - delayTime) > delay){
+				delayTime = current_time;
+				scr_menuCursorMovement(cursor,keyboard_key);
+			}
 		} 
 	}
-	else if (keyboard_key == vk_right){
-		switch (cursor) { 
-			case 0:
-				level = clamp(level + 1, 1, maxLevel);
-				break;
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-		} 	
-	}
-}
+} else keyPressLength = 0;
 #endregion
 
 //creates the controller obj and countdown obj when the user is ready
