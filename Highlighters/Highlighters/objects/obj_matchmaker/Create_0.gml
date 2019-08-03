@@ -15,4 +15,7 @@ ds_stack_push(stack,instance_position(x,y,par_entity));
 listPosition = 0;
 highlightDelay = 4;
 whiteDelay = 24;
+flickerDelay = 2;
+flickerCount = 0;
 animating = false;
+flicker = false;
