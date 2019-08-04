@@ -418,7 +418,7 @@
             "Key": "886c4178-698c-4f39-9fa4-cc25e6b83826",
             "Value": {
                 "id": "968ef1c2-90e6-49de-b313-055b5336fb00",
-                "resourcePath": "scripts\\scr_generateBlocks\\scr_generateBlocks.yy",
+                "resourcePath": "scripts\\scr_generateColors\\scr_generateColors.yy",
                 "resourceType": "GMScript"
             }
         },

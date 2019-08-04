@@ -33,6 +33,7 @@ nextLevelScale = 1;
 incrementScaler = 1.1;
 
 //used for row generation 
+global.freeze = false;
 global.orgRiseSpeed = 3;
 global.riseSpeed = global.orgRiseSpeed;
 global.riseUp = false;

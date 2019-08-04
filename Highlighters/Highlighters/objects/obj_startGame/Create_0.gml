@@ -4,7 +4,7 @@ if (instance_exists(obj_startscreen)) instance_destroy(obj_startscreen);
 numFont = font_add_sprite_ext(spr_numbers, "0123456789:<>", true, 0); 
 
 //blocks to be used for run
-selectedEntites = scr_generateBlocks();
+selectedEntites = scr_generateColors();
 
 //whether or not to start game
 start = 0;

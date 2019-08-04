@@ -15,10 +15,12 @@ if ((global.active) && !(global.gameover)) {
 		risePace -= (orgRisePace - minRisePace) / maxLevel;
 	}
 	//rising row
-	if ((current_time - riseTimer)/1000 > risePace) { 
-		riseTimer = current_time;
-		global.riseUp = true;
-	} else global.riseUp = false;
+	if !(global.freeze) {
+		if ((current_time - riseTimer)/1000 > risePace) { 
+			riseTimer = current_time;
+			global.riseUp = true;
+		} else global.riseUp = false;
+	}
 	
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+25,par_entity)){
