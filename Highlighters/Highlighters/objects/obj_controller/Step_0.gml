@@ -1,4 +1,8 @@
 #region Game Loop
+if (instance_exists(obj_matchmaker)) {
+	if (obj_matchmaker.animating) freeze = true;	
+} else freeze = false;
+
 //handles gameover logic
 if (global.gameover) {
 	if !(anim) { 
@@ -15,12 +19,12 @@ if ((global.active) && !(global.gameover)) {
 		risePace -= (orgRisePace - minRisePace) / maxLevel;
 	}
 	//rising row
-	if !(global.freeze) {
+	if !(freeze) {
 		if ((current_time - riseTimer)/1000 > risePace) { 
 			riseTimer = current_time;
 			global.riseUp = true;
 		} else global.riseUp = false;
-	}
+	} else global.riseUp = false;
 	
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+25,par_entity)){

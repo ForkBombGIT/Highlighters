@@ -4,10 +4,9 @@ if (ds_list_size(final) >= matchSize) {
 		final = scr_matchListSort(final,0,ds_list_size(final) - 1);
 		animating = true;
 		flicker = true;
-		global.freeze = true;
 		alarm[0] = flickerDelay;
 	}
-	show_debug_message(flickerCount < whiteDelay);
+	
 	//controls flickering
 	if (flicker) {
 		//flickers until delay is reached
