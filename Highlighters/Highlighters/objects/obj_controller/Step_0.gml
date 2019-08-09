@@ -28,7 +28,7 @@ if ((global.active) && !(global.gameover)) {
 	
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+25,par_entity)){
-		scr_createRow();
+		scr_createRow(-1);
 	}
 	
 	//manual new row

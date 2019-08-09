@@ -1,8 +1,6 @@
 //initializes blocks
 //creates -1 row
-for (var i = 0; i < boardWidth; i++){
-	scr_createEntity(-1,i,(irandom_range(1,10) > 3) ? obj_charm : obj_bomb, obj_controller.selectedEntities[irandom_range(0,array_length_1d(obj_controller.selectedEntities) - 1)] * 11);	
-}
+scr_createRow(-1);
 //loops five times for five starting rows
 for (var currRow = 0; currRow < startingRows; currRow++){
 	for (var col = 0; col < boardWidth; col++) {
