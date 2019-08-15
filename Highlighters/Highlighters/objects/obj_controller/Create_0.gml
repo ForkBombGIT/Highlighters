@@ -34,6 +34,8 @@ incrementScaler = 1.1;
 
 //used for row generation 
 freeze = false;
+freezeTime = 0;
+freezeTimer = current_time;
 global.orgRiseSpeed = 3;
 global.riseSpeed = global.orgRiseSpeed;
 global.riseUp = false;

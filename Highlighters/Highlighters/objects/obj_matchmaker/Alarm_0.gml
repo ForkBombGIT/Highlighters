@@ -4,6 +4,8 @@ if (ds_list_size(final) >= matchSize) {
 		final = scr_matchListSort(final,0,ds_list_size(final) - 1);
 		animating = true;
 		flicker = true;
+		//obj_controller.freezeTime = round((((ds_list_size(final) + 1) * highlightDelay) + (whiteDelay * flickerDelay) + postWhiteDelay) / room_speed) ;
+		//obj_controller.freezeTimer = current_time;
 		alarm[0] = flickerDelay;
 	}
 	

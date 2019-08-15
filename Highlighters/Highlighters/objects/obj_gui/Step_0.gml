@@ -3,7 +3,9 @@ if !(countdown) && (global.active){
 		//counts time
 		milli++;
 		totalMillis++;
-		if (milli >= room_speed) {milli = 0; seconds++;} 
+		if (milli >= room_speed) {
+			milli = 0; seconds++;
+		} 
 		if (seconds >= 60) {seconds = 0; minutes += 1;}	
 	}
 

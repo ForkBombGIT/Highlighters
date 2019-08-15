@@ -1,6 +1,8 @@
 #region Game Loop
 if (instance_exists(obj_matchmaker)) {
-	if (obj_matchmaker.animating) freeze = true;	
+	if (obj_matchmaker.animating) {
+		freeze = true;	
+	}
 } else freeze = false;
 
 //handles gameover logic
@@ -9,6 +11,9 @@ if (global.gameover) {
 		anim = true; 
 		alarm[0] = 1; 
 	}
+}
+
+if (freeze) {
 }
 
 //block loop

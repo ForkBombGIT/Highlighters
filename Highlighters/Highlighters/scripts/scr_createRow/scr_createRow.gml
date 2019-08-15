@@ -3,13 +3,16 @@ var placedPieces = ds_list_create();
 var availablePieces = obj_controller.selectedEntities;
 var matchCounter = 0;
 var bombExists = 0;
+var bombCount = 0;
 
 //iterates the length of the board
 for (var i = 0; i < boardWidth; i++){
+	show_debug_message(bombCount);
 	//selects a color
 	var colorIndex = irandom_range(0,array_length_1d(availablePieces) - 1);
 	var color = availablePieces[colorIndex] * 11;
-	var pieceType = (irandom_range(1,10) > 3) ? obj_charm : obj_bomb;
+	var pieceType = (bombCount < 3) ? 
+					((irandom_range(1,10) > 3) ? obj_charm : obj_bomb) : obj_charm;
 	var canPlace = true;
 	//checks if the first piece has been placed, if so check if the colors work
 	if (ds_list_size(placedPieces) > 0) {
@@ -35,7 +38,10 @@ for (var i = 0; i < boardWidth; i++){
 	if (canPlace) {
 		scr_createEntity(row,i,pieceType, color);
 		availablePieces = obj_controller.selectedEntities;
-		if (pieceType == obj_bomb) bombExists = 1;
+		if (pieceType == obj_bomb) {
+			bombExists = 1;
+			bombCount++;
+		}
 		ds_list_add(placedPieces,color);
 	}
 	else { 	

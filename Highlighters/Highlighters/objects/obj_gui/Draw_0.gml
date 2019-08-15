@@ -10,7 +10,12 @@ if !(pause) {
 	draw_sprite(spr_score,0,360,72);
 	draw_text(378,96,string_replace_all(string_format(obj_controller.gameScore,6,0)," ", "0"));
 	//game level
-	draw_sprite(spr_speed,0,360,144);
+	if !obj_controller.freeze draw_sprite(spr_speed,0,360,144) else draw_sprite(spr_stop,0,360,144);
+	if (obj_controller.freeze) {
+		draw_set_font(freezeFont);
+		draw_text(362,168,obj_controller.freezeTime);
+		draw_set_font(numFont);
+	}
 	draw_text(423,168,string_replace_all(string_format(obj_controller.gameSpeed,3,0)," ", "0"));
 	//draws character
 	//draw_sprite(characters[obj_controller.char],2,360,240)
