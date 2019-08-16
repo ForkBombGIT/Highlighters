@@ -7,7 +7,6 @@ var bombCount = 0;
 
 //iterates the length of the board
 for (var i = 0; i < boardWidth; i++){
-	show_debug_message(bombCount);
 	//selects a color
 	var colorIndex = irandom_range(0,array_length_1d(availablePieces) - 1);
 	var color = availablePieces[colorIndex] * 11;

@@ -6,7 +6,8 @@
     "children": [
         "6557888c-d904-4623-b4a5-945941ca5fd8",
         "517cce44-098c-41d4-9927-bc6c3da0f581",
-        "ffadee16-c9dd-4f87-9364-a9810622f731"
+        "ffadee16-c9dd-4f87-9364-a9810622f731",
+        "932f2550-b88f-4bd3-aa2f-7253a68db6ef"
     ],
     "filterType": "GMScript",
     "folderName": "Row Building",
