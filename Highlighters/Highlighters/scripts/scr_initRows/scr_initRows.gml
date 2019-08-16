@@ -4,7 +4,7 @@ scr_createRow(-1);
 //loops five times for five starting rows
 for (var currRow = 0; currRow < startingRows; currRow++){
 	for (var col = 0; col < boardWidth; col++) {
-		if (irandom_range(0,10) > 2) { 
+		if (irandom_range(0,10) > 1) { 
 			var tRow = currRow;
 			while (tRow > 0) {
 				if (!instance_exists(scr_getPieceAtPos(tRow - 1,col)))
