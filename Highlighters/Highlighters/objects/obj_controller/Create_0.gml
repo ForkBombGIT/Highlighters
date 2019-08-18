@@ -41,7 +41,7 @@ global.riseSpeed = global.orgRiseSpeed;
 global.riseUp = false;
 global.forceRise = false;
 global.forceRiseSpeed = 3;
-startingRows = 5;
+startingRows = 6;
 selectedEntities = obj_startGame.selectedEntites;
 instance_destroy(obj_startGame);
 
@@ -51,4 +51,4 @@ cursor = instance_create_layer(x,scr_getRowPos(4),"Instances",obj_cursor);
 cursor.visible = false;
 gui = instance_create_layer(x,y,"Controller",obj_gui);
 
-scr_initRows();
+scr_initRows(0);

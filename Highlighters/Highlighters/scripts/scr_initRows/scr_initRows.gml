@@ -1,26 +1,30 @@
+var pieceCount = argument0;
+var maxPieces = 24;
 //initializes blocks
 //creates -1 row
 scr_createRow(-1);
-//loops five times for five starting rows
-for (var currRow = 0; currRow < startingRows; currRow++){
+//loops for amount of desired starting rows
+for (var currRow = 0; currRow < startingRows; currRow++) {
+	//loops through columns
 	for (var col = 0; col < boardWidth; col++) {
-		if (irandom_range(0,10) > 1) { 
-			var tRow = currRow;
-			while (tRow > 0) {
-				if (!instance_exists(scr_getPieceAtPos(tRow - 1,col)))
-					tRow -= 1;
-				else break;
-			} 
-			scr_initRowsPiecePlace(currRow,col);
-		}
+		//check if pieces placed are under max
+		if (pieceCount < maxPieces) {
+			//creates variation in starting positions
+			if (irandom_range(0,10) > 1) { 
+				var tRow = currRow;
+				//places piece on top of another
+				while (tRow > 0) {
+					if (!instance_exists(scr_getPieceAtPos(tRow - 1,col)))
+						tRow -= 1;
+					else break;
+				} 
+				//if a piece is placed, increment
+				if (scr_initRowsPiecePlace(currRow,col)) pieceCount++;
+			}
+		} else break;
 	}
-}
-//ensures there are five rows, checks for empty rows
-//and places tiles in viable positions
-for (var currRow = 0; currRow < startingRows; currRow++){
-	if (!scr_checkRow(currRow)) {	
-		for (var col = 0; col < boardWidth; col++) {
-			scr_initRowsPiecePlace(currRow,col);
-		}
-	}
+	//loop until enough pieces have been placed
+	if (pieceCount < maxPieces) {
+		if (currRow == startingRows - 1) currRow = 0;
+	} else break;	
 }
