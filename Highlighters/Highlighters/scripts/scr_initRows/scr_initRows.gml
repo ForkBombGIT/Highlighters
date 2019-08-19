@@ -1,5 +1,6 @@
 var pieceCount = argument0;
 var maxPieces = 24;
+var variance = 5;
 //initializes blocks
 //creates -1 row
 scr_createRow(-1);
@@ -10,7 +11,7 @@ for (var currRow = 0; currRow < startingRows; currRow++) {
 		//check if pieces placed are under max
 		if (pieceCount < maxPieces) {
 			//creates variation in starting positions
-			if (irandom_range(0,10) > 1) { 
+			if (irandom_range(0,10) > variance) { 
 				var tRow = currRow;
 				//places piece on top of another
 				while (tRow > 0) {
