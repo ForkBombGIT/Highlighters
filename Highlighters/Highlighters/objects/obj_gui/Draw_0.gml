@@ -1,4 +1,4 @@
-if !(pause) {
+if !(pause) || !sprite_exists(screenShot){
 	//draws gui
 	draw_set_font(timeFont);
 	//time
@@ -19,7 +19,8 @@ if !(pause) {
 	draw_text(423,168,string_replace_all(string_format(obj_controller.gameSpeed,3,0)," ", "0"));
 	//draws character
 	//draw_sprite(characters[obj_controller.char],2,360,240)
-} else { 
+} 
+if (sprite_exists(screenShot) && pause){  
 	draw_sprite(screenShot,0,0,0);
 	draw_set_alpha(0.5);
 	draw_rectangle(0,0,480,432,c_black);

@@ -9,7 +9,7 @@ while !(canPlace) {
 	if (instance_exists(bottom)) {
 		canPlace = scr_checkColors(bottom.index,color);
 		if (bottom.index == color) canPlace = false;
-		if (instance_exists(left)) {
+		if (instance_exists(left) && (canPlace)) {
 			canPlace = scr_checkColors(left.index,color);
 			if (left.index == color) canPlace = false;
 		}

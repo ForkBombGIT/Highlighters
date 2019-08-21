@@ -1,4 +1,4 @@
-var animSpeed = 0.03;
+var animSpeed = 0.02;
 if (round(animIndex) <= 4){
 	animIndex += animSpeed;
 } else 

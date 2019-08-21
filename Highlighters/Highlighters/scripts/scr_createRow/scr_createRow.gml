@@ -13,6 +13,7 @@ for (var i = 0; i < boardWidth; i++){
 	var pieceType = (bombCount < 3) ? 
 					((irandom_range(1,10) > 3) ? obj_charm : obj_bomb) : obj_charm;
 	var canPlace = true;
+	var up = scr_getPieceAtPos(-1, i);
 	//checks if the first piece has been placed, if so check if the colors work
 	if (ds_list_size(placedPieces) > 0) {
 		canPlace = scr_checkColors(color,ds_list_find_value(placedPieces,ds_list_size(placedPieces) - 1))
@@ -30,6 +31,10 @@ for (var i = 0; i < boardWidth; i++){
 					canPlace = false; matchCounter = 0; bombExists = 0; 
 				}
 			}
+			
+			//checks if the above color falls into the trios
+			if (canPlace) 
+				if (instance_exists(up)) canPlace = scr_checkColors(color,up.index);
 			
 		}
 	}
