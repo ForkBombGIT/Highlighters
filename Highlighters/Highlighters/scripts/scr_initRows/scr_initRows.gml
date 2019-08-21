@@ -21,11 +21,12 @@ for (var currRow = 0; currRow < startingRows; currRow++) {
 				} 
 				//if a piece is placed, increment
 				if (scr_initRowsPiecePlace(currRow,col)) pieceCount++;
+				show_debug_message(pieceCount);
 			}
 		} else break;
 	}
 	//loop until enough pieces have been placed
 	if (pieceCount < maxPieces) {
-		if (currRow == startingRows - 1) currRow = 0;
+		//if (currRow == startingRows - 1) currRow = 0;
 	} else break;	
 }

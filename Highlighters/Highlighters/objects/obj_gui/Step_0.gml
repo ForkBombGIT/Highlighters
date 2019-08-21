@@ -10,15 +10,16 @@ if !(countdown) && (global.active){
 	}
 
 #region Pause Handling
+	if !(window_has_focus()) pause = true;
 	if (keyboard_check_pressed(vk_escape)){
 		if (pause) countdown = true;
 		else pause = !pause;
-		if(!sprite_exists(screenShot)){
-	        screenShot = sprite_create_from_surface(application_surface,0,0,768,432,0,0,0,0);    
-	    }
 	}
 
 	if (pause){
+		if(!sprite_exists(screenShot)){
+	        screenShot = sprite_create_from_surface(application_surface,0,0,768,432,0,0,0,0);    
+	    }
 	    if !(countdown) instance_deactivate_all(1);
 		else {
 			if (!instance_exists(obj_countdown)) 
