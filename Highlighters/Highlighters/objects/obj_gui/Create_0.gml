@@ -9,4 +9,6 @@ characters = [spr_cognac];
 pause = false;
 screenShot = noone;
 countdown = false;
-
+pauseAnim = 0;
+pauseCursor = 0;
+pauseCursorPositions = [216,252,288];

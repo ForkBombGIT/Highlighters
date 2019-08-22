@@ -22,10 +22,11 @@ if !(pause) || !sprite_exists(screenShot){
 } 
 if (sprite_exists(screenShot) && pause){  
 	draw_sprite(screenShot,0,0,0);
-	draw_set_alpha(0.5);
-	draw_rectangle(0,0,480,432,c_black);
-	draw_set_alpha(1);
 	if !(countdown) {
-		draw_sprite(spr_pause,0,window_get_width()/2,window_get_height()/2);
+		draw_sprite(spr_pause,floor(pauseAnim),168,window_get_height()/4);
+		draw_sprite(spr_pauseOptions,0,96,216);
+		draw_sprite(spr_pauseOptions,1,96,252);
+		draw_sprite(spr_pauseOptions,2,96,288);
+		draw_sprite(spr_selectCursor,0,48,pauseCursorPositions[pauseCursor]);
 	}
 }

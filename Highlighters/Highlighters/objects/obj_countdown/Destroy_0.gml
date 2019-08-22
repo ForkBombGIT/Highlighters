@@ -7,6 +7,8 @@ if (obj_gui.pause) {
 	        sprite_delete(screenShot);
 	    }	
 	}
-	instance_activate_all();	
+	instance_activate_all();
+	par_entity.visible = true;
+	obj_cursor.visible = true;
 }
 global.active = true;
