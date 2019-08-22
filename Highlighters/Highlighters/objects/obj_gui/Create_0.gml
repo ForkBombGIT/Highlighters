@@ -6,6 +6,7 @@ boardSprite = instance_create_layer(240,y,"Board",obj_board);
 boardSprite.board = obj_controller.board;
 characters = [spr_cognac];
 //holds pause state
+countdownInst = noone;
 pause = false;
 screenShot = noone;
 countdown = false;

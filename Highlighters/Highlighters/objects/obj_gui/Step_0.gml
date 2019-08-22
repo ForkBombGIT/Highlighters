@@ -1,6 +1,7 @@
 if !(countdown) && (global.active) {
+	#region Time Counting
 	if !(pause) && !(global.gameover) {	
-		//counts time
+		
 		milli++;
 		totalMillis++;
 		if (milli >= room_speed) {
@@ -8,10 +9,22 @@ if !(countdown) && (global.active) {
 		} 
 		if (seconds >= 60) {seconds = 0; minutes += 1;}	
 	}
-
-#region Pause Handlin
+	#endregion
+	#region Pause Handling
 	if (pause){
-		//unpause
+		#region Menu Control
+		if (keyboard_check_pressed(vk_up)) {
+			if (pauseCursor > 0) {
+				pauseCursor--;	
+			}
+		}
+		if (keyboard_check_pressed(vk_down)) {
+			if (pauseCursor < array_length_1d(pauseCursorPositions) - 1) {
+				pauseCursor++;	
+			}
+		}
+		
+		//menu options
 		if (keyboard_check_pressed(ord("S"))) {
 			switch (pauseCursor) {
 				case 0:
@@ -24,37 +37,27 @@ if !(countdown) && (global.active) {
 					break;
 			}
 		}
-		if (keyboard_check_pressed(vk_up)) {
-			if (pauseCursor > 0) {
-				pauseCursor--;	
-			}
-		}
-		if (keyboard_check_pressed(vk_down)) {
-			if (pauseCursor < array_length_1d(pauseCursorPositions) - 1) {
-				pauseCursor++;	
-			}
-		}
-			
+		#endregion
+		
 		//creates screenshot
 		if(!sprite_exists(screenShot)){
 	        screenShot = sprite_create_from_surface(application_surface,0,0,window_get_width(),window_get_height(),0,0,0,0);    
 	    }
 		
+		#region Countdown Control
 		//controls countdown sprite
-	    if !(countdown) { 
-			instance_deactivate_all(1);
-		}
-		
+	    if !(countdown) instance_deactivate_all(1);
+		//creates countdown
 		else {
-			if (!instance_exists(obj_countdown)) 
-				instance_activate_object(instance_create_layer(168,
-															   window_get_height()/4,
-															   "GUI",
-															   obj_countdown));
-			
+			if (!instance_exists(countdownInst)) {
+				countdownInst = instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
+				instance_activate_object(countdownInst);
+			}
 		}
+		#endregion
 	}
 	else {
+		#region Pause Conditions
 		//pause on escape press
 		if (keyboard_check_pressed(vk_escape)){
 			pause = true;
@@ -70,12 +73,28 @@ if !(countdown) && (global.active) {
 			obj_cursor.visible = false;
 			pauseAnim = 0;
 		}
-	}		
+		#endregion
+	}	
+	#endregion
 }
+
+#region End Countdown
+if (countdown) {
+	//if countdown is up, resume game
+	if (!instance_exists(countdownInst)) {
+		pause = false;
+		countdown = false;
+		if(sprite_exists(screenShot)){
+			sprite_delete(screenShot);
+		}	
+		instance_activate_all();
+		par_entity.visible = true;
+		obj_cursor.visible = true;
+	}	
+}
+#endregion
 
 var animSpeed = 0.2;
 if (round(pauseAnim) < sprite_get_number(spr_pause)){
 	pauseAnim += animSpeed;
 } else pauseAnim = 0;
-
-#endregion

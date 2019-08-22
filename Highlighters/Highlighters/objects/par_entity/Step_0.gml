@@ -3,6 +3,7 @@ if (y <= scr_getRowPos(obj_controller.boardHeight - 1))
 	if !(alarm[1]) 
 		alarm[1] = (obj_controller.risePace - (current_time - obj_controller.riseTimer)/1000) * 60
 
+#region Force Rise
 if (!global.gameover) {
 	if (global.forceRise) {
 		if (y <= initY - targY) {
@@ -22,6 +23,7 @@ if (!global.gameover) {
 	else if (global.riseUp) 
 		y -= global.riseSpeed;
 }
+#endregion
 #endregion
 
 #region Grey Pieces
@@ -61,7 +63,10 @@ if (swap) {
 
 #region Fall Control
 //checks if there is no piece below
-if (!(bottomEntity) && !(match) && !(swap) && !(global.gameover)) {
+if (!(bottomEntity) && 
+	!(match) && 
+	!(swap) && 
+	!(global.gameover)) {
 	if !alarm[0] alarm[0] = fallDelay;
 } 
 
@@ -77,7 +82,11 @@ if (landAnim) && !(match) {
 
 #region Match Control
 //checks for adjacent matching pieces
-if ((bottomEntity) && !(swap) && !(landAnim) && !(global.gameover) && (y <= scr_getRowPos(0))) {
+if ((bottomEntity) && 
+	!(swap) && 
+	!(landAnim) && 
+	!(global.gameover) && 
+	(y <= scr_getRowPos(0))) {
 	ds_list_clear(adjacent);
 	left = instance_position(x - 48, y, par_entity);
 	if (instance_exists(left)) {
