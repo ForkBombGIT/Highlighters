@@ -5,6 +5,23 @@ if (instance_exists(obj_matchmaker)) {
 	}
 } else freeze = false;
 
+//handles restart logic
+if (global.restart) {
+	//set global variables
+	global.active = false;
+	global.restart = false;
+	//reset game variable
+	gameScore = 0;
+	//delete old objects
+	instance_destroy(par_entity);
+	instance_destroy(obj_cursor);
+	//restart
+	scr_initRows(0);
+	cursor = instance_create_layer(x,scr_getRowPos(4),"Instances",obj_cursor);		
+	cursor.visible = false;
+	instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
+}
+
 //handles gameover logic
 if (global.gameover) {
 	if !(anim) { 

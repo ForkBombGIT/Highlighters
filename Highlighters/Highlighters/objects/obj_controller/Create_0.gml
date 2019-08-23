@@ -9,6 +9,9 @@ anim = false;
 animRow = 8;
 flash = false;
 
+//restarts game
+global.restart = false;
+
 //selected character
 char = 0;
 //game score

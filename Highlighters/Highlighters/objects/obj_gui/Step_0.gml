@@ -31,6 +31,7 @@ if !(countdown) && (global.active) {
 					countdown = true;
 					break;
 				case 1:
+					global.restart = true;
 					break;
 				case 2:
 					game_end();
@@ -78,8 +79,8 @@ if !(countdown) && (global.active) {
 	#endregion
 }
 
-#region End Countdown
-if (countdown) {
+#region On End Countdown / Restart Control
+if (countdown) || (global.restart) {
 	//if countdown is up, resume game
 	if (!instance_exists(countdownInst)) {
 		pause = false;
@@ -88,8 +89,6 @@ if (countdown) {
 			sprite_delete(screenShot);
 		}	
 		instance_activate_all();
-		par_entity.visible = true;
-		obj_cursor.visible = true;
 	}	
 }
 #endregion
