@@ -17,7 +17,8 @@ char = 0;
 //game score
 gameScore = 0;
 //game speed 
-gameSpeed = 1;
+startGameSpeed = 1;
+gameSpeed = startGameSpeed;
 
 //game rule variables
 boardWidth = 6;
@@ -32,7 +33,8 @@ risePace = orgRisePace;
 riseTimer = current_time;
 initialScoreToNextLevel = 100;
 scoreToNextLevel = initialScoreToNextLevel;
-nextLevelScale = 1;
+startNextLevelScale = 1;
+nextLevelScale = startNextLevelScale;
 incrementScaler = 1.1;
 
 //used for row generation 

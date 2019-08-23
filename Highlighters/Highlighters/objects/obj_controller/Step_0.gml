@@ -5,7 +5,7 @@ if (instance_exists(obj_matchmaker)) {
 	}
 } else freeze = false;
 
-//handles restart logic
+#region Restart
 if (global.restart) {
 	//set global variables
 	global.active = false;
@@ -15,13 +15,18 @@ if (global.restart) {
 	//delete old objects
 	instance_destroy(par_entity);
 	instance_destroy(obj_cursor);
-	//restart
-	scr_initRows(0);
 	cursor = instance_create_layer(x,scr_getRowPos(4),"Instances",obj_cursor);		
 	cursor.visible = false;
+	//restart
+	scr_initRows(0);
+	gameSpeed = startGameSpeed;
+	nextLevelScale = startNextLevelScale;
+	scoreToNextLevel = initialScoreToNextLevel;
+	risePace = orgRisePace - (((orgRisePace - minRisePace) / maxLevel) * (gameSpeed - 1))
+	show_debug_message(risePace);
 	instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
 }
-
+#endregion
 //handles gameover logic
 if (global.gameover) {
 	if !(anim) { 

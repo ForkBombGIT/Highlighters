@@ -83,12 +83,17 @@ if !(countdown) && (global.active) {
 if (countdown) || (global.restart) {
 	//if countdown is up, resume game
 	if (!instance_exists(countdownInst)) {
-		pause = false;
-		countdown = false;
 		if(sprite_exists(screenShot)){
 			sprite_delete(screenShot);
 		}	
 		instance_activate_all();
+		if (countdown) {
+			par_entity.visible = true;
+			obj_cursor.visible = true;
+		}
+		countdown = false;
+		pause = false;
+		pauseCursor = 0;
 	}	
 }
 #endregion
