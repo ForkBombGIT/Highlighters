@@ -1,7 +1,11 @@
 event_inherited(); 
-
 #region Match Control
-if (global.active) && !(global.riseUp) && !(match) && !(swap) && !(instance_exists(matchmaker)) {
+if (global.active) && 
+	!(global.riseUp) && 
+	!(matchOverride) && 
+	!(match) && 
+	!(swap) && 
+	!(instance_exists(matchmaker)) {
 	switch (ds_list_size(adjacent)) {
 		case 4: //match behavior for 4 adjacent pieces
 		case 3: //match behavior for 3 adjacent pieces, automatic match
@@ -43,7 +47,9 @@ if (global.active) && !(global.riseUp) && !(match) && !(swap) && !(instance_exis
 
 // if a match is made, and there is no match maker
 // after small delay, start the match maker
-if ((match) && (matchmaker == noone)) 
+if ((match) && 
+	!(matchOverride) && 
+	!(instance_exists(matchmaker))) 
 	matchmaker = scr_createMatchmaker(x,y,index);
 
 #endregion

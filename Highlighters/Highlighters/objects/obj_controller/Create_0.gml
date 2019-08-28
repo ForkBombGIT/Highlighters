@@ -1,7 +1,7 @@
 randomize();
 //holds key settings
-keyA = "S"
-keyB = "A"
+keyA = "X"
+keyB = "Z"
 
 //holds gameover state
 global.gameover = false;

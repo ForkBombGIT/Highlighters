@@ -1,10 +1,4 @@
 #region Game Loop
-if (instance_exists(obj_matchmaker)) {
-	if (obj_matchmaker.animating) {
-		freeze = true;	
-	}
-} else freeze = false;
-
 #region Restart
 if (global.restart) {
 	//set global variables
@@ -23,7 +17,6 @@ if (global.restart) {
 	nextLevelScale = startNextLevelScale;
 	scoreToNextLevel = initialScoreToNextLevel;
 	risePace = orgRisePace - (((orgRisePace - minRisePace) / maxLevel) * (gameSpeed - 1))
-	show_debug_message(risePace);
 	instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
 }
 #endregion
@@ -36,6 +29,10 @@ if (global.gameover) {
 }
 
 if (freeze) {
+	if ((current_time - freezeTimer)/1000 > 1) {
+		if (--freezeTime == 0) freeze = false;
+		freezeTimer = current_time;
+	}
 }
 
 //block loop
@@ -61,6 +58,7 @@ if ((global.active) && !(global.gameover)) {
 	//manual new row
 	if (keyboard_check(ord(keyB)) && !(global.forceRise)) {
 		global.forceRise = true;
+		freeze = false;
 		var targY = abs(432 - (instance_position(scr_getColPos(0),432,par_entity).y + 24));
 		for (var i = 0; i < instance_number(par_entity); i++) {
 			var instance = instance_find(par_entity,i);

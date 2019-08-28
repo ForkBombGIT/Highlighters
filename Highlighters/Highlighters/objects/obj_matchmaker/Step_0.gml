@@ -2,17 +2,9 @@
 if (global.riseUp) {
 	y -= global.riseSpeed;
 }
-
 while (another) {
 	var entity = (ds_stack_size(stack) == 1) ? ds_stack_top(stack) : ds_stack_pop(stack);
-	if (instance_exists(entity)) {	
-		// destroys other matchmakers
-		if (object_get_name(entity.object_index) == "obj_bomb") {
-			if (instance_exists(entity.matchmaker) && (origin.id != entity.id)) {
-				instance_destroy(entity.matchmaker);
-			}
-		}
-		
+	if (instance_exists(entity)) {			
 		//sets position to next entity in stack
 		x = entity.x;
 		y = entity.y;
@@ -43,5 +35,6 @@ while (another) {
 
 //begin highlighting
 if (!another) && !(animating){	
+	show_debug_message(id);
 	if !(alarm[0]) alarm[0] = highlightDelay;
 }

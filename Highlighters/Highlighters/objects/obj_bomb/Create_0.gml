@@ -11,3 +11,4 @@ col = -1;
 //controls whether or not a match has been found with this bomb
 match = false;
 matchmaker = noone;
+matchOverride = false
