@@ -50,6 +50,7 @@ startingRows = 6;
 selectedEntities = obj_startGame.selectedEntites;
 instance_destroy(obj_startGame);
 
+activeMatches = ds_list_create();
 
 //instantiate game objects
 cursor = instance_create_layer(x,scr_getRowPos(4),"Instances",obj_cursor);		

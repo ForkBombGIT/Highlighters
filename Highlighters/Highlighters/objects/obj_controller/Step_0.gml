@@ -28,11 +28,33 @@ if (global.gameover) {
 	}
 }
 
+for (var i = 0; i < instance_number(obj_matchmaker); i++) {
+	var entity = instance_find(obj_matchmaker,i);
+	if (entity.animating) {
+		var listSize = ds_list_size(entity.final);
+		if (listSize > 4) {
+			if (ds_list_find_index(activeMatches,entity) == -1){
+				ds_list_add(activeMatches, entity);
+				freeze = true;
+				freezeTime += (listSize > 10) ? 3 : 
+							 ((listSize > 7) ? 2 : 1);
+				freezeTimer = current_time;
+			}
+		}
+	}
+} 
+if (instance_number(obj_matchmaker) == 0) {
+	ds_list_clear(activeMatches)	
+}
+
 if (freeze) {
 	if ((current_time - freezeTimer)/1000 > 1) {
 		if (--freezeTime == 0) freeze = false;
 		freezeTimer = current_time;
 	}
+} 
+else {
+	freezeTime = 0;
 }
 
 //block loop

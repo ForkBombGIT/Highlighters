@@ -13,7 +13,7 @@ for (var i = 0; i < boardWidth; i++){
 	var pieceType = (bombCount < 3) ? 
 					((irandom_range(1,10) > 3) ? obj_charm : obj_bomb) : obj_charm;
 	var canPlace = true;
-	var up = scr_getPieceAtPos(-1, i);
+	var up = scr_getPieceAtPos(0, i);
 	//checks if the first piece has been placed, if so check if the colors work
 	if (ds_list_size(placedPieces) > 0) {
 		canPlace = scr_checkColors(color,ds_list_find_value(placedPieces,ds_list_size(placedPieces) - 1))
@@ -24,7 +24,6 @@ for (var i = 0; i < boardWidth; i++){
 				matchCounter++;	
 			}
 			else { matchCounter = 0; bombExists = 0; }
-			
 			//if there are >= 3 match counters (like colors) and a bomb, then piece cannot be placed
 			if ((matchCounter >= 3))  {
 				if (bombExists || pieceType == obj_bomb) {

@@ -84,6 +84,7 @@ if (landAnim) && !(match) {
 //checks for adjacent matching pieces
 if ((bottomEntity) && 
 	!(match) &&
+	!(swap) &&
 	!(global.gameover) && 
 	(y <= scr_getRowPos(0))) {
 	ds_list_clear(adjacent);

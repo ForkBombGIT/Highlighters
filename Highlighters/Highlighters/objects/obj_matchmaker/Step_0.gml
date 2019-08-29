@@ -35,6 +35,5 @@ while (another) {
 
 //begin highlighting
 if (!another) && !(animating){	
-	show_debug_message(id);
 	if !(alarm[0]) alarm[0] = highlightDelay;
 }

@@ -16,12 +16,6 @@ if (ds_list_size(final) >= matchSize) {
 		final = scr_matchListSort(final,0,ds_list_size(final) - 1);
 		animating = true;
 		flicker = true;
-		var listSize = ds_list_size(final);
-		if (listSize > 4) {
-			obj_controller.freeze = true;
-			obj_controller.freezeTime += (listSize > 10) ? 3 : ((listSize > 7) ? 2 : 1);
-			obj_controller.freezeTimer = current_time;
-		}
 		alarm[0] = flickerDelay;
 	}
 	
@@ -65,7 +59,6 @@ if (ds_list_size(final) >= matchSize) {
 					instance_destroy(ds_list_find_value(final,i));	
 				}
 				obj_controller.gameScore += (ds_list_size(final) * baseScoreInc) + ((ds_list_size(final) - matchSize) * additionalScoreInc);
-				obj_controller.freeze = false;
 				instance_destroy();
 			}		
 		}	
