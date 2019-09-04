@@ -7,8 +7,10 @@ if (ds_list_size(final) >= matchSize) {
 			entity.match = true;
 			if (object_get_name(entity.object_index) == "obj_bomb") {
 				if (instance_exists(entity.matchmaker) && (origin.id != entity.id)) {
-					instance_destroy(entity.matchmaker);
-					entity.matchOverride = true;
+					if (x < entity.x) || (y < entity.y){
+						instance_destroy(entity.matchmaker);
+						entity.matchOverride = true;
+					} 
 				}
 			}
 		}
@@ -64,11 +66,11 @@ if (ds_list_size(final) >= matchSize) {
 		}	
 	}
 }
-else {
-	origin.matchmaker = noone;
-	for (var i = 0; i < ds_list_size(final); i++) {
-		var entity = ds_list_find_value(final,i)
-		entity.match = false; 
-	}	
-	instance_destroy();
-}
+//else {
+//	origin.matchmaker = noone;
+//	for (var i = 0; i < ds_list_size(final); i++) {
+//		var entity = ds_list_find_value(final,i)
+//		entity.match = false; 
+//	}	
+//	instance_destroy();
+//}

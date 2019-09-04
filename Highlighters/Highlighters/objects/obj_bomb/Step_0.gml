@@ -1,4 +1,5 @@
 event_inherited(); 
+if (matchOverride) match = true;
 #region Match Control
 if (global.active) && 
 	!(global.riseUp) && 

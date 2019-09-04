@@ -4,11 +4,11 @@ if (global.riseUp) {
 }
 while (another) {
 	var entity = (ds_stack_size(stack) == 1) ? ds_stack_top(stack) : ds_stack_pop(stack);
-	if (instance_exists(entity)) {			
+	if (instance_exists(entity)) {		
 		//sets position to next entity in stack
 		x = entity.x;
 		y = entity.y;
-		entity.landAnim = false;
+		entity.landAnim = false; 
 		entity.match = true;
 		
 		//adds entity to final list
@@ -34,6 +34,7 @@ while (another) {
 }
 
 //begin highlighting
-if (!another) && !(animating){	
+if (!another) && !(animating){
 	if !(alarm[0]) alarm[0] = highlightDelay;
+	
 }

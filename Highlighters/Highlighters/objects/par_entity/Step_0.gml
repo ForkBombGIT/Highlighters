@@ -87,31 +87,57 @@ if ((bottomEntity) &&
 	!(swap) &&
 	!(global.gameover) && 
 	(y <= scr_getRowPos(0))) {
+	//clear adjacent list
 	ds_list_clear(adjacent);
+	
+	//check for a matching left piece
 	left = instance_position(x - 48, y, par_entity);
 	if (instance_exists(left)) {
-		if ((left.index == index) && !left.match && left.bottomEntity && (left.y <= scr_getRowPos(0)) && (left != id)) 
+		if (left.index == index && 
+		!left.match && 
+		!left.swap &&
+		left.bottomEntity && 
+		left.y <= scr_getRowPos(0) &&
+		left != id)
 			ds_list_add(adjacent,left);
 		else left = noone;
 	} else left = noone;
 	
+	//check for a matching right piece
 	right = instance_position(x + 48, y, par_entity);
 	if (instance_exists(right)) {
-		if ((right.index == index) && !right.match && right.bottomEntity && (right.y <= scr_getRowPos(0)) && (right != id)) 
+		if (right.index == index && 
+		!right.match && 
+		!right.swap &&
+		right.bottomEntity && 
+		right.y <= scr_getRowPos(0) && 
+		right != id)
 			ds_list_add(adjacent,right);
 		else right = noone;
 	} else right = noone;
 	
+	//check for a valid match down
 	down = instance_position(x, y + 48, par_entity);
 	if (instance_exists(down)) {
-		if ((down.index == index) && !down.match && down.bottomEntity && (down.y <= scr_getRowPos(0)) && (down != id)) 
+		if (down.index == index && 
+		!down.match && 
+		!down.swap &&
+		down.bottomEntity && 
+		down.y <= scr_getRowPos(0) && 
+		down != id)
 			ds_list_add(adjacent,down);
 		else down = noone;
 	} else down = noone;
 	
+	//check for a valid match up
 	up = instance_position(x, y - 48, par_entity);
 	if (instance_exists(up)) {
-		if ((up.index == index) && !up.match && (up.bottomEntity) && (up.y <= scr_getRowPos(0)) && (up != id)) 
+		if (up.index == index && 
+		!up.match && 
+		!up.swap &&
+		up.bottomEntity && 
+		up.y <= scr_getRowPos(0) && 
+		up != id)
 			ds_list_add(adjacent,up);
 		else up = noone;
 	} else up = noone;
