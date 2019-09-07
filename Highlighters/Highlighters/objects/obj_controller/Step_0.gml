@@ -38,8 +38,8 @@ for (var i = 0; i < instance_number(obj_matchmaker); i++) {
 			if (ds_list_find_index(activeMatches,entity) == -1){
 				ds_list_add(activeMatches, entity);
 				freeze = true;
-				freezeTime += (listSize > 10) ? 3 : 
-							 ((listSize > 7) ? 2 : 1);
+				freezeTime += (listSize > 10) ? 6 : 
+							 ((listSize > 7) ? 4 : 2);
 				freezeTimer = current_time;
 			}
 		}

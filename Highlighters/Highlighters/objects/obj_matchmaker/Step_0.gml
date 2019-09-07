@@ -5,6 +5,12 @@ if (global.riseUp) {
 while (another) {
 	var entity = (ds_stack_size(stack) == 1) ? ds_stack_top(stack) : ds_stack_pop(stack);
 	if (instance_exists(entity)) {		
+		if (object_get_name(entity.object_index) == "obj_bomb") {
+			if (instance_exists(entity.matchmaker) && (origin.id != entity.id)) {
+				origin.matchOverride = true
+				instance_destroy();
+			}
+		}
 		//sets position to next entity in stack
 		x = entity.x;
 		y = entity.y;

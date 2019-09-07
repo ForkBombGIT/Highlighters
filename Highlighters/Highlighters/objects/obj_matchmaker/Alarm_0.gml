@@ -5,14 +5,6 @@ if (ds_list_size(final) >= matchSize) {
 		for (var i = 0; i < ds_list_size(final); i++) {
 			var entity = ds_list_find_value(final,i);
 			entity.match = true;
-			if (object_get_name(entity.object_index) == "obj_bomb") {
-				if (instance_exists(entity.matchmaker) && (origin.id != entity.id)) {
-					if (x < entity.x) || (y < entity.y){
-						instance_destroy(entity.matchmaker);
-						entity.matchOverride = true;
-					} 
-				}
-			}
 		}
 		//sorts
 		final = scr_matchListSort(final,0,ds_list_size(final) - 1);

@@ -31,14 +31,6 @@
     },
     "resources": [
         {
-            "Key": "00d4e6df-4134-45d4-a388-da38f17a0777",
-            "Value": {
-                "id": "6e0121f1-e4a1-41be-b55f-553bd2244b80",
-                "resourcePath": "sprites\\spr_titleback\\spr_titleback.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
             "Key": "027d7624-98cf-4a51-ba15-792da9285cf4",
             "Value": {
                 "id": "af4afffc-1398-450b-9ac7-fb7983c24b56",
@@ -115,6 +107,14 @@
             "Value": {
                 "id": "5df88287-fe8d-4cf0-be74-9ffcf4c86acc",
                 "resourcePath": "sprites\\spr_start\\spr_start.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "1755872d-0ac3-4bc8-8ec2-51c752b234e3",
+            "Value": {
+                "id": "de142e11-ce07-450b-a0a0-93fc19ad7d60",
+                "resourcePath": "sprites\\spr_title\\spr_title.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -260,14 +260,6 @@
                 "id": "3d937bd1-3104-4b2e-8390-e4e6bd817186",
                 "resourcePath": "views\\51e77b92-8482-4457-b95c-d34bde73813e.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "545c80ab-66a1-4f61-858a-1071e6e3697b",
-            "Value": {
-                "id": "1f29b697-c786-4d90-b74f-b329a47cc6a6",
-                "resourcePath": "sprites\\spr_titlemid_b\\spr_titlemid_b.yy",
-                "resourceType": "GMSprite"
             }
         },
         {
@@ -804,14 +796,6 @@
                 "id": "b77314d5-9ce3-44db-9e55-583574c9fd63",
                 "resourcePath": "views\\e3073d6d-41c6-4ab8-bd75-2b13dd4f0fc9.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "e44e9761-37d1-48ba-b05a-76765b74311a",
-            "Value": {
-                "id": "9a21fd2c-4d67-417d-881c-a1890aa5edb9",
-                "resourcePath": "sprites\\spr_titlemid_a\\spr_titlemid_a.yy",
-                "resourceType": "GMSprite"
             }
         },
         {

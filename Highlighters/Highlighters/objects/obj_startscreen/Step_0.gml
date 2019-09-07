@@ -14,12 +14,12 @@ switch (start) {
 	case 0:
 		#region Menu Control
 		//back to main menu
-		if (keyboard_check_pressed(ord("A"))){ 
+		if (keyboard_check_pressed(ord("Z"))){ 
 			start = 0; flash = true; startCursor = 0;
 			if !(alarm[0]) alarm[0] = 2;
 		}	
 		//menu item selection
-		if (keyboard_check_pressed(ord("S"))) {
+		if (keyboard_check_pressed(ord("X"))) {
 			start = 1; flash = true;
 			if !(alarm[0]) alarm[0] = 2;
 		}
@@ -35,12 +35,12 @@ switch (start) {
 	
 		#region Menu Control
 		//back to main menu
-		if (keyboard_check_pressed(ord("A"))){ 
+		if (keyboard_check_pressed(ord("Z"))){ 
 			start = 0; flash = true; startCursor = 0;
 			if !(alarm[0]) alarm[0] = 2;
 		}	
 		//menu item selection
-		if (keyboard_check_pressed(ord("S"))) {
+		if (keyboard_check_pressed(ord("X"))) {
 			if (startCursor == 0) { 
 				start = 2; flash = true; startCursor = 0;
 				if !(alarm[0]) alarm[0] = 2;

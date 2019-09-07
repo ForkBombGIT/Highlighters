@@ -1,5 +1,6 @@
 randomize();
-image_speed = 0.1;
+image_speed = 0.02;
+
 //controls alpha of screen fade
 start = 0;
 flash = false;

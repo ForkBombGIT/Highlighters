@@ -1,6 +1,6 @@
 switch (start) {
 	case 0:
-		draw_text(window_get_width()/2 - string_width("HIGHLIGHTERS")/2,window_get_height()/4,"HIGHLIGHTERS");
+		draw_sprite(spr_title,image_index,0,0);
 		break;
 	case 1:
 		#region Menu Drawing

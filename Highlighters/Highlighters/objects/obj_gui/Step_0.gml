@@ -25,7 +25,7 @@ if !(countdown) && (global.active) {
 		}
 		
 		//menu options
-		if (keyboard_check_pressed(ord("S"))) {
+		if (keyboard_check_pressed(ord("X"))) {
 			switch (pauseCursor) {
 				case 0:
 					countdown = true;

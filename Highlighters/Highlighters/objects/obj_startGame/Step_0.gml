@@ -1,12 +1,12 @@
 if (instance_exists(obj_startscreen)) instance_destroy(obj_startscreen);
 #region Input Control
-if (keyboard_check_released(ord("S"))) {
+if (keyboard_check_released(ord("X"))) {
 	if (cursor == 4) {
 		flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}
 }
-else if (keyboard_check_released(ord("A"))) {
+else if (keyboard_check_released(ord("Z"))) {
 	flash = true;
 	start = -1;
 	if !(alarm[0]) alarm[0] = 2;
