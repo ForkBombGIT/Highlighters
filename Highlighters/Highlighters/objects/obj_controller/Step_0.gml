@@ -28,7 +28,6 @@ if (global.gameover) {
 	}
 }
 
-show_debug_message(instance_number(obj_matchmaker))
 //combo freeze handling
 for (var i = 0; i < instance_number(obj_matchmaker); i++) {
 	var entity = instance_find(obj_matchmaker,i);

@@ -5,18 +5,11 @@ if (global.riseUp) {
 while (another) {
 	var entity = (ds_stack_size(stack) == 1) ? ds_stack_top(stack) : ds_stack_pop(stack);
 	if (instance_exists(entity)) {		
-		if (object_get_name(entity.object_index) == "obj_bomb") {
-			if (instance_exists(entity.matchmaker) && (origin.id != entity.id)) {
-				origin.matchOverride = true
-				instance_destroy();
-			}
-		}
 		//sets position to next entity in stack
 		x = entity.x;
 		y = entity.y;
 		entity.landAnim = false; 
 		entity.match = true;
-		
 		//adds entity to final list
 		if (ds_list_find_index(final,entity) == -1) 
 			ds_list_add(final,entity);
@@ -41,6 +34,19 @@ while (another) {
 
 //begin highlighting
 if (!another) && !(animating){
+	// destroys other matchmakers
+	for (var i = 0; i < ds_list_size(final); i++) {
+		var entity = ds_list_find_value(final,i);
+		entity.match = true;
+			
+		if (object_get_name(entity.object_index) == "obj_bomb") {
+			if (instance_exists(entity.matchmaker) && (id != entity.matchmaker.id)) {
+				if (entity.matchmaker.id > id) {
+					entity.matchOverride = true
+					instance_destroy(entity.matchmaker);
+				} 
+			}
+		}
+	}
 	if !(alarm[0]) alarm[0] = highlightDelay;
-	
 }
