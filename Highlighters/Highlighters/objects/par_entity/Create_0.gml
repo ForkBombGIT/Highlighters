@@ -10,6 +10,8 @@ fallDelay = 6;
 //animation variables
 landAnimIndex = image_index;
 landAnim = false;
+highlight = false;
+highlightDelay = 6;
 //position
 row = -1;
 col = -1;

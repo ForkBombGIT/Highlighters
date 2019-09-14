@@ -33,6 +33,13 @@ if (!(swap) && !(global.gameover) && !(match))
 	else image_index = index + 6; 
 #endregion
 
+#region Highlight Animation
+if (highlight) {
+	alarm[2] = highlightDelay;
+	highlight = false;
+}
+#endregion
+
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { bottomEntity = true; }
 else if (position_meeting(x,y+25,par_entity)) {

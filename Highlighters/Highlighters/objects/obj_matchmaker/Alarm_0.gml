@@ -40,6 +40,7 @@ if (ds_list_size(final) >= matchSize) {
 			if (listPosition <= ds_list_size(final) - 1) {
 			var entity = ds_list_find_value(final,listPosition);
 			entity.image_index = entity.index + 7;
+			entity.highlight = true;
 			listPosition++;
 			alarm[0] = highlightDelay;
 			}
