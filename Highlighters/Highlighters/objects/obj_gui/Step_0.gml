@@ -68,12 +68,12 @@ if !(countdown) && (global.active) {
 		}
 		
 		//pause when window loses focus
-		if !(window_has_focus()) {
+		/*if !(window_has_focus()) {
 			pause = true;
 			par_entity.visible = false;
 			obj_cursor.visible = false;
 			pauseAnim = 0;
-		}
+		}*/
 		#endregion
 	}	
 	#endregion

@@ -12,7 +12,7 @@ flash = false;
 
 //game settings
 board = 0;
-boards = [spr_board1];
+boards = [spr_board1,spr_board2];
 characters = [spr_cognac];
 level = 1;
 track = 0;
@@ -22,7 +22,7 @@ char = 0;
 maxLevel = 100;
 maxTrack = 0;
 maxChar = 0;
-maxBoard = 0;
+maxBoard = 1;
 
 //cursor control
 delayTime = current_time;

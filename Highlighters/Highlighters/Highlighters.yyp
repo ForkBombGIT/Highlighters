@@ -82,7 +82,7 @@
             "Key": "0e546456-203e-4945-a3b8-5b9a5113bb83",
             "Value": {
                 "id": "cc289ca0-f684-4ac8-aa53-8cb02e432bf8",
-                "resourcePath": "sprites\\spr_board1\\spr_board1.yy",
+                "resourcePath": "sprites\\spr_board2\\spr_board2.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -172,6 +172,14 @@
                 "id": "51658822-4889-433d-8868-ef58f08b6bd5",
                 "resourcePath": "objects\\obj_gui\\obj_gui.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "352a368b-6092-4333-a261-418d0c22e89f",
+            "Value": {
+                "id": "c9234ce8-02e0-45cf-adb1-557d0cb84db9",
+                "resourcePath": "sprites\\spr_board1\\spr_board1.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
