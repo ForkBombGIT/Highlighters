@@ -34,19 +34,5 @@ while (another) {
 
 //begin highlighting
 if (!another) && !(animating){
-	// destroys other matchmakers
-	for (var i = 0; i < ds_list_size(final); i++) {
-		var entity = ds_list_find_value(final,i);
-		entity.match = true;
-			
-		if (object_get_name(entity.object_index) == "obj_bomb") {
-			if (instance_exists(entity.matchmaker) && (id != entity.matchmaker.id)) {
-				if (entity.matchmaker.id > id) {
-					entity.matchOverride = true
-					instance_destroy(entity.matchmaker);
-				} 
-			}
-		}
-	}
 	if !(alarm[0]) alarm[0] = highlightDelay;
 }

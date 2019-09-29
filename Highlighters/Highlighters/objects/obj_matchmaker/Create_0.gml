@@ -21,4 +21,3 @@ flickerCount = 0;
 animating = false;
 flicker = false;
 postWhite = false;
-matchOverride = false;
