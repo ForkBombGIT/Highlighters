@@ -47,9 +47,6 @@ if (ds_list_size(final) >= matchSize) {
 			else {	
 				for (var i = 0; i < ds_list_size(final); i++) {
 					var entity = ds_list_find_value(final,i);
-					if (object_get_name(entity.object_index) == "obj_bomb") 
-						if (instance_exists(entity.matchmaker) && (id != entity.matchmaker.id)) 
-							instance_destroy(entity.matchmaker);
 					instance_destroy(entity);
 				}
 				obj_controller.gameScore += (ds_list_size(final) * baseScoreInc) + ((ds_list_size(final) - matchSize) * additionalScoreInc);
@@ -57,4 +54,6 @@ if (ds_list_size(final) >= matchSize) {
 			}		
 		}	
 	}
+} else {
+	instance_destroy();	
 }
