@@ -1,18 +1,13 @@
 #region Menu Animation
-var cursorSpeed = .1;
-if (cursorImageIndex < 4){
-    cursorImageIndex += cursorSpeed;
-} else cursorImageIndex = 0;
-
-var textSpeed = .4;
-if (textImageIndex <= 12){
-    textImageIndex += textSpeed;
-} else textImageIndex = 2;
+var startFlicker = 0.033;
+if (startFlickerIndex < 2){
+    startFlickerIndex += startFlicker;
+} else startFlickerIndex = 0;
 #endregion
 
 switch (start) {
 	case 0:
-		#region Menu Control
+		#region Title Control
 		//menu item selection
 		if (keyboard_check_pressed(ord("X"))) {
 			start = 1; flash = true;
@@ -21,6 +16,19 @@ switch (start) {
 		#endregion
 		break;
 	case 1:
+		#region Main Control
+		//menu item selection
+		if (keyboard_check_pressed(ord("Z"))) {
+			start = 0; flash = true;
+			if !(alarm[0]) alarm[0] = 2;
+		}
+		if (keyboard_check_pressed(ord("X"))) {
+			start = 2; flash = true;
+			if !(alarm[0]) alarm[0] = 2;
+		}
+		#endregion
+		break;
+	case 2:
 		instance_create_layer(0,0,"Instances",obj_startGame);
 		instance_destroy();
 		break;

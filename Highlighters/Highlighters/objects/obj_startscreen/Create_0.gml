@@ -5,10 +5,6 @@ image_speed = 0.02;
 start = 0;
 flash = false;
 
-//menu animation variables
-cursorImageIndex = 0;
-textImageIndex = 0;
-
 //cursor control
 startCursor = 0;
 cursor = 0;
@@ -17,6 +13,7 @@ delayTime = current_time;
 delay = 0.05;
 keyPressLength = 0;
 longPress = 12;
-
+menuPosition = 0;
+startFlickerIndex = 0;
 //holds the blocks to be used in the game
 selectedEntities = [];

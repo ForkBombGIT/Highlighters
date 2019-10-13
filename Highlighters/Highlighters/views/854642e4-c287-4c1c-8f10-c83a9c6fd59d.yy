@@ -13,7 +13,7 @@
         "6a75e1d2-d017-434d-8c45-1ec2c46d3111"
     ],
     "filterType": "GMSprite",
-    "folderName": "Select",
+    "folderName": "Lvl Settings",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

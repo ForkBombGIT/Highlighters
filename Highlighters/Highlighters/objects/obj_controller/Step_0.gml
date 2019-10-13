@@ -32,12 +32,12 @@ for (var i = 0; i < instance_number(obj_matchmaker); i++) {
 	var entity = instance_find(obj_matchmaker,i);
 	if (entity.animating) {
 		var listSize = ds_list_size(entity.final);
-		if (listSize > 4) {
+		if (listSize >= 4) {
 			if (ds_list_find_index(activeMatches,entity) == -1){
 				ds_list_add(activeMatches, entity);
 				freeze = true;
-				freezeTime += (listSize > 10) ? 6 : 
-							 ((listSize > 7) ? 4 : 2);
+				freezeTime += (listSize > 9) ? 6 : 
+							 ((listSize > 6) ? 4 : 2);
 				freezeTimer = current_time;
 			}
 		}

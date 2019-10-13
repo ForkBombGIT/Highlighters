@@ -4,23 +4,16 @@
     "mvc": "1.1",
     "name": "62d353eb-252e-4c53-8008-1451c429dd05",
     "children": [
-        "9b3b413c-1ca3-4678-a43e-67159a02d14f",
-        "084d3d33-9f71-49f2-9668-d7237f7b863f",
-        "82689551-9297-4611-9dd6-45485dcd3f65",
-        "796bd298-c79a-4898-bd9e-94c7a6234872",
-        "adfae981-f4d7-405b-9dc7-afae82df92dc",
-        "66ed6dff-509a-4749-9473-7efa269e6551",
-        "191ce22a-d241-464e-b69b-006a2f8e36b8",
-        "74fa2a65-32b4-43fa-a798-c2dc20db0279",
-        "d7714f3e-684a-4309-8b7e-da80a9d16179",
-        "1fa2844e-ca76-4e0c-9a8d-8563dd16ba3f",
-        "ad007b90-ca33-4ae7-972f-55460ccdbebf",
+        "d7987107-c937-454d-8aca-5d1876c2d417",
         "51731494-8814-4b2f-ad1a-f2d778ad56df",
         "7b062285-d7dd-4f49-8c6a-2a67a4428f27",
-        "06248c1b-18e2-4b6d-ba96-5352ac1c31dc"
+        "0bc5aa1f-74bd-4d7d-b71e-6935ddaef417",
+        "17bd4c2a-290b-46da-9f39-c6c1f06f0a9d",
+        "64ee888b-006a-4994-82d1-e8891334c503",
+        "4fdd7cd8-c58c-441f-abe0-aa38dcf62583"
     ],
     "filterType": "GMSprite",
-    "folderName": "Start Screen",
+    "folderName": "Menu",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

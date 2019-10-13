@@ -30,6 +30,6 @@ delay = 0.05;
 keyPressLength = 0;
 longPress = 20;
 lastKey = -1;
-cursorPositions = [96,168,216,264,360];
+cursorPositions = [96,168,360];
 cursor = 0;
 image_speed = 0.033;

@@ -7,13 +7,7 @@ if (keyCode == vk_right) {
 			level = clamp(level + 1,1,maxLevel)
 			break;
 		case 1:
-			char = clamp(char + 1,0,maxChar)
-			break;
-		case 2: 
 			board = clamp(board + 1,0,maxBoard)
-			break;
-		case 3:
-			track = clamp(track + 1,0,maxTrack)
 			break;
 	}
 }
@@ -24,13 +18,7 @@ if (keyCode == vk_left) {
 			level = clamp(level - 1,1,maxLevel)
 			break;
 		case 1:
-			char = clamp(char - 1,0,maxChar)
-			break;
-		case 2: 
 			board = clamp(board - 1,0,maxBoard)
-			break;
-		case 3:
-			track = clamp(track - 1,0,maxTrack)
 			break;
 	}
 }

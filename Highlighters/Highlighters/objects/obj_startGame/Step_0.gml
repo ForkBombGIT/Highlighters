@@ -1,7 +1,7 @@
 if (instance_exists(obj_startscreen)) instance_destroy(obj_startscreen);
 #region Input Control
 if (keyboard_check_released(ord("X"))) {
-	if (cursor == 4) {
+	if (cursor == 2) {
 		flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}
@@ -17,9 +17,9 @@ else if (keyboard_check_released(ord("Z"))) {
 if (keyboard_check_pressed(vk_anykey)) {
 	//moving up and down
 	if (keyboard_key == vk_up) 
-		cursor = clamp(cursor - 1,0,4);
+		cursor = clamp(cursor - 1,0,2);
 	else if (keyboard_key == vk_down) {
-		cursor = clamp(cursor + 1,0,4);
+		cursor = clamp(cursor + 1,0,2);
 	}
 }
 
