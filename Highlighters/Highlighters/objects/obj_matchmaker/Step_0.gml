@@ -28,7 +28,8 @@ while (another) {
 			ds_stack_push(stack,entity.down);
 		
 		//if at the end, quit repeating
-		if (ds_stack_size(stack) == 1) another = false;
+		if (ds_stack_size(stack) == 1) 
+			another = false;
 	}
 }
 
