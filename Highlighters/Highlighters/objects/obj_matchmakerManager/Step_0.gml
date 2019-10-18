@@ -10,6 +10,7 @@ if (activeMatchmakers > 1) {
 					for (var j = 0; j < ds_list_size(matchmaker.final); j++){
 						if (ds_list_find_value(matchmakerPlus.final,j) == matchmakerPlus.origin) {
 							matchmakerPlus.origin.matchOverride = true;
+							matchmakerPlus.origin.match = false;
 							instance_destroy(matchmakerPlus);
 							break;
 						}
