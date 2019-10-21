@@ -8,10 +8,10 @@ switch (start) {
 		break;
 	case 1:
 		#region Menu Drawing
-		draw_sprite(spr_menu_p1_classic,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,192);
-		draw_sprite(spr_menu_p1_tutorial,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,240);
-		draw_sprite(spr_menu_options_av,(cursorPosition == 2) ? floor(optionAnimationIndex) : 0,120,288);
-		draw_sprite(spr_demo,0,96,360);
+		draw_sprite(spr_menu_p1_classic,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
+		draw_sprite(spr_menu_p1_tutorial,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
+		draw_sprite(spr_menu_options_av,(cursorPosition == 2) ? floor(optionAnimationIndex) : 0,120,294);
+		draw_sprite(spr_demo,0,100,360);
 		#endregion
 }
 if (flash) draw_rectangle(0,0,768,432,c_black);
