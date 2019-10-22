@@ -24,10 +24,10 @@ if !(pause) || !sprite_exists(screenShot){
 if (sprite_exists(screenShot) && pause){  
 	draw_sprite(screenShot,0,0,0);
 	if !(countdown) {
-		draw_sprite(spr_pause,floor(pauseAnim),168,window_get_height()/4);
-		//draw_sprite(spr_pauseOptions,0,96,216);
-		//draw_sprite(spr_pauseOptions,1,96,252);
-		//draw_sprite(spr_pauseOptions,2,96,288);
+		draw_sprite(spr_pause,0,168,window_get_height()/4);
+		draw_sprite(spr_pause_options,(pauseCursor == 0) ? 0 + floor(pauseAnim) : 0,24,216);
+		draw_sprite(spr_pause_options,(pauseCursor == 1) ? 7 + floor(pauseAnim) : 7,24,252);
+		draw_sprite(spr_pause_options,(pauseCursor == 2) ? 14 + floor(pauseAnim) : 14,24,288);
 		//draw_sprite(spr_selectCursor,0,48,pauseCursorPositions[pauseCursor]);
 	}
 }

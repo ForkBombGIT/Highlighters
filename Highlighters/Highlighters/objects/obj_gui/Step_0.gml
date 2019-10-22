@@ -99,6 +99,6 @@ if (countdown) || (global.restart) {
 #endregion
 
 var animSpeed = 0.2;
-if (round(pauseAnim) < sprite_get_number(spr_pause)){
+if (round(pauseAnim) < 7){
 	pauseAnim += animSpeed;
-} else pauseAnim = 0;
+} else pauseAnim = 1;
