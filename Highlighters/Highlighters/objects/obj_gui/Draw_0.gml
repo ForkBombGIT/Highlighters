@@ -14,7 +14,7 @@ if !(pause) || !sprite_exists(screenShot){
 	draw_sprite(spr_speed,0,360,144)// else draw_sprite(spr_stop,0,360,144);
 	if (obj_controller.freeze) {
 		draw_set_font(freezeFont);
-		draw_text(362,168,obj_controller.freezeTime);
+		draw_text(363,246,string_replace_all(string_format(obj_controller.freezeTime,2,0)," ","0"));
 		draw_set_font(numFont);
 	}
 	draw_text(423,168,string_replace_all(string_format(obj_controller.gameSpeed,3,0)," ", "0"));
