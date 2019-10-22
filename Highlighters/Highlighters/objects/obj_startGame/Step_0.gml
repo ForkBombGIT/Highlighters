@@ -1,3 +1,10 @@
+#region Animation Control
+var cursorFlickerSpeed = 0.0333;
+if (round(cursorFlickerIndex) < 2){
+	cursorFlickerIndex += cursorFlickerSpeed;
+} else cursorFlickerIndex = 0;
+#endregion
+
 if (instance_exists(obj_startscreen)) instance_destroy(obj_startscreen);
 #region Input Control
 if (keyboard_check_released(ord("X"))) {

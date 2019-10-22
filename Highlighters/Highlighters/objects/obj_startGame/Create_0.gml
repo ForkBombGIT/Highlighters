@@ -13,14 +13,11 @@ flash = false;
 //game settings
 board = 0;
 boards = [spr_board1,spr_board2];
-level = 1;
-track = 0;
+level = 1;	
 char = 0;
 
 //maximum values
 maxLevel = 100;
-maxTrack = 0;
-maxChar = 0;
 maxBoard = 1;
 
 //cursor control
@@ -29,6 +26,7 @@ delay = 0.05;
 keyPressLength = 0;
 longPress = 20;
 lastKey = -1;
-cursorPositions = [96,168,360];
+cursorPositions = [168,288];
 cursor = 0;
+cursorFlickerIndex = 0;
 image_speed = 0.033;
