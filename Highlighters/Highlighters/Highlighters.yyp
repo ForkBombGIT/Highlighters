@@ -210,7 +210,7 @@
             "Key": "424f70c5-c046-4cd7-b114-f6808263c6b4",
             "Value": {
                 "id": "ae0c29fe-32f8-4124-9238-54efcc3af5de",
-                "resourcePath": "sprites\\spr_numbers\\spr_numbers.yy",
+                "resourcePath": "sprites\\spr_menunumbers\\spr_menunumbers.yy",
                 "resourceType": "GMSprite"
             }
         },

@@ -52,3 +52,17 @@ if (start) {
 	instance_create_layer(x,y,"Instances",obj_controller);	
 	instance_create_layer(168,window_get_height()/4,"Controller",obj_countdown);
 }
+
+//changes cursor type
+switch (cursor) {
+	case 0: //level
+		if (level == 1) cursorType = 0;
+		else if (level < maxLevel) cursorType = 2;
+		else cursorType = 4
+	break;
+	case 1: //character
+		if (board == 0) cursorType = 0;
+		else if (board < maxBoard) cursorType = 2;
+		else cursorType = 4
+	break;
+}

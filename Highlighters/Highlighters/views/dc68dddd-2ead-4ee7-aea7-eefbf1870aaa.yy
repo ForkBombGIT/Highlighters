@@ -10,7 +10,7 @@
         "d330282b-6e91-45dd-9230-e3d07f82f73c"
     ],
     "filterType": "GMSprite",
-    "folderName": "fonts",
+    "folderName": "Fonts",
     "isDefaultView": false,
     "localisedFolderName": ""
 }
