@@ -53,7 +53,7 @@ instance_destroy(obj_startGame);
 activeMatches = ds_list_create();
 
 //instantiate game objects
-cursor = instance_create_layer(x,scr_getRowPos(4),"Instances",obj_cursor);		
+cursor = instance_create_layer(x,scr_getRowPos(4),"Entities",obj_cursor);		
 cursor.visible = false;
 instance_create_layer(x,y,"Controller",obj_gui);
 matchmakerManager = instance_create_layer(x,y,"Controller",obj_matchmakerManager);

@@ -37,14 +37,20 @@ switch (start) {
 			if !(alarm[0]) alarm[0] = 2;
 		}
 		if (keyboard_check_pressed(ord("X"))) {
-			if (cursorPosition == 0) {
-				start = 2; flash = true;
-				if !(alarm[0]) alarm[0] = 2;
+			switch (cursorPosition) {
+				case 0: //classic
+				case 1: //practice
+					start = 2; flash = true;
+					if !(alarm[0]) alarm[0] = 2;
+					break;
+				case 2: //options
+					break;
 			}
 		}
 		#endregion
 		break;
 	case 2:
+	case 3:
 		instance_create_layer(0,0,"Instances",obj_startGame);
 		instance_destroy();
 		break;

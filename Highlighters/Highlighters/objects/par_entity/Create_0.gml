@@ -1,4 +1,5 @@
 randomize();
+//indentify charm color
 index = -1;
 //swapping variables
 swap = false;

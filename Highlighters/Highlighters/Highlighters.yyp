@@ -591,14 +591,6 @@
             }
         },
         {
-            "Key": "b95c9055-13d3-484d-a1c4-87e59036bd6b",
-            "Value": {
-                "id": "70168f46-4fb8-4121-a768-fd456020e3f3",
-                "resourcePath": "objects\\obj_board\\obj_board.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "ba116602-7fec-4e97-b72c-0f772e266ebd",
             "Value": {
                 "id": "1e183281-c822-4fcb-9408-2c1facb30b12",

@@ -49,8 +49,8 @@ if (keyboard_check(vk_anykey)) {
 
 //creates the controller obj and countdown obj when the user is ready
 if (start) {
-	instance_create_layer(x,y,"Instances",obj_controller);	
-	instance_create_layer(168,window_get_height()/4,"Controller",obj_countdown);
+	instance_create_layer(x,y,"Entities",obj_controller);	
+	instance_create_layer(168,window_get_height()/4,"GUI",obj_countdown);
 }
 
 //changes cursor type

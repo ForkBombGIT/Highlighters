@@ -9,7 +9,7 @@ if (global.restart) {
 	//delete old objects
 	instance_destroy(par_entity);
 	instance_destroy(obj_cursor);
-	cursor = instance_create_layer(x,scr_getRowPos(4),"Instances",obj_cursor);		
+	cursor = instance_create_layer(x,scr_getRowPos(4),"Entities",obj_cursor);		
 	cursor.visible = false;
 	//restart
 	scr_initRows(0);

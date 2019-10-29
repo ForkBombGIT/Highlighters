@@ -5,7 +5,7 @@ var color = argument3;
 
 var gamePiece = instance_create_layer(scr_getColPos(col),
 									  scr_getRowPos(row),
-									  "Instances",
+									  "Entities",
 									  object);	
 		
 gamePiece.col = col;
