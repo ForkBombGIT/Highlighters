@@ -9,49 +9,62 @@ if (round(optionAnimationIndex) < 7){
     optionAnimationIndex += optionAnimation;
 } else optionAnimationIndex = 1;
 
+var optionBackgroundAnimation = 0.2;
+if (round(optionBackgroundAnimationIndex) < 32){
+    optionBackgroundAnimationIndex += optionBackgroundAnimation;
+} else optionBackgroundAnimationIndex = 0;
 #endregion
+
+#region Menu Navigation
+if (start != 0) {
+	//menu item selection
+	if (keyboard_check_pressed(ord("Z"))) {
+		start--; flash = true;
+		if !(alarm[0]) alarm[0] = 2;
+	}	
+	
+	if (keyboard_check_pressed(vk_anykey)) {
+		//moving up and down
+		if (keyboard_key == vk_up) 
+			cursorPosition = clamp(cursorPosition - 1,0,2);
+		else if (keyboard_key == vk_down) 
+			cursorPosition = clamp(cursorPosition + 1,0,2);
+	}
+}
 
 switch (start) {
 	case 0:
-		#region Title Control
 		//menu item selection
 		if (keyboard_check_pressed(ord("X"))) {
 			start = 1; flash = true;
 			if !(alarm[0]) alarm[0] = 2;
 		}
-		#endregion
 		break;
 	case 1:
-		#region Main Control
-		if (keyboard_check_pressed(vk_anykey)) {
-			//moving up and down
-			if (keyboard_key == vk_up) 
-				cursorPosition = clamp(cursorPosition - 1,0,2);
-			else if (keyboard_key == vk_down) {
-				cursorPosition = clamp(cursorPosition + 1,0,2);
-			}
-		}
-		//menu item selection
-		if (keyboard_check_pressed(ord("Z"))) {
-			start = 0; flash = true;
-			if !(alarm[0]) alarm[0] = 2;
-		}
 		if (keyboard_check_pressed(ord("X"))) {
 			switch (cursorPosition) {
 				case 0: //classic
+					start = 4;
 				case 1: //practice
-					start = 2; flash = true;
+					if (start == 1) start = 5; 
+					flash = true;
 					if !(alarm[0]) alarm[0] = 2;
 					break;
 				case 2: //options
+					start = 2; flash = true;
+					if !(alarm[0]) alarm[0] = 2;
 					break;
 			}
 		}
-		#endregion
 		break;
 	case 2:
+		break;
 	case 3:
+		break;
+	case 4:
+	case 5:
 		instance_create_layer(0,0,"Instances",obj_startGame);
 		instance_destroy();
 		break;
 }
+#endregion

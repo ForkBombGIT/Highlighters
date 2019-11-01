@@ -39,6 +39,14 @@
             }
         },
         {
+            "Key": "06ce576a-ef1d-4359-8e4d-8b80bd43037e",
+            "Value": {
+                "id": "5cb9743f-3cdd-4f10-8c5d-38e6b335e261",
+                "resourcePath": "sprites\\spr_menu_option_menus\\spr_menu_option_menus.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "092d045e-614c-43fe-a1f0-04ecfd21a4c2",
             "Value": {
                 "id": "9e18e58b-933a-4187-bedf-fcf0ac9a0543",
@@ -275,6 +283,14 @@
             "Value": {
                 "id": "8b0f1082-c581-4519-a007-af90dc5adb11",
                 "resourcePath": "sprites\\spr_menu_options_av\\spr_menu_options_av.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "609c80be-f12c-4592-acdf-bfee349f1cfc",
+            "Value": {
+                "id": "e65a50d3-e033-4373-839e-5a29ed8cb061",
+                "resourcePath": "sprites\\spr_menu_options_bg\\spr_menu_options_bg.yy",
                 "resourceType": "GMSprite"
             }
         },

@@ -15,5 +15,6 @@ longPress = 12;
 cursorPosition = 0;
 startFlickerIndex = 0;
 optionAnimationIndex = 0;
+optionBackgroundAnimationIndex = 0;
 //holds the blocks to be used in the game
 selectedEntities = [];
