@@ -31,3 +31,6 @@ cursor = 0;
 cursorFlickerIndex = 0;
 cursorType = 0;
 image_speed = 0.033;
+
+//whether the user wants to practice or not
+practice = false;

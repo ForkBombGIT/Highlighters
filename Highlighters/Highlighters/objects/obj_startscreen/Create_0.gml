@@ -1,8 +1,12 @@
 randomize();
 image_speed = 0.02;
-
-//controls alpha of screen fade
+//holds whether the user wants to practice
+practice = false;
+//holds what screen should be show
 start = 0;
+//holds what option screen should be shown
+option = -1;
+//flash behavior
 flash = false;
 
 //cursor control
@@ -13,6 +17,7 @@ delay = 0.05;
 keyPressLength = 0;
 longPress = 12;
 cursorPosition = 0;
+//animation control
 startFlickerIndex = 0;
 optionAnimationIndex = 0;
 optionBackgroundAnimationIndex = 0;

@@ -14,11 +14,16 @@ switch (start) {
 		#region Menu Drawing
 		draw_sprite(spr_menu_p1_classic,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
 		draw_sprite(spr_menu_p1_tutorial,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
-		draw_sprite(spr_menu_options_av,(cursorPosition == 2) ? floor(optionAnimationIndex) : 0,120,294);
+		draw_sprite(spr_menu_options,(cursorPosition == 2) ? floor(optionAnimationIndex) : 0,120,294);
 		draw_sprite(spr_demo,0,100,360);
 		break;
 		#endregion
 	case 2: 
+		draw_sprite(spr_menu_options_av,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
+		draw_sprite(spr_menu_options_input,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
+		draw_sprite(spr_demo,0,100,360);
+		break;
+	case 3:
 		break;
 }
 if (flash) draw_rectangle(0,0,768,432,c_black);

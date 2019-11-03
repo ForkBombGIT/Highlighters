@@ -26,9 +26,9 @@ if (start != 0) {
 	if (keyboard_check_pressed(vk_anykey)) {
 		//moving up and down
 		if (keyboard_key == vk_up) 
-			cursorPosition = clamp(cursorPosition - 1,0,2);
+			cursorPosition = clamp(cursorPosition - 1,0,(start == 3) ? 1 : 2);
 		else if (keyboard_key == vk_down) 
-			cursorPosition = clamp(cursorPosition + 1,0,2);
+			cursorPosition = clamp(cursorPosition + 1,0,(start == 3) ? 1 : 2);
 	}
 }
 
@@ -44,9 +44,9 @@ switch (start) {
 		if (keyboard_check_pressed(ord("X"))) {
 			switch (cursorPosition) {
 				case 0: //classic
-					start = 4;
+					start = 5;
 				case 1: //practice
-					if (start == 1) start = 5; 
+					if (start == 1) start = 4; 
 					flash = true;
 					if !(alarm[0]) alarm[0] = 2;
 					break;
@@ -58,12 +58,26 @@ switch (start) {
 		}
 		break;
 	case 2:
+		if (keyboard_check_pressed(ord("X"))) {
+			switch (cursorPosition) {
+				case 0: //audio video
+					option = 0
+				case 1: //input
+					if (option == -1) option = 1;
+					start = 3;
+					flash = true;
+					if !(alarm[0]) alarm[0] = 2;
+					break;
+			}
+		}
 		break;
 	case 3:
 		break;
 	case 4:
+		practice = true;
 	case 5:
-		instance_create_layer(0,0,"Instances",obj_startGame);
+		var startGame = instance_create_layer(0,0,"Instances",obj_startGame);
+		startGame.practice = practice;
 		instance_destroy();
 		break;
 }

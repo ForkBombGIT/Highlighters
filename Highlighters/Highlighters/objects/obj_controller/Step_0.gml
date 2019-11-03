@@ -59,10 +59,12 @@ else {
 
 //block loop
 if ((global.active) && !(global.gameover)) {	
-	if (gameScore >= scoreToNextLevel) {
-		gameSpeed++;
-		scoreToNextLevel = floor(initialScoreToNextLevel * ((++nextLevelScale) * incrementScaler));
-		risePace -= (orgRisePace - minRisePace) / maxLevel;
+	if !(practice) {
+		if (gameScore >= scoreToNextLevel) {
+			gameSpeed++;
+			scoreToNextLevel = floor(initialScoreToNextLevel * ((++nextLevelScale) * incrementScaler));
+			risePace -= (orgRisePace - minRisePace) / maxLevel;
+		}
 	}
 	//rising row
 	if !(freeze) {

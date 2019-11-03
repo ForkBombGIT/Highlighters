@@ -4,7 +4,8 @@ var keyCode = argument1;
 if (keyCode == vk_right) {
 	switch (cursorPosition) {
 		case 0:
-			level = clamp(level + 1,1,maxLevel)
+			if !practice
+				level = clamp(level + 1,1,maxLevel)
 			break;
 		case 1:
 			board = clamp(board + 1,0,maxBoard)
@@ -15,7 +16,8 @@ if (keyCode == vk_right) {
 if (keyCode == vk_left) {
 	switch (cursorPosition) {
 		case 0:
-			level = clamp(level - 1,1,maxLevel)
+			if !practice
+				level = clamp(level - 1,1,maxLevel)
 			break;
 		case 1:
 			board = clamp(board - 1,0,maxBoard)

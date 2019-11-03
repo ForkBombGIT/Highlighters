@@ -143,6 +143,14 @@
             }
         },
         {
+            "Key": "1ad8961b-ed1d-46cb-bf5f-b1e48f883627",
+            "Value": {
+                "id": "18914808-0f3c-49ab-9bcb-98e577f97905",
+                "resourcePath": "sprites\\spr_menu_options\\spr_menu_options.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "1b4e3643-d490-4003-9685-d0f4b2527098",
             "Value": {
                 "id": "ecebaa67-5d32-4368-ac18-7f718a4ae709",
@@ -283,6 +291,14 @@
             "Value": {
                 "id": "8b0f1082-c581-4519-a007-af90dc5adb11",
                 "resourcePath": "sprites\\spr_menu_options_av\\spr_menu_options_av.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "5f638b3f-bb63-40ab-9ce8-4ce3eb8e2a7d",
+            "Value": {
+                "id": "2e1d8154-c502-4c62-9e00-ef2e251f6ee5",
+                "resourcePath": "sprites\\spr_menu_av\\spr_menu_av.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -727,6 +743,14 @@
             }
         },
         {
+            "Key": "d808539c-9445-4404-bbf8-267992876073",
+            "Value": {
+                "id": "d615d1d7-aec0-4d94-a988-7471b19581bc",
+                "resourcePath": "sprites\\spr_menu_input_1p\\spr_menu_input_1p.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "da241460-4bbb-4ab1-9a85-a23df1fa2336",
             "Value": {
                 "id": "93926bcf-e270-4c16-a2cc-a54d2fe1be39",
@@ -772,6 +796,14 @@
                 "id": "7d059fc6-0035-47ff-a253-2d6e31aa9043",
                 "resourcePath": "views\\def4fe3e-91c0-4b32-a7f1-3470b2d3c591.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "df5d1135-64db-4983-b51d-a4e2e81d090d",
+            "Value": {
+                "id": "528ad3c9-af78-40a8-956f-a191ab96a9da",
+                "resourcePath": "sprites\\spr_menu_option_title\\spr_menu_option_title.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

@@ -1,4 +1,6 @@
 randomize();
+//disables level progression
+practice = false;
 //holds key settings
 keyA = "X"
 keyB = "Z"
