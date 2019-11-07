@@ -1,59 +1,61 @@
-if (ds_list_size(final) >= matchSize) {
-	//initializes match animation
-	if !(animating) {
-		//sorts
-		final = scr_matchListSort(final,0,ds_list_size(final) - 1);
-		animating = true;
-		flicker = true;
-		alarm[0] = flickerDelay;
-	}
-	
-	//controls flickering
-	if (flicker) {
-		//flickers until delay is reached
-		if (flickerCount++ < whiteDelay) {
-			if (flickerCount % 2 == 0) { 
-				for (var i = 0; i < ds_list_size(final); i++) {
-					var entity = ds_list_find_value(final,i);
-					entity.image_index = entity.index;
-				}
-			} else {
-				for (var i = 0; i < ds_list_size(final); i++) {
-					var entity = ds_list_find_value(final,i);	
-					entity.image_index = entity.index + 5;
-				}
-			}
-		} else { flicker = false; postWhite = true; }
-		alarm[0] = flickerDelay
-	} else {//if delay is reached, switch to 3rd frame of animation
-		if (postWhite) {
-			for (var i = 0; i < ds_list_size(final); i++) {
-				var entity = ds_list_find_value(final,i);
-				entity.match = true;
-				entity.image_index = entity.index + 4;
-			}
-			alarm[0] = postWhiteDelay;
-			postWhite = false;
+if !(global.gameover) {
+	if (ds_list_size(final) >= matchSize) {
+		//initializes match animation
+		if !(animating) {
+			//sorts
+			final = scr_matchListSort(final,0,ds_list_size(final) - 1);
+			animating = true;
+			flicker = true;
+			alarm[0] = flickerDelay;
 		}
-		//controls highlighting animation
-		else {
-			if (listPosition <= ds_list_size(final) - 1) {
-				var entity = ds_list_find_value(final,listPosition);
-				entity.image_index = entity.index + 7;
-				entity.highlight = true;
-				listPosition++;
-				alarm[0] = highlightDelay;
-			}
-			else {	
+	
+		//controls flickering
+		if (flicker) {
+			//flickers until delay is reached
+			if (flickerCount++ < whiteDelay) {
+				if (flickerCount % 2 == 0) { 
+					for (var i = 0; i < ds_list_size(final); i++) {
+						var entity = ds_list_find_value(final,i);
+						entity.image_index = entity.index;
+					}
+				} else {
+					for (var i = 0; i < ds_list_size(final); i++) {
+						var entity = ds_list_find_value(final,i);	
+						entity.image_index = entity.index + 5;
+					}
+				}
+			} else { flicker = false; postWhite = true; }
+			alarm[0] = flickerDelay
+		} else {//if delay is reached, switch to 3rd frame of animation
+			if (postWhite) {
 				for (var i = 0; i < ds_list_size(final); i++) {
 					var entity = ds_list_find_value(final,i);
-					instance_destroy(entity);
+					entity.match = true;
+					entity.image_index = entity.index + 4;
 				}
-				obj_controller.gameScore += (ds_list_size(final) * baseScoreInc) + ((ds_list_size(final) - matchSize) * additionalScoreInc);
-				instance_destroy();
-			}		
-		}	
+				alarm[0] = postWhiteDelay;
+				postWhite = false;
+			}
+			//controls highlighting animation
+			else {
+				if (listPosition <= ds_list_size(final) - 1) {
+					var entity = ds_list_find_value(final,listPosition);
+					entity.image_index = entity.index + 7;
+					entity.highlight = true;
+					listPosition++;
+					alarm[0] = highlightDelay;
+				}
+				else {	
+					for (var i = 0; i < ds_list_size(final); i++) {
+						var entity = ds_list_find_value(final,i);
+						instance_destroy(entity);
+					}
+					obj_controller.gameScore += (ds_list_size(final) * baseScoreInc) + ((ds_list_size(final) - matchSize) * additionalScoreInc);
+					instance_destroy();
+				}		
+			}	
+		}
+	} else {
+		instance_destroy();	
 	}
-} else {
-	instance_destroy();	
 }

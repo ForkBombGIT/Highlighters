@@ -42,8 +42,8 @@ if (highlight) {
 
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { bottomEntity = true; }
-else if (position_meeting(x,y+25,par_entity)) {
-	 bottomEntity = (instance_position(x,y+25,par_entity).bottomEntity) 
+else if (position_meeting(x,y+48,par_entity)) {
+	 bottomEntity = (instance_position(x,y+48,par_entity).bottomEntity) 
 } else 
 	if !(global.riseUp) && !(global.forceRise)
 		bottomEntity = false;

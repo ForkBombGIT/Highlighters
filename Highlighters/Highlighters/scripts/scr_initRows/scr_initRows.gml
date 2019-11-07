@@ -1,6 +1,6 @@
 var pieceCount = argument0;
 var maxPieces = 24;
-var variance = 5;
+var variance = 4;
 //initializes blocks
 //creates -1 row
 scr_createRow(-1);
@@ -28,4 +28,6 @@ for (var currRow = 0; currRow < startingRows; currRow++) {
 	if (pieceCount < maxPieces) {
 		if (currRow == startingRows - 1) currRow = 0;
 	} else break;	
+	
+	show_debug_message(pieceCount);
 }

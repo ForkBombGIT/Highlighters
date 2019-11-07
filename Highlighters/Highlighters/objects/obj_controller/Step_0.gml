@@ -81,8 +81,14 @@ if ((global.active) && !(global.gameover)) {
 	
 	//manual new row
 	if (keyboard_check(ord(keyB)) && !(global.forceRise)) {
+		//checks if piece is gonna rise into game over territory
+		if (instance_position(scr_getColPos(0),0,par_entity.y <= 0))
+			global.gameover = true;
+			
 		global.forceRise = true;
 		freeze = false;
+		riseTimer = current_time;
+		
 		var targY = abs(432 - (instance_position(scr_getColPos(0),432,par_entity).y + 24));
 		for (var i = 0; i < instance_number(par_entity); i++) {
 			var instance = instance_find(par_entity,i);
