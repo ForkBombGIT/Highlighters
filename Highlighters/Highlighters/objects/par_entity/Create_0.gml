@@ -12,8 +12,8 @@ fallDelay = 6;
 landAnimIndex = image_index;
 landAnim = false;
 highlight = false;
-highlightDelay = 5;
-highlightIndex = 7;
+highlightDelay = 2.5;
+highlightIndex = 8;
 highlightLength = 14;
 highlighting = false;
 //position

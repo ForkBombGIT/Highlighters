@@ -16,7 +16,7 @@ if !(global.gameover) {
 				if (flickerCount % 2 == 0) { 
 					for (var i = 0; i < ds_list_size(final); i++) {
 						var entity = ds_list_find_value(final,i);
-						entity.image_index = entity.index;
+						entity.image_index = entity.index + 4;
 					}
 				} else {
 					for (var i = 0; i < ds_list_size(final); i++) {
@@ -31,7 +31,7 @@ if !(global.gameover) {
 				for (var i = 0; i < ds_list_size(final); i++) {
 					var entity = ds_list_find_value(final,i);
 					entity.match = true;
-					entity.image_index = entity.index + 4;
+					entity.image_index = entity.index + 7;
 				}
 				alarm[0] = postWhiteDelay;
 				postWhite = false;
