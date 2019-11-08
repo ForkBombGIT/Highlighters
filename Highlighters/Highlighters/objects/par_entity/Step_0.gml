@@ -30,13 +30,15 @@ if (!global.gameover) {
 if (!(swap) && !(global.gameover) && !(match))
 	if (y <= scr_getRowPos(0))
 		image_index = index;
-	else image_index = index + 6; 
+	else image_index = index + 4; 
 #endregion
 
 #region Highlight Animation
 if (highlight) {
+	image_index = index + highlightIndex;
 	alarm[2] = highlightDelay;
 	highlight = false;
+	highlighting = 1;
 }
 #endregion
 

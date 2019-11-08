@@ -9,7 +9,7 @@ var bombCount = 0;
 for (var i = 0; i < boardWidth; i++){
 	//selects a color
 	var colorIndex = irandom_range(0,array_length_1d(availablePieces) - 1);
-	var color = availablePieces[colorIndex] * 11;
+	var color = availablePieces[colorIndex] * 16;
 	var pieceType = (bombCount < 3) ? 
 					((irandom_range(1,10) > 3) ? obj_charm : obj_bomb) : obj_charm;
 	var canPlace = true;
