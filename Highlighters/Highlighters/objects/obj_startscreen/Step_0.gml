@@ -14,11 +14,11 @@ if (round(optionBackgroundAnimationIndex) < 32){
     optionBackgroundAnimationIndex += optionBackgroundAnimation;
 } else optionBackgroundAnimationIndex = 0;
 #endregion
-
 #region Menu Navigation
 if (start != 0) {
 	//menu item selection
-	if (keyboard_check_pressed(ord("Z"))) {
+	if (keyboard_check_pressed(ord(keyB))) {
+		if (start == 4) start = 2;
 		start--; flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}	
@@ -35,13 +35,13 @@ if (start != 0) {
 switch (start) {
 	case 0:
 		//menu item selection
-		if (keyboard_check_pressed(ord("X"))) {
+		if (keyboard_check_pressed(ord(keyA)) || keyboard_check_pressed(vk_enter)) {
 			start = 1; flash = true;
 			if !(alarm[0]) alarm[0] = 2;
 		}
 		break;
 	case 1:
-		if (keyboard_check_pressed(ord("X"))) {
+		if (keyboard_check_pressed(ord(keyA)) || keyboard_check_pressed(vk_enter)) {
 			switch (cursorPosition) {
 				case 0: //classic
 					start = 5;
@@ -58,11 +58,12 @@ switch (start) {
 		}
 		break;
 	case 2:
-		if (keyboard_check_pressed(ord("X"))) {
+		option = -1;
+		if (keyboard_check_pressed(ord(keyA)) || keyboard_check_pressed(vk_enter)) {
 			switch (cursorPosition) {
-				case 0: //audio video
+				case 0: //input
 					option = 0
-				case 1: //input
+				case 1: //audio video
 					if (option == -1) option = 1;
 					start = 3;
 					flash = true;
@@ -74,10 +75,16 @@ switch (start) {
 	case 3:
 		break;
 	case 4:
-		practice = true;
+		if (keyboard_check_pressed(ord(keyA)) || keyboard_check_pressed(vk_enter)) {
+			start++;
+			practice = true;
+		}
+		break;
 	case 5:
 		var startGame = instance_create_layer(0,0,"Instances",obj_startGame);
 		startGame.practice = practice;
+		startGame.keyA = keyA;
+		startGame.keyB = keyB;
 		instance_destroy();
 		break;
 }

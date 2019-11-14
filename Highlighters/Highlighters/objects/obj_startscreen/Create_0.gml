@@ -8,7 +8,6 @@ start = 0;
 option = -1;
 //flash behavior
 flash = false;
-
 //cursor control
 cursor = 0;
 cursorPositions = [72,120,168,216,264];
@@ -23,3 +22,6 @@ optionAnimationIndex = 0;
 optionBackgroundAnimationIndex = 0;
 //holds the blocks to be used in the game
 selectedEntities = [];
+//holds a and b control keys
+keyA = "X";
+keyB = "Z";

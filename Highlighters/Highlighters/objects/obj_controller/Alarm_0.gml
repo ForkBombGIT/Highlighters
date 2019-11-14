@@ -4,7 +4,7 @@ if (scr_checkRow(animRow)) {
 		if (instance_exists(piece)) {
 			piece.landAnim = false;
 			piece.image_index = piece.index;
-			piece.image_index += 9;	
+			piece.image_index += 14;	
 		}
 	}
 } else {

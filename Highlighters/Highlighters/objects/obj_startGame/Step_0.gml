@@ -7,13 +7,16 @@ if (round(cursorFlickerIndex) < 2){
 
 if (instance_exists(obj_startscreen)) instance_destroy(obj_startscreen);
 #region Input Control
-if (keyboard_check_released(ord("X"))) {
+if (practice) {
+	if !(alarm[0]) alarm[0] = 1;	
+}
+else if (keyboard_check_released(ord(keyA))) {
 	if (cursor == 2) {
 		flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}
 }
-else if (keyboard_check_released(ord("Z"))) {
+else if (keyboard_check_released(ord(keyB))) {
 	flash = true;
 	start = -1;
 	if !(alarm[0]) alarm[0] = 2;

@@ -15,15 +15,16 @@ switch (start) {
 		draw_sprite(spr_menu_p1_classic,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
 		draw_sprite(spr_menu_p1_tutorial,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
 		draw_sprite(spr_menu_options,(cursorPosition == 2) ? floor(optionAnimationIndex) : 0,120,294);
-		draw_sprite(spr_demo,0,100,360);
+		draw_sprite(spr_menu_footer,1,100,360);
 		break;
 		#endregion
 	case 2: 
-		draw_sprite(spr_menu_options_av,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
-		draw_sprite(spr_menu_options_input,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
-		draw_sprite(spr_demo,0,100,360);
+		draw_sprite(spr_menu_options_input,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
+		draw_sprite(spr_menu_options_av,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
+		draw_sprite(spr_menu_footer,0,100,360);
 		break;
 	case 3:
+		draw_sprite((option == 0) ? spr_menu_input : spr_menu_av, 0,0,0);
 		break;
 }
 if (flash) draw_rectangle(0,0,768,432,c_black);
