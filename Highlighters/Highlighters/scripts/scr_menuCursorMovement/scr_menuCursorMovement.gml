@@ -1,7 +1,9 @@
+//used for cursor movement in menus
+//keyRight and keyLeft should be defined in calling obj
 var cursorPosition = argument0;
 var keyCode = argument1;
 
-if (keyCode == vk_right) {
+if (keyCode == keyRight) {
 	switch (cursorPosition) {
 		case 0:
 			level = clamp(level + 1,1,maxLevel)
@@ -12,7 +14,7 @@ if (keyCode == vk_right) {
 	}
 }
 
-if (keyCode == vk_left) {
+if (keyCode == keyLeft) {
 	switch (cursorPosition) {
 		case 0:
 			level = clamp(level - 1,1,maxLevel)

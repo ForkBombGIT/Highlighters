@@ -23,5 +23,14 @@ optionBackgroundAnimationIndex = 0;
 //holds the blocks to be used in the game
 selectedEntities = [];
 //holds a and b control keys
-keyA = "X";
-keyB = "Z";
+keyA = ord("X");
+keyB = ord("Z");
+keySelect = vk_enter;
+keyUp = vk_up;
+keyDown = vk_down;
+keyLeft = vk_left;
+keyRight = vk_right;
+keyPause = vk_enter;
+keyOff = vk_escape;
+//controls what prompt should be shown for options
+inputPrompt = 0;

@@ -29,7 +29,7 @@ if (sprite_exists(screenShot) && pause){
 	if !(countdown) {
 		draw_sprite(spr_pause,0,168,window_get_height()/4);
 		draw_sprite(spr_pause_options,(pauseCursor == 0) ? 0 + floor(pauseAnim) : 0,24,210);
-		draw_sprite(spr_pause_options,(pauseCursor == 1) ? 7 + floor(pauseAnim) : 7,24,261);
+		draw_sprite(spr_pause_options,(pauseCursor == 1) ? 7 + floor(pauseAnim) : 7,24,259);
 		draw_sprite(spr_pause_options,(pauseCursor == 2) ? 14 + floor(pauseAnim) : 14,24,306);
 	}
 }

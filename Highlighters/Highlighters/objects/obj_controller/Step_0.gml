@@ -1,3 +1,4 @@
+show_debug_message(keyA);
 #region Game Loop
 #region Restart
 if (global.restart) {
@@ -80,7 +81,7 @@ if ((global.active) && !(global.gameover)) {
 	}
 	
 	//manual new row
-	if (keyboard_check(ord(keyB)) && !(global.forceRise)) {
+	if (keyboard_check(keyB) && !(global.forceRise)) {
 		//checks if piece is gonna rise into game over territory
 		if (instance_position(scr_getColPos(0),0,par_entity.y <= 0))
 			global.gameover = true;

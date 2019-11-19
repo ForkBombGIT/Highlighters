@@ -25,6 +25,10 @@ switch (start) {
 		break;
 	case 3:
 		draw_sprite((option == 0) ? spr_menu_input : spr_menu_av, 0,0,0);
+		if (option == 0) {
+			
+			draw_sprite(spr_menu_option_prompt,inputPrompt,24,408);
+		}
 		break;
 }
 if (flash) draw_rectangle(0,0,768,432,c_black);

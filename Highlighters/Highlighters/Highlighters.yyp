@@ -567,6 +567,14 @@
             }
         },
         {
+            "Key": "9e804989-7d7d-4d4a-9895-448a5bacb2ec",
+            "Value": {
+                "id": "124fe952-0181-4329-84ac-0527ea82439e",
+                "resourcePath": "sprites\\spr_optionnumbers\\spr_optionnumbers.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "a55f0644-767e-41a7-b50c-99a10e4d146d",
             "Value": {
                 "id": "b4239ced-7714-4a76-872b-0ae3e6c494c3",

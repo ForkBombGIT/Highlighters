@@ -26,15 +26,15 @@ if (global.riseUp) || (global.forceRise) {
 #endregion
 
 #region Cursor Movement
-leftB = keyboard_check(vk_left);
-rightB = keyboard_check(vk_right);
-upB = keyboard_check(vk_up);
-downB = keyboard_check(vk_down);
+leftB = keyboard_check(obj_controller.keyLeft);
+rightB = keyboard_check(obj_controller.keyRight);
+upB = keyboard_check(obj_controller.keyUp);
+downB = keyboard_check(obj_controller.keyDown);
 if !(global.gameover){
 	if (leftB || rightB || upB || downB) {
-		var key = (leftB) ? vk_left : 
-				  ((rightB) ? vk_right :
-				  ((upB) ? vk_up : vk_down));
+		var key = (leftB) ? obj_controller.keyLeft : 
+				  ((rightB) ? obj_controller.keyRight :
+				  ((upB) ? obj_controller.keyUp : obj_controller.keyDown));
 		//single press behavior
 		if (lastKey != key) keyPressLength = 0;
 		if (++keyPressLength == 1) { scr_cursorMovement(key); }
@@ -57,7 +57,7 @@ if !(global.gameover){
 
 #region Piece Swapping
 if ((keyPressLength < longPress) && (global.active) && (!global.gameover)) {
-	if (keyboard_check_pressed(ord(obj_controller.keyA))){
+	if (keyboard_check_pressed(obj_controller.keyA)){
 		//holds the piece on the left and right of the cursor
 		var left = instance_position(x-24,y,par_entity);
 		var right = instance_position(x+24,y,par_entity);

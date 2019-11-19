@@ -1,9 +1,17 @@
 randomize();
 //disables level progression
 practice = false;
+
 //holds key settings
-keyA = "X"
-keyB = "Z"
+keyA = ord("X")
+keyB = ord("Z")
+keySelect = vk_enter;
+keyUp = vk_up;
+keyDown = vk_down;
+keyLeft = vk_left;
+keyRight = vk_right;
+keyPause = vk_enter;
+keyOff = vk_escape;
 
 //holds gameover state
 global.gameover = false;

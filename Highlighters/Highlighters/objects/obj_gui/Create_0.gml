@@ -12,3 +12,8 @@ countdown = false;
 pauseAnim = 0;
 pauseCursor = 0;
 pauseCursorPositions = [216,252,288];
+//key controls for pause
+keyUp = vk_up;
+keyDown = vk_down;
+keySelect = vk_enter;
+keyA = ord("X");

@@ -5,18 +5,17 @@ if (round(cursorFlickerIndex) < 2){
 } else cursorFlickerIndex = 0;
 #endregion
 
-if (instance_exists(obj_startscreen)) instance_destroy(obj_startscreen);
 #region Input Control
 if (practice) {
 	if !(alarm[0]) alarm[0] = 1;	
 }
-else if (keyboard_check_released(ord(keyA))) {
+else if (keyboard_check_released(keyA)) {
 	if (cursor == 2) {
 		flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}
 }
-else if (keyboard_check_released(ord(keyB))) {
+else if (keyboard_check_released(keyB)) {
 	flash = true;
 	start = -1;
 	if !(alarm[0]) alarm[0] = 2;
@@ -26,9 +25,9 @@ else if (keyboard_check_released(ord(keyB))) {
 #region Cursor Control
 if (keyboard_check_pressed(vk_anykey)) {
 	//moving up and down
-	if (keyboard_key == vk_up) 
+	if (keyboard_key == keyUp) 
 		cursor = clamp(cursor - 1,0,2);
-	else if (keyboard_key == vk_down) {
+	else if (keyboard_key == keyDown) {
 		cursor = clamp(cursor + 1,0,2);
 	}
 }

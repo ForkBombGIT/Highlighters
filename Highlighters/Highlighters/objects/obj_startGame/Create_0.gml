@@ -1,6 +1,6 @@
-//whether the user wants to practice or not
-practice = true;
+
 if (instance_exists(obj_controller)) instance_destroy(obj_controller);
+if (instance_exists(obj_startscreen)) instance_destroy(obj_startscreen);
 //sets font to use
 numFont = font_add_sprite_ext(spr_menunumbers, "0123456789", true, 3); 
 
@@ -33,6 +33,16 @@ cursorFlickerIndex = 0;
 cursorType = 0;
 image_speed = 0.033;
 
-//holds a and b control keys
-keyA = "X";
-keyB = "Z";
+//holds keys
+keyA = ord("X");
+keyB = ord("Z");
+keySelect = vk_enter;
+keyUp = vk_up;
+keyDown = vk_down;
+keyLeft = vk_left;
+keyRight = vk_right;
+keyPause = vk_enter;
+keyOff = vk_escape;
+
+//whether the user wants to practice or not
+practice = false;

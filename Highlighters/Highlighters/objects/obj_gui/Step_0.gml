@@ -8,24 +8,29 @@ if !(countdown) && (global.active) {
 			milli = 0; seconds++;
 		} 
 		if (seconds >= 60) {seconds = 0; minutes += 1;}	
+		
+		keyUp = obj_controller.keyUp;
+		keyDown = obj_controller.keyDown;
+		keySelect = obj_controller.keySelect;
+		keyA = obj_controller.keyA;
 	}
 	#endregion
 	#region Pause Handling
 	if (pause){
 		#region Menu Control
-		if (keyboard_check_pressed(vk_up)) {
+		if (keyboard_check_pressed(keyUp)) {
 			if (pauseCursor > 0) {
 				pauseCursor--;	
 			}
 		}
-		if (keyboard_check_pressed(vk_down)) {
+		if (keyboard_check_pressed(keyDown)) {
 			if (pauseCursor < array_length_1d(pauseCursorPositions) - 1) {
 				pauseCursor++;	
 			}
 		}
 		
 		//menu options
-		if (keyboard_check_pressed(ord("X"))) {
+		if (keyboard_check_pressed(keyA)) {
 			switch (pauseCursor) {
 				case 0:
 					countdown = true;
@@ -60,7 +65,7 @@ if !(countdown) && (global.active) {
 	else {
 		#region Pause Conditions
 		//pause on escape press
-		if (keyboard_check_pressed(vk_escape)){
+		if (keyboard_check_pressed(obj_controller.keyPause)){
 			pause = true;
 			par_entity.visible = false;
 			obj_cursor.visible = false;

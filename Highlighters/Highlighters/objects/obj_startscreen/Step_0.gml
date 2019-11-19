@@ -17,7 +17,7 @@ if (round(optionBackgroundAnimationIndex) < 32){
 #region Menu Navigation
 if (start != 0) {
 	//menu item selection
-	if (keyboard_check_pressed(ord(keyB))) {
+	if (keyboard_check_pressed(keyB)) {
 		if (start == 4) start = 2;
 		start--; flash = true;
 		if !(alarm[0]) alarm[0] = 2;
@@ -25,23 +25,23 @@ if (start != 0) {
 	
 	if (keyboard_check_pressed(vk_anykey)) {
 		//moving up and down
-		if (keyboard_key == vk_up) 
-			cursorPosition = clamp(cursorPosition - 1,0,(start == 3) ? 1 : 2);
-		else if (keyboard_key == vk_down) 
-			cursorPosition = clamp(cursorPosition + 1,0,(start == 3) ? 1 : 2);
+		if (keyboard_key == keyUp) 
+			cursorPosition = clamp(cursorPosition - 1,0,(start == 2 || start == 3) ? 1 : 2);
+		else if (keyboard_key == keyDown) 
+			cursorPosition = clamp(cursorPosition + 1,0,(start == 2 || start == 3) ? 1 : 2);
 	}
 }
 
 switch (start) {
 	case 0:
 		//menu item selection
-		if (keyboard_check_pressed(ord(keyA)) || keyboard_check_pressed(vk_enter)) {
+		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
 			start = 1; flash = true;
 			if !(alarm[0]) alarm[0] = 2;
 		}
 		break;
 	case 1:
-		if (keyboard_check_pressed(ord(keyA)) || keyboard_check_pressed(vk_enter)) {
+		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
 			switch (cursorPosition) {
 				case 0: //classic
 					start = 5;
@@ -59,7 +59,7 @@ switch (start) {
 		break;
 	case 2:
 		option = -1;
-		if (keyboard_check_pressed(ord(keyA)) || keyboard_check_pressed(vk_enter)) {
+		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
 			switch (cursorPosition) {
 				case 0: //input
 					option = 0
@@ -75,7 +75,7 @@ switch (start) {
 	case 3:
 		break;
 	case 4:
-		if (keyboard_check_pressed(ord(keyA)) || keyboard_check_pressed(vk_enter)) {
+		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
 			start++;
 			practice = true;
 		}
@@ -85,6 +85,13 @@ switch (start) {
 		startGame.practice = practice;
 		startGame.keyA = keyA;
 		startGame.keyB = keyB;
+		startGame.keySelect = keySelect;
+		startGame.keyUp = keyUp;
+		startGame.keyDown = keyDown;
+		startGame.keyLeft = keyLeft;
+		startGame.keyRight = keyRight;
+		startGame.keyPause = keyPause;
+		startGame.keyOff = keyOff;
 		instance_destroy();
 		break;
 }
