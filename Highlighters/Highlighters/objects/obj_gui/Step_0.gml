@@ -30,7 +30,7 @@ if !(countdown) && (global.active) {
 		}
 		
 		//menu options
-		if (keyboard_check_pressed(keyA)) {
+		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
 			switch (pauseCursor) {
 				case 0:
 					countdown = true;

@@ -53,6 +53,7 @@ if (keyboard_check(vk_anykey)) {
 if (start) {
 	instance_create_layer(x,y,"Entities",obj_controller);	
 	instance_create_layer(168,window_get_height()/4,"GUI",obj_countdown);
+	instance_destroy(obj_startGame);
 }
 
 //changes cursor type

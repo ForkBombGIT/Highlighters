@@ -57,8 +57,7 @@ global.riseUp = false;
 global.forceRise = false;
 global.forceRiseSpeed = 3;
 startingRows = 6;
-selectedEntities = obj_startGame.selectedEntites;
-instance_destroy(obj_startGame);
+selectedEntities = scr_generateColors();
 
 activeMatches = ds_list_create();
 

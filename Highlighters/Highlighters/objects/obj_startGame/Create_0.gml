@@ -1,4 +1,3 @@
-
 if (instance_exists(obj_controller)) instance_destroy(obj_controller);
 if (instance_exists(obj_startscreen)) instance_destroy(obj_startscreen);
 //sets font to use
