@@ -5,8 +5,8 @@ if (y <= scr_getRowPos(obj_controller.boardHeight - 1))
 
 #region Force Rise
 if (!global.gameover) {
-	if (global.forceRise) {
-		if (y <= initY - targY) {
+	if (global.forceRise) { 
+		if (y <= (initY - targY)) {
 			initY = -1;
 			targY = -1;
 			global.forceRise = false;
@@ -14,7 +14,7 @@ if (!global.gameover) {
 			obj_controller.riseTimer = current_time;
 		}
 		else {
-			if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) {
+			if ((y - global.forceRiseSpeed) < scr_getRowPos(obj_controller.boardHeight - 1)) {
 				global.gameover = true;
 			}
 			y -= global.forceRiseSpeed;	
@@ -80,7 +80,7 @@ if (!(bottomEntity) &&
 } 
 
 //controls landing animation
-if (landAnim) && !(match) {
+if (landAnim) && !(match) && (bottomEntity) {
 	var animSpeed = .25;
 	if (round(landAnimIndex) <= index + 3){
 	    landAnimIndex += animSpeed;

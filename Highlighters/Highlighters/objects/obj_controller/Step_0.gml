@@ -1,4 +1,4 @@
-show_debug_message(keyA);
+
 #region Game Loop
 #region Restart
 if (global.restart) {
@@ -23,6 +23,9 @@ if (global.restart) {
 #endregion
 //handles gameover logic
 if (global.gameover) {
+	global.forceRise = false;
+	global.riseUp = false;
+	global.forceRiseSpeed = 0;
 	if !(anim) { 
 		anim = true; 
 		alarm[0] = 1; 

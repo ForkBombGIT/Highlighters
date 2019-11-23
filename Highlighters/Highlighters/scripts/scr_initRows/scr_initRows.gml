@@ -29,5 +29,4 @@ for (var currRow = 0; currRow < startingRows; currRow++) {
 		if (currRow == startingRows - 1) currRow = 0;
 	} else break;	
 	
-	show_debug_message(pieceCount);
 }
