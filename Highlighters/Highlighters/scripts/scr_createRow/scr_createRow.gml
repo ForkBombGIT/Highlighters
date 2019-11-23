@@ -8,13 +8,11 @@ var bombCount = 0;
 
 //iterates the length of the board
 for (var i = 0; i < boardWidth; i++){
-	show_debug_message(bombCount);
 	//selects a color
 	var colorIndex = irandom_range(0,array_length_1d(availablePieces) - 1);
 	var color = availablePieces[colorIndex] * 16;
 	var pieceType = (bombCount < 3) ? 
 					((irandom_range(1,10) > 2) ? obj_charm : obj_bomb) : obj_charm;
-	show_debug_message(pieceType);
 	var canPlace = true;
 	var up = scr_getPieceAtPos(0, i);
 	//checks if the first piece has been placed, if so check if the colors work
