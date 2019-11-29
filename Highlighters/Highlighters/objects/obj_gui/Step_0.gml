@@ -1,7 +1,8 @@
+if (global.restart) { totalMillis = 0; minutes = 0; seconds = 0; milli = 0; }
+
 if !(countdown) && (global.active) {
 	#region Time Counting
 	if !(pause) && !(global.gameover) {	
-		
 		milli++;
 		totalMillis++;
 		if (milli >= room_speed) {

@@ -6,6 +6,7 @@ var variance = 4;
 scr_createRow(-1);
 //loops for amount of desired starting rows
 for (var currRow = 0; currRow < startingRows; currRow++) {
+	var bombCount = 0;
 	//loops through columns
 	for (var col = 0; col < boardWidth; col++) {
 		//check if pieces placed are under max
@@ -20,7 +21,11 @@ for (var currRow = 0; currRow < startingRows; currRow++) {
 					else break;
 				} 
 				//if a piece is placed, increment
-				if (scr_initRowsPiecePlace(tRow,col)) pieceCount++;
+				var pieceType = scr_initRowsPiecePlace(tRow,col,bombCount);
+				if (pieceType != pointer_null) {
+					if (pieceType == obj_bomb) bombCount++;
+					pieceCount++;
+				}
 			}
 		} else break;
 	}

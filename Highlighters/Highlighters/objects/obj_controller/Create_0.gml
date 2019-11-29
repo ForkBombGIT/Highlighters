@@ -15,6 +15,7 @@ keyOff = vk_escape;
 
 //holds gameover state
 global.gameover = false;
+gameoverDelay = 180;
 anim = false;
 animRow = 8;
 flash = false;

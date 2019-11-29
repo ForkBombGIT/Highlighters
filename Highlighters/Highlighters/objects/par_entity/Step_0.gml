@@ -1,7 +1,7 @@
 #region Rising Pieces
 if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) 
 	if !(alarm[1]) 
-		alarm[1] = (obj_controller.risePace - (current_time - obj_controller.riseTimer)/1000) * 60
+		alarm[1] = obj_controller.gameoverDelay;
 
 #region Force Rise
 if (!global.gameover) {
