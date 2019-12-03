@@ -1,6 +1,5 @@
 var pieceCount = argument0;
 var maxPieces = 24;
-var variance = 4;
 //initializes blocks
 //creates -1 row
 scr_createRow(-1);
@@ -12,21 +11,20 @@ for (var currRow = 0; currRow < startingRows; currRow++) {
 		//check if pieces placed are under max
 		if (pieceCount < maxPieces) {
 			//creates variation in starting positions
-			if (irandom_range(0,10) > variance) { 
-				var tRow = currRow;
-				//places piece on top of another
-				while (tRow > 0) {
-					if (!instance_exists(scr_getPieceAtPos(tRow - 1,col)))
-						tRow -= 1;
-					else break;
-				} 
-				//if a piece is placed, increment
-				var pieceType = scr_initRowsPiecePlace(tRow,col,bombCount);
-				if (pieceType != pointer_null) {
-					if (pieceType == obj_bomb) bombCount++;
-					pieceCount++;
-				}
+			var tRow = currRow;
+			//places piece on top of another
+			while (tRow > 0) {
+				if (!instance_exists(scr_getPieceAtPos(tRow - 1,col)))
+					tRow -= 1;
+				else break;
+			} 
+			//if a piece is placed, increment
+			var pieceType = scr_initRowsPiecePlace(tRow,col,bombCount);
+			if (pieceType != pointer_null) {
+				if (pieceType == obj_bomb) bombCount++;
+				pieceCount++;
 			}
+			
 		} else break;
 	}
 	//loop until enough pieces have been placed

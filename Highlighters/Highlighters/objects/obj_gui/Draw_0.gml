@@ -6,7 +6,6 @@ if !(pause) || !sprite_exists(screenShot){
 	draw_set_font(timeFont);
 	//time
 	draw_text(370,366,string_replace(string_format(minutes,2,0)," ", "0"));
-	draw_text(365 + sprite_get_width(spr_timenumbers) * 2,366, ":");
 	draw_text(352 + sprite_get_width(spr_timenumbers) * 3,366,string_replace(string_format(seconds,2,0)," ","0"));
 	draw_set_font(numFont);
 	//score

@@ -9,7 +9,7 @@ while !(canPlace) {
 	var tileType;
 	if (bombCount < 3) {
 		tileType = (irandom_range(1,10) > 3) ? obj_charm : obj_bomb;
-	}
+	} else tileType = obj_charm;
 	if (instance_exists(bottom)) {
 		canPlace = scr_checkColors(bottom.index,color);
 		if (bottom.index == color) canPlace = false;
