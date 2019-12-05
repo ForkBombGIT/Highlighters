@@ -1,5 +1,5 @@
 var activeMatchmakers = instance_number(obj_matchmaker);
-if !(combo) {
+if !(combo) { //possibly remove this?
 	if (activeMatchmakers > 1) {
 		for (var i = 0; i < activeMatchmakers - 1; i++) {
 			var matchmaker = instance_find(obj_matchmaker,i);

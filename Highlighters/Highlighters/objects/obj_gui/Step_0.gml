@@ -37,10 +37,12 @@ if !(countdown) && (global.active) {
 					countdown = true;
 					break;
 				case 1:
-					global.restart = true;
+					flash = true;
+					if !(alarm[0]) alarm[0] = 1;	
 					break;
 				case 2:
-					game_end();
+					flash = true;
+					if !(alarm[0]) alarm[0] = 1;	
 					break;
 			}
 		}

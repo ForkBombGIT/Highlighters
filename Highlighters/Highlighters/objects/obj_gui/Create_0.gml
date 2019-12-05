@@ -17,3 +17,5 @@ keyUp = vk_up;
 keyDown = vk_down;
 keySelect = vk_enter;
 keyA = ord("X");
+
+flash = false;

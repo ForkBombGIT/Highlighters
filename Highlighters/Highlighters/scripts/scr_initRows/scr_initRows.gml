@@ -1,5 +1,5 @@
 var pieceCount = argument0;
-var maxPieces = 24;
+var maxPieces = 30;
 //initializes blocks
 //creates -1 row
 scr_createRow(-1);

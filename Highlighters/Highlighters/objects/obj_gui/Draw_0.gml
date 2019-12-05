@@ -33,3 +33,5 @@ if (sprite_exists(screenShot) && pause){
 	}
 }
 #endregion
+
+if (flash) draw_rectangle(0,0,768,432,c_black);
