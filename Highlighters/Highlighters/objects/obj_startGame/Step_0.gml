@@ -9,7 +9,7 @@ if (round(cursorFlickerIndex) < 2){
 if (practice) {
 	if !(alarm[0]) alarm[0] = 1;	
 }
-else if (keyboard_check_released(keyA)) {
+else if (keyboard_check_released(keyA) || keyboard_check_released(keySelect)) {
 	if (cursor == 2) {
 		flash = true;
 		if !(alarm[0]) alarm[0] = 2;

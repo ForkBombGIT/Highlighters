@@ -13,6 +13,7 @@ if !(combo) { //possibly remove this?
 								matchmakerPlus.origin.matchOverride = true;
 								matchmakerPlus.origin.match = false;
 								instance_destroy(matchmakerPlus);
+								deletion = true;
 								break;
 							}
 						}
