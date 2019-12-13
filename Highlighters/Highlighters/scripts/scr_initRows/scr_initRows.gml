@@ -1,10 +1,12 @@
 var pieceCount = argument0;
 var maxPieces = 30;
+var lastTwelve = ds_list_create();
 //initializes blocks
 //creates -1 row
 scr_createRow(-1);
 //loops for amount of desired starting rows
 for (var currRow = 0; currRow < startingRows; currRow++) {
+	if (ds_list_size(lastTwelve)) ds_list_delete(lastTwelve,0);
 	var bombCount = 0;
 	//loops through columns
 	for (var col = 0; col < boardWidth; col++) {
@@ -19,10 +21,11 @@ for (var currRow = 0; currRow < startingRows; currRow++) {
 				else break;
 			} 
 			//if a piece is placed, increment
-			var pieceType = scr_initRowsPiecePlace(tRow,col,bombCount);
-			if (pieceType != pointer_null) {
-				if (pieceType == obj_bomb) bombCount++;
+			var piece = scr_initRowsPiecePlace(tRow,col,bombCount,lastTwelve);
+			if (piece != pointer_null) {
+				if (object_get_name(piece.object_index) == obj_bomb) bombCount++;
 				pieceCount++;
+				ds_list_add(lastTwelve,piece.index);
 			}
 			
 		} else break;
