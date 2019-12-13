@@ -40,10 +40,12 @@ if !(global.gameover) {
 			else {
 				if (listPosition <= ds_list_size(final) - 1) {
 					var entity = ds_list_find_value(final,listPosition);
-					if !(entity.highlighting) 
-						entity.highlight = true;
-					else if (entity.highlighting == 2) 
-						listPosition++;
+					if (instance_exists(entity)) {
+						if !(entity.highlighting) 
+							entity.highlight = true;
+						else if (entity.highlighting == 2) 
+							listPosition++;
+					}
 					alarm[0] = highlightDelay;
 				}
 				else {	

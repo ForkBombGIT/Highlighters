@@ -2,6 +2,7 @@ var rp = argument0;
 var cp = argument1;
 var bombCount = argument2;
 var lastTwelve = argument3;
+var retry = 0;
 var availablePieces = obj_controller.selectedEntities;
 var canPlace = instance_exists(scr_getPieceAtPos(rp,cp));
 while !(canPlace) {
@@ -19,11 +20,16 @@ while !(canPlace) {
 		//the trio describes colors that can not spawn together due to similarity in colors
 		canPlace = scr_checkColors(bottom.index,color);
 		//find how many instances of this color has been placed in the last twelve pieces
-		var counter = 0;
-		for (var i = 0; i < ds_list_size(lastTwelve); i++) {
-			if (ds_list_find_value(lastTwelve,i) == color) counter++
+		if (retry < 6) {
+			var counter = 0;
+			for (var i = 0; i < ds_list_size(lastTwelve); i++) {
+				if (ds_list_find_value(lastTwelve,i) == color) counter++;
+			}
+			canPlace = counter < 3;
+			if (counter >= 3) retry++;
 		}
-		canPlace = (tileType == obj_bomb) ? (counter < 2) : (counter < 3);
+		
+		show_debug_message(ds_list_size(lastTwelve));
 		//ensures bottom does not match current color
 		if (bottom.index == color) canPlace = false;
 		if (instance_exists(left) && (canPlace)) {
@@ -35,8 +41,8 @@ while !(canPlace) {
 	//behavior if tests pass
 	if (canPlace) {
 		//creates piece
-		scr_createEntity(rp,cp,tileType, color);	
-		return tileType;
+		var entity = scr_createEntity(rp,cp,tileType, color);	
+		return entity;
 	} else {
 		var temp = availablePieces, index = 0;
 		availablePieces = [];

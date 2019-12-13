@@ -6,7 +6,6 @@ var lastTwelve = ds_list_create();
 scr_createRow(-1);
 //loops for amount of desired starting rows
 for (var currRow = 0; currRow < startingRows; currRow++) {
-	if (ds_list_size(lastTwelve)) ds_list_delete(lastTwelve,0);
 	var bombCount = 0;
 	//loops through columns
 	for (var col = 0; col < boardWidth; col++) {
@@ -26,6 +25,7 @@ for (var currRow = 0; currRow < startingRows; currRow++) {
 				if (object_get_name(piece.object_index) == obj_bomb) bombCount++;
 				pieceCount++;
 				ds_list_add(lastTwelve,piece.index);
+				if (ds_list_size(lastTwelve) > 12) ds_list_delete(lastTwelve,0);
 			}
 			
 		} else break;
