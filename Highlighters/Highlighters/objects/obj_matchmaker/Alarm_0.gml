@@ -16,12 +16,14 @@ if !(global.gameover) {
 				if (flickerCount % 2 == 0) { 
 					for (var i = 0; i < ds_list_size(final); i++) {
 						var entity = ds_list_find_value(final,i);
-						entity.image_index = entity.index + 4;
+						if (instance_exists(entity))
+							entity.image_index = entity.index + 4;
 					}
 				} else {
 					for (var i = 0; i < ds_list_size(final); i++) {
 						var entity = ds_list_find_value(final,i);	
-						entity.image_index = entity.index + 5;
+						if (instance_exists(entity))
+							entity.image_index = entity.index + 5;
 					}
 				}
 			} else { flicker = false; postWhite = true; }
