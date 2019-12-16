@@ -1,2 +1,2 @@
-if (instance_exists(obj_startscreen)) instance_destroy(obj_startscreen);
+if (instance_exists(obj_startScreen)) instance_destroy(obj_startScreen);
 global.active = true;

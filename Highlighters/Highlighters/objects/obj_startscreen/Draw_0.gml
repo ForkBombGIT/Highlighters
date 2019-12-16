@@ -25,9 +25,19 @@ switch (start) {
 		break;
 	case 3:
 		draw_sprite((option == 0) ? spr_menu_input : spr_menu_av, 0,0,0);
-		if (option == 0) {
-			
-			draw_sprite(spr_menu_option_prompt,inputPrompt,24,408);
+		switch (option) {
+			//input menu
+			case 0:
+				draw_sprite(spr_keys,0,288,48);
+				draw_sprite(spr_menu_option_prompt,inputPrompt,24,408);
+				break;
+			//av menu
+			case 1:
+				draw_sprite(spr_keys,0,288,48);
+				draw_sprite(spr_keys,0,288,96);
+				draw_sprite(spr_keys,0,288,144);
+				draw_sprite(spr_keys,0,288,288);
+				break;
 		}
 		break;
 }

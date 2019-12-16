@@ -8,7 +8,7 @@ switch (pauseCursor) {
 		break;
 	case 2:
 		room_goto(0);
-		instance_create_layer(x,y,"Entities",obj_startscreen);
+		instance_create_layer(x,y,"Entities",obj_startScreen);
 		instance_destroy(obj_controller);
 		instance_destroy();
 		break;

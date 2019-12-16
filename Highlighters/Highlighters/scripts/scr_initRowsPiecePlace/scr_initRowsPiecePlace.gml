@@ -2,8 +2,8 @@ var rp = argument0;
 var cp = argument1;
 var bombCount = argument2;
 var lastTwelve = argument3;
-var retry = 0;
-var triRetry = 0;
+var retry = 0; //generate a piece not in history
+var triNotRetry = 0; //3 of a kind, generate a piece not in history
 var availablePieces = obj_controller.selectedEntities;
 var canPlace = instance_exists(scr_getPieceAtPos(rp,cp));
 while !(canPlace) {
@@ -21,19 +21,19 @@ while !(canPlace) {
 		//the trio describes colors that can not spawn together due to similarity in colors
 		canPlace = scr_checkColors(bottom.index,color);
 		//find how many instances of this color has been placed in the last twelve pieces
-		if (retry < 6) && canPlace{
+		if (retry < 6) && canPlace {
 			if (ds_list_find_index(lastTwelve,color) != -1) {
 				canPlace = false;
 				retry++;
 			}
 		}
-		if (triRetry < 6)  && canPlace{
+		if (triNotRetry < 6)  && canPlace {
 			var counter = 0;
 			for (var i = 0; i < ds_list_size(lastTwelve); i++) {
 				if (ds_list_find_value(lastTwelve,i) == color) counter++;
 			}
 			canPlace = counter < 3;
-			if (counter >= 3) triRetry++;
+			if (counter >= 3) triNotRetry++;
 		}
 		
 		show_debug_message(ds_list_size(lastTwelve));
