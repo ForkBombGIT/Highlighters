@@ -47,6 +47,7 @@ scoreToNextLevel = initialScoreToNextLevel;
 startNextLevelScale = 1;
 nextLevelScale = startNextLevelScale;
 incrementScaler = 1.1;
+canRise = true;
 
 //used for row generation 
 freeze = false;

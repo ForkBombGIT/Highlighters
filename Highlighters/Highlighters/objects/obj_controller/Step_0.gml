@@ -1,4 +1,3 @@
-
 #region Game Loop
 #region Restart
 if (global.restart) {
@@ -64,14 +63,15 @@ else {
 //block loop
 if ((global.active) && !(global.gameover)) {	
 	if !(practice) {
-		if (gameScore >= scoreToNextLevel) {
+		
+		if (gameScore >= scoreToNextLevel) && (gameScore < maxLevel) {
 			gameSpeed++;
 			scoreToNextLevel = floor(initialScoreToNextLevel * ((++nextLevelScale) * incrementScaler));
 			risePace -= (orgRisePace - minRisePace) / maxLevel;
 		}
 	}
 	//rising row
-	if !(freeze) {
+	if !(freeze) && (canRise){
 		if ((current_time - riseTimer)/1000 > risePace) { 
 			riseTimer = current_time;
 			global.riseUp = true;
