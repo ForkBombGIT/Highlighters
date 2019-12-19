@@ -5,10 +5,9 @@ freezeFont = font_add_sprite_ext(spr_freezenumbers, "0123456789", true, 3);
 //board sprites
 boards = [spr_board1, spr_board2];
 //holds pause state
-countdownInst = noone;
 pause = false;
 screenShot = noone;
-countdown = false;
+resume = false;
 pauseAnim = 0;
 pauseCursor = 0;
 pauseCursorPositions = [216,252,288];

@@ -2,22 +2,47 @@ var rp = argument0;
 var cp = argument1;
 var bombCount = argument2;
 var lastTwelve = argument3;
+var bombsInRow = argument4;
 var conditionOneRetry = 0;   //  generate a piece not in history
-var conditionTwoRetry = 0;   //  generate a piece not in hisotry, if 3 same have been created 
+var conditionTwoRetry = 0; //  generate a piece not in hisotry, if 3 same have been created 
 var availablePieces = obj_controller.selectedEntities;
 var canPlace = instance_exists(scr_getPieceAtPos(rp,cp));
-var bombProb = 3;
+var bombProb = 1;
+var pieceFrames = 16;
 while !(canPlace) {
 	var left = scr_getPieceAtPos(rp, cp - 1), bottom = scr_getPieceAtPos(rp - 1, cp);
-	var color = availablePieces[irandom_range(0,array_length_1d(availablePieces) - 1)] * 16;
+	var color = availablePieces[irandom_range(0,array_length_1d(availablePieces) - 1)] * pieceFrames;
 	var tileType;
-	//checks if less than 3 bombs have been placed
-	//if there has been, default to a charm
-	if (bombCount < 3) {
-		tileType = (irandom_range(1,10) > bombProb) ? obj_charm : obj_bomb;
-	} else tileType = obj_charm;
+	var lastTwelveFrequency = ds_map_create();
 	//checks to see if there is a piece below the placement position
 	if (instance_exists(bottom)) {
+		//checks if less than 3 bombs have been placed
+		//if there has been, default to a charm
+		if (bombCount < 3) {
+			if (ds_list_size(lastTwelve) > 0) {
+				// check if three pieces of the saem color have been placed
+				// if they have, create a piece of the same color
+				for (var i = 0; i < ds_list_size(lastTwelve); i++) {
+					var entity = ds_list_find_value(lastTwelve,i);
+					var pieceFrequency = ds_map_find_value(lastTwelveFrequency,entity)
+					if (pieceFrequency >= 3) {
+						color = entity;
+						break;
+					}
+					else if (pieceFrequency == undefined) ds_map_add(lastTwelveFrequency,entity,0);
+					else ds_map_set(lastTwelveFrequency,entity,++pieceFrequency);
+				}
+			}
+			//pick piece type randomly
+			tileType = (irandom_range(1,6) > bombProb) ? obj_charm : obj_bomb;
+			if (tileType == obj_bomb) {
+				do {
+					canPlace = (ds_list_find_index(bombsInRow,color) == -1);
+					if (canPlace) break;
+					else color = availablePieces[irandom_range(0,array_length_1d(availablePieces) - 1)] * pieceFrames;
+				} until !(canPlace);
+			}
+		} else tileType = obj_charm;
 		//ensures that the colors touching do not fall into the "trio" of colors
 		//the trio describes colors that can not spawn together due to similarity in colors
 		canPlace = scr_checkColors(bottom.index,color);
@@ -39,7 +64,7 @@ while !(canPlace) {
 		}
 		
 		//ensures bottom does not match current color
-		if (bottom.index == color) && canPlace canPlace = false;
+		if (bottom.index == color) && (canPlace) canPlace = false;
 		if (instance_exists(left) && (canPlace)) {
 			canPlace = scr_checkColors(left.index,color);
 			//ensures left and current color do not match
@@ -51,13 +76,5 @@ while !(canPlace) {
 		//creates piece
 		var entity = scr_createEntity(rp,cp,tileType, color);	
 		return entity;
-	} else {
-		var temp = availablePieces, index = 0;
-		availablePieces = [];
-		for (var j = 0; j < array_length_1d(temp); j++) {
-			if (temp[j] != color) {
-				availablePieces[index++] = temp[j];	
-			}
-		}	
 	}
 }

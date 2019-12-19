@@ -4,21 +4,31 @@ var availablePieces = obj_controller.selectedEntities;
 var matchCounter = 0;
 var bombExists = 0;
 var bombCount = 0;
+var bombProb = 1;
+var placedBombs = ds_list_create();
+var bottomRows = ds_list_create();
+var pieceFrames = 16;
 
+//get the two bottom rows of the board
+for (var i = 0; i < 2; i++) {
+	var rowPieces = scr_getRow(i);
+	for (var j = 0; j < ds_list_size(rowPieces); j++) {
+		ds_list_add(bottomRows,ds_list_find_value(rowPieces,j));	
+	}
+}
 
 //iterates the length of the board
 for (var i = 0; i < boardWidth; i++){
 	//selects a color
 	var colorIndex = irandom_range(0,array_length_1d(availablePieces) - 1);
-	var color = availablePieces[colorIndex] * 16;
+	var color = availablePieces[colorIndex] * pieceFrames;
 	var pieceType = (bombCount < 3) ? 
-					((irandom_range(1,10) > 2) ? obj_charm : obj_bomb) : obj_charm;
-	var canPlace = true;
+					((irandom_range(1,6) > bombProb) ? obj_charm : obj_bomb) : obj_charm;
+	var canPlace = (pieceType == obj_bomb) ? (ds_list_find_index(placedBombs,color) == -1) : true;
 	var up = scr_getPieceAtPos(0, i);
 	//checks if the first piece has been placed, if so check if the colors work
-	if (ds_list_size(placedPieces) > 0) {
-		canPlace = scr_checkColors(color,ds_list_find_value(placedPieces,ds_list_size(placedPieces) - 1))
-		if (canPlace) {
+	if (ds_list_size(placedPieces) > 0)  && canPlace {
+		if (scr_checkColors(color,ds_list_find_value(placedPieces,ds_list_size(placedPieces) - 1))) {
 			//prevents a match occuring in a row
 			//increments match counter if pieces match colors
 			if (color == ds_list_find_value(placedPieces,ds_list_size(placedPieces) - 1)) {
@@ -43,20 +53,10 @@ for (var i = 0; i < boardWidth; i++){
 		scr_createEntity(row,i,pieceType, color);
 		availablePieces = obj_controller.selectedEntities;
 		if (pieceType == obj_bomb) {
+			ds_list_add(placedBombs,color);
 			bombExists = 1;
 			bombCount++;
 		}
 		ds_list_add(placedPieces,color);
-	}
-	else { 	
-		//shrinks the available options of pieces, removing the one that did not work
-		var temp = availablePieces, index = 0;
-		availablePieces = [];
-		i--; //haults progress on the iteration
-		for (var j = 0; j < array_length_1d(temp); j++) {
-			if (temp[j] != colorIndex) {
-				availablePieces[index++] = temp[j];	
-			}
-		}
 	}
 }

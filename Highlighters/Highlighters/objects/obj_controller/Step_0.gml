@@ -1,6 +1,7 @@
 #region Game Loop
 #region Restart
 if (global.restart) {
+	selectedEntities = scr_generateColors();
 	//set global variables
 	global.active = false;
 	global.restart = false;
@@ -62,8 +63,9 @@ else {
 
 //block loop
 if ((global.active) && !(global.gameover)) {	
+	//disables level progression in practice
 	if !(practice) {
-		
+		//handles level progression
 		if (gameScore >= scoreToNextLevel) && (gameScore < maxLevel) {
 			gameSpeed++;
 			scoreToNextLevel = floor(initialScoreToNextLevel * ((++nextLevelScale) * incrementScaler));

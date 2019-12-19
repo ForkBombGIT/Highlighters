@@ -7,6 +7,7 @@ if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) {
 }
 
 #region Force Rise
+//rise if the force rise button is pressed
 if (!global.gameover) {
 	if (global.forceRise) { 
 		if (y <= (initY - targY)) {

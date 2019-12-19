@@ -1,6 +1,6 @@
 if (global.restart) { totalMillis = 0; minutes = 0; seconds = 0; milli = 0; }
 
-if !(countdown) && (global.active) {
+if (global.active) {
 	#region Time Counting
 	if !(pause) && !(global.gameover) {	
 		milli++;
@@ -34,7 +34,7 @@ if !(countdown) && (global.active) {
 		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
 			switch (pauseCursor) {
 				case 0:
-					countdown = true;
+					resume = true;
 					break;
 				case 1:
 					flash = true;
@@ -55,14 +55,7 @@ if !(countdown) && (global.active) {
 		
 		#region Countdown Control
 		//controls countdown sprite
-	    if !(countdown) instance_deactivate_all(1);
-		//creates countdown
-		else {
-			if (!instance_exists(countdownInst)) {
-				countdownInst = instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
-				instance_activate_object(countdownInst);
-			}
-		}
+	    if !(resume) instance_deactivate_all(1);
 		#endregion
 	}
 	else {
@@ -88,21 +81,14 @@ if !(countdown) && (global.active) {
 }
 
 #region On End Countdown / Restart Control
-if (countdown) || (global.restart) {
-	//if countdown is up, resume game
-	if (!instance_exists(countdownInst)) {
-		if(sprite_exists(screenShot)){
-			sprite_delete(screenShot);
-		}	
-		instance_activate_all();
-		if (countdown) {
-			par_entity.visible = true;
-			obj_cursor.visible = true;
-		}
-		countdown = false;
-		pause = false;
-		pauseCursor = 0;
-	}	
+if (resume) || (global.restart) {
+	instance_activate_all();
+	par_entity.visible = true;
+	obj_cursor.visible = true;
+	screenShot = noone;
+	resume = false;
+	pause = false;
+	pauseCursor = 0;
 }
 #endregion
 
