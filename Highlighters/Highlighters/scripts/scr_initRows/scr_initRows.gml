@@ -11,7 +11,6 @@ for (var row = 0; row < startingRows; row++) {
 	ds_list_clear(bombsInRow);
 	//loops through columns
 	for (var col = 0; col < boardWidth; col++) {
-	show_debug_message(col)
 		//check if pieces placed are under max
 		if (pieceCount < maxPieces) {
 			//if a piece is placed, increment

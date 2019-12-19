@@ -66,7 +66,7 @@ if ((global.active) && !(global.gameover)) {
 	//disables level progression in practice
 	if !(practice) {
 		//handles level progression
-		if (gameScore >= scoreToNextLevel) && (gameScore < maxLevel) {
+		if (gameScore >= scoreToNextLevel) && (gameSpeed < maxLevel) {
 			gameSpeed++;
 			scoreToNextLevel = floor(initialScoreToNextLevel * ((++nextLevelScale) * incrementScaler));
 			risePace -= (orgRisePace - minRisePace) / maxLevel;
