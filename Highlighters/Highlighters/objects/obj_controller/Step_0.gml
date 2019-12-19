@@ -1,5 +1,5 @@
 #region Game Loop
-#region Restart
+//handles restart logic
 if (global.restart) {
 	selectedEntities = scr_generateColors();
 	//set global variables
@@ -20,7 +20,6 @@ if (global.restart) {
 	risePace = orgRisePace - (((orgRisePace - minRisePace) / maxLevel) * (gameSpeed - 1))
 	instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
 }
-#endregion
 //handles gameover logic
 if (global.gameover) {
 	global.forceRise = false;
@@ -47,10 +46,12 @@ for (var i = 0; i < instance_number(obj_matchmaker); i++) {
 		}
 	}
 } 
+//clear active match list if no matchmakers exist
 if (instance_number(obj_matchmaker) == 0) {
 	ds_list_clear(activeMatches)	
 }
 
+//freeze timer
 if (freeze) {
 	if ((current_time - freezeTimer)/1000 > 1) {
 		if (--freezeTime == 0) freeze = false;
@@ -72,6 +73,11 @@ if ((global.active) && !(global.gameover)) {
 			risePace -= (orgRisePace - minRisePace) / maxLevel;
 		}
 	}
+	
+	if !(canRise) {
+		canRise = (!scr_checkRow(boardHeight))	
+	}
+	
 	//rising row
 	if !(freeze) && (canRise){
 		if ((current_time - riseTimer)/1000 > risePace) { 
@@ -81,7 +87,7 @@ if ((global.active) && !(global.gameover)) {
 	} else global.riseUp = false;
 	
 	//creates new bottom row
-	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+25,par_entity)){
+	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,par_entity)){
 		scr_createRow(-1);
 	}
 	
@@ -92,7 +98,6 @@ if ((global.active) && !(global.gameover)) {
 			global.gameover = true;
 		}
 		else {
-			
 			global.forceRise = true;
 			freeze = false;
 			riseTimer = current_time;

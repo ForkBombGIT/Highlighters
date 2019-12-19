@@ -9,6 +9,9 @@ var placedBombs = ds_list_create();
 var bottomRows = ds_list_create();
 var pieceFrames = 16;
 
+var conditionOneRetry = 0; //  generate a piece not in history
+var conditionTwoRetry = 0; //  generate a piece not in hisotry, if 3 same have been created 
+
 //get the two bottom rows of the board
 for (var i = 0; i < 2; i++) {
 	var rowPieces = scr_getRow(i);
@@ -28,25 +31,25 @@ for (var i = 0; i < boardWidth; i++){
 	var up = scr_getPieceAtPos(0, i);
 	//checks if the first piece has been placed, if so check if the colors work
 	if (ds_list_size(placedPieces) > 0)  && canPlace {
-		if (scr_checkColors(color,ds_list_find_value(placedPieces,ds_list_size(placedPieces) - 1))) {
-			//prevents a match occuring in a row
-			//increments match counter if pieces match colors
-			if (color == ds_list_find_value(placedPieces,ds_list_size(placedPieces) - 1)) {
-				matchCounter++;	
-			}
-			else { matchCounter = 0; bombExists = 0; }
-			//if there are >= 3 match counters (like colors) and a bomb, then piece cannot be placed
-			if ((matchCounter >= 3))  {
-				if (bombExists || pieceType == obj_bomb) {
-					canPlace = false; matchCounter = 0; bombExists = 0; 
-				}
-			}
-			
-			//checks if the above color falls into the trios
-			if (canPlace) 
-				if (instance_exists(up)) canPlace = scr_checkColors(color,up.index);
-			
+		canPlace = scr_checkColors(color,ds_list_find_value(placedPieces,ds_list_size(placedPieces) - 1))
+		//prevents a match occuring in a row
+		//increments match counter if pieces match colors
+		if (color == ds_list_find_value(placedPieces,ds_list_size(placedPieces) - 1)) {
+			matchCounter++;	
 		}
+		else { matchCounter = 0; bombExists = 0; }
+		//if there are >= 3 match counters (like colors) and a bomb, then piece cannot be placed
+		if ((matchCounter >= 3))  {
+			if (bombExists || pieceType == obj_bomb) {
+				canPlace = false; matchCounter = 0; bombExists = 0; 
+			}
+		}
+			
+		//checks if the above color falls into the trios
+		if (canPlace) 
+			if (instance_exists(up)) canPlace = scr_checkColors(color,up.index);
+			
+		
 	}
 	//if the colors work, create the piece, reset the available pieces, and add it to the placed pieces
 	if (canPlace) {
@@ -58,5 +61,5 @@ for (var i = 0; i < boardWidth; i++){
 			bombCount++;
 		}
 		ds_list_add(placedPieces,color);
-	}
+	} else i--;
 }

@@ -80,18 +80,6 @@ if (global.active) {
 	#endregion
 }
 
-#region On End Countdown / Restart Control
-if (resume) || (global.restart) {
-	instance_activate_all();
-	par_entity.visible = true;
-	obj_cursor.visible = true;
-	screenShot = noone;
-	resume = false;
-	pause = false;
-	pauseCursor = 0;
-}
-#endregion
-
 var animSpeed = 0.2;
 if (round(pauseAnim) < 7){
 	pauseAnim += animSpeed;
