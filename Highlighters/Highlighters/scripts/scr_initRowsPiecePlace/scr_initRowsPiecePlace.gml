@@ -5,6 +5,8 @@ var lastTwelve = argument3;
 var bombsInRow = argument4;
 var conditionOneRetry = 0;   //  generate a piece not in history
 var conditionTwoRetry = 0; //  generate a piece not in hisotry, if 3 same have been created 
+var conditionThreeRetry = 0; //  generate a matching color if three of the same have been placed
+
 var availablePieces = obj_controller.selectedEntities;
 var canPlace = instance_exists(scr_getPieceAtPos(rp,cp));
 var bombProb = 1;
@@ -19,7 +21,7 @@ while !(canPlace) {
 		//checks if less than 3 bombs have been placed
 		//if there has been, default to a charm
 		if (bombCount < 3) {
-			if (ds_list_size(lastTwelve) > 0) {
+			if (ds_list_size(lastTwelve) > 0) && (conditionThreeRetry < 6) {
 				// check if three pieces of the saem color have been placed
 				// if they have, create a piece of the same color
 				for (var i = 0; i < ds_list_size(lastTwelve); i++) {
@@ -27,6 +29,7 @@ while !(canPlace) {
 					var pieceFrequency = ds_map_find_value(lastTwelveFrequency,entity)
 					if (pieceFrequency >= 3) {
 						color = entity;
+						conditionThreeRetry++;
 						break;
 					}
 					else if (pieceFrequency == undefined) ds_map_add(lastTwelveFrequency,entity,0);
@@ -46,14 +49,14 @@ while !(canPlace) {
 		//ensures that the colors touching do not fall into the "trio" of colors
 		//the trio describes colors that can not spawn together due to similarity in colors
 		canPlace = scr_checkColors(bottom.index,color);
-		//condition two piece generation
+		//condition one piece generation
 		if (conditionOneRetry < 6) && canPlace {
 			if (ds_list_find_index(lastTwelve,color) != -1) {
 				canPlace = false;
 				conditionOneRetry++;
 			}
 		}
-		//condition three piece generation
+		//condition two piece generation
 		if (conditionTwoRetry < 6) && canPlace {
 			var counter = 0;
 			for (var i = 0; i < ds_list_size(lastTwelve); i++) {

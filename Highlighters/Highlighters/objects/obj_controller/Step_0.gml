@@ -73,7 +73,7 @@ if ((global.active) && !(global.gameover)) {
 			risePace -= (orgRisePace - minRisePace) / maxLevel;
 		}
 	}
-	
+	//enable canRise if there are no pieces in the top row
 	if !(canRise) {
 		canRise = (!scr_checkRow(boardHeight))	
 	}
