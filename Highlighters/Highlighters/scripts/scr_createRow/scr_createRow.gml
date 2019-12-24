@@ -26,7 +26,7 @@ for (var i = 0; i < boardWidth; i++) {
 	var colorIndex = irandom_range(0,array_length_1d(availablePieces) - 1);
 	var color = availablePieces[colorIndex] * pieceFrames;
 	var pieceType = (bombCount < 3) ? 
-					((irandom_range(1,6) > bombProb) ? obj_charm : obj_bomb) : obj_charm;
+					((irandom_range(1,5) > bombProb) ? obj_charm : obj_bomb) : obj_charm;
 	var canPlace = (pieceType == obj_bomb) ? (ds_list_find_index(placedBombs,color) == -1) : true;
 	var up = scr_getPieceAtPos(0, i);
 	var matchCounter = 0;
@@ -49,13 +49,13 @@ for (var i = 0; i < boardWidth; i++) {
 				}
 			}
 			//pick piece type randomly
-			pieceType = (irandom_range(1,6) > bombProb) ? obj_charm : obj_bomb;
+			pieceType = (irandom_range(1,5) > bombProb) ? obj_charm : obj_bomb;
 			if (pieceType == obj_bomb) {
 				do {
 					canPlace = (ds_list_find_index(placedBombs,color) == -1);
 					if (canPlace) break;
 					else color = availablePieces[irandom_range(0,array_length_1d(availablePieces) - 1)] * pieceFrames;
-				} until !(canPlace);
+				} until (canPlace);
 			}
 		} else pieceType = obj_charm;
 	
@@ -75,7 +75,6 @@ for (var i = 0; i < boardWidth; i++) {
 			for (var j = 0; j < ds_list_size(bottomRows); j++) {
 				if (ds_list_find_value(bottomRows,j) == color) counter++;
 			}
-			show_debug_message(color)
 			canPlace = counter < 3;
 			if (counter >= 3) conditionTwoRetry++;
 		}

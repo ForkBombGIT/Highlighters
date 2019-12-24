@@ -34,7 +34,7 @@ if (global.active) {
 		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
 			switch (pauseCursor) {
 				case 0:
-					resume = true;
+					if !(alarm[0]) alarm[0] = 1;	
 					break;
 				case 1:
 					flash = true;

@@ -5,15 +5,15 @@ if !(pause) || !sprite_exists(screenShot){
 	//draws gui
 	draw_set_font(timeFont);
 	//time
-	draw_text(370,366,string_replace(string_format(minutes,2,0)," ", "0"));
-	draw_text(352 + sprite_get_width(spr_timenumbers) * 3,366,string_replace(string_format(seconds,2,0)," ","0"));
+	draw_text(369,369,string_replace(string_format(minutes,2,0)," ", "0"));
+	draw_text(414,369,string_replace(string_format(seconds,2,0)," ","0"));
 	draw_set_font(numFont);
 	//score
 	draw_sprite(spr_score,0,360,72);
-	draw_text(378,99,string_replace_all(string_format(obj_controller.gameScore,6,0)," ", "0"));
+	draw_text(377,99,string_replace_all(string_format(obj_controller.gameScore,6,0)," ", "0"));
 	//game level
 	draw_sprite(spr_speed,0,360,144);
-	draw_text(423,168,string_replace_all(string_format(obj_controller.gameSpeed,3,0)," ", "0"));
+	draw_text(422,168,string_replace_all(string_format(obj_controller.gameSpeed,3,0)," ", "0"));
 	//draws freeze sprite
 	if (obj_controller.freeze) {
 		draw_set_font(freezeFont);

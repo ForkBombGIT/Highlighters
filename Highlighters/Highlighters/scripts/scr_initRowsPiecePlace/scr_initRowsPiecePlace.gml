@@ -37,13 +37,13 @@ while !(canPlace) {
 				}
 			}
 			//pick piece type randomly
-			tileType = (irandom_range(1,6) > bombProb) ? obj_charm : obj_bomb;
+			tileType = (irandom_range(1,5) > bombProb) ? obj_charm : obj_bomb;
 			if (tileType == obj_bomb) {
 				do {
 					canPlace = (ds_list_find_index(bombsInRow,color) == -1);
 					if (canPlace) break;
 					else color = availablePieces[irandom_range(0,array_length_1d(availablePieces) - 1)] * pieceFrames;
-				} until !(canPlace);
+				} until (canPlace);
 			}
 		} else tileType = obj_charm;
 		//ensures that the colors touching do not fall into the "trio" of colors

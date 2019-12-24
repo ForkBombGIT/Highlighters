@@ -17,7 +17,7 @@ if (round(optionBackgroundAnimationIndex) < 32){
 #region Menu Navigation
 if (start != 0) {
 	//menu item selection
-	if (keyboard_check_pressed(keyB)) {
+	if (keyboard_check_pressed(keyB) && !(inputChangeKey)) {
 		if (start == 4) start = 2;
 		start--; flash = true;
 		if !(alarm[0]) alarm[0] = 2;

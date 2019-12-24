@@ -27,7 +27,6 @@ for (var row = 0; row < startingRows; row++) {
 			
 		} else break;
 	}
-	show_debug_message(pieceCount);
 	//loop until enough pieces have been placed
 	if (pieceCount < maxPieces) {
 		if (row == startingRows - 1) row = 0;
