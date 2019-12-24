@@ -4,6 +4,10 @@ if (start == 3)
 else { 
 	draw_sprite(spr_menu_bg,0,0,0);
 	draw_sprite(spr_menu_title,0,0,0);
+	if (start == 4) {
+		draw_sprite(spr_practice_prompt,0,105,198);
+		draw_sprite(spr_start,0,120,360);
+	}
 }
 switch (start) {
 	case 0:
@@ -28,7 +32,15 @@ switch (start) {
 		switch (option) {
 			//input menu
 			case 0:
-				draw_sprite(spr_keys,0,288,48);
+				draw_sprite(spr_menu_option_cursor,0,264,inputCursorPositions[cursorPosition]);
+				draw_sprite(spr_keys,inputControlValues[0],264,99);
+				draw_sprite(spr_keys,inputControlValues[1],264,135);
+				draw_sprite(spr_keys,inputControlValues[2],264,171);
+				draw_sprite(spr_keys,inputControlValues[3],264,207);
+				draw_sprite(spr_keys,inputControlValues[4],264,243);
+				draw_sprite(spr_keys,inputControlValues[5],264,279);
+				draw_sprite(spr_keys,inputControlValues[6],264,315);
+				draw_sprite(spr_keys,inputControlValues[7],264,361);
 				draw_sprite(spr_menu_option_prompt,inputPrompt,24,408);
 				break;
 			//av menu

@@ -26,9 +26,15 @@ if (start != 0) {
 	if (keyboard_check_pressed(vk_anykey)) {
 		//moving up and down
 		if (keyboard_key == keyUp) 
-			cursorPosition = clamp(cursorPosition - 1,0,(start == 2 || start == 3) ? 1 : 2);
+			cursorPosition = clamp(cursorPosition - 1,0,(start == 2) ? 1 : 
+														((start == 3) ? ((option == 0) ? array_length_1d(inputCursorPositions) - 1 : 
+														0) : 
+														2));
 		else if (keyboard_key == keyDown) 
-			cursorPosition = clamp(cursorPosition + 1,0,(start == 2 || start == 3) ? 1 : 2);
+			cursorPosition = clamp(cursorPosition + 1,0,(start == 2) ? 1 : 
+														((start == 3) ? ((option == 0) ? array_length_1d(inputCursorPositions) - 1 : 
+														0) : 
+														2));
 	}
 }
 
@@ -73,6 +79,23 @@ switch (start) {
 		}
 		break;
 	case 3:
+		if (inputChangeKey) {
+			if (keyboard_check_pressed(vk_anykey)) {
+				inputChangeKey = false;
+				inputPrompt = 0;
+			}
+		} else {
+			if (keyboard_check_pressed(vk_anykey)) {
+				if (inputPrompt == 1) && (cursorPosition != array_length_1d(inputCursorPositions) - 1)  
+					inputPrompt = 0;
+				if (keyboard_key == vk_enter){
+					inputChangeKey = true;	
+					if (cursorPosition == array_length_1d(inputCursorPositions) - 1)
+						inputPrompt = 1
+					else inputPrompt = 2;
+				}	
+			}
+		}
 		break;
 	case 4:
 		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {

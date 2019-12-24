@@ -32,5 +32,8 @@ keyLeft = vk_left;
 keyRight = vk_right;
 keyPause = vk_enter;
 keyOff = vk_escape;
-//controls what prompt should be shown for options
+//input menu variables
+inputChangeKey = false;
+inputCursorPositions = [45,93,129,165,201,237,273,309,355];
+inputControlValues = [6,5,4,3,22,23,45,76];
 inputPrompt = 0;

@@ -23,6 +23,11 @@ if (round(endOptionAnim) < 7){
 	endOptionAnim += animSpeed;
 } else endOptionAnim = 1;
 
+animSpeed = 2 / room_speed;
+if (round(gameoverAnim) < 2){
+	gameoverAnim += animSpeed;
+} else gameoverAnim = 0;
+
 if (restart) {
 	instance_create_layer(x,y,"Entities",obj_controller);	
 	instance_create_layer(168,window_get_height()/4,"GUI",obj_countdown);

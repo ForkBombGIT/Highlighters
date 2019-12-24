@@ -1,8 +1,10 @@
 //controls flicker
 flash = false;
+
 //gameover menu
 endCursor = 0;
 endOptionAnim = 0;
+gameoverAnim = 0;
 
 //define a key from user settings
 keyA = obj_controller.keyA;
