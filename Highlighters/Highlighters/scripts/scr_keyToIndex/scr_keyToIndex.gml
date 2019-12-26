@@ -3,14 +3,32 @@ var key = argument0;
 //else if (key == vk_lcontrol) return 9;
 //else if (key == vk_rshift) return 13;
 //else if (key == vk_lshift) return 25;
-if (key = vk_enter) return 45;
-if (key = vk_right) return 3;
-if (key = vk_left) return 4;
-if (key = vk_down) return 5;
-if (key = vk_up) return 6;
-if (key = vk_tab) return 58;
-if (key = vk_space) return 8;
-if (key = vk_backspace) return 62;
+if (key == vk_enter) return 45;
+if (key == vk_right) return 3;
+if (key == vk_left) return 4;
+if (key == vk_down) return 5;
+if (key == vk_up) return 6;
+if (key == vk_tab) return 58;
+if (key == vk_space) return 8;
+if (key == vk_backspace) return 62;
+#region numpad
+if (key == vk_numpad0) return 2;
+if (key == vk_numpad1) return 12;
+if (key == vk_numpad2) return 11;
+if (key == vk_numpad3) return 10;
+if (key == vk_numpad4) return 28;
+if (key == vk_numpad5) return 27;
+if (key == vk_numpad6) return 26;
+if (key == vk_numpad7) return 44;
+if (key == vk_numpad8) return 43;
+if (key == vk_numpad9) return 42;
+if (key == vk_add) return 41;
+if (key == vk_subtract) return 59;
+if (key == vk_divide) return 61;
+if (key == vk_multiply) return 60;
+if (key == vk_decimal) return 1;
+#endregion
+#region letters
 if (chr(key) == "A") return 40;
 if (chr(key) == "B") return 19;
 if (chr(key) == "C") return 21;
@@ -37,6 +55,8 @@ if (chr(key) == "W") return 56;
 if (chr(key) == "X") return 22;
 if (chr(key) == "Y") return 52;
 if (chr(key) == "Z") return 23;
+#endregion
+#region numbers
 if (key == ord("0")) return 65;
 if (key == ord("9")) return 66;
 if (key == ord("8")) return 67;
@@ -47,27 +67,17 @@ if (key == ord("4")) return 71;
 if (key == ord("3")) return 72;
 if (key == ord("2")) return 73;
 if (key == ord("1")) return 74;
-show_debug_message(key)
-
-//ds_map_add(keyToIndex,ord("/"),14);
-//ds_map_add(keyToIndex,ord("."),15);
-//ds_map_add(keyToIndex,ord(","),16);
-//ds_map_add(keyToIndex,ord("\\"),24);
-//ds_map_add(keyToIndex,ord("\\"),29);
-//ds_map_add(keyToIndex,ord("'"),30);
-//ds_map_add(keyToIndex,ord(";"),31);
-//ds_map_add(keyToIndex,ord("]"),46);
-//ds_map_add(keyToIndex,ord("["),47);
-//ds_map_add(keyToIndex,ord("="),63);
-//ds_map_add(keyToIndex,ord("-"),64);
-//ds_map_add(keyToIndex,ord("0"),65);
-//ds_map_add(keyToIndex,ord("9"),66);
-//ds_map_add(keyToIndex,ord("8"),67);
-//ds_map_add(keyToIndex,ord("7"),68);
-//ds_map_add(keyToIndex,ord("6"),69);
-//ds_map_add(keyToIndex,ord("5"),70); 
-//ds_map_add(keyToIndex,ord("4"),71); 
-//ds_map_add(keyToIndex,ord("3"),72); 
-//ds_map_add(keyToIndex,ord("2"),73);
-//ds_map_add(keyToIndex,ord("1"),74);
-//ds_map_add(keyToIndex,ord("`"),75); 
+#endregion
+#region punctuation
+if (key == 191) return 14; // forward slash
+if (key == 190) return 15; // period
+if (key == 188) return 16; // comma
+if (key == 220) return 24; // backslash
+if (key == 222) return 30; // single quote
+if (key == 192) return 75; // back tick
+if (key == 186) return 31; // semi colon
+if (key == 221) return 46; // closing square bracket
+if (key == 219) return 47; // opening square bracket
+if (key == 187) return 63; // equal sign
+if (key == 189) return 64; // dash
+#endregion
