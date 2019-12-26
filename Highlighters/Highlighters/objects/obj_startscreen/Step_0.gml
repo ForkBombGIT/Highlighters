@@ -17,24 +17,26 @@ if (round(optionBackgroundAnimationIndex) < 32){
 #region Menu Navigation
 if (start != 0) {
 	//menu item selection
-	if (keyboard_check_pressed(keyB) && !(inputChangeKey)) {
-		if (start == 4) start = 2;
-		start--; flash = true;
-		if !(alarm[0]) alarm[0] = 2;
-	}	
+	if !(inputChangeKey) {
+		if (keyboard_check_pressed(keyB)) {
+			if (start == 4) start = 2;
+			start--; flash = true;
+			if !(alarm[0]) alarm[0] = 2;
+		}	
 	
-	if (keyboard_check_pressed(vk_anykey)) {
-		//moving up and down
-		if (keyboard_key == keyUp) 
-			cursorPosition = clamp(cursorPosition - 1,0,(start == 2) ? 1 : 
-														((start == 3) ? ((option == 0) ? array_length_1d(inputCursorPositions) - 1 : 
-														0) : 
-														2));
-		else if (keyboard_key == keyDown) 
-			cursorPosition = clamp(cursorPosition + 1,0,(start == 2) ? 1 : 
-														((start == 3) ? ((option == 0) ? array_length_1d(inputCursorPositions) - 1 : 
-														0) : 
-														2));
+		if (keyboard_check_pressed(vk_anykey)) {
+			//moving up and down
+			if (keyboard_key == keyUp) 
+				cursorPosition = clamp(cursorPosition - 1,0,(start == 2) ? 1 : 
+															((start == 3) ? ((option == 0) ? array_length_1d(inputCursorPositions) - 1 : 
+															0) : 
+															2));
+			else if (keyboard_key == keyDown) 
+				cursorPosition = clamp(cursorPosition + 1,0,(start == 2) ? 1 : 
+															((start == 3) ? ((option == 0) ? array_length_1d(inputCursorPositions) - 1 : 
+															0) : 
+															2));
+		}
 	}
 }
 
@@ -79,16 +81,66 @@ switch (start) {
 		}
 		break;
 	case 3:
+		// if the user is changing the key
 		if (inputChangeKey) {
 			if (keyboard_check_pressed(vk_anykey)) {
-				inputChangeKey = false;
-				inputPrompt = 0;
+				   var keyPressed = keyboard_key;
+				   // if cursor is not at select
+				   if (cursorPosition - 1 >= 0) {
+					   //sprite index
+					   var index = scr_keyToIndex(keyPressed);
+					   var validKey = true;
+					   //checks for duplicate keys
+					   for (var i = 0; i < array_length_1d(inputControlValues); i++) {
+						   if (inputControlValues[i] == index) {
+							   validKey = false;
+							   break;
+						   }
+					   }
+					   //if valid index
+					   if (index != 0) && (validKey) {
+						   //set the sprite to the index
+						   inputControlValues[cursorPosition - 1] = index;
+						   //set the key to the new control
+						   switch (cursorPosition - 1) {
+							   case 0:
+								keyUp = keyPressed;
+								break;
+							   case 1:
+								keyDown = keyPressed;
+								break;
+							   case 2:
+								keyLeft = keyPressed;
+								break;
+							   case 3:
+								keyRight = keyPressed;
+								break;
+							   case 4:
+								keyA = keyPressed;
+								break;
+							   case 5:
+								keyB = keyPressed;
+								break;
+							   case 6:
+								keyPause = keyPressed;
+								keySelect = keyPressed;
+								break;
+						   }
+					   }
+				   }
+				
+				   inputChangeKey = false;
+				   inputPrompt = 0;
 			}
 		} else {
+			//handles key selection
 			if (keyboard_check_pressed(vk_anykey)) {
-				if (inputPrompt == 1) && (cursorPosition != array_length_1d(inputCursorPositions) - 1)  
+				//resets input prompt if it is set to 1, and the cursor is not at the esc option
+				if (inputPrompt == 1)
 					inputPrompt = 0;
-				if (keyboard_key == vk_enter){
+				// if enter is pressed (key changing key), and not at position 0
+				// allow the user to change the key
+				if (keyboard_key == vk_enter) && (cursorPosition != 0) {
 					inputChangeKey = true;	
 					if (cursorPosition == array_length_1d(inputCursorPositions) - 1)
 						inputPrompt = 1

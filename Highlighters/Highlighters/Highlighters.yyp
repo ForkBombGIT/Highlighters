@@ -458,7 +458,7 @@
             "Key": "7e4901c7-b089-47ce-8749-2a680733b18c",
             "Value": {
                 "id": "460f9d6f-1c9a-40f9-b1f2-4bc5ae19e19f",
-                "resourcePath": "scripts\\scr_indexToKey\\scr_indexToKey.yy",
+                "resourcePath": "scripts\\scr_keyToIndex\\scr_keyToIndex.yy",
                 "resourceType": "GMScript"
             }
         },
