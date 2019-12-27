@@ -1,6 +1,14 @@
 if (global.restart) { totalMillis = 0; minutes = 0; seconds = 0; milli = 0; }
 
 if (global.active) {
+	#region Combo drawing
+	if (obj_matchmakerManager.combo) {
+		var xPos = ds_list_find_value(ds_list_find_value(obj_matchmakerManager.matchmakers, 0).final,0).x;
+		var yPos = ds_list_find_value(ds_list_find_value(obj_matchmakerManager.matchmakers, 0).final,0).y;
+	
+		
+	}
+	#endregion
 	#region Time Counting
 	if !(pause) && !(global.gameover) {	
 		milli++;

@@ -1,8 +1,4 @@
 var key = argument0;
-//if (key == vk_rcontrol) return 7;
-//else if (key == vk_lcontrol) return 9;
-//else if (key == vk_rshift) return 13;
-//else if (key == vk_lshift) return 25;
 if (key == vk_enter) return 45;
 if (key == vk_right) return 3;
 if (key == vk_left) return 4;

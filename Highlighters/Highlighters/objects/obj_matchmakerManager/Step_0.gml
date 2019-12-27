@@ -1,5 +1,5 @@
 var activeMatchmakers = instance_number(obj_matchmaker);
-if !(combo) { //possibly remove this?
+if !(combo) { 
 	if (activeMatchmakers > 1) {
 		for (var i = 0; i < activeMatchmakers - 1; i++) {
 			var matchmaker = instance_find(obj_matchmaker,i);
@@ -20,27 +20,49 @@ if !(combo) { //possibly remove this?
 					}
 				}
 				if (deletion) break;
-				//find matchmaker in matchmakers list
-				var val = ds_list_find_value(matchmakers,matchmaker.id)
+			}
+		}
+	}
+	//find matchmaker in matchmakers list
+	//combo handling
+	for (var i = 0; i < activeMatchmakers; i++) {
+		var matchmaker = instance_find(obj_matchmaker,i);
+		if (instance_exists(matchmaker)) {
+			if (matchmaker.animating) {
+				var val = ds_list_find_index(matchmakers,matchmaker)
 				//if exists, remove it from active matchmakers list
-				if (val) ds_list_delete(matchmakers,val.id);
+				if (val != -1) ds_list_delete(matchmakers,val);
 				//otherwise
 				else {
 					//if it has never been seen before, add to both arrays (seen, and active)
-					if !(ds_list_find_value(seen_matchmakers,matchmaker.id)) {
-						ds_list_add(matchmakers,matchmaker.id);
-						ds_list_add(seen_matchmakers,matchmaker.id);
+					if (ds_list_find_index(seen_matchmakers,matchmaker) == -1) {
+						ds_list_add(matchmakers,matchmaker);
+						ds_list_add(seen_matchmakers,matchmaker);
+					}
+				}
+		
+				//determines if a combo exists
+				if (ds_list_size(matchmakers) > 0) {
+					var total = 0;
+					for (var i = 0; i < ds_list_size(matchmakers); i++) {
+						total += ds_list_size(ds_list_find_value(matchmakers,i).final)
+					}
+					if (total >= comboSize) {
+						activeComboSize = total;
+						var comboObj = instance_create_layer(ds_list_find_value(ds_list_find_value(matchmakers,0).final,0).x - 24,
+															 ds_list_find_value(ds_list_find_value(matchmakers,0).final,0).y - 24,
+															 "GUI",
+															 obj_combo
+															 );
+						comboObj.comboSize = activeComboSize;
+						combo = true;
 					}
 				}
 			}
 		}
-	
-		if (ds_list_size(matchmakers) > 1) {
-			show_debug_message("combo!");
-			combo = true;
-		}	
-	
-		ds_list_clear(matchmakers);
-	
-	} else combo = false;
-} 
+	}
+} else {
+	combo = false;
+	activeComboSize = -1;
+	ds_list_clear(matchmakers);
+}

@@ -76,23 +76,35 @@ for (var i = 0; i < boardWidth; i++) {
 				if (ds_list_find_value(bottomRows,j) == color) counter++;
 			}
 			canPlace = counter < 3;
-			if (counter >= 3) conditionTwoRetry++;
+			if (counter >= 3) {
+				conditionTwoRetry++;
+			}
 		}
-		
 		
 		//prevents a match occuring in a row
 		//increments match counter if pieces match colors
 		var index = 1;
 		while (color == ds_list_find_value(placedPieces,ds_list_size(placedPieces) - index)) {
 			matchCounter++;	
-			if (++index > ds_list_size(placedPieces)) 
+			if (++index > ds_list_size(placedPieces)) {
 				break;
+			}
 		}
 		
 		//if there are >= 3 match counters (like colors) and a bomb, then piece cannot be placed
 		if ((matchCounter >= 3))  {
 			if (pieceType == obj_bomb) || (ds_list_find_index(placedBombs,color) != -1) {
 				canPlace = false;
+			}
+		}
+		
+		//ensures 5 pieces of the same color are not in a row
+		matchCounter = 0;
+		for (var j = 0; j < ds_list_size(placedPieces); j++) {
+			if (color == ds_list_find_value(placedPieces,j)) {
+				if (++matchCounter >= 5) {
+					canPlace = false;	
+				}
 			}
 		}
 		

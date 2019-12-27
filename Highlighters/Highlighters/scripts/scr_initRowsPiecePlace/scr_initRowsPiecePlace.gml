@@ -57,8 +57,8 @@ while !(canPlace) {
 			}
 		}
 		//condition two piece generation
+		var counter = 0;
 		if (conditionTwoRetry < 6) && canPlace {
-			var counter = 0;
 			for (var i = 0; i < ds_list_size(lastTwelve); i++) {
 				if (ds_list_find_value(lastTwelve,i) == color) counter++;
 			}

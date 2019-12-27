@@ -8,7 +8,8 @@
         "886c4178-698c-4f39-9fa4-cc25e6b83826",
         "517cce44-098c-41d4-9927-bc6c3da0f581",
         "ffadee16-c9dd-4f87-9364-a9810622f731",
-        "932f2550-b88f-4bd3-aa2f-7253a68db6ef"
+        "932f2550-b88f-4bd3-aa2f-7253a68db6ef",
+        "73ff360c-df7d-4d85-816b-4bce3ec3a406"
     ],
     "filterType": "GMScript",
     "folderName": "Row Building",
