@@ -55,7 +55,7 @@ if !(global.gameover) {
 						var entity = ds_list_find_value(final,i);
 						instance_destroy(entity);
 					}
-					obj_controller.gameScore += (ds_list_size(final) * baseScoreInc) + ((ds_list_size(final) - matchSize) * additionalScoreInc);
+					obj_controller.gameScore += (ds_list_size(final) * baseScoreInc) + (comboSize * comboBonus);
 					instance_destroy();
 				}		
 			}	

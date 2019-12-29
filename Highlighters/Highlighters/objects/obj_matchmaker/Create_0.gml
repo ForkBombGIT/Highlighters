@@ -3,8 +3,7 @@ origin = instance_position(x,y,par_entity);
 //checks color to be matched
 colorIndex = -1;
 //controls match search
-baseScoreInc = 10;
-additionalScoreInc = 5;
+match = 0;
 matchSize = 4;
 another = true;
 final = ds_list_create();
@@ -21,3 +20,7 @@ flickerCount = 0;
 animating = false;
 flicker = false;
 postWhite = false;
+//scoring
+comboSize = 0;
+baseScoreInc = 10;
+comboBonus = 50;

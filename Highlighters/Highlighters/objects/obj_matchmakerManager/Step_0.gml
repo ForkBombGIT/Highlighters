@@ -48,13 +48,14 @@ if !(combo) {
 						total += ds_list_size(ds_list_find_value(matchmakers,i).final)
 					}
 					if (total >= comboSize) {
-						activeComboSize = total;
+						var firstMaker = ds_list_find_value(matchmakers,0);
+						firstMaker.comboSize = total - (comboSize - 1);
 						var comboObj = instance_create_layer(ds_list_find_value(ds_list_find_value(matchmakers,0).final,0).x - 24,
 															 ds_list_find_value(ds_list_find_value(matchmakers,0).final,0).y - 24,
 															 "GUI",
 															 obj_combo
-															 );
-						comboObj.comboSize = activeComboSize;
+									 						 );
+						comboObj.comboSize = total;
 						combo = true;
 					}
 				}
