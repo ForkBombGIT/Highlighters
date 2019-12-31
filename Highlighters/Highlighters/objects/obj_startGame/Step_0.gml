@@ -9,13 +9,14 @@ if (round(cursorFlickerIndex) < 2){
 if (practice) {
 	if !(alarm[0]) alarm[0] = 1;	
 }
-else if (keyboard_check_released(keyA) || keyboard_check_released(keySelect)) {
+else if (keyboard_check_released(ds_map_find_value(global.controls,"A")) || 
+		 keyboard_check_released(ds_map_find_value(global.controls,"SELECT"))) {
 	if (cursor == 2) {
 		flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}
 }
-else if (keyboard_check_released(keyB)) {
+else if (keyboard_check_released(ds_map_find_value(global.controls,"B"))) {
 	flash = true;
 	start = -1;
 	if !(alarm[0]) alarm[0] = 2;
@@ -25,9 +26,9 @@ else if (keyboard_check_released(keyB)) {
 #region Cursor Control
 if (keyboard_check_pressed(vk_anykey)) {
 	//moving up and down
-	if (keyboard_key == keyUp) 
+	if (keyboard_key == ds_map_find_value(global.controls,"UP")) 
 		cursor = clamp(cursor - 1,0,2);
-	else if (keyboard_key == keyDown) {
+	else if (keyboard_key == ds_map_find_value(global.controls,"DOWN")) {
 		cursor = clamp(cursor + 1,0,2);
 	}
 }

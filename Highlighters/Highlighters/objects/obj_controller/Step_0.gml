@@ -20,6 +20,7 @@ if (global.restart) {
 	risePace = orgRisePace - (((orgRisePace - minRisePace) / maxLevel) * (gameSpeed - 1))
 	instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
 }
+
 //handles gameover logic
 if (global.gameover) {
 	global.forceRise = false;
@@ -30,6 +31,7 @@ if (global.gameover) {
 		alarm[0] = 1; 
 	}
 }
+
 //combo freeze handling
 for (var i = 0; i < instance_number(obj_matchmaker); i++) {
 	var entity = instance_find(obj_matchmaker,i);
@@ -46,6 +48,7 @@ for (var i = 0; i < instance_number(obj_matchmaker); i++) {
 		}
 	}
 } 
+
 //clear active match list if no matchmakers exist
 if (instance_number(obj_matchmaker) == 0) {
 	ds_list_clear(activeMatches)	
@@ -84,7 +87,7 @@ if ((global.active) && !(global.gameover)) {
 	}
 	
 	//manual new row
-	if (keyboard_check(keyB) && !(global.forceRise)) {
+	if (keyboard_check(ds_map_find_value(global.controls,"B")) && !(global.forceRise)) {
 		//checks if piece is gonna rise into game over territory
 		if (scr_checkRow(boardHeight)) {
 			global.gameover = true;

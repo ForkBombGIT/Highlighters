@@ -1,16 +1,17 @@
 #region Menu navigation
-if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
+if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
+    keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
 	flash = true;
 	alarm[0] = 2;		
 	
 }
 
-if (keyboard_check_pressed(keyUp)) {
+if (keyboard_check_pressed(ds_map_find_value(global.controls,"UP"))) {
 	if (endCursor > 0) {
 		endCursor--;	
 	}
 }
-if (keyboard_check_pressed(keyDown)) {
+if (keyboard_check_pressed(ds_map_find_value(global.controls,"DOWN"))) {
 	if (endCursor < 2) {
 		endCursor++;	
 	}

@@ -1,4 +1,17 @@
 randomize();
+//holds key settings
+global.controls = ds_map_create()
+if (!file_exists("data.ini")) {
+	ds_map_add(global.controls,"A",ord("X"));
+	ds_map_add(global.controls,"B",ord("Z"));
+	ds_map_add(global.controls,"UP",vk_up);	
+	ds_map_add(global.controls,"DOWN",vk_down);	
+	ds_map_add(global.controls,"LEFT",vk_left);	
+	ds_map_add(global.controls,"RIGHT",vk_right);
+	ds_map_add(global.controls,"PAUSE",vk_enter);
+	ds_map_add(global.controls,"SELECT",vk_enter);
+	ds_map_add(global.controls,"OFF",vk_escape);
+}
 image_speed = 0.02;
 //holds whether the user wants to practice
 practice = false;
@@ -22,16 +35,6 @@ optionAnimationIndex = 0;
 optionBackgroundAnimationIndex = 0;
 //holds the blocks to be used in the game
 selectedEntities = [];
-//holds a and b control keys
-keyA = ord("X");
-keyB = ord("Z");
-keySelect = vk_enter;
-keyUp = vk_up;
-keyDown = vk_down;
-keyLeft = vk_left;
-keyRight = vk_right;
-keyPause = vk_enter;
-keyOff = vk_escape;
 //input menu variables
 inputChangeKey = false;
 inputCursorPositions = [45,93,129,165,201,237,273,309,355];

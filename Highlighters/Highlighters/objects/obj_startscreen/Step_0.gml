@@ -18,7 +18,7 @@ if (round(optionBackgroundAnimationIndex) < 32){
 if (start != 0) {
 	//menu item selection
 	if !(inputChangeKey) {
-		if (keyboard_check_pressed(keyB)) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"B"))) {
 			if (start == 4) start = 2;
 			start--; flash = true;
 			if !(alarm[0]) alarm[0] = 2;
@@ -26,12 +26,12 @@ if (start != 0) {
 	
 		if (keyboard_check_pressed(vk_anykey)) {
 			//moving up and down
-			if (keyboard_key == keyUp) 
+			if (keyboard_key == ds_map_find_value(global.controls,"UP")) 
 				cursorPosition = clamp(cursorPosition - 1,0,(start == 2) ? 1 : 
 															((start == 3) ? ((option == 0) ? array_length_1d(inputCursorPositions) - 1 : 
 															0) : 
 															2));
-			else if (keyboard_key == keyDown) 
+			else if (keyboard_key == ds_map_find_value(global.controls,"DOWN")) 
 				cursorPosition = clamp(cursorPosition + 1,0,(start == 2) ? 1 : 
 															((start == 3) ? ((option == 0) ? array_length_1d(inputCursorPositions) - 1 : 
 															0) : 
@@ -43,13 +43,15 @@ if (start != 0) {
 switch (start) {
 	case 0:
 		//menu item selection
-		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
+			keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
 			start = 1; flash = true;
 			if !(alarm[0]) alarm[0] = 2;
 		}
 		break;
 	case 1:
-		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
+			keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
 			switch (cursorPosition) {
 				case 0: //classic
 					start = 5;
@@ -67,7 +69,8 @@ switch (start) {
 		break;
 	case 2:
 		option = -1;
-		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
+			keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
 			switch (cursorPosition) {
 				case 0: //input
 					option = 0
@@ -104,26 +107,26 @@ switch (start) {
 						   //set the key to the new control
 						   switch (cursorPosition - 1) {
 							   case 0:
-								keyUp = keyPressed;
+							    ds_map_set(global.controls,"UP",keyPressed);
 								break;
 							   case 1:
-								keyDown = keyPressed;
+							    ds_map_set(global.controls,"DOWN",keyPressed)
 								break;
 							   case 2:
-								keyLeft = keyPressed;
+							    ds_map_set(global.controls,"LEFT",keyPressed)
 								break;
 							   case 3:
-								keyRight = keyPressed;
+							    ds_map_set(global.controls,"RIGHT",keyPressed)
 								break;
 							   case 4:
-								keyA = keyPressed;
+							    ds_map_set(global.controls,"A",keyPressed)
 								break;
 							   case 5:
-								keyB = keyPressed;
+							    ds_map_set(global.controls,"B",keyPressed)
 								break;
 							   case 6:
-								keyPause = keyPressed;
-								keySelect = keyPressed;
+							    ds_map_set(global.controls,"PAUSE",keyPressed)
+							    ds_map_set(global.controls,"SELECT",keyPressed)
 								break;
 						   }
 					   }
@@ -152,23 +155,14 @@ switch (start) {
 		}
 		break;
 	case 4:
-		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
+			keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
 			start++;
 			practice = true;
 		}
 		break;
 	case 5:
-		var startGame = instance_create_layer(0,0,"Instances",obj_startGame);
-		startGame.practice = practice;
-		startGame.keyA = keyA;
-		startGame.keyB = keyB;
-		startGame.keySelect = keySelect;
-		startGame.keyUp = keyUp;
-		startGame.keyDown = keyDown;
-		startGame.keyLeft = keyLeft;
-		startGame.keyRight = keyRight;
-		startGame.keyPause = keyPause;
-		startGame.keyOff = keyOff;
+		instance_create_layer(0,0,"Instances",obj_startGame);
 		instance_destroy();
 		break;
 }

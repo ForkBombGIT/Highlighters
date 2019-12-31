@@ -29,16 +29,5 @@ cursorFlickerIndex = 0;
 cursorType = 0;
 image_speed = 0.033;
 
-//holds keys
-keyA = ord("X");
-keyB = ord("Z");
-keySelect = vk_enter;
-keyUp = vk_up;
-keyDown = vk_down;
-keyLeft = vk_left;
-keyRight = vk_right;
-keyPause = vk_enter;
-keyOff = vk_escape;
-
 //whether the user wants to practice or not
 practice = false;

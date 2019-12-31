@@ -1,14 +1,6 @@
 if (global.restart) { totalMillis = 0; minutes = 0; seconds = 0; milli = 0; }
 
 if (global.active) {
-	#region Combo drawing
-	if (obj_matchmakerManager.combo) {
-		var xPos = ds_list_find_value(ds_list_find_value(obj_matchmakerManager.matchmakers, 0).final,0).x;
-		var yPos = ds_list_find_value(ds_list_find_value(obj_matchmakerManager.matchmakers, 0).final,0).y;
-	
-		
-	}
-	#endregion
 	#region Time Counting
 	if !(pause) && !(global.gameover) {	
 		milli++;
@@ -17,29 +9,25 @@ if (global.active) {
 			milli = 0; seconds++;
 		} 
 		if (seconds >= 60) {seconds = 0; minutes += 1;}	
-		
-		keyUp = obj_controller.keyUp;
-		keyDown = obj_controller.keyDown;
-		keySelect = obj_controller.keySelect;
-		keyA = obj_controller.keyA;
 	}
 	#endregion
 	#region Pause Handling
 	if (pause){
 		#region Menu Control
-		if (keyboard_check_pressed(keyUp)) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"UP"))) {
 			if (pauseCursor > 0) {
 				pauseCursor--;	
 			}
 		}
-		if (keyboard_check_pressed(keyDown)) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"DOWN"))) {
 			if (pauseCursor < array_length_1d(pauseCursorPositions) - 1) {
 				pauseCursor++;	
 			}
 		}
 		
 		//menu options
-		if (keyboard_check_pressed(keyA) || keyboard_check_pressed(keySelect)) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
+		    keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
 			switch (pauseCursor) {
 				case 0:
 					if !(alarm[0]) alarm[0] = 1;	
@@ -69,7 +57,7 @@ if (global.active) {
 	else {
 		#region Pause Conditions
 		//pause on escape press
-		if (keyboard_check_pressed(obj_controller.keyPause)){
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE"))){
 			pause = true;
 			par_entity.visible = false;
 			obj_cursor.visible = false;
