@@ -1,10 +1,14 @@
 #region Rising Pieces
-if ((y <= scr_getRowPos(obj_controller.boardHeight - 1)) && (obj_controller.freezeTime == 0)) {
+if ((y <= scr_getRowPos(obj_controller.boardHeight - 1)) && 
+	(obj_controller.freezeTime == 0) &&
+	!(instance_exists(obj_matchmaker))) {
 	if !(alarm[1]) {
 		alarm[1] = obj_controller.gameoverDelay;
 		obj_controller.canRise = false
 	}
 }
+
+#endregion
 
 #region Force Rise
 //rise if the force rise button is pressed
@@ -28,7 +32,6 @@ if (!global.gameover) {
 		y -= global.riseSpeed;
 }
 #endregion
-#endregion
 
 #region Grey Pieces
 if (!(swap) && !(global.gameover) && !(match))
@@ -48,11 +51,17 @@ if (highlight) {
 
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { bottomEntity = true; }
-else if (position_meeting(x,y+48,par_entity)) {
-	 bottomEntity = (instance_position(x,y+48,par_entity).bottomEntity) 
+else if (position_meeting(x,y+pieceSize,par_entity)) {
+	 bottomEntity = (instance_position(x,y+pieceSize,par_entity).bottomEntity) 
 } else 
 	if !(global.riseUp) && !(global.forceRise)
 		bottomEntity = false;
+	
+if ((bottomEntity) && (falling)) {
+	landAnim = true;
+	landAnimIndex = index;	
+	falling = false;
+}
 #endregion
 	
 #region Swap Control
@@ -75,11 +84,16 @@ if (swap) {
 #endregion
 
 #region Fall Control
-//checks if there is no piece below
+//checks if there is no piece below, and ensure the piece below isnt swapping
+var pieceBelow = instance_place(x, y + pieceSize, par_entity);
+var notSwapping = true;
+if (instance_exists(pieceBelow) && (pieceBelow.swap))
+	notSwapping = false;
 if (!(bottomEntity) && 
 	!(match) && 
 	!(swap) && 
-	!(global.gameover)) {
+	!(global.gameover) &&
+	 (notSwapping)) {
 	if !alarm[0] alarm[0] = fallDelay;
 } 
 
@@ -104,7 +118,7 @@ if ((bottomEntity) &&
 	ds_list_clear(adjacent);
 	
 	//check for a matching left piece
-	left = instance_position(x - 48, y, par_entity);
+	left = instance_position(x - pieceSize, y, par_entity);
 	if (instance_exists(left)) {
 		if (left.index == index && 
 		!left.match && 
@@ -117,7 +131,7 @@ if ((bottomEntity) &&
 	} else left = noone;
 	
 	//check for a matching right piece
-	right = instance_position(x + 48, y, par_entity);
+	right = instance_position(x + pieceSize, y, par_entity);
 	if (instance_exists(right)) {
 		if (right.index == index && 
 		!right.match && 
@@ -130,7 +144,7 @@ if ((bottomEntity) &&
 	} else right = noone;
 	
 	//check for a valid match down
-	down = instance_position(x, y + 48, par_entity);
+	down = instance_position(x, y + pieceSize, par_entity);
 	if (instance_exists(down)) {
 		if (down.index == index && 
 		!down.match && 
@@ -143,7 +157,7 @@ if ((bottomEntity) &&
 	} else down = noone;
 	
 	//check for a valid match up
-	up = instance_position(x, y - 48, par_entity);
+	up = instance_position(x, y - pieceSize, par_entity);
 	if (instance_exists(up)) {
 		if (up.index == index && 
 		!up.match && 

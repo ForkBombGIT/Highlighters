@@ -25,7 +25,7 @@ for (var i = 0; i < boardWidth; i++) {
 	//selects a color
 	var colorIndex = irandom_range(0,array_length_1d(availablePieces) - 1);
 	var color = availablePieces[colorIndex] * pieceFrames;
-	var pieceType = (bombCount < 3) ? 
+	var pieceType = (bombCount < 2) ? 
 					((irandom_range(1,5) > bombProb) ? obj_charm : obj_bomb) : obj_charm;
 	var canPlace = (pieceType == obj_bomb) ? (ds_list_find_index(placedBombs,color) == -1) : true;
 	var up = scr_getPieceAtPos(0, i);

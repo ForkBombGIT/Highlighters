@@ -141,10 +141,12 @@ switch (start) {
 				// if enter is pressed (key changing key), and not at position 0
 				// allow the user to change the key
 				if (keyboard_key == vk_enter) && (cursorPosition != 0) {
-					inputChangeKey = true;	
 					if (cursorPosition == array_length_1d(inputCursorPositions) - 1)
 						inputPrompt = 1
-					else inputPrompt = 2;
+					else {
+						inputChangeKey = true;	
+						inputPrompt = 2;
+					}
 				}	
 			}
 		}

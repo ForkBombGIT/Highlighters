@@ -38,9 +38,9 @@ for (var i = 0; i < instance_number(obj_matchmaker); i++) {
 		if (listSize >= 4) {
 			if (ds_list_find_index(activeMatches,entity) == -1){
 				ds_list_add(activeMatches, entity);
-				freeze = true;
-				freezeTime += (listSize > 9) ? 6 : 
-							 ((listSize > 6) ? 4 : 2);
+				freezeTime += (listSize > 9) ? 3 : 
+							 ((listSize > 6) ? 2 : 0);
+				if (freezeTime > 0) freeze = true;
 				freezeTimer = current_time;
 			}
 		}
@@ -54,7 +54,7 @@ if (instance_number(obj_matchmaker) == 0) {
 //freeze timer
 if (freeze) {
 	if ((current_time - freezeTimer)/1000 > 1) {
-		if (--freezeTime == 0) freeze = false;
+		if (--freezeTime <= 0) freeze = false;
 		freezeTimer = current_time;
 	}
 } 
@@ -77,14 +77,6 @@ if ((global.active) && !(global.gameover)) {
 	if !(canRise) {
 		canRise = (!scr_checkRow(boardHeight))	
 	}
-	
-	//rising row
-	if !(freeze) && (canRise){
-		if ((current_time - riseTimer)/1000 > risePace) { 
-			riseTimer = current_time;
-			global.riseUp = true;
-		} else global.riseUp = false;
-	} else global.riseUp = false;
 	
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,par_entity)){
@@ -111,5 +103,13 @@ if ((global.active) && !(global.gameover)) {
 			}
 		}
 	}
+	
+	//rising row
+	if !(freeze) && (canRise) && !instance_exists(obj_matchmaker) {
+		if ((current_time - riseTimer)/1000 > risePace) { 
+			riseTimer = current_time;
+			global.riseUp = true;
+		} else global.riseUp = false;
+	} else global.riseUp = false;
 }
 #endregion

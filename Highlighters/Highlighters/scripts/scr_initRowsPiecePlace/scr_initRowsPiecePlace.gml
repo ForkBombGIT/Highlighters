@@ -20,7 +20,7 @@ while !(canPlace) {
 	if (instance_exists(bottom)) {
 		//checks if less than 3 bombs have been placed
 		//if there has been, default to a charm
-		if (bombCount < 3) {
+		if (bombCount < 2) {
 			if (ds_list_size(lastTwelve) > 0) && (conditionThreeRetry < 6) {
 				// check if three pieces of the saem color have been placed
 				// if they have, create a piece of the same color

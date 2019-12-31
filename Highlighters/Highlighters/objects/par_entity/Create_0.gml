@@ -1,4 +1,5 @@
 randomize();
+pieceSize = 48;
 //indentify charm color
 index = -1;
 //swapping variables
@@ -7,8 +8,9 @@ targetX = -1;
 swapSpeed = 12;
 //controls fall speed
 bottomEntity = false;
-fallDelay = 6;
+fallDelay = 2;
 //animation variables
+falling = false;
 landAnimIndex = image_index;
 landAnim = false;
 highlight = false;
