@@ -134,6 +134,7 @@ switch (start) {
 				
 				   inputChangeKey = false;
 				   inputPrompt = 0;
+				   scr_saveControls("data.json");
 			}
 		} else {
 			//handles key selection

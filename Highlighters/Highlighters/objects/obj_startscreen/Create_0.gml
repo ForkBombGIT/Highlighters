@@ -1,7 +1,7 @@
 randomize();
 //holds key settings
 global.controls = ds_map_create()
-if (!file_exists("data.ini")) {
+if (!file_exists("data.json")) {
 	ds_map_add(global.controls,"A",ord("X"));
 	ds_map_add(global.controls,"B",ord("Z"));
 	ds_map_add(global.controls,"UP",vk_up);	
@@ -12,6 +12,7 @@ if (!file_exists("data.ini")) {
 	ds_map_add(global.controls,"SELECT",vk_enter);
 	ds_map_add(global.controls,"OFF",vk_escape);
 }
+else global.controls = scr_loadControls("data.json");
 image_speed = 0.02;
 //holds whether the user wants to practice
 practice = false;
@@ -38,5 +39,12 @@ selectedEntities = [];
 //input menu variables
 inputChangeKey = false;
 inputCursorPositions = [45,93,129,165,201,237,273,309,355];
-inputControlValues = [6,5,4,3,22,23,45,76];
+inputControlValues = [scr_keyToIndex(ds_map_find_value(global.controls,"UP")),
+					  scr_keyToIndex(ds_map_find_value(global.controls,"DOWN")),
+					  scr_keyToIndex(ds_map_find_value(global.controls,"LEFT")),
+					  scr_keyToIndex(ds_map_find_value(global.controls,"RIGHT")),
+					  scr_keyToIndex(ds_map_find_value(global.controls,"A")),
+					  scr_keyToIndex(ds_map_find_value(global.controls,"B")),
+					  scr_keyToIndex(ds_map_find_value(global.controls,"PAUSE")),
+					  scr_keyToIndex(ds_map_find_value(global.controls,"OFF"))]
 inputPrompt = 0;

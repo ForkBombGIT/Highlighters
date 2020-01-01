@@ -7,6 +7,7 @@ if (key == vk_up) return 6;
 if (key == vk_tab) return 58;
 if (key == vk_space) return 8;
 if (key == vk_backspace) return 62;
+if (key == vk_escape) return 76;
 #region numpad
 if (key == vk_numpad0) return 2;
 if (key == vk_numpad1) return 12;
