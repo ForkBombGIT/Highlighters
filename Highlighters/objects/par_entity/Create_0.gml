@@ -8,7 +8,7 @@ targetX = -1;
 swapSpeed = 12;
 //controls fall speed
 bottomEntity = false;
-fallCheckDelay = 6;
+fallCheckDelay = 12;
 fallDelay = 1;
 //animation variables
 falling = false;

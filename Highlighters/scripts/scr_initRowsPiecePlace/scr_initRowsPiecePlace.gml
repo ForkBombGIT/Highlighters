@@ -14,7 +14,7 @@ var pieceFrames = 16;
 while !(canPlace) {
 	var left = scr_getPieceAtPos(rp, cp - 1), bottom = scr_getPieceAtPos(rp - 1, cp);
 	var color = availablePieces[irandom_range(0,array_length_1d(availablePieces) - 1)] * pieceFrames;
-	var tileType;
+	var pieceType;
 	var lastTwelveFrequency = ds_map_create();
 	//checks to see if there is a piece below the placement position
 	if (instance_exists(bottom)) {
@@ -37,18 +37,16 @@ while !(canPlace) {
 				}
 			}
 			//pick piece type randomly
-			tileType = (irandom_range(1,5) > bombProb) ? obj_charm : obj_bomb;
-			if (tileType == obj_bomb) {
+			pieceType = (irandom_range(1,5) > bombProb) ? obj_charm : obj_bomb;
+			if (pieceType == obj_bomb) {
 				do {
 					canPlace = (ds_list_find_index(bombsInRow,color) == -1);
 					if (canPlace) break;
 					else color = availablePieces[irandom_range(0,array_length_1d(availablePieces) - 1)] * pieceFrames;
 				} until (canPlace);
 			}
-		} else tileType = obj_charm;
-		//ensures that the colors touching do not fall into the "trio" of colors
-		//the trio describes colors that can not spawn together due to similarity in colors
-		canPlace = scr_checkColors(bottom.index,color);
+		} else pieceType = obj_charm;
+		
 		//condition one piece generation
 		if (conditionOneRetry < 6) && canPlace {
 			if (ds_list_find_index(lastTwelve,color) != -1) {
@@ -56,6 +54,7 @@ while !(canPlace) {
 				conditionOneRetry++;
 			}
 		}
+		
 		//condition two piece generation
 		var counter = 0;
 		if (conditionTwoRetry < 6) && canPlace {
@@ -66,6 +65,9 @@ while !(canPlace) {
 			if (counter >= 3) conditionTwoRetry++;
 		}
 		
+		//ensures that the colors touching do not fall into the "trio" of colors
+		//the trio describes colors that can not spawn together due to similarity in colors
+		canPlace = scr_checkColors(bottom.index,color);
 		//ensures bottom does not match current color
 		if (bottom.index == color) && (canPlace) canPlace = false;
 		if (instance_exists(left) && (canPlace)) {
@@ -77,7 +79,7 @@ while !(canPlace) {
 	//behavior if tests pass
 	if (canPlace) {
 		//creates piece
-		var entity = scr_createEntity(rp,cp,tileType, color);	
+		var entity = scr_createEntity(rp,cp,pieceType, color);	
 		return entity;
 	}
 }

@@ -1,6 +1,10 @@
 //controls flicker
 flash = false;
 
+//previous game settings
+startGameSpeed = obj_controller.startGameSpeed;
+practice = obj_controller.practice;
+
 //gameover menu
 endCursor = 0;
 endOptionAnim = 0;

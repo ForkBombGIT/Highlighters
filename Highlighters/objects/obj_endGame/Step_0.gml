@@ -11,6 +11,7 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"UP"))) {
 		endCursor--;	
 	}
 }
+
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"DOWN"))) {
 	if (endCursor < 2) {
 		endCursor++;	

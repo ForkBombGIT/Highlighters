@@ -2,15 +2,15 @@ var row = argument0;
 var placedPieces = ds_list_create();
 var availablePieces = obj_controller.selectedEntities;
 var bombCount = 0;
-var bombProb = 1;
 var placedBombs = ds_list_create();
 var bottomRows = ds_list_create();
 var bottomRowFrequency = ds_map_create();
-var pieceFrames = 16;
 
 var conditionOneRetry = 0;   //  generate a piece not in history
 var conditionTwoRetry = 0;   //  generate a piece not in hisotry, if 3 same have been created 
 var conditionThreeRetry = 0; //  generate a matching color if three of the same have been placed
+var pieceFrames = 16;
+var bombProb = 1;
 
 //get the two bottom rows of the board
 for (var i = 0; i < 2; i++) {
@@ -29,10 +29,11 @@ for (var i = 0; i < boardWidth; i++) {
 					((irandom_range(1,5) > bombProb) ? obj_charm : obj_bomb) : obj_charm;
 	var canPlace = (pieceType == obj_bomb) ? (ds_list_find_index(placedBombs,color) == -1) : true;
 	var up = scr_getPieceAtPos(0, i);
+	var left = scr_getPieceAtPos(-1, i - 1);
 	var matchCounter = 0;
 	//checks if the first piece has been placed, if so check if the colors work
 	if (ds_list_size(placedPieces) > 0)  && canPlace {
-		if (bombCount < 3) {
+		if (bombCount < 2) {
 			if (ds_list_size(bottomRows) > 0) && (conditionThreeRetry < 6) {
 				// check if three pieces of the saem color have been placed
 				// if they have, create a piece of the same color
@@ -108,9 +109,18 @@ for (var i = 0; i < boardWidth; i++) {
 			}
 		}
 		
-		//checks if the above color falls into the trios
-		if (canPlace) 
-			if (instance_exists(up)) canPlace = scr_checkColors(color,up.index);
+		//ensures bottom does not match current color
+		if (instance_exists(up)) && canPlace {
+			//ensures that the colors touching do not fall into the "trio" of colors
+			//the trio describes colors that can not spawn together due to similarity in colors
+			canPlace = scr_checkColors(up.index,color);
+			if (up.index == color) && (canPlace) canPlace = false;
+		}
+		if (instance_exists(left) && (canPlace)) {
+			canPlace = scr_checkColors(left.index,color);
+			//ensures left and current color do not match
+			if (left.index == color) canPlace = false;
+		}
 	}
 	//if the colors work, create the piece, reset the available pieces, and add it to the placed pieces
 	if (canPlace) {
