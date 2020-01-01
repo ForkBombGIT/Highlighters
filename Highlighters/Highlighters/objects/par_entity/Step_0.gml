@@ -94,7 +94,7 @@ if (!(bottomEntity) &&
 	!(swap) && 
 	!(global.gameover) &&
 	 (notSwapping)) {
-	if !alarm[0] alarm[0] = fallDelay;
+	if !alarm[0] alarm[0] = fallCheckDelay;
 } 
 
 //controls landing animation

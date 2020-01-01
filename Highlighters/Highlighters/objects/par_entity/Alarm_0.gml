@@ -8,3 +8,5 @@ if (!(bottomEntity) && !(swap) && (notSwapping)) {
 		falling = true;
 	}
 }	
+
+alarm[0] = fallDelay;

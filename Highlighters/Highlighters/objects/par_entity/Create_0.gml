@@ -8,7 +8,8 @@ targetX = -1;
 swapSpeed = 12;
 //controls fall speed
 bottomEntity = false;
-fallDelay = 2;
+fallCheckDelay = 6;
+fallDelay = 1;
 //animation variables
 falling = false;
 landAnimIndex = image_index;

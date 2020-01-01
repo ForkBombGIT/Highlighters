@@ -14,6 +14,7 @@ if (round(optionBackgroundAnimationIndex) < 32){
     optionBackgroundAnimationIndex += optionBackgroundAnimation;
 } else optionBackgroundAnimationIndex = 0;
 #endregion
+
 #region Menu Navigation
 if (start != 0) {
 	//menu item selection
@@ -27,12 +28,12 @@ if (start != 0) {
 		if (keyboard_check_pressed(vk_anykey)) {
 			//moving up and down
 			if (keyboard_key == ds_map_find_value(global.controls,"UP")) 
-				cursorPosition = clamp(cursorPosition - 1,0,(start == 2) ? 1 : 
+				cursorPosition = clamp(cursorPosition - 1,0,(start == 2) ? 0 : 
 															((start == 3) ? ((option == 0) ? array_length_1d(inputCursorPositions) - 1 : 
 															0) : 
 															2));
 			else if (keyboard_key == ds_map_find_value(global.controls,"DOWN")) 
-				cursorPosition = clamp(cursorPosition + 1,0,(start == 2) ? 1 : 
+				cursorPosition = clamp(cursorPosition + 1,0,(start == 2) ? 0 : 
 															((start == 3) ? ((option == 0) ? array_length_1d(inputCursorPositions) - 1 : 
 															0) : 
 															2));

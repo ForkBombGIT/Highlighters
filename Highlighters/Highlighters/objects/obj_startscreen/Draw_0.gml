@@ -24,7 +24,7 @@ switch (start) {
 		#endregion
 	case 2: 
 		draw_sprite(spr_menu_options_input,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
-		draw_sprite(spr_menu_options_av,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
+		//draw_sprite(spr_menu_options_av,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
 		draw_sprite(spr_menu_footer,0,100,360);
 		break;
 	case 3:
