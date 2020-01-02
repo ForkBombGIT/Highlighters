@@ -28,19 +28,8 @@ if (global.active) {
 		//menu options
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
 		    keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
-			switch (pauseCursor) {
-				case 0:
-					if !(alarm[0]) alarm[0] = 1;	
-					break;
-				case 1:
-					flash = true;
-					if !(alarm[0]) alarm[0] = 1;	
-					break;
-				case 2:
-					flash = true;
-					if !(alarm[0]) alarm[0] = 1;	
-					break;
-			}
+				flash = true;
+				if !(alarm[0]) alarm[0] = 1;
 		}
 		#endregion
 		

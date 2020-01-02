@@ -18,6 +18,7 @@ if (global.restart) {
 	nextLevelScale = startNextLevelScale;
 	scoreToNextLevel = initialScoreToNextLevel;
 	risePace = orgRisePace - (((orgRisePace - minRisePace) / maxLevel) * (gameSpeed - 1))
+	canRise = true;
 	instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
 }
 

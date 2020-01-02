@@ -6,7 +6,6 @@ if (!(bottomEntity) && !(swap) && (notSwapping)) {
 	if (!instance_exists(instance_position(x,y + pieceSize,par_entity))) {
 		y += pieceSize;	
 		falling = true;
+		alarm[0] = fallDelay;
 	}
 }	
-
-alarm[0] = fallDelay;
