@@ -82,9 +82,9 @@ if ((global.active) && !(global.gameover)) {
 	}
 	
 	//enable canRise if there are no pieces in the top row
-	if !(canRise) {
-		canRise = (!scr_checkRow(boardHeight))	
-	}
+	//if !(canRise) {
+	//	canRise = (!scr_checkRow(boardHeight))	
+	//}
 	
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,par_entity)){
@@ -92,7 +92,11 @@ if ((global.active) && !(global.gameover)) {
 	}
 	
 	//manual new row
-	if (keyboard_check(ds_map_find_value(global.controls,"B")) && !(global.forceRise)) {
+	if (keyboard_check(ds_map_find_value(global.controls,"B")) && 
+	  !(global.forceRise)) &&
+	  !(freeze) && 
+	  !instance_exists(obj_matchmaker) &&
+	  !par_entity.falling {
 		//checks if piece is gonna rise into game over territory
 		if (scr_checkRow(boardHeight)) {
 			global.gameover = true;
@@ -113,11 +117,17 @@ if ((global.active) && !(global.gameover)) {
 	}
 	
 	//rising row
-	if !(freeze) && (canRise) && !instance_exists(obj_matchmaker) {
+	if !freeze && 
+		canRise && 
+	   !instance_exists(obj_matchmaker) &&
+	   !par_entity.falling {
 		if ((current_time - riseTimer)/1000 > risePace) { 
 			riseTimer = current_time;
 			global.riseUp = true;
 		} else global.riseUp = false;
-	} else global.riseUp = false;
+	} else {
+		riseTimer = current_time;
+		global.riseUp = false;
+	}
 }
 #endregion

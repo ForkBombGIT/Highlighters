@@ -48,3 +48,4 @@ inputControlValues = [scr_keyToIndex(ds_map_find_value(global.controls,"UP")),
 					  scr_keyToIndex(ds_map_find_value(global.controls,"PAUSE")),
 					  scr_keyToIndex(ds_map_find_value(global.controls,"OFF"))]
 inputPrompt = 0;
+instance_create_layer(x,y,"Instances",obj_exit);

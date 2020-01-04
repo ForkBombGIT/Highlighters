@@ -7,5 +7,5 @@ if (!(bottomEntity) && !(swap) && (notSwapping)) {
 		y += pieceSize;	
 		falling = true;
 		alarm[0] = fallDelay;
-	}
+	} 
 }	
