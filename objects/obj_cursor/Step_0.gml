@@ -58,7 +58,10 @@ if !(global.gameover){
 #endregion
 
 #region Piece Swapping
-if ((keyPressLength < longPress) && (global.active) && (!global.gameover)) {
+if ((keyPressLength < longPress) && 
+	(global.active) && 
+	(!global.gameover) &&
+	(!par_entity.swap)) {
 	if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))){
 		//holds the piece on the left and right of the cursor
 		var left = instance_position(x-24,y,par_entity);

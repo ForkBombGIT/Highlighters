@@ -5,10 +5,10 @@ index = -1;
 //swapping variables
 swap = false;
 targetX = -1;
-swapSpeed = 12;
+swapSpeed = global.practice ? 4 : 16; //48 / fr
 //controls fall speed
 bottomEntity = false;
-fallCheckDelay = 12;
+fallCheckDelay = global.practice ? 40 : 10; //alarm speed
 fallDelay = 1;
 //animation variables
 falling = false;

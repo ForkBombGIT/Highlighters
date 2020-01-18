@@ -15,7 +15,7 @@ if (!file_exists("data.json")) {
 else global.controls = scr_loadControls("data.json");
 image_speed = 0.02;
 //holds whether the user wants to practice
-practice = false;
+global.practice = false;
 //holds what screen should be show
 start = 0;
 //holds what option screen should be shown

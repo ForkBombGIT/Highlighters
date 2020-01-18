@@ -51,6 +51,7 @@ switch (start) {
 		}
 		break;
 	case 1:
+		global.practice = false;
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
 			keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
 			switch (cursorPosition) {
@@ -160,7 +161,7 @@ switch (start) {
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
 			keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
 			start++;
-			practice = true;
+			global.practice = true;
 		}
 		break;
 	case 5:

@@ -1,10 +1,8 @@
 randomize();
-//disables level progression
-practice = false;
 
 //holds gameover state
 global.gameover = false;
-gameoverDelay = 180;
+gameoverDelay = global.practice ? 180 : 150;
 anim = false;
 animRow = 8;
 flash = false;

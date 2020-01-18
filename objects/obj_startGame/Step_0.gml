@@ -6,7 +6,7 @@ if (round(cursorFlickerIndex) < 2){
 #endregion
 
 #region Input Control
-if (practice) {
+if (global.practice) {
 	if !(alarm[0]) alarm[0] = 1;	
 }
 else if (keyboard_check_released(ds_map_find_value(global.controls,"A")) || 

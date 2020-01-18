@@ -1,4 +1,4 @@
-if !(practice) {
+if !(global.practice) {
 	draw_sprite(boards[board],image_index,0,0);
 	draw_set_font(numFont);
 	draw_sprite(spr_select,0,48,24);

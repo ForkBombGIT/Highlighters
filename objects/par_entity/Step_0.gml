@@ -99,7 +99,7 @@ if (!(bottomEntity) &&
 
 //controls landing animation
 if (landAnim) && !(match) && (bottomEntity) {
-	var animSpeed = .25;
+	var animSpeed = round(landAnimIndex) == index ? 0.25 : 0.5;
 	if (round(landAnimIndex) <= index + 3){
 	    landAnimIndex += animSpeed;
 	} else { landAnimIndex = index; landAnim = false; }

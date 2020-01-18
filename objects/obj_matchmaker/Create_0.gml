@@ -13,8 +13,8 @@ ds_stack_push(stack,instance_position(x,y,par_entity));
 //controls match animation
 listPosition = 0;
 highlightDelay = 6;
-whiteDelay = 24;
-postWhiteDelay = 42;
+whiteDelay = global.practice ? 120 : 40;
+postWhiteDelay = global.practice ? 60 : 20;
 flickerDelay = 2;
 flickerCount = 0;
 animating = false;

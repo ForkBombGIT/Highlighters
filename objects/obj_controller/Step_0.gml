@@ -72,7 +72,7 @@ if (!scr_checkRow(boardHeight))
 //block loop
 if ((global.active) && !(global.gameover)) {	
 	//disables level progression in practice
-	if !(practice) {
+	if !(global.practice) {
 		//handles level progression
 		if (gameScore >= scoreToNextLevel) && (gameSpeed < maxLevel) {
 			gameSpeed++;
