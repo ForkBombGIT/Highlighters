@@ -3,6 +3,7 @@
 x = scr_getColPos(col) + sprite_get_width(spr_charm) / 2;
 visible = !global.gameover;
 
+//ensure that the cursor remains in line with the pieces as the board rises
 if !(global.gameover) {
 	if (global.forceRise) {
 		if (y == initY - targY) {
@@ -17,11 +18,58 @@ if !(global.gameover) {
 	else if (global.riseUp) {
 		y -= global.riseSpeed;
 	}
-
+	//displaces the cursor if its about to go out of view
 	if (global.riseUp) || (global.forceRise) {
 		if (y - global.riseSpeed < scr_getRowPos(8)) {
 			var yDisplacement = (((abs(instance_nearest(x,y,par_entity).y - y)/spr_charm.sprite_height)) - ((abs(instance_nearest(x,y,par_entity).y - y)/spr_charm.sprite_height) - 1)) * spr_charm.sprite_height;
 			y += yDisplacement;
+		}
+	}
+}
+#endregion
+
+#region Piece Swapping
+if ((global.active) && 
+	(!global.gameover)) {
+	if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))){
+		//holds the piece on the left and right of the cursor
+		var left = instance_position(x-24,y,par_entity);
+		var right = instance_position(x+24,y,par_entity);
+	
+		//applies swap to both pieces if there are a left and right piece
+		if (!par_entity.swap) {
+			if (instance_exists(right) && instance_exists(left)) { 
+				if (!(left.swap) && !(right.swap))   &&
+				   (!(left.match) && !(right.match)) &&
+				   (left.bottomEntity) && (right.bottomEntity) {
+					left.targetX = col + 1;
+					left.swap = true;
+					left.image_index += 4;
+			
+					right.targetX = col;
+					right.swap = true;
+					right.image_index += 4;
+				}	
+			}
+			else {
+				//applies swap to left piece
+				if (instance_exists(left)){
+					if !(left.swap) && !(left.match) && (left.bottomEntity) {
+						left.targetX = col + 1;
+						left.swap = true;
+						left.image_index += 4;
+					}
+				}
+	
+				//applies swap to right piece
+				else if (instance_exists(right)){
+					if !(right.swap) && !(right.match) && (right.bottomEntity) {
+						right.targetX = col;
+						right.swap = true;
+						right.image_index += 4;
+					}
+				} 
+			}
 		}
 	}
 }
@@ -57,49 +105,3 @@ if !(global.gameover){
 }
 #endregion
 
-#region Piece Swapping
-if ((keyPressLength < longPress) && 
-	(global.active) && 
-	(!global.gameover) &&
-	(!par_entity.swap)) {
-	if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))){
-		//holds the piece on the left and right of the cursor
-		var left = instance_position(x-24,y,par_entity);
-		var right = instance_position(x+24,y,par_entity);
-	
-		//applies swap to both pieces if there are a left and right piece
-		if (instance_exists(right) && instance_exists(left)) { 
-			if (!(left.swap) && !(right.swap))   &&
-			   (!(left.match) && !(right.match)) &&
-			   (left.bottomEntity) && (right.bottomEntity) {
-				left.targetX = col + 1;
-				left.swap = true;
-				left.image_index += 4;
-			
-				right.targetX = col;
-				right.swap = true;
-				right.image_index += 4;
-			}	
-		}
-		else {
-			//applies swap to left piece
-			if (instance_exists(left)){
-				if !(left.swap) && !(left.match) && (left.bottomEntity) {
-					left.targetX = col + 1;
-					left.swap = true;
-					left.image_index += 4;
-				}
-			}
-	
-			//applies swap to right piece
-			if (instance_exists(right)){
-				if !(right.swap) && !(right.match) && (right.bottomEntity) {
-					right.targetX = col;
-					right.swap = true;
-					right.image_index += 4;
-				}
-			} 
-		}
-	}
-}
-#endregion

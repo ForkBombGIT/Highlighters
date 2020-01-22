@@ -1,3 +1,4 @@
+show_debug_message(ds_list_size(final))
 //move match maker up with pieces
 if (global.riseUp) {
 	y -= global.riseSpeed;
@@ -35,5 +36,5 @@ while (another) {
 
 //begin highlighting
 if (!another) && !(animating){
-	if !(alarm[0]) alarm[0] = highlightDelay;
+	if !(alarm[0]) alarm[0] = 1;
 }

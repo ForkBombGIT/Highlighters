@@ -46,8 +46,6 @@ if (global.active) &&
 	}
 }
 
-// if a match is made, and there is no match maker
-// after small delay, start the match maker
 if ((match) && 
 	!(matchOverride) && 
 	!(instance_exists(matchmaker))) 

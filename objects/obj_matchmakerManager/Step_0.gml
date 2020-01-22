@@ -1,4 +1,5 @@
 var activeMatchmakers = instance_number(obj_matchmaker);
+	show_debug_message(activeMatchmakers);
 if !(combo) { 
 	if (activeMatchmakers > 1) {
 		for (var i = 0; i < activeMatchmakers - 1; i++) {
@@ -45,7 +46,11 @@ if !(combo) {
 				if (ds_list_size(matchmakers) > 0) {
 					var total = 0;
 					for (var i = 0; i < ds_list_size(matchmakers); i++) {
-						total += ds_list_size(ds_list_find_value(matchmakers,i).final)
+						var matchmaker = ds_list_find_value(matchmakers,i);
+						if (instance_exists(matchmaker)) {
+							total += ds_list_size(ds_list_find_value(matchmakers,i).final)
+							show_debug_message(total);
+						}
 					}
 					if (total >= comboSize) {
 						var firstMaker = ds_list_find_value(matchmakers,0);

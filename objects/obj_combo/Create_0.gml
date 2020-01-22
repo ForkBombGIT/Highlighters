@@ -4,5 +4,5 @@ image_speed = 0;
 comboSize = 0;
 minComboSize = 5;
 //how long the combo sprite shows
-life = 48;
+life = (global.practice ? 108 : 36) * 2;
 alarm[0] = life;

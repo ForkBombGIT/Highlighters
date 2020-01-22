@@ -8,6 +8,7 @@ var index = low - 1;
 //movves smaller elements below pivot position
 for (var i = low; i < high; i++) {
 	var positionEntity = ds_list_find_value(list,i);
+	positionEntity.match = true; //used to enforce that all pieces have match to true
 	if (positionEntity.y == pivot.y)  {
 		if (positionEntity.x < pivot.x) {
 			index++;

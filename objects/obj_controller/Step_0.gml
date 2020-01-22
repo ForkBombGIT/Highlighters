@@ -10,6 +10,7 @@ if (global.restart) {
 	//delete old objects
 	instance_destroy(par_entity);
 	instance_destroy(obj_cursor);
+	instance_destroy(obj_matchmaker);
 	cursor = instance_create_layer(x,scr_getRowPos(4),"Cursor",obj_cursor);		
 	cursor.visible = false;
 	//restart
@@ -80,11 +81,6 @@ if ((global.active) && !(global.gameover)) {
 			risePace -= (orgRisePace - minRisePace) / maxLevel;
 		}
 	}
-	
-	//enable canRise if there are no pieces in the top row
-	//if !(canRise) {
-	//	canRise = (!scr_checkRow(boardHeight))	
-	//}
 	
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,par_entity)){
