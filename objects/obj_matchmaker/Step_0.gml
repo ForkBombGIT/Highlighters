@@ -1,4 +1,3 @@
-show_debug_message(ds_list_size(final))
 //move match maker up with pieces
 if (global.riseUp) {
 	y -= global.riseSpeed;
