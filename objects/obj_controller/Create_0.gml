@@ -47,7 +47,6 @@ global.forceRise = false;
 global.forceRiseSpeed = 3;
 startingRows = 6;
 selectedEntities = scr_generateColors();
-
 activeMatches = ds_list_create();
 
 //instantiate game objects

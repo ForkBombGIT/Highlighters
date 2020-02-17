@@ -575,14 +575,6 @@
             }
         },
         {
-            "Key": "932f2550-b88f-4bd3-aa2f-7253a68db6ef",
-            "Value": {
-                "id": "b541553c-91b6-422c-8f16-f1f100fd7060",
-                "resourcePath": "scripts\\scr_initRowsPiecePlace\\scr_initRowsPiecePlace.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "93d7980b-1b1a-4481-a917-30e533313ec3",
             "Value": {
                 "id": "d296a37b-e723-4b3b-b845-8a402d64b20f",
@@ -1035,7 +1027,6 @@
         "886c4178-698c-4f39-9fa4-cc25e6b83826",
         "517cce44-098c-41d4-9927-bc6c3da0f581",
         "ffadee16-c9dd-4f87-9364-a9810622f731",
-        "932f2550-b88f-4bd3-aa2f-7253a68db6ef",
         "73ff360c-df7d-4d85-816b-4bce3ec3a406",
         "d2a6b8ab-2c27-4d6a-b1e4-6945e475596f",
         "88a4fe73-1f04-48aa-867b-f363195cb4c8",

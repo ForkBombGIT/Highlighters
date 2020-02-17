@@ -6,6 +6,4 @@ if (comboSize != 0) {
 	endAnim = (image_index > ((comboSize - minComboSize) * animLength) + (animLength - 1)); 
 	if (endAnim) 
 		image_speed = 0;
-	
-	show_debug_message(image_index);
 }

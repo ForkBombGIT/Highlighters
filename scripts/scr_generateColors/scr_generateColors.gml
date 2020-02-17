@@ -1,5 +1,6 @@
 var currIndex = 0;
 var selectedEntities = [];
+
 while (array_length_1d(selectedEntities) < 5) {
 	var index = irandom_range(0,9);
 	var loop = 0;
@@ -14,4 +15,5 @@ while (array_length_1d(selectedEntities) < 5) {
 	}
 	else selectedEntities[currIndex++] = index; 
 }
+
 return selectedEntities;
