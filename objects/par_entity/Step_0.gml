@@ -52,7 +52,7 @@ if (highlight) {
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { bottomEntity = true; }
 else if (position_meeting(x,y+pieceSize,par_entity)) {
-	 bottomEntity = (instance_position(x,y+pieceSize,par_entity).bottomEntity) 
+	bottomEntity = (instance_position(x,y+pieceSize,par_entity).bottomEntity) 
 } else 
 	if !(global.riseUp) && !(global.forceRise)
 		bottomEntity = false;
@@ -61,6 +61,13 @@ if ((bottomEntity) && (falling)) {
 	landAnim = true;
 	landAnimIndex = index;	
 	falling = false;
+}
+
+if (bottomEntity) {
+	var entity = instance_position(x,y + pieceSize,par_entity);
+	if (instance_exists(entity)) {
+		if (entity.match) && !(match) image_index = index + 3;
+	}
 }
 #endregion
 	
