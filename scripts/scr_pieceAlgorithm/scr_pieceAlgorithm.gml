@@ -12,7 +12,7 @@ var conditionOne = false;
 var conditionOneRetry = 0; //  generate a matching color if three of the same have been placed
 var conditionTwoRetry = 0;   //  generate a piece not in history
 var conditionThreeRetry = 0; //  generate a piece not in hisotry, if 3 same have been created 
-var maxSameColor = 6;
+var maxSameColor = 5;
 
 var bombProb = 1;
 var canPlace = instance_exists(scr_getPieceAtPos(row,col));

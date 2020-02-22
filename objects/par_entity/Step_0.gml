@@ -63,10 +63,17 @@ if ((bottomEntity) && (falling)) {
 	falling = false;
 }
 
-if (bottomEntity) {
+if (bottomEntity) && 
+    !(global.gameover) && 
+	!(match) {
 	var entity = instance_position(x,y + pieceSize,par_entity);
 	if (instance_exists(entity)) {
 		if (entity.match) && !(match) image_index = index + 3;
+	}
+}
+else {
+	if (floating) {
+		alarm[3] = floatDelay;
 	}
 }
 #endregion
@@ -100,7 +107,8 @@ if (!(bottomEntity) &&
 	!(match) && 
 	!(swap) && 
 	!(global.gameover) &&
-	 (notSwapping)) {
+	 (notSwapping) &&
+	!(floating)) {
 	if !alarm[0] alarm[0] = fallCheckDelay;
 } 
 

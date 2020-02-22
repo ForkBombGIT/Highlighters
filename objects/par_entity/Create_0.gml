@@ -19,6 +19,8 @@ highlightDelay = 2;
 highlightIndex = 8;
 highlightLength = 14;
 highlighting = false;
+floating = false;
+floatDelay = global.practice ? 40 : 30;
 //position
 row = -1;
 col = -1;
