@@ -57,20 +57,28 @@ if !(global.gameover) {
 		//determines if a combo exists
 		if (ds_list_size(matchmakers) > 0) {
 			var total = 0;
+			var minXMatchmaker = noone;
+			show_debug_message(ds_list_size(matchmakers));
 			for (var i = 0; i < ds_list_size(matchmakers); i++) {
 				var matchmaker = ds_list_find_value(matchmakers,i);
 				if (instance_exists(matchmaker)) {
-					total += ds_list_size(ds_list_find_value(matchmakers,i).final);
+					total += ds_list_size(matchmaker.final);
+					if (minXMatchmaker != noone) {
+						if (ds_list_find_value(matchmaker.final,0).x < ds_list_find_value(minXMatchmaker.final,0).x)
+							minXMatchmaker = matchmaker;
+					}
+					else minXMatchmaker = matchmaker
 				}
 			}
+			show_debug_message(total);
 			if (total >= comboSize) {
 				var firstMaker = ds_list_find_value(matchmakers,0);
 				firstMaker.comboSize = total - (comboSize - 1);
-				var comboObj = instance_create_layer(ds_list_find_value(ds_list_find_value(matchmakers,0).final,0).x - 24,
-														ds_list_find_value(ds_list_find_value(matchmakers,0).final,0).y - 24,
-														"GUI",
-														obj_combo
-										 				);
+				var comboObj = instance_create_layer(ds_list_find_value(minXMatchmaker.final,0).x - 24,
+													 ds_list_find_value(minXMatchmaker.final,0).y - 24,
+													 "GUI",
+													 obj_combo
+										 			);
 				comboObj.comboSize = total;
 				combo = true;
 			}
