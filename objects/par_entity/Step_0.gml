@@ -1,15 +1,3 @@
-#region Rising Pieces
-if ((y <= scr_getRowPos(obj_controller.boardHeight - 1)) && 
-	(obj_controller.freezeTime == 0) &&
-	!(instance_exists(obj_matchmaker))) {
-	if !(alarm[1]) {
-		alarm[1] = obj_controller.gameoverDelay;
-		obj_controller.canRise = false
-	}
-}
-
-#endregion
-
 #region Force Rise
 //rise if the force rise button is pressed
 if (!global.gameover) {
@@ -34,10 +22,26 @@ if (!global.gameover) {
 #endregion
 
 #region Grey Pieces
-if (!(swap) && !(global.gameover) && !(match))
-	if (y <= scr_getRowPos(0))
+if (!(swap) && !(global.gameover) && !(match)) {
+	if (y <= scr_getRowPos(0)) {
 		image_index = index;
+	}
 	else image_index = index + 4; 
+}
+#endregion
+
+#region Rising Pieces
+if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) {
+	if !match && !(global.gameover) 
+		image_index = index + 3;
+	if (obj_controller.freezeTime == 0) &&
+	!(instance_exists(obj_matchmaker)) {
+		if !(alarm[1]) {
+			alarm[1] = obj_controller.gameoverDelay;
+			obj_controller.canRise = false
+		}
+	}
+}
 #endregion
 
 #region Highlight Animation
@@ -80,6 +84,7 @@ else {
 	
 #region Swap Control
 if (swap) { 
+	bounce = false;
 	//reset direction variables
 	left = noone; right = noone; up = noone; down = noone
 	ds_list_clear(adjacent);
@@ -113,13 +118,21 @@ if (!(bottomEntity) &&
 } 
 
 //controls landing animation
-if (landAnim) && !(match) && (bottomEntity) {
-	var animSpeed = round(landAnimIndex) == index ? 0.25 : 0.5;
-	if (round(landAnimIndex) <= index + 3){
+if !(global.gameover) &&
+   ((landAnim) || 
+   ((bounce) && 
+    (instance_exists(scr_getPieceAtPos(obj_controller.boardHeight - 2,col))) &&
+   !(global.forceRise) && 
+   !(obj_controller.freeze) && 
+   !(instance_exists(obj_matchmaker)))) && 
+   !(match) && 
+    (bottomEntity) {
+	var animSpeed = floor(landAnimIndex) == index ? 0.25 : 0.5;
+	if (floor(landAnimIndex) < index + 3) {
 	    landAnimIndex += animSpeed;
 	} else { landAnimIndex = index; landAnim = false; }
-	image_index = floor(landAnimIndex);
-} 
+	image_index = floor(landAnimIndex);  
+} else bounce = false;
 #endregion
 
 #region Match Control

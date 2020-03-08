@@ -5,3 +5,6 @@ matchmakers = ds_list_create();
 combo = false;
 comboSize = 5;
 activeComboSize = -1;
+
+//how long freeze is applied for
+freezeTime = 0;

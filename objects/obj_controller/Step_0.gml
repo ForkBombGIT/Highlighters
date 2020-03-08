@@ -34,41 +34,59 @@ if (global.gameover) {
 	}
 }
 
-//combo freeze handling
-for (var i = 0; i < instance_number(obj_matchmaker); i++) {
-	var entity = instance_find(obj_matchmaker,i);
-	if (entity.animating) {
-		var listSize = ds_list_size(entity.final);
-		if (listSize >= 4) {
-			if (ds_list_find_index(activeMatches,entity) == -1){
-				ds_list_add(activeMatches, entity);
-				freezeTime += (listSize > 9) ? 3 : 
-							 ((listSize > 6) ? 2 : 0);
-				if (freezeTime > 0) freeze = true;
-				freezeTimer = current_time;
-			}
-		}
-	}
-} 
-
 //clear active match list if no matchmakers exist
 if (instance_number(obj_matchmaker) == 0) {
 	ds_list_clear(activeMatches)	
 }
 
 //freeze timer
-if (freeze) {
+if (freeze) &&
+   !instance_exists(obj_matchmaker) &&
+   !par_entity.falling {
 	if ((current_time - freezeTimer)/1000 > 1) {
-		if (--freezeTime <= 0) freeze = false;
+		freezeTime--;
 		freezeTimer = current_time;
 	}
-} 
-else {
-	freezeTime = 0;
 }
 
-if (!scr_checkRow(boardHeight))
+show_debug_message(freeze);
+
+if (freezeTime <= 0)
+	freeze = false;
+
+if (!scr_checkRow(boardHeight)) {
 	global.gameover = false;
+	//turn on bounce animation
+	var rowEntities = scr_getRow(boardHeight - 2);
+	for (var i = 0; i < ds_list_size(rowEntities); i++) {
+		var entity = ds_list_find_value(rowEntities,i);
+		if (entity.bounce != true) {
+			entity.bounce = true;
+			entity.landAnimIndex = entity.index;	
+			var colEntities = scr_getCol(entity.col);
+			for (var j = 0; j < ds_list_size(colEntities); j++) {
+				var entityCol = ds_list_find_value(colEntities,j);
+				entityCol.bounce = true;
+				entityCol.landAnimIndex = entityCol.index;	
+			}
+		}
+	}
+}
+else {
+	//turn off bounce animation
+	var rowEntities = scr_getRow(boardHeight - 1);
+	for (var i = 0; i < ds_list_size(rowEntities); i++) {
+		var entity = ds_list_find_value(rowEntities,i);
+		if (entity.bounce != false) {
+			entity.bounce = false;
+			var colEntities = scr_getCol(entity.col);
+			for (var j = 0; j < ds_list_size(colEntities); j++) {
+				var entityCol = ds_list_find_value(colEntities,j);
+				entityCol.bounce = false;
+			}
+		}
+	}
+}
 
 //block loop
 if ((global.active) && !(global.gameover)) {	

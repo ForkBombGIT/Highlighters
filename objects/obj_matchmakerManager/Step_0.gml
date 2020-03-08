@@ -58,7 +58,6 @@ if !(global.gameover) {
 		if (ds_list_size(matchmakers) > 0) {
 			var total = 0;
 			var minXMatchmaker = noone;
-			show_debug_message(ds_list_size(matchmakers));
 			for (var i = 0; i < ds_list_size(matchmakers); i++) {
 				var matchmaker = ds_list_find_value(matchmakers,i);
 				if (instance_exists(matchmaker)) {
@@ -70,7 +69,6 @@ if !(global.gameover) {
 					else minXMatchmaker = matchmaker
 				}
 			}
-			show_debug_message(total);
 			if (total >= comboSize) {
 				var firstMaker = ds_list_find_value(matchmakers,0);
 				firstMaker.comboSize = total - (comboSize - 1);
@@ -82,9 +80,27 @@ if !(global.gameover) {
 				comboObj.comboSize = total;
 				combo = true;
 			}
-		}
-		combo = false;
+			if (total > 4) {
+				freezeTime = ((total > 12) ? 6 :
+							 ((total > 10) ? 5 :
+							 ((total > 8)  ? 4 :
+ 							 ((total > 6)  ? 3 : 
+							 ((total > 4)  ? 2 : 0)))));
+				if (freezeTime > obj_controller.freezeTime) 
+					obj_controller.freezeTime = freezeTime;
+			}
+		}	
+		combo = false; 
 		activeComboSize = -1;
 		ds_list_clear(matchmakers);
 	} 
+	
+	if (instance_number(obj_matchmaker) == 0) {
+		if (obj_controller.freezeTime == freezeTime) && 
+		   (freezeTime > 0) {
+			obj_controller.freezeTimer = current_time;
+			obj_controller.freeze = true;
+			freezeTime = 0;
+		}	
+	}
 }
