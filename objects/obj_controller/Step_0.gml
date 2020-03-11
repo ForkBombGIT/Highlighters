@@ -107,10 +107,10 @@ if ((global.active) && !(global.gameover)) {
 	
 	//manual new row
 	if (keyboard_check(ds_map_find_value(global.controls,"B")) && 
-	  !(global.forceRise)) &&
-	  !(freeze) && 
+	  !(global.forceRise)) && 
 	  !instance_exists(obj_matchmaker) &&
 	  !par_entity.falling {
+		freeze = false;
 		//checks if piece is gonna rise into game over territory
 		if (scr_checkRow(boardHeight)) {
 			global.gameover = true;
