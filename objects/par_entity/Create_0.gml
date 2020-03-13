@@ -20,6 +20,7 @@ highlightIndex = 8;
 highlightLength = 14;
 highlighting = false;
 bounce = false;
+bounceIndex = 0;
 floating = false;
 floatDelay = global.practice ? 40 : 30;
 //position

@@ -49,8 +49,6 @@ if (freeze) &&
 	}
 }
 
-show_debug_message(freeze);
-
 if (freezeTime <= 0)
 	freeze = false;
 

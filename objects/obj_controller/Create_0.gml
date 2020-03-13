@@ -24,6 +24,7 @@ boardHeight = 9;
 board = 0;
 minRisePace = 0.05;
 maxLevel = 100;
+fadeToBlack = false;
 
 //controls game loop 
 orgRisePace = 3.0;

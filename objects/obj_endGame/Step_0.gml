@@ -25,8 +25,8 @@ if (round(endOptionAnim) < 7){
 	endOptionAnim += animSpeed;
 } else endOptionAnim = 1;
 
-animSpeed = 2 / room_speed;
-if (round(gameoverAnim) < 2){
+animSpeed = 1;
+if (round(gameoverAnim) < 16){
 	gameoverAnim += animSpeed;
 } else gameoverAnim = 0;
 

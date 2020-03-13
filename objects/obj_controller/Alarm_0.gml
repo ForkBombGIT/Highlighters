@@ -9,13 +9,13 @@ if (scr_checkRow(animRow)) {
 	}
 } else {
 	//all rows are changed, flicker then switch screens
-	flash = true;
 	alarm[1] = 2;
 }
 
 //checks if animRow is at a valid row index
 //if it isnt, apply a longer delay
-if (--animRow < -1)
-	alarm[0] = 30;
+if (--animRow < -1) {
+	fadeToBlack = true;
+}
 else
 	alarm[0] = 5;

@@ -127,11 +127,23 @@ if !(global.gameover) &&
    !(instance_exists(obj_matchmaker)))) && 
    !(match) && 
     (bottomEntity) {
-	var animSpeed = floor(landAnimIndex) == index ? 0.25 : 0.5;
-	if (floor(landAnimIndex) < index + 3) {
-	    landAnimIndex += animSpeed;
-	} else { landAnimIndex = index; landAnim = false; }
-	image_index = floor(landAnimIndex);  
+	var animSpeed = (bounce) ?
+					((floor(bounceIndex) == 1 || floor(bounceIndex) == 3) ? 0.25 : 0.5) :
+					((floor(landAnimIndex) == index) ? 0.25 : 0.5);
+	
+	
+	if (bounce) {
+		if (bounceIndex >= 5)
+			bounceIndex = 0;
+		else bounceIndex += animSpeed
+	} else {
+		if (floor(landAnimIndex) < index + 3) {
+		    landAnimIndex += animSpeed;
+		} else { landAnimIndex = index; landAnim = false; }
+	
+	}
+	
+	image_index = (bounce) ? scr_getBounceIndex(floor(bounceIndex)) + index : floor(landAnimIndex) ;
 } else bounce = false;
 #endregion
 

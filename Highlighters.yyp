@@ -143,6 +143,14 @@
             }
         },
         {
+            "Key": "1737e252-7527-4126-a096-f7c766adab98",
+            "Value": {
+                "id": "abba2c2b-a3ad-442c-9880-ff0f61da218d",
+                "resourcePath": "scripts\\scr_getBounceIndex\\scr_getBounceIndex.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1747cb8a-b18f-4fad-9fa2-3acb57ba7f2e",
             "Value": {
                 "id": "842042f4-7cd8-43d9-9071-7908dd79e08e",
@@ -647,6 +655,14 @@
             }
         },
         {
+            "Key": "a452b8af-cb4f-4ab6-abd5-403aba5ea858",
+            "Value": {
+                "id": "56e2fe3a-d060-4e82-8e13-12eab1f37deb",
+                "resourcePath": "sprites\\spr_fadeToBlack\\spr_fadeToBlack.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "a55f0644-767e-41a7-b50c-99a10e4d146d",
             "Value": {
                 "id": "b4239ced-7714-4a76-872b-0ae3e6c494c3",
@@ -1051,6 +1067,7 @@
         "e142592c-e65b-48e1-a69a-5a8bc4507782",
         "a03282c2-4c96-45f0-9765-e4bd83a4b06a",
         "7448b97a-d8c7-4563-a040-773d01acc06c",
+        "1737e252-7527-4126-a096-f7c766adab98",
         "cf27b2b1-aec6-48ed-8234-abca63277067",
         "6342e71b-89fb-412a-817e-dd00ca40bbe6"
     ],

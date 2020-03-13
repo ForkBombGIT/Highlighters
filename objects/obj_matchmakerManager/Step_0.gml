@@ -20,6 +20,7 @@ if !(global.gameover) {
 									matchmakerPlus.origin.match = false;
 									//add missing pieces from matchmakerPlus into matchmaker
 									for (var k = 0; k < ds_list_size(matchmakerPlus.final); k++) {
+										show_debug_message(ds_list_find_index(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k)))
 										if (ds_list_find_index(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k)) == -1)
 											ds_list_add(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k))
 									}
