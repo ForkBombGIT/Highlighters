@@ -25,10 +25,14 @@ if (round(endOptionAnim) < 7){
 	endOptionAnim += animSpeed;
 } else endOptionAnim = 1;
 
-animSpeed = 1;
-if (round(gameoverAnim) < 16){
+animSpeed = 0.5;
+if (round(gameoverAnim) < 16) && !(stopGameoverAnim){
 	gameoverAnim += animSpeed;
-} else gameoverAnim = 0;
+} 
+if (round(gameoverAnim) >= 15	) {
+	stopGameoverAnim = false;
+	gameoverAnim = 15;
+}
 
 if (restart) {
 	instance_create_layer(x,y,"Entities",obj_controller);	

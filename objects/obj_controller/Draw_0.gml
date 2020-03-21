@@ -1,6 +1,4 @@
 if (flash) draw_rectangle(0,0,768,432,c_black);
-show_debug_message(image_index);
-show_debug_message(fadeToBlack);
 if (fadeToBlack) && !(alarm[0]) {
 	image_speed = 1;
 } 

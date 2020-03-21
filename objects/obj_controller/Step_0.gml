@@ -52,13 +52,16 @@ if (freeze) &&
 if (freezeTime <= 0)
 	freeze = false;
 
-if (!scr_checkRow(boardHeight)) {
+if (!scr_checkRow(boardHeight)) && 
+   (!global.forceRise) {
 	global.gameover = false;
 	//turn on bounce animation
 	var rowEntities = scr_getRow(boardHeight - 2);
 	for (var i = 0; i < ds_list_size(rowEntities); i++) {
 		var entity = ds_list_find_value(rowEntities,i);
-		if (entity.bounce != true) {
+		if (!entity.bounce) && 
+		   (entity.bottomEntity) && 
+		   (!entity.swap) {
 			entity.bounce = true;
 			entity.landAnimIndex = entity.index;	
 			var colEntities = scr_getCol(entity.col);

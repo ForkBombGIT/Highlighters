@@ -8,6 +8,7 @@ startGameSpeed = obj_controller.startGameSpeed;
 endCursor = 0;
 endOptionAnim = 0;
 gameoverAnim = 0;
+stopGameoverAnim = false;
 
 //restart
 restart = false;
