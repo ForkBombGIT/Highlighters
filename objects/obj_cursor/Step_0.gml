@@ -44,11 +44,11 @@ if ((global.active) &&
 				   (left.bottomEntity) && (right.bottomEntity) {
 					left.targetX = col + 1;
 					left.swap = true;
-					left.image_index += 4;
+					left.image_index = left.index + 4;
 			
 					right.targetX = col;
 					right.swap = true;
-					right.image_index += 4;
+					right.image_index = right.index + 4;
 				}	
 			}
 			else {
@@ -57,7 +57,7 @@ if ((global.active) &&
 					if !(left.swap) && !(left.match) && (left.bottomEntity) {
 						left.targetX = col + 1;
 						left.swap = true;
-						left.image_index += 4;
+						left.image_index = left.index + 4;
 					}
 				}
 	
@@ -66,7 +66,7 @@ if ((global.active) &&
 					if !(right.swap) && !(right.match) && (right.bottomEntity) {
 						right.targetX = col;
 						right.swap = true;
-						right.image_index += 4;
+						right.image_index = right.index + 4;
 					}
 				} 
 			}

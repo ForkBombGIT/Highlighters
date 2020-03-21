@@ -54,9 +54,18 @@ if (highlight) {
 #endregion
 
 #region Grounded Management
-if (y >= scr_getRowPos(0)) { bottomEntity = true; }
+if (y >= scr_getRowPos(0)) { 
+	var above = instance_position(x,y-pieceSize,par_entity)
+	if (instance_exists(above)) {
+		if (!bounce) bounce = above.bounce;
+	}
+	bottomEntity = true; 
+	
+}
 else if (position_meeting(x,y+pieceSize,par_entity)) {
-	bottomEntity = (instance_position(x,y+pieceSize,par_entity).bottomEntity) 
+	var below = instance_position(x,y+pieceSize,par_entity)
+	bottomEntity = (below.bottomEntity) 
+	if (!bounce) bounce = below.bounce;
 } else 
 	if !(global.riseUp) && !(global.forceRise)
 		bottomEntity = false;
@@ -95,7 +104,7 @@ if (swap) {
 		targetX = scr_getColPos(targetX);
 	}
 	
-	//increment untisl position is reached
+	//increment until position is reached
 	if (x < targetX) x += swapSpeed;
 	else if (x > targetX) x -= swapSpeed;
 	else { x = targetX; swap = false; image_index = index;}
@@ -130,8 +139,6 @@ if !(global.gameover) &&
 	var animSpeed = (bounce) ?
 					((floor(bounceIndex) == 1 || floor(bounceIndex) == 3) ? 0.25 : 0.5) :
 					((floor(landAnimIndex) == index) ? 0.25 : 0.5);
-	
-	
 	if (bounce) {
 		if (bounceIndex >= 5)
 			bounceIndex = 0;

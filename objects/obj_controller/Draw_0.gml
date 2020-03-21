@@ -2,11 +2,10 @@ if (flash) draw_rectangle(0,0,768,432,c_black);
 if (fadeToBlack) && !(alarm[0]) {
 	image_speed = 1;
 } 
-
 if !(fadeToBlack) || (image_index >= 15) {
 	image_speed = 0;
 	if (fadeToBlack && image_index >= 15) {
-		if !(alarm[0]) alarm = 60;
+		if !(alarm[1]) alarm[1] = 60;
 		image_index = 15;
 	}
 	else {
