@@ -13,8 +13,8 @@
     "layers": [
         {
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
-            "name": "Cursor",
-            "id": "46dd1035-9cf6-43d2-9021-0bf7a2d0cb59",
+            "name": "GUI",
+            "id": "b4cab375-588c-458f-9495-478e697652fa",
             "depth": 0,
             "grid_x": 32,
             "grid_y": 32,
@@ -39,8 +39,8 @@
         },
         {
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
-            "name": "GUI",
-            "id": "b4cab375-588c-458f-9495-478e697652fa",
+            "name": "Cursor",
+            "id": "46dd1035-9cf6-43d2-9021-0bf7a2d0cb59",
             "depth": 100,
             "grid_x": 32,
             "grid_y": 32,

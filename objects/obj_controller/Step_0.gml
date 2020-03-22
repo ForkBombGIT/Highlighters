@@ -67,8 +67,10 @@ if (!scr_checkRow(boardHeight)) &&
 			var colEntities = scr_getCol(entity.col);
 			for (var j = 0; j < ds_list_size(colEntities); j++) {
 				var entityCol = ds_list_find_value(colEntities,j);
-				entityCol.bounce = true;
-				entityCol.landAnimIndex = entityCol.index;	
+				if (entityCol.y <= scr_getRowPos(0)) {
+					entityCol.bounce = true;
+					entityCol.landAnimIndex = entityCol.index;	
+				}
 			}
 		}
 	}

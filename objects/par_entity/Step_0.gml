@@ -55,12 +55,7 @@ if (highlight) {
 
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { 
-	var above = instance_position(x,y-pieceSize,par_entity)
-	if (instance_exists(above)) {
-		if (!bounce) bounce = above.bounce;
-	}
 	bottomEntity = true; 
-	
 }
 else if (position_meeting(x,y+pieceSize,par_entity)) {
 	var below = instance_position(x,y+pieceSize,par_entity)

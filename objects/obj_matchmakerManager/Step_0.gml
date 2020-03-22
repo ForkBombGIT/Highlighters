@@ -10,24 +10,19 @@ if !(global.gameover) {
 					if (instance_exists(matchmakerPlus)) {
 						//check if the matchmakers "colorIndex" (the color they are matching)
 						//and ensure at least one of them is done their match route
-						if ((matchmaker.colorIndex == matchmakerPlus.colorIndex) && 
-							 matchmaker.animating || 
-							 matchmakerPlus.animating) {
+						if ((matchmaker.colorIndex == matchmakerPlus.colorIndex)) {
 							for (var j = 0; j < ds_list_size(matchmaker.final); j++){
-								//check if matchmakerPlus's origin in in matchmaker
-								if (ds_list_find_value(matchmaker.final,j) == matchmakerPlus.origin) {
-									matchmakerPlus.origin.matchOverride = true;
-									matchmakerPlus.origin.match = false;
-									//add missing pieces from matchmakerPlus into matchmaker
-									for (var k = 0; k < ds_list_size(matchmakerPlus.final); k++) {
-										show_debug_message(ds_list_find_index(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k)))
-										if (ds_list_find_index(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k)) == -1)
-											ds_list_add(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k))
+								matchmakerPlus.origin.matchOverride = true;
+								matchmakerPlus.origin.match = false;
+								//add missing pieces from matchmakerPlus into matchmaker
+								for (var k = 0; k < ds_list_size(matchmakerPlus.final); k++) {
+									if (ds_list_find_index(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k)) == -1) {
+										ds_list_add(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k))
 									}
-									instance_destroy(matchmakerPlus);
-									deletion = true;
-									break;
 								}
+								instance_destroy(matchmakerPlus);
+								deletion = true;
+								break;
 							}
 						}
 					}
