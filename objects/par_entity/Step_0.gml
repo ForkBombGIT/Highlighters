@@ -56,14 +56,13 @@ if (highlight) {
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { 
 	bottomEntity = true; 
-}
-else if (position_meeting(x,y+pieceSize,par_entity)) {
+} else if (position_meeting(x,y+pieceSize,par_entity)) {
 	var below = instance_position(x,y+pieceSize,par_entity)
-	bottomEntity = (below.bottomEntity) 
-	if (!bounce) bounce = below.bounce;
-} else 
+	bottomEntity = below.bottomEntity;
+} else {
 	if !(global.riseUp) && !(global.forceRise)
 		bottomEntity = false;
+}
 	
 if ((bottomEntity) && (falling)) {
 	landAnim = true;
@@ -120,6 +119,12 @@ if (!(bottomEntity) &&
 	!(floating)) {
 	if !alarm[0] alarm[0] = fallCheckDelay;
 } 
+
+//checks for piece above, and if its bouncing, make this piece bounce as well
+var pieceAbove = instance_position(x,y - pieceSize,par_entity);
+if (instance_exists(pieceAbove)) {
+	if (y <= scr_getRowPos(0)) bounce = pieceAbove.bounce;
+}
 
 //controls landing animation
 if !(global.gameover) &&

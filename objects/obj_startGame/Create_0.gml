@@ -8,14 +8,14 @@ start = 0;
 flash = false;
 
 //game settings
-board = 0;
-boards = [spr_board1,spr_board2];
+board = 1; //starts at 1 too account for practice board
+boards = [spr_boardp,spr_board1,spr_board2];
 level = 1;	
 char = 0;
 
 //maximum values
 maxLevel = 100;
-maxBoard = 1;
+maxBoard = 2;
 
 //cursor control
 delayTime = current_time;

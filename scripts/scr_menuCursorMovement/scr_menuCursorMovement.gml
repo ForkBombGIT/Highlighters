@@ -9,7 +9,7 @@ if (keyCode == ds_map_find_value(global.controls,"RIGHT")) {
 			level = clamp(level + 1,1,maxLevel)
 			break;
 		case 1:
-			board = clamp(board + 1,0,maxBoard)
+			board = clamp(board + 1,1,maxBoard)
 			break;
 	}
 }
@@ -20,7 +20,7 @@ if (keyCode == ds_map_find_value(global.controls,"LEFT")) {
 			level = clamp(level - 1,1,maxLevel)
 			break;
 		case 1:
-			board = clamp(board - 1,0,maxBoard)
+			board = clamp(board - 1,1,maxBoard)
 			break;
 	}
 }

@@ -1,7 +1,7 @@
 #region Board UI
 if !(pause) || !sprite_exists(screenShot){
 	//draws board
-	draw_sprite((global.practice) ? spr_boardp : boards[obj_controller.board],0,0,0);
+	draw_sprite(boards[obj_controller.board],0,0,0);
 	//draws gui
 	draw_set_font(timeFont);
 	//time

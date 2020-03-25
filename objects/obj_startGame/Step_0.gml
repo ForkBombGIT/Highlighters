@@ -65,8 +65,8 @@ switch (cursor) {
 		else cursorType = 4
 	break;
 	case 1: //character
-		if (board == 0) cursorType = 0;
-		else if (board < maxBoard) cursorType = 2;
+		if (board - 1 == 0) cursorType = 0;
+		else if (board - 1 < maxBoard - 1) cursorType = 2;
 		else cursorType = 4
 	break;
 }
