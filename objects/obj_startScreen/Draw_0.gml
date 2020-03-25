@@ -19,7 +19,6 @@ switch (start) {
 		draw_sprite(spr_menu_p1_classic,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
 		draw_sprite(spr_menu_p1_tutorial,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
 		draw_sprite(spr_menu_options,(cursorPosition == 2) ? floor(optionAnimationIndex) : 0,120,294);
-		draw_sprite(spr_menu_footer,1,100,360);
 		break;
 		#endregion
 	case 2: 
@@ -33,6 +32,7 @@ switch (start) {
 			//input menu
 			case 0:
 				draw_sprite(spr_menu_option_cursor,0,264,inputCursorPositions[cursorPosition]);
+				draw_sprite(spr_menu_option_player,0,264,54);
 				draw_sprite(spr_keys,inputControlValues[0],264,99);
 				draw_sprite(spr_keys,inputControlValues[1],264,135);
 				draw_sprite(spr_keys,inputControlValues[2],264,171);

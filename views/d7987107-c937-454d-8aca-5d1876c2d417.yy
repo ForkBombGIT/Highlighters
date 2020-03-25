@@ -14,7 +14,8 @@
         "5f638b3f-bb63-40ab-9ce8-4ce3eb8e2a7d",
         "d808539c-9445-4404-bbf8-267992876073",
         "0247d4db-1e4f-4d62-ab1d-8697930514c3",
-        "c79b492a-b80e-46fd-a063-36a5a3709363"
+        "c79b492a-b80e-46fd-a063-36a5a3709363",
+        "00fff960-4698-48ce-a2dc-0a46182a39bb"
     ],
     "filterType": "GMSprite",
     "folderName": "Options",

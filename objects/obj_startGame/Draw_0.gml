@@ -8,10 +8,8 @@ if !(global.practice) {
 	//character portion
 	draw_sprite(spr_char,0,48,240);
 	draw_sprite(spr_characters,(board - 1) * 2,24,288);
-	//start
-	draw_sprite(spr_start,0,48,360);
 	//arrow positioning
-	if (cursor < 2)
+	if (cursor < 2) && (cursor > -1)
 		draw_sprite(spr_arrows,cursorType + floor(cursorFlickerIndex),24,cursorPositions[cursor]);
 
 	if (flash) draw_rectangle(0,0,768,432,c_black);
