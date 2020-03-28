@@ -14,7 +14,7 @@ level = 1;
 char = 0;
 
 //maximum values
-maxLevel = 100;
+maxLevel = 1000;
 maxBoard = 2;
 
 //cursor control

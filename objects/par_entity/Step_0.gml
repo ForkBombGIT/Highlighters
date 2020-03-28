@@ -130,27 +130,21 @@ if (instance_exists(pieceAbove)) {
 if !(global.gameover) &&
    ((landAnim) || 
    ((bounce) && 
-    (instance_exists(scr_getPieceAtPos(obj_controller.boardHeight - 2,col))) &&
    !(global.forceRise) && 
    !(obj_controller.freeze) && 
    !(instance_exists(obj_matchmaker)))) && 
    !(match) && 
     (bottomEntity) {
-	var animSpeed = (bounce) ?
-					((floor(bounceIndex) == 1 || floor(bounceIndex) == 3) ? 0.25 : 0.5) :
-					((floor(landAnimIndex) == index) ? 0.25 : 0.5);
-	if (bounce) {
-		if (bounceIndex >= 5)
-			bounceIndex = 0;
-		else bounceIndex += animSpeed
-	} else {
+	var animSpeed = (floor(landAnimIndex) == index) ? 0.25 : 0.5;
+	// landing animation index control
+	if !(bounce) {
 		if (floor(landAnimIndex) < index + 3) {
 		    landAnimIndex += animSpeed;
 		} else { landAnimIndex = index; landAnim = false; }
-	
 	}
-	
-	image_index = (bounce) ? scr_getBounceIndex(floor(bounceIndex)) + index : floor(landAnimIndex) ;
+	//apply animation
+	//bounce index is controller in controller for all pieces to bounce uniformly
+	image_index = (bounce) ? scr_getBounceIndex(floor(obj_controller.bounceIndex)) + index : floor(landAnimIndex) ;
 } else bounce = false;
 #endregion
 

@@ -12,8 +12,10 @@ global.restart = false;
 
 //selected character
 char = 0;
+
 //game score
 gameScore = 0;
+
 //game speed 
 startGameSpeed = 1;
 gameSpeed = startGameSpeed;
@@ -23,19 +25,20 @@ boardWidth = 6;
 boardHeight = 9;
 board = 0;
 minRisePace = 0.05;
-maxLevel = 100;
+maxLevel = 1000;
 fadeToBlack = false;
 
 //controls game loop 
 orgRisePace = 3.0;
 risePace = orgRisePace;
 riseTimer = current_time;
-initialScoreToNextLevel = 100;
+initialScoreToNextLevel = 10;
 scoreToNextLevel = initialScoreToNextLevel;
 startNextLevelScale = 1;
 nextLevelScale = startNextLevelScale;
 incrementScaler = 1.1;
 canRise = true;
+newRowInc = false;
 
 //used for row generation 
 freeze = false;
@@ -46,6 +49,8 @@ global.riseSpeed = global.orgRiseSpeed;
 global.riseUp = false;
 global.forceRise = false;
 global.forceRiseSpeed = 3;
+bounce = false;
+bounceIndex = 0;
 startingRows = 6;
 selectedEntities = scr_generateColors();
 activeMatches = ds_list_create();

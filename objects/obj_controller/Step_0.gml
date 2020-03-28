@@ -61,15 +61,15 @@ if (!scr_checkRow(boardHeight)) &&
 		var entity = ds_list_find_value(rowEntities,i);
 		if (!entity.bounce) && 
 		   (entity.bottomEntity) && 
-		   (!entity.swap) {
+		   (!entity.swap) && 
+		   (entity.y <= scr_getRowPos(boardHeight - 2)){
 			entity.bounce = true;
-			entity.landAnimIndex = entity.index;	
+			bounce = true;
 			var colEntities = scr_getCol(entity.col);
 			for (var j = 0; j < ds_list_size(colEntities); j++) {
 				var entityCol = ds_list_find_value(colEntities,j);
 				if (entityCol.y <= scr_getRowPos(0)) {
 					entityCol.bounce = true;
-					entityCol.landAnimIndex = entityCol.index;	
 				}
 			}
 		}
@@ -91,12 +91,21 @@ else {
 	}
 }
 
+if (bounce) {
+	var animSpeed = (floor(bounceIndex) == 1 || floor(bounceIndex) == 3) ? 0.25 : 0.5
+	if (bounceIndex >= 5)
+		bounceIndex = 0;
+	else bounceIndex += animSpeed
+} else bounceIndex = 0;
+
 //block loop
-if ((global.active) && !(global.gameover)) {	
+if ((global.active) && 
+   !(global.gameover)) {	
 	//disables level progression in practice
 	if !(global.practice) {
 		//handles level progression
-		if (gameScore >= scoreToNextLevel) && (gameSpeed < maxLevel) {
+		if (gameScore >= scoreToNextLevel) && 
+		   (gameSpeed < maxLevel) {
 			gameSpeed++;
 			scoreToNextLevel = floor(initialScoreToNextLevel * ((++nextLevelScale) * incrementScaler));
 			risePace -= (orgRisePace - minRisePace) / maxLevel;
@@ -106,7 +115,11 @@ if ((global.active) && !(global.gameover)) {
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,par_entity)){
 		scr_createRow(-1);
-	}
+		if !(newRowInc) {
+			gameScore += 1;
+			newRowInc = true;
+		}
+	} else newRowInc = false;
 	
 	//manual new row
 	if (keyboard_check(ds_map_find_value(global.controls,"B")) && 

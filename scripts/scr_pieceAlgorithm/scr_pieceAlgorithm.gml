@@ -12,7 +12,7 @@ var conditionOne = false;
 var conditionOneRetry = 0; //  generate a matching color if three of the same have been placed
 var conditionTwoRetry = 0;   //  generate a piece not in history
 var conditionThreeRetry = 0; //  generate a piece not in hisotry, if 3 same have been created 
-var maxSameColor = 4;
+var maxSameColor = 3;
 
 var bombProb = 1;
 var canPlace = instance_exists(scr_getPieceAtPos(row,col));
@@ -113,12 +113,12 @@ while !(canPlace) {
 		if (instance_exists(left) && (canPlace)) {
 			canPlace = scr_checkColors(left.index,color);
 			//ensures left and current color do not match
-			if (left.index == color) canPlace = false;
+			if (left.index == color) && (canPlace) canPlace = false;
 		}
 		if (instance_exists(bottom) && (canPlace)) {
 			canPlace = scr_checkColors(bottom.index,color);
 			//ensures bottom and current color do not match
-			if (bottom.index == color) canPlace = false;
+			if (bottom.index == color) && (canPlace) canPlace = false;
 		}
 	}
 	if (canPlace) {
