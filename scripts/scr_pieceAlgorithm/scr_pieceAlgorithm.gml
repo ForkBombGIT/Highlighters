@@ -12,6 +12,7 @@ var conditionOne = false;
 var conditionOneRetry = 0; //  generate a matching color if three of the same have been placed
 var conditionTwoRetry = 0;   //  generate a piece not in history
 var conditionThreeRetry = 0; //  generate a piece not in hisotry, if 3 same have been created 
+var conditionFourRetry = 0; // ensures theres less than 3 of each color
 var maxSameColor = 3;
 
 var bombProb = 1;
@@ -85,20 +86,22 @@ while !(canPlace) {
 		
 		// c.4 logic
 		// no more than x amount of pieces can exist in the history
-		for (var i = 0; i < array_length_1d(availablePieces); i++) {
-			var entity = availablePieces[i];
-			var pieceFrequency = ds_map_find_value(historyFrequency,entity);
+		if (conditionFourRetry < 6) {
+			for (var i = 0; i < array_length_1d(availablePieces); i++) {
+				var entity = availablePieces[i];
+				var pieceFrequency = ds_map_find_value(historyFrequency,entity);
 			
-			canPlace = !(pieceFrequency >= maxSameColor);
-			if (!canPlace) {
-				var temp = []; 
-				var index = 0;
-				for (var j = 0; j < array_length_1d(availablePieces); j++) {
-					if (availablePieces[j] != entity) {
-						temp[index++] = availablePieces[j];	
+				canPlace = !(pieceFrequency >= maxSameColor);
+				if (!canPlace) {
+					var temp = []; 
+					var index = 0;
+					for (var j = 0; j < array_length_1d(availablePieces); j++) {
+						if (availablePieces[j] != entity) {
+							temp[index++] = availablePieces[j];	
+						}
 					}
-				}
-				availablePieces = temp;
+					availablePieces = temp;
+				} else conditionFourRetry++;
 			}
 		}
 		

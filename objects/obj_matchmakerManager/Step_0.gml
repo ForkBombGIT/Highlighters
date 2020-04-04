@@ -13,11 +13,11 @@ if !(global.gameover) {
 						if ((matchmaker.colorIndex == matchmakerPlus.colorIndex)) {
 							for (var j = 0; j < ds_list_size(matchmaker.final); j++){
 								matchmakerPlus.origin.matchOverride = true;
-								matchmakerPlus.origin.match = false;
 								//add missing pieces from matchmakerPlus into matchmaker
 								for (var k = 0; k < ds_list_size(matchmakerPlus.final); k++) {
 									if (ds_list_find_index(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k)) == -1) {
-										ds_list_add(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k))
+										var matchmakerPlusEntity = ds_list_find_value(matchmakerPlus.final,k);
+										ds_list_add(matchmaker.final,matchmakerPlusEntity);
 									}
 								}
 								instance_destroy(matchmakerPlus);

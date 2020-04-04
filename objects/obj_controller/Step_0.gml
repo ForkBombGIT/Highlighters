@@ -1,4 +1,9 @@
-#region Game Loop
+//clear active match list if no matchmakers exist
+if (instance_number(obj_matchmaker) == 0) {
+	ds_list_clear(activeMatches)	
+}
+
+#region Game States
 //handles restart logic
 if (global.restart) {
 	selectedEntities = scr_generateColors();
@@ -34,11 +39,6 @@ if (global.gameover) {
 	}
 }
 
-//clear active match list if no matchmakers exist
-if (instance_number(obj_matchmaker) == 0) {
-	ds_list_clear(activeMatches)	
-}
-
 //freeze timer
 if (freeze) &&
    !instance_exists(obj_matchmaker) &&
@@ -49,9 +49,12 @@ if (freeze) &&
 	}
 }
 
+//turn off freeze if countdown is over
 if (freezeTime <= 0)
 	freeze = false;
+#endregion
 
+#region Piece Bouncing - Panic Notif
 if (!scr_checkRow(boardHeight)) && 
    (!global.forceRise) {
 	global.gameover = false;
@@ -65,13 +68,6 @@ if (!scr_checkRow(boardHeight)) &&
 		   (entity.y <= scr_getRowPos(boardHeight - 2)){
 			entity.bounce = true;
 			bounce = true;
-			var colEntities = scr_getCol(entity.col);
-			for (var j = 0; j < ds_list_size(colEntities); j++) {
-				var entityCol = ds_list_find_value(colEntities,j);
-				if (entityCol.y <= scr_getRowPos(0)) {
-					entityCol.bounce = true;
-				}
-			}
 		}
 	}
 }
@@ -82,23 +78,20 @@ else {
 		var entity = ds_list_find_value(rowEntities,i);
 		if (entity.bounce != false) {
 			entity.bounce = false;
-			var colEntities = scr_getCol(entity.col);
-			for (var j = 0; j < ds_list_size(colEntities); j++) {
-				var entityCol = ds_list_find_value(colEntities,j);
-				entityCol.bounce = false;
-			}
+			bounce = false;
 		}
 	}
 }
-
+//controls bounce animations, keeps pieces in sync
 if (bounce) {
 	var animSpeed = (floor(bounceIndex) == 1 || floor(bounceIndex) == 3) ? 0.25 : 0.5
 	if (bounceIndex >= 5)
 		bounceIndex = 0;
 	else bounceIndex += animSpeed
 } else bounceIndex = 0;
+#endregion
 
-//block loop
+#region Piece Loop
 if ((global.active) && 
    !(global.gameover)) {	
 	//disables level progression in practice
@@ -116,7 +109,8 @@ if ((global.active) &&
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,par_entity)){
 		scr_createRow(-1);
 		if !(newRowInc) {
-			gameScore += 1;
+			gameScore++;
+			gameSpeed++;
 			newRowInc = true;
 		}
 	} else newRowInc = false;
@@ -127,6 +121,7 @@ if ((global.active) &&
 	  !instance_exists(obj_matchmaker) &&
 	  !par_entity.falling {
 		freeze = false;
+		freezeTime = 0;
 		//checks if piece is gonna rise into game over territory
 		if (scr_checkRow(boardHeight)) {
 			global.gameover = true;
@@ -134,6 +129,7 @@ if ((global.active) &&
 		else {
 			global.forceRise = true;
 			freeze = false;
+			freezeTime = 0;
 			riseTimer = current_time;
 		
 			var targY = abs(432 - (instance_position(scr_getColPos(0),432,par_entity).y + 24));

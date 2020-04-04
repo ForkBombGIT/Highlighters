@@ -22,7 +22,10 @@ if (!global.gameover) {
 #endregion
 
 #region Grey Pieces
-if (!(swap) && !(global.gameover) && !(match)) {
+if (!(swap) && 
+	!(global.gameover) && 
+	!(match) &&
+	!(landAnim)) {
 	if (y <= scr_getRowPos(0)) {
 		image_index = index;
 	}
@@ -57,8 +60,8 @@ if (highlight) {
 if (y >= scr_getRowPos(0)) { 
 	bottomEntity = true; 
 } else if (position_meeting(x,y+pieceSize,par_entity)) {
-	var below = instance_position(x,y+pieceSize,par_entity)
-	bottomEntity = below.bottomEntity;
+	var below = instance_place(x,y+pieceSize,par_entity);
+	bottomEntity = below.bottomEntity
 } else {
 	if !(global.riseUp) && !(global.forceRise)
 		bottomEntity = false;
@@ -71,8 +74,8 @@ if ((bottomEntity) && (falling)) {
 }
 
 if (bottomEntity) && 
-    !(global.gameover) && 
-	!(match) {
+   (!(global.gameover)) && 
+   (!(match)) {
 	var entity = instance_position(x,y + pieceSize,par_entity);
 	if (instance_exists(entity)) {
 		if (entity.match) && !(match) image_index = index + 3;
@@ -120,18 +123,12 @@ if (!(bottomEntity) &&
 	if !alarm[0] alarm[0] = fallCheckDelay;
 } 
 
-//checks for piece above, and if its bouncing, make this piece bounce as well
-var pieceAbove = instance_position(x,y - pieceSize,par_entity);
-if (instance_exists(pieceAbove)) {
-	if (y <= scr_getRowPos(0)) bounce = pieceAbove.bounce;
-}
-
 //controls landing animation
 if !(global.gameover) &&
    ((landAnim) || 
    ((bounce) && 
    !(global.forceRise) && 
-   !(obj_controller.freeze) && 
+    (obj_controller.freezeTime == 0) && 
    !(instance_exists(obj_matchmaker)))) && 
    !(match) && 
     (bottomEntity) {
@@ -146,6 +143,15 @@ if !(global.gameover) &&
 	//bounce index is controller in controller for all pieces to bounce uniformly
 	image_index = (bounce) ? scr_getBounceIndex(floor(obj_controller.bounceIndex)) + index : floor(landAnimIndex) ;
 } else bounce = false;
+
+//checks for piece above, and if its bouncing, make this piece bounce as well
+var pieceAbove = instance_position(x,y - pieceSize,par_entity);
+if (instance_exists(pieceAbove)) {
+	if (y <= scr_getRowPos(0) && 
+	   (y <= scr_getRowPos(obj_controller.boardHeight - 3))) 
+		bounce = pieceAbove.bounce;
+}
+
 #endregion
 
 #region Match Control

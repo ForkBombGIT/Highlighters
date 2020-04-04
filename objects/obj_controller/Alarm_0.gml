@@ -1,3 +1,4 @@
+//gameover animations
 //switch to gray sprite
 if (scr_checkRow(animRow)) {
 	for (var j = 0; j < boardWidth; j++){

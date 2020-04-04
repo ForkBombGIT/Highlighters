@@ -1,7 +1,9 @@
 randomize();
 pieceSize = 48;
+
 //indentify charm color
 index = -1;
+
 //swapping variables
 swap = false;
 targetX = -1;
@@ -24,11 +26,13 @@ highlighting = false;
 bounce = false;
 floating = false;
 floatDelay = global.practice ? 40 : 30;
+
 //position
 row = -1;
 col = -1;
 targY = -1;
 initY = -1;
+
 //used for matches
 left = noone;
 right = noone;
