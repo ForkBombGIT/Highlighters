@@ -10,6 +10,7 @@ flash = false;
 //game settings
 board = 1; //starts at 1 too account for practice board
 boards = [spr_boardp,spr_board1,spr_board2];
+chars = [spr_floss,spr_cognac];
 level = 1;	
 char = 0;
 

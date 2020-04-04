@@ -4,6 +4,7 @@ timeFont = font_add_sprite_ext(spr_timenumbers, "0123456789:", true, 0);
 freezeFont = font_add_sprite_ext(spr_freezenumbers, "0123456789", true, 3); 
 //board sprites
 boards = [spr_boardp,spr_board1, spr_board2];
+chars = [spr_cognac,spr_floss];
 //holds pause state
 pause = false;
 screenShot = noone;

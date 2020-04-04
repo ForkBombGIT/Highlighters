@@ -207,6 +207,14 @@
             }
         },
         {
+            "Key": "1e8e2fed-6350-4035-9039-7d109f433f3a",
+            "Value": {
+                "id": "d156df1a-a2e7-4a4d-954d-ad9955591997",
+                "resourcePath": "sprites\\spr_cognac\\spr_cognac.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "231791d4-445f-403b-9e41-430795e9868f",
             "Value": {
                 "id": "e8081314-5c6a-47d4-ae1b-efe1e090a54a",
@@ -906,7 +914,7 @@
             "Key": "dc6518b8-0295-42e0-96d9-ce69dee8ce0d",
             "Value": {
                 "id": "f84dab29-e850-4505-ad59-89a55bffd664",
-                "resourcePath": "sprites\\spr_cognac\\spr_cognac.yy",
+                "resourcePath": "sprites\\spr_floss\\spr_floss.yy",
                 "resourceType": "GMSprite"
             }
         },
