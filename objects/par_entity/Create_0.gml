@@ -24,6 +24,7 @@ highlightIndex = 8;
 highlightLength = 14;
 highlighting = false;
 bounce = false;
+squish = false;
 floating = false;
 floatDelay = global.practice ? 40 : 30;
 

@@ -9,8 +9,7 @@ if (round(cursorFlickerIndex) < 2){
 if (global.practice) {
 	if !(alarm[0]) alarm[0] = 1;	
 }
-else if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
-		 keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
+else if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 	if (++cursor == 2) {
 		flash = true;
 		if !(alarm[0]) alarm[0] = 2;

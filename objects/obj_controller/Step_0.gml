@@ -55,8 +55,8 @@ if (freezeTime <= 0)
 #endregion
 
 #region Piece Bouncing - Panic Notif
-if (!scr_checkRow(boardHeight)) && 
-   (!global.forceRise) {
+if !(scr_checkRow(boardHeight)) && 
+   !(global.forceRise) {
 	global.gameover = false;
 	//turn on bounce animation
 	var rowEntities = scr_getRow(boardHeight - 2);
@@ -64,8 +64,7 @@ if (!scr_checkRow(boardHeight)) &&
 		var entity = ds_list_find_value(rowEntities,i);
 		if (!entity.bounce) && 
 		   (entity.bottomEntity) && 
-		   (!entity.swap) && 
-		   (entity.y <= scr_getRowPos(boardHeight - 2)){
+		   (!entity.swap) {
 			entity.bounce = true;
 			bounce = true;
 		}
@@ -137,7 +136,7 @@ if ((global.active) &&
 				var instance = instance_find(par_entity,i);
 				instance.targY = targY;
 				instance.initY = instance.y;
-				global.active = false;
+				instance.initY = instance.y;
 			}
 		}
 	}

@@ -1,6 +1,5 @@
 #region Menu navigation
-if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
-    keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
+if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 	flash = true;
 	alarm[0] = 2;		
 	

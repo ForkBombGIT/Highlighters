@@ -35,8 +35,9 @@ if (!(swap) &&
 
 #region Rising Pieces
 if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) {
-	if !match && !(global.gameover) 
-		image_index = index + 3;
+	if !match && !(global.gameover) {
+		squish = true;
+	}
 	if (obj_controller.freezeTime == 0) &&
 	!(instance_exists(obj_matchmaker)) {
 		if !(alarm[1]) {
@@ -44,7 +45,19 @@ if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) {
 			obj_controller.canRise = false
 		}
 	}
+} 
+
+//checks for piece above, and if its squished, make this piece squish as well
+var pieceAbove = instance_position(x,y - pieceSize,par_entity);
+if (instance_exists(pieceAbove)) {
+	if (y <= scr_getRowPos(obj_controller.boardHeight - 3))
+		squish = pieceAbove.squish;
 }
+
+if (squish) {
+	image_index = index + 3;
+}
+
 #endregion
 
 #region Highlight Animation
@@ -148,7 +161,7 @@ if !(global.gameover) &&
 var pieceAbove = instance_position(x,y - pieceSize,par_entity);
 if (instance_exists(pieceAbove)) {
 	if (y <= scr_getRowPos(0) && 
-	   (y <= scr_getRowPos(obj_controller.boardHeight - 3))) 
+	   (y <= scr_getRowPos(obj_controller.boardHeight - 3) + pieceSize/2)) 
 		bounce = pieceAbove.bounce;
 }
 

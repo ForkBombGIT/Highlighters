@@ -26,8 +26,7 @@ if (global.active) {
 		}
 		
 		//menu options
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
-		    keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 				flash = true;
 				if !(alarm[0]) alarm[0] = 1;
 		}
@@ -65,7 +64,15 @@ if (global.active) {
 	#endregion
 }
 
-var animSpeed = 0.2;
+var pauseAnimSpeed = 0.2;
 if (round(pauseAnim) < 7){
-	pauseAnim += animSpeed;
+	pauseAnim += pauseAnimSpeed;
 } else pauseAnim = 1;
+
+if !(pause) {
+	var charArr = ds_list_find_value(global.characterFrameRates, obj_controller.board);
+	var charAnimSpeed = charArr[0] / room_speed;
+	if (round(characterAnimIndex) < sprite_get_number(char_idles[obj_controller.board])){
+		characterAnimIndex += charAnimSpeed;
+	} else characterAnimIndex = 1;
+}

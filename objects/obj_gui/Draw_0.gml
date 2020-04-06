@@ -1,8 +1,9 @@
 #region Board UI
+if !(global.active) characterAnimIndex = 1
 if !(pause) || !sprite_exists(screenShot){
 	//draws board
 	draw_sprite(boards[obj_controller.board],0,0,0);
-	if !(global.practice) draw_sprite(chars[obj_controller.board],0,360,240);
+	if !(global.practice) draw_sprite(char_idles[obj_controller.board],characterAnimIndex,360,240);
 	//draws gui
 	draw_set_font(timeFont);
 	//time

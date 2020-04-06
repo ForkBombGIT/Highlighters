@@ -1,6 +1,6 @@
 randomize();
 //holds key settings
-global.controls = ds_map_create()
+global.controls = ds_map_create();
 if (!file_exists("data.json")) {
 	ds_map_add(global.controls,"A",ord("X"));
 	ds_map_add(global.controls,"B",ord("Z"));
@@ -9,10 +9,14 @@ if (!file_exists("data.json")) {
 	ds_map_add(global.controls,"LEFT",vk_left);	
 	ds_map_add(global.controls,"RIGHT",vk_right);
 	ds_map_add(global.controls,"PAUSE",vk_enter);
-	ds_map_add(global.controls,"SELECT",vk_enter);
 	ds_map_add(global.controls,"OFF",vk_escape);
 }
 else global.controls = scr_loadControls("data.json");
+//animation data for character sprites
+global.characterFrameRates = ds_list_create();
+ds_list_add(global.characterFrameRates,[4,6,3,2]);
+ds_list_add(global.characterFrameRates,[12,4,12,3]);
+ds_list_add(global.characterFrameRates,[6,3,3,2]);
 image_speed = 0.02;
 //holds whether the user wants to practice
 global.practice = false;

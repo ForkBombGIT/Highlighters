@@ -44,16 +44,14 @@ if (start != 0) {
 switch (start) {
 	case 0:
 		//menu item selection
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
-			keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			start = 1; flash = true;
 			if !(alarm[0]) alarm[0] = 2;
 		}
 		break;
 	case 1:
 		global.practice = false;
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
-			keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			switch (cursorPosition) {
 				case 0: //classic
 					start = 5;
@@ -71,8 +69,7 @@ switch (start) {
 		break;
 	case 2:
 		option = -1;
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
-			keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			switch (cursorPosition) {
 				case 0: //input
 					option = 0
@@ -128,7 +125,6 @@ switch (start) {
 								break;
 							   case 6:
 							    ds_map_set(global.controls,"PAUSE",keyPressed)
-							    ds_map_set(global.controls,"SELECT",keyPressed)
 								break;
 						   }
 					   }
@@ -158,8 +154,7 @@ switch (start) {
 		}
 		break;
 	case 4:
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
-			keyboard_check_pressed(ds_map_find_value(global.controls,"SELECT"))) {
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			start++;
 			global.practice = true;
 		}

@@ -24,7 +24,8 @@ var pieceFrames = 16;
 while !(canPlace) {
 	var left = scr_getPieceAtPos(row, col - 1),
 		bottom = scr_getPieceAtPos(row - 1, col),
-		up = scr_getPieceAtPos(row + 1, col);
+		up = scr_getPieceAtPos(row + 1, col),
+		right = scr_getPieceAtPos(row, col + 1);
 	var colorIndex = irandom_range(0,array_length_1d(availablePieces) - 1);
 	var color = availablePieces[colorIndex] * pieceFrames;
 	var pieceType = (bombCount < 2) ? 
@@ -123,6 +124,11 @@ while !(canPlace) {
 			canPlace = scr_checkColors(bottom.index,color);
 			//ensures bottom and current color do not match
 			if (bottom.index == color) && (canPlace) canPlace = false;
+		}
+		if (instance_exists(right) && (canPlace)) {
+			canPlace = scr_checkColors(right.index,color);
+			//ensures bottom and current color do not match
+			if (right.index == color) && (canPlace) canPlace = false;
 		}
 	}
 	if (canPlace) {

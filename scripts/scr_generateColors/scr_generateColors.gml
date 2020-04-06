@@ -1,5 +1,6 @@
 var currIndex = 0;
 var selectedEntities = [];
+//two sets of colors that can't be together
 var likeColors = [16,32,80,96,128,144];
 var likeCounter = 0;
 var likeMax = 3;
