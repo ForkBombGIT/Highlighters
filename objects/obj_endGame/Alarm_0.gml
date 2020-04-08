@@ -1,5 +1,6 @@
 flash = false;
 if (endCursor == 0) {
+	characterState = 0;
 	restart = true;	room_goto(1);
 }
 else if (endCursor == 1) {

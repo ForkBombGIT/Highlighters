@@ -68,13 +68,3 @@ var pauseAnimSpeed = 0.2;
 if (round(pauseAnim) < 7){
 	pauseAnim += pauseAnimSpeed;
 } else pauseAnim = 1;
-
-if !(pause) {
-	var charArr = ds_list_find_value(global.characterFrameRates, obj_controller.board);
-	var charAnimSpeed = charArr[0] / room_speed;
-	if (global.active) {
-		if (round(characterAnimIndex) < sprite_get_number(char_idles[obj_controller.board])){
-			characterAnimIndex += charAnimSpeed;
-		} else characterAnimIndex = 0;
-	}
-}

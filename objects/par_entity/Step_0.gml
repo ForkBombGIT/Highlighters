@@ -50,11 +50,11 @@ if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) {
 //checks for piece above, and if its squished, make this piece squish as well
 var pieceAbove = instance_position(x,y - pieceSize,par_entity);
 if (instance_exists(pieceAbove)) {
-	if (y <= scr_getRowPos(obj_controller.boardHeight - 3))
+	if (y <= scr_getRowPos(obj_controller.boardHeight - 2))
 		squish = pieceAbove.squish;
 }
 
-if (squish) {
+if (squish) && !(global.gameover) {
 	image_index = index + 3;
 }
 

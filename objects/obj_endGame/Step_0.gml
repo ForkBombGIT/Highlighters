@@ -1,6 +1,7 @@
 #region Menu navigation
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 	flash = true;
+	if (endCursor == 1) instance_destroy(obj_characterPortrait);
 	alarm[0] = 2;		
 	
 }
@@ -12,7 +13,7 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"UP"))) {
 }
 
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"DOWN"))) {
-	if (endCursor < 2) {
+	if (endCursor < 1) {
 		endCursor++;	
 	}
 }

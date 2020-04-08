@@ -19,6 +19,7 @@ else if (keyboard_check_released(ds_map_find_value(global.controls,"B"))) {
 	if (--cursor == -1) {
 		flash = true;
 		start = -1;
+		instance_destroy(global.characterPortrait);
 		if !(alarm[0]) alarm[0] = 2;
 	}
 }
@@ -39,7 +40,9 @@ if (keyboard_check(vk_anykey)) {
 			}
 		} 
 	}
+	if !global.practice global.characterPortrait.character = board;
 } else keyPressLength = 0;
+
 #endregion
 
 //creates the controller obj and countdown obj when the user is ready

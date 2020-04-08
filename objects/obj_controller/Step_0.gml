@@ -34,6 +34,8 @@ if (global.gameover) {
 	global.riseUp = false;
 	global.forceRiseSpeed = 0;
 	if !(anim) { 
+		//sets starting point for character portrait
+		global.characterPortrait.characterAnimIndex = 5;
 		anim = true; 
 		alarm[0] = 1; 
 	}

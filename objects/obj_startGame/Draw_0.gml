@@ -1,6 +1,5 @@
 if !(global.practice) {
 	draw_sprite(boards[board],0,0,0);
-	draw_sprite(chars[board - 1],0,360,240);
 	draw_set_font(numFont);
 	draw_sprite(spr_select,0,48,24);
 	//level portion

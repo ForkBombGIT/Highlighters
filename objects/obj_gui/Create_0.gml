@@ -5,9 +5,6 @@ freezeFont = font_add_sprite_ext(spr_freezenumbers, "0123456789", true, 3);
 
 //board sprites
 boards = [spr_boardp,spr_board1, spr_board2];
-char_idles = [spr_durma_idle,spr_floss_idle,spr_cognac_idle];
-char_other = [spr_durma_other,spr_floss_other,spr_cognac_other];
-characterAnimIndex = 0;
 
 //pause state
 pause = false;
