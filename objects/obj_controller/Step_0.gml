@@ -57,32 +57,42 @@ if (freezeTime <= 0)
 #endregion
 
 #region Piece Bouncing - Panic Notif
-if !(scr_checkRow(boardHeight)) && 
-   !(global.forceRise) {
-	global.gameover = false;
-	//turn on bounce animation
-	var rowEntities = scr_getRow(boardHeight - 2);
-	for (var i = 0; i < ds_list_size(rowEntities); i++) {
-		var entity = ds_list_find_value(rowEntities,i);
-		if (!entity.bounce) && 
-		   (entity.bottomEntity) && 
-		   (!entity.swap) {
-			entity.bounce = true;
-			bounce = true;
+var canBounce = true;
+if (scr_checkRow(boardHeight - 1)) {
+	var topRow = scr_getRow(boardHeight - 1);
+	var entity = ds_list_find_value(topRow,0);
+	if (instance_exists(entity))
+		if (entity.y - 24 <= scr_getRow(boardHeight - 1))
+			canBounce = false;
+}
+if (canBounce) && 
+  !(global.forceRise) {
+	if (scr_checkRow(boardHeight - 2)) { 
+		global.gameover = false;
+		//turn on bounce animation
+		var rowEntities = scr_getRow(boardHeight - 2);
+		for (var i = 0; i < ds_list_size(rowEntities); i++) {
+			var entity = ds_list_find_value(rowEntities,i);
+			if (!entity.bounce) && 
+				(entity.bottomEntity) && 
+				(!entity.swap) {
+				entity.bounce = true;
+				bounce = true;
+			}
 		}
+	} else {
+		//turn off bounce animation
+		var rowEntities = scr_getRow(boardHeight - 1);
+		for (var i = 0; i < ds_list_size(rowEntities); i++) {
+			var entity = ds_list_find_value(rowEntities,i);
+			if (entity.bounce != false) {
+				entity.bounce = false;
+			}
+		}
+		bounce = false;
 	}
 }
-else {
-	//turn off bounce animation
-	var rowEntities = scr_getRow(boardHeight - 1);
-	for (var i = 0; i < ds_list_size(rowEntities); i++) {
-		var entity = ds_list_find_value(rowEntities,i);
-		if (entity.bounce != false) {
-			entity.bounce = false;
-			bounce = false;
-		}
-	}
-}
+
 //controls bounce animations, keeps pieces in sync
 if (bounce) {
 	var animSpeed = (floor(bounceIndex) == 1 || floor(bounceIndex) == 3) ? 0.25 : 0.5

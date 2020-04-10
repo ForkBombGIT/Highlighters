@@ -5,29 +5,33 @@ if (instance_exists(obj_gui) && !obj_gui.pause) || !(instance_exists(obj_gui)) {
 	else {
 		var charFramerateArr = ds_list_find_value(characterFrameRates, character);
 		var charAnimSpeed = charFramerateArr[characterState] / room_speed;
-		var stateOffset;
+		var stateOffset, animMaxIndex;
 		
 		if (global.active) characterState = 0;
+		if (instance_exists(obj_controller))
+			if (obj_controller.bounce) characterState = 1;
 		if (global.gameover) characterState = 3;
 		
 		switch (characterState) {
 			case 0:
 				stateOffset = 0;
-				if (round(characterAnimIndex) < sprite_get_number(char_idles[character])){
-					characterAnimIndex += charAnimSpeed;
-				} else characterAnimIndex = stateOffset;
+				animMaxIndex = sprite_get_number(char_idles[character]);
 				break;
 			case 1:
-			break;
+				stateOffset = 1;
+				animMaxIndex = 3;
+				break;
 			case 2:
 			break;
 			case 3:
 				stateOffset = 5;
-				if (round(characterAnimIndex) < 7){
-					characterAnimIndex += charAnimSpeed;
-				} else characterAnimIndex = stateOffset;
+				animMaxIndex = 7;
 				break;
 		}
+		
+		if (round(characterAnimIndex) < animMaxIndex){
+			characterAnimIndex += charAnimSpeed;
+		} else characterAnimIndex = stateOffset;
 		
 		if (instance_exists(obj_controller)) {
 			if (obj_controller.freeze) {

@@ -5,4 +5,6 @@ if (instance_exists(obj_controller)) {
 	obj_controller.gameSpeed = level;
 	obj_controller.risePace -= ((obj_controller.orgRisePace - obj_controller.minRisePace) / obj_controller.maxLevel) * (level - 1)
 }
-global.characterPortrait.characterState = 0;
+if (instance_exists(global.characterPortrait)) {
+	global.characterPortrait.characterState = 0;
+} 
