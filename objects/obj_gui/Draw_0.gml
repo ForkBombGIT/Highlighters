@@ -2,7 +2,7 @@
 if !(global.active) {
 	characterAnimIndex = 0;
 }
-if !(pause) || !sprite_exists(screenShot){
+if !(pause) || !sprite_exists(screenShot) {
 	//draws board
 	draw_sprite(boards[obj_controller.board],0,0,0);
 	//draws gui
@@ -17,12 +17,6 @@ if !(pause) || !sprite_exists(screenShot){
 	//game level
 	draw_sprite(spr_speed,0,360,144);
 	draw_text(422,168,string_replace_all(string_format(obj_controller.gameSpeed,3,0)," ", "0"));
-	//draws freeze sprite
-	if (obj_controller.freeze) {
-		draw_set_font(freezeFont);
-		draw_text(363,246,string_replace(string_format(obj_controller.freezeTime,2,0)," ","0"));
-		draw_set_font(numFont);
-	}
 } 
 #endregion
 #region Pause Control

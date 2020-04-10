@@ -1,6 +1,7 @@
 char_idles = [spr_durma_idle,spr_floss_idle,spr_cognac_idle];
 char_other = [spr_durma_other,spr_floss_other,spr_cognac_other];
 characterAnimIndex = 0;
+durmaAnimIndex = 7;
 characterState = 0;
 character = 1;
 
