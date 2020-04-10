@@ -1,18 +1,21 @@
 #region Menu Animation
 var startFlicker = 0.033;
-if (round(startFlickerIndex) < 2){
-    startFlickerIndex += startFlicker;
-} else startFlickerIndex = 0;
+startFlickerIndex += startFlicker;
+if (floor(startFlickerIndex) >= 2) {
+	startFlickerIndex = 0;
+}  
 
 var optionAnimation = 0.2;
-if (round(optionAnimationIndex) < 7){
-    optionAnimationIndex += optionAnimation;
-} else optionAnimationIndex = 1;
+optionAnimationIndex += optionAnimation;
+if (floor(optionAnimationIndex) >= 7) {
+	optionAnimationIndex = 1;
+}  
 
 var optionBackgroundAnimation = 0.2;
-if (round(optionBackgroundAnimationIndex) < 32){
-    optionBackgroundAnimationIndex += optionBackgroundAnimation;
-} else optionBackgroundAnimationIndex = 0;
+optionBackgroundAnimationIndex += optionBackgroundAnimation;
+if (floor(optionBackgroundAnimationIndex) >= 32){
+	optionBackgroundAnimationIndex = 0;
+}  
 #endregion
 
 #region Menu Navigation

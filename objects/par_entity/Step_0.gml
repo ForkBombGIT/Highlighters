@@ -148,9 +148,10 @@ if !(global.gameover) &&
 	var animSpeed = (floor(landAnimIndex) == index) ? 0.25 : 0.5;
 	// landing animation index control
 	if !(bounce) {
-		if (floor(landAnimIndex) < index + 3) {
-		    landAnimIndex += animSpeed;
-		} else { landAnimIndex = index; landAnim = false; }
+		landAnimIndex += animSpeed;
+		if (floor(landAnimIndex) >= index + 3) {
+			landAnimIndex = index; landAnim = false;
+		}
 	}
 	//apply animation
 	//bounce index is controller in controller for all pieces to bounce uniformly

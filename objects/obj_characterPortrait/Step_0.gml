@@ -29,15 +29,17 @@ if (instance_exists(obj_gui) && !obj_gui.pause) || !(instance_exists(obj_gui)) {
 				break;
 		}
 		
-		if (round(characterAnimIndex) < animMaxIndex){
-			characterAnimIndex += charAnimSpeed;
-		} else characterAnimIndex = stateOffset;
+		characterAnimIndex += charAnimSpeed;
+		if (floor(characterAnimIndex) >= animMaxIndex){
+			characterAnimIndex = stateOffset;
+		}
 		
 		if (instance_exists(obj_controller)) {
 			if (obj_controller.freeze) {
-				if (round(durmaAnimIndex) < 9) {
-					durmaAnimIndex += charAnimSpeed;
-				} else durmaAnimIndex = 7;
+				durmaAnimIndex += charAnimSpeed;
+				if (floor(durmaAnimIndex) >= 9) {
+					durmaAnimIndex = 7;
+				}  
 			}
 		}
 	}

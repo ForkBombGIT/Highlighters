@@ -1,8 +1,9 @@
 #region Animation Control
 var cursorFlickerSpeed = 0.0333;
-if (round(cursorFlickerIndex) < 2){
-	cursorFlickerIndex += cursorFlickerSpeed;
-} else cursorFlickerIndex = 0;
+cursorFlickerIndex += cursorFlickerSpeed;
+if (floor(cursorFlickerIndex) >= 2){
+	cursorFlickerIndex = 0;
+}
 #endregion
 
 #region Input Control

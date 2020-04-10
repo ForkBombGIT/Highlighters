@@ -21,18 +21,17 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"DOWN"))) {
 
 //Menu option animation
 var animSpeed = 0.2;
-if (round(endOptionAnim) < 7){
-	endOptionAnim += animSpeed;
-} else endOptionAnim = 1;
+endOptionAnim += animSpeed;
+if (floor(endOptionAnim) >= 7) {
+	endOptionAnim = 1;
+} 
 
 animSpeed = 0.5;
-if (round(gameoverAnim) < 16) && !(stopGameoverAnim){
-	gameoverAnim += animSpeed;
-} 
-if (round(gameoverAnim) >= 15	) {
+gameoverAnim += animSpeed;
+if (floor(gameoverAnim) >= 16) && !(stopGameoverAnim){
 	stopGameoverAnim = false;
 	gameoverAnim = 15;
-}
+} 
 
 if (restart) {
 	instance_create_layer(x,y,"Entities",obj_controller);	
