@@ -31,7 +31,7 @@ if (instance_exists(obj_gui) && !obj_gui.pause) || !(instance_exists(obj_gui)) {
 		
 		characterAnimIndex += charAnimSpeed;
 		if (floor(characterAnimIndex) >= animMaxIndex){
-			characterAnimIndex = stateOffset;
+			characterAnimIndex = stateOffset + charAnimSpeed;
 		}
 		
 		if (instance_exists(obj_controller)) {

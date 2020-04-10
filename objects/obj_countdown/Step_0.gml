@@ -6,5 +6,4 @@ if (floor(animIndex) >= sprite_get_number(spr_countdown)) {
 } else {
 	image_index = floor(animIndex);
 }
-show_debug_message(image_index);
 
