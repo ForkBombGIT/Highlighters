@@ -16,7 +16,7 @@ if !(pause) || !sprite_exists(screenShot) {
 	draw_text(377,99,string_replace_all(string_format(obj_controller.gameScore,6,0)," ", "0"));
 	//game level
 	draw_sprite(spr_speed,0,360,144);
-	draw_text(422,168,string_replace_all(string_format(obj_controller.gameSpeed,3,0)," ", "0"));
+	draw_text(422,168,string_replace_all(string_format(obj_controller.gameLevel,3,0)," ", "0"));
 } 
 #endregion
 #region Pause Control
@@ -28,5 +28,3 @@ if (sprite_exists(screenShot) && pause){
 	draw_sprite(spr_pause_options,(pauseCursor == 2) ? 14 + floor(pauseAnim) : 14,24,306);
 }
 #endregion
-
-if (flash) draw_rectangle(0,0,768,432,c_black);

@@ -17,26 +17,21 @@ char = 0;
 gameScore = 0;
 
 //game speed 
-startGameSpeed = 1;
-gameSpeed = startGameSpeed;
+startGameLevel = 1;
+gameLevel = startGameLevel;
 
 //game rule variables
 boardWidth = 6;
 boardHeight = 9;
 board = 0;
-minRisePace = 0.05;
 maxLevel = 1000;
 fadeToBlack = false;
+victoryScore = 999999;
 
 //controls game loop 
-orgRisePace = 3.0;
-risePace = orgRisePace;
+orgriseSpeed = 90;
+riseSpeed = orgriseSpeed;
 riseTimer = current_time;
-initialScoreToNextLevel = 100;
-scoreToNextLevel = initialScoreToNextLevel;
-startNextLevelScale = 1;
-nextLevelScale = startNextLevelScale;
-incrementScaler = 1.1;
 canRise = true;
 newRowInc = false;
 

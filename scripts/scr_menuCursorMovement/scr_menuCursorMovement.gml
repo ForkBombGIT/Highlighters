@@ -6,7 +6,7 @@ var keyCode = argument1;
 if (keyCode == ds_map_find_value(global.controls,"RIGHT")) {
 	switch (cursorPosition) {
 		case 0:
-			level = clamp(level + 1,1,maxLevel)
+			level = clamp(level + 1,0,maxLevel)
 			break;
 		case 1:
 			board = clamp(board + 1,1,maxBoard)
@@ -17,7 +17,7 @@ if (keyCode == ds_map_find_value(global.controls,"RIGHT")) {
 if (keyCode == ds_map_find_value(global.controls,"LEFT")) {
 	switch (cursorPosition) {
 		case 0:
-			level = clamp(level - 1,1,maxLevel)
+			level = clamp(level - 1,0,maxLevel)
 			break;
 		case 1:
 			board = clamp(board - 1,1,maxBoard)

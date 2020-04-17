@@ -20,10 +20,8 @@ if (global.restart) {
 	cursor.visible = false;
 	//restart
 	scr_initRows(0);
-	gameSpeed = startGameSpeed;
-	nextLevelScale = startNextLevelScale;
-	scoreToNextLevel = initialScoreToNextLevel;
-	risePace = orgRisePace - (((orgRisePace - minRisePace) / maxLevel) * (gameSpeed - 1))
+	gameLevel = startGameLevel;
+	riseSpeed = scr_getRiseSpeed(gameLevel);
 	canRise = true;
 	instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
 }
@@ -62,36 +60,28 @@ if (scr_checkRow(boardHeight - 1)) {
 	var topRow = scr_getRow(boardHeight - 1);
 	var entity = ds_list_find_value(topRow,0);
 	if (instance_exists(entity))
-		if (entity.y - 24 <= scr_getRow(boardHeight - 1))
+		if (entity.y <= scr_getRowPos(boardHeight - 1))
 			canBounce = false;
 }
 if (canBounce) && 
   !(global.forceRise) {
-	if (scr_checkRow(boardHeight - 2)) { 
+	if (scr_checkRow(boardHeight - 3)) { 
 		global.gameover = false;
 		//turn on bounce animation
-		var rowEntities = scr_getRow(boardHeight - 2);
+		var rowEntities = scr_getRow(boardHeight - 3);
 		for (var i = 0; i < ds_list_size(rowEntities); i++) {
 			var entity = ds_list_find_value(rowEntities,i);
-			if (!entity.bounce) && 
-				(entity.bottomEntity) && 
-				(!entity.swap) {
+			if (entity.bottomEntity) && 
+			   !(entity.swap) &&
+			   (entity.y <= scr_getRowPos(boardHeight - 3)){
 				entity.bounce = true;
 				bounce = true;
 			}
 		}
 	} else {
-		//turn off bounce animation
-		var rowEntities = scr_getRow(boardHeight - 1);
-		for (var i = 0; i < ds_list_size(rowEntities); i++) {
-			var entity = ds_list_find_value(rowEntities,i);
-			if (entity.bounce != false) {
-				entity.bounce = false;
-			}
-		}
 		bounce = false;
 	}
-}
+} else bounce = false;
 
 //controls bounce animations, keeps pieces in sync
 if (bounce) {
@@ -105,23 +95,19 @@ if (bounce) {
 #region Piece Loop
 if ((global.active) && 
    !(global.gameover)) {	
-	//disables level progression in practice
-	if !(global.practice) {
+	if !(global.practice) { //disables level progression in practice
 		//handles level progression
-		if (gameScore >= scoreToNextLevel) && 
-		   (gameSpeed < maxLevel) {
-			gameSpeed++;
-			scoreToNextLevel = floor(initialScoreToNextLevel * ((++nextLevelScale) * incrementScaler));
-			risePace -= (orgRisePace - minRisePace) / maxLevel;
+		if (gameLevel < maxLevel) {
+			riseSpeed = scr_getRiseSpeed(gameLevel);
 		}
 	}
 	
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,par_entity)){
 		scr_createRow(-1);
-		if !(newRowInc) {
+		if !(newRowInc) && (gameLevel < maxLevel) {
 			gameScore++;
-			gameSpeed++;
+			gameLevel++;
 			newRowInc = true;
 		}
 	} else newRowInc = false;
@@ -158,7 +144,7 @@ if ((global.active) &&
 		canRise && 
 	   !instance_exists(obj_matchmaker) &&
 	   !par_entity.falling {
-		if ((current_time - riseTimer)/1000 > risePace) { 
+		if ((current_time - riseTimer)/1000 > (riseSpeed / room_speed)) { 
 			riseTimer = current_time;
 			global.riseUp = true;
 		} else global.riseUp = false;

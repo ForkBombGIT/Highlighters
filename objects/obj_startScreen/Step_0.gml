@@ -1,13 +1,13 @@
 #region Menu Animation
 var startFlicker = 0.033;
 startFlickerIndex += startFlicker;
-if (floor(startFlickerIndex) >= 2) {
+if (floor(startFlickerIndex) > 1) {
 	startFlickerIndex = 0;
-}  
+} 
 
 var optionAnimation = 0.2;
 optionAnimationIndex += optionAnimation;
-if (floor(optionAnimationIndex) >= 7) {
+if (floor(optionAnimationIndex) > 6) {
 	optionAnimationIndex = 1;
 }  
 

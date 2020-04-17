@@ -2,7 +2,7 @@
 flash = false;
 
 //previous game settings
-startGameSpeed = obj_controller.startGameSpeed;
+startGameLevel = obj_controller.startGameLevel;
 
 //gameover menu
 endCursor = 0;

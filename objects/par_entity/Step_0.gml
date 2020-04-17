@@ -50,7 +50,7 @@ if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) {
 //checks for piece above, and if its squished, make this piece squish as well
 var pieceAbove = instance_position(x,y - pieceSize,par_entity);
 if (instance_exists(pieceAbove)) {
-	if (y <= scr_getRowPos(obj_controller.boardHeight - 2))
+	if (y <= scr_getRowPos(obj_controller.boardHeight - 3))
 		squish = pieceAbove.squish;
 }
 
@@ -140,6 +140,7 @@ if (!(bottomEntity) &&
 if !(global.gameover) &&
    ((landAnim) || 
    ((bounce) && 
+   !(squish) &&
    !(global.forceRise) && 
     (obj_controller.freezeTime == 0) && 
    !(instance_exists(obj_matchmaker)))) && 
@@ -156,15 +157,15 @@ if !(global.gameover) &&
 	//apply animation
 	//bounce index is controller in controller for all pieces to bounce uniformly
 	image_index = (bounce) ? scr_getBounceIndex(floor(obj_controller.bounceIndex)) + index : floor(landAnimIndex) ;
-} else bounce = false;
+}
 
 //checks for piece above, and if its bouncing, make this piece bounce as well
 var pieceAbove = instance_position(x,y - pieceSize,par_entity);
-if (instance_exists(pieceAbove)) {
-	if (y <= scr_getRowPos(0) && 
-	   (y <= scr_getRowPos(obj_controller.boardHeight - 3) + pieceSize/2)) 
-		bounce = pieceAbove.bounce;
-}
+if (y <= scr_getRowPos(0) && 
+   (y <= scr_getRowPos(obj_controller.boardHeight - 3))) 
+	bounce = true;
+else bounce = false;
+
 
 #endregion
 

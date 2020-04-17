@@ -11,6 +11,4 @@ if !(global.practice) {
 	//arrow positioning
 	if (cursor < 2) && (cursor > -1)
 		draw_sprite(spr_arrows,cursorType + floor(cursorFlickerIndex),24,cursorPositions[cursor]);
-
-	if (flash) draw_rectangle(0,0,768,432,c_black);
 }

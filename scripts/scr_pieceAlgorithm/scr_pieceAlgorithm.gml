@@ -30,7 +30,7 @@ while !(canPlace) {
 	var pieceType = (bombCount < 2) ? 
 					((irandom_range(1,6) > bombProb) ? obj_charm : obj_bomb) : obj_charm;
 	canPlace = (pieceType == obj_bomb) ? (ds_list_find_index(bombHistory,color) == -1) : true;
-	if (ds_list_size(rowHistory) > 0) && canPlace{
+	if (ds_list_size(rowHistory) > 0) && canPlace {
 		if (bombCount < 2) {
 			// c.1 logic
 			// if a piece of the same color has been placed >= 3 times, try to generate a bomb 
@@ -105,31 +105,30 @@ while !(canPlace) {
 		//		} 
 		//	}
 		//}
-		
-		
-		if (instance_exists(up)) && canPlace {
-			//ensures that the colors touching do not fall into the "trio" of colors
-			//the trio describes colors that can not spawn together due to similarity in colors
-			canPlace = scr_checkColors(up.index,color);
-			//ensures up does not match current color
-			if (up.index == color) && (canPlace) canPlace = false;
-		}
-		if (instance_exists(left) && (canPlace)) {
-			canPlace = scr_checkColors(left.index,color);
-			//ensures left and current color do not match
-			if (left.index == color) && (canPlace) canPlace = false;
-		}
-		if (instance_exists(bottom) && (canPlace)) {
-			canPlace = scr_checkColors(bottom.index,color);
-			//ensures bottom and current color do not match
-			if (bottom.index == color) && (canPlace) canPlace = false;
-		}
-		if (instance_exists(right) && (canPlace)) {
-			canPlace = scr_checkColors(right.index,color);
-			//ensures bottom and current color do not match
-			if (right.index == color) && (canPlace) canPlace = false;
-		}
 	}
+	if (instance_exists(up)) && canPlace {
+		//ensures that the colors touching do not fall into the "trio" of colors
+		//the trio describes colors that can not spawn together due to similarity in colors
+		canPlace = scr_checkColors(up.index,color);
+		//ensures up does not match current color
+		if (up.index == color) && (canPlace) canPlace = false;
+	}
+	if (instance_exists(left) && (canPlace)) {
+		canPlace = scr_checkColors(left.index,color);
+		//ensures left and current color do not match
+		if (left.index == color) && (canPlace) canPlace = false;
+	}
+	if (instance_exists(bottom) && (canPlace)) {
+		canPlace = scr_checkColors(bottom.index,color);
+		//ensures bottom and current color do not match
+		if (bottom.index == color) && (canPlace) canPlace = false;
+	}
+	if (instance_exists(right) && (canPlace)) {
+		canPlace = scr_checkColors(right.index,color);
+		//ensures bottom and current color do not match
+		if (right.index == color) && (canPlace) canPlace = false;
+	}
+
 	if (canPlace) {
 		var entity = scr_createEntity(row,col,pieceType, color);	
 		return entity;
