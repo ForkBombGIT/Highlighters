@@ -1,7 +1,7 @@
 #region Animation Control
 var cursorFlickerSpeed = 0.0333;
 cursorFlickerIndex += cursorFlickerSpeed;
-if (floor(cursorFlickerIndex) >= 2){
+if (floor(cursorFlickerIndex) > 1){
 	cursorFlickerIndex = 0;
 }
 #endregion
@@ -16,7 +16,7 @@ else if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 		if !(alarm[0]) alarm[0] = 2;
 	}
 }
-else if (keyboard_check_released(ds_map_find_value(global.controls,"B"))) {
+else if (keyboard_check_pressed(ds_map_find_value(global.controls,"B"))) {
 	if (--cursor == -1) {
 		flash = true;
 		start = -1;
@@ -41,7 +41,8 @@ if (keyboard_check(vk_anykey)) {
 			}
 		} 
 	}
-	if !global.practice global.characterPortrait.character = board;
+	if (instance_exists(global.characterPortrait))
+		if !global.practice global.characterPortrait.character = board;
 } else keyPressLength = 0;
 
 #endregion
@@ -56,8 +57,8 @@ if (start) {
 //changes cursor type
 switch (cursor) {
 	case 0: //level
-		if (level == 1) cursorType = 0;
-		else if (level < maxLevel) cursorType = 2;
+		if (global.gameLevel == 0) cursorType = 0;
+		else if (global.gameLevel < global.maxLevel) cursorType = 2;
 		else cursorType = 4
 	break;
 	case 1: //character

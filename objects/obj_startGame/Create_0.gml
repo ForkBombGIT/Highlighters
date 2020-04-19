@@ -10,13 +10,14 @@ flash = false;
 //game settings
 board = 1; //starts at 1 too account for practice board
 boards = [spr_boardp,spr_board1,spr_board2];
-level = 0;	
+global.gameLevel = 0;	
+global.startGameLevel = 0;
 char = 0;
 
 global.characterPortrait = instance_create_layer(x,y,"GUI",obj_characterPortrait);
 if (global.practice) global.characterPortrait.character = 0;
 //maximum values
-maxLevel = 1000;
+global.maxLevel = 1000;
 maxBoard = 2;
 
 //cursor control

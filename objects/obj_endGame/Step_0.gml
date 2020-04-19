@@ -22,13 +22,13 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"DOWN"))) {
 //Menu option animation
 var animSpeed = 0.2;
 endOptionAnim += animSpeed;
-if (floor(endOptionAnim) >= 7) {
+if (floor(endOptionAnim) > 6) {
 	endOptionAnim = 1;
 } 
 
 animSpeed = 0.5;
 gameoverAnim += animSpeed;
-if (floor(gameoverAnim) >= 16) && !(stopGameoverAnim){
+if (floor(gameoverAnim) > 15) && !(stopGameoverAnim){
 	stopGameoverAnim = false;
 	gameoverAnim = 15;
 } 

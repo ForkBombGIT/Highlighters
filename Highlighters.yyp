@@ -698,7 +698,7 @@
             "Key": "9d9924ac-f850-45c8-92fb-0723a6ed4e13",
             "Value": {
                 "id": "74882951-4772-4832-8de0-379acfb476e6",
-                "resourcePath": "scripts\\scr_collision_line_first\\scr_collision_line_first.yy",
+                "resourcePath": "scripts\\scr_collisionLineFirst\\scr_collisionLineFirst.yy",
                 "resourceType": "GMScript"
             }
         },

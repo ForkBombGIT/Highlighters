@@ -66,6 +66,6 @@ if (global.active) {
 
 var pauseAnimSpeed = 0.2;
 pauseAnim += pauseAnimSpeed;
-if (floor(pauseAnim) >= 7) {
+if (floor(pauseAnim) > 6) {
 	pauseAnim = 1;
 }

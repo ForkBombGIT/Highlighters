@@ -1,5 +1,5 @@
 randomize();
-pieceSize = 48;
+global.pieceSize = 48;
 
 //indentify charm color
 index = -1;

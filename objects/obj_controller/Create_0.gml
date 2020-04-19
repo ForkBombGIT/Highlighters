@@ -16,15 +16,11 @@ char = 0;
 //game score
 gameScore = 0;
 
-//game speed 
-startGameLevel = 1;
-gameLevel = startGameLevel;
-
 //game rule variables
-boardWidth = 6;
-boardHeight = 9;
+global.boardWidth = 6;
+global.boardHeight = 9;
 board = 0;
-maxLevel = 1000;
+global.maxLevel = 1000;
 fadeToBlack = false;
 victoryScore = 999999;
 

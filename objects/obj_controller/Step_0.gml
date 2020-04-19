@@ -20,8 +20,8 @@ if (global.restart) {
 	cursor.visible = false;
 	//restart
 	scr_initRows(0);
-	gameLevel = startGameLevel;
-	riseSpeed = scr_getRiseSpeed(gameLevel);
+	global.gameLevel = global.startGameLevel;
+	riseSpeed = scr_getRiseSpeed(global.gameLevel);
 	canRise = true;
 	instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
 }
@@ -56,24 +56,25 @@ if (freezeTime <= 0)
 
 #region Piece Bouncing - Panic Notif
 var canBounce = true;
-if (scr_checkRow(boardHeight - 1)) {
-	var topRow = scr_getRow(boardHeight - 1);
+if (scr_checkRow(global.boardHeight - 1)) {
+	var topRow = scr_getRow(global.boardHeight - 1);
 	var entity = ds_list_find_value(topRow,0);
 	if (instance_exists(entity))
-		if (entity.y <= scr_getRowPos(boardHeight - 1))
+		if (entity.y <= scr_getRowPos(global.boardHeight - 1))
 			canBounce = false;
 }
 if (canBounce) && 
+   (freezeTimer != 0) &&
   !(global.forceRise) {
-	if (scr_checkRow(boardHeight - 3)) { 
+	if (scr_checkRow(global.boardHeight - 3)) { 
 		global.gameover = false;
 		//turn on bounce animation
-		var rowEntities = scr_getRow(boardHeight - 3);
+		var rowEntities = scr_getRow(global.boardHeight - 3);
 		for (var i = 0; i < ds_list_size(rowEntities); i++) {
 			var entity = ds_list_find_value(rowEntities,i);
 			if (entity.bottomEntity) && 
 			   !(entity.swap) &&
-			   (entity.y <= scr_getRowPos(boardHeight - 3)){
+			   (entity.y <= scr_getRowPos(global.boardHeight - 3)){
 				entity.bounce = true;
 				bounce = true;
 			}
@@ -82,6 +83,7 @@ if (canBounce) &&
 		bounce = false;
 	}
 } else bounce = false;
+
 
 //controls bounce animations, keeps pieces in sync
 if (bounce) {
@@ -97,17 +99,17 @@ if ((global.active) &&
    !(global.gameover)) {	
 	if !(global.practice) { //disables level progression in practice
 		//handles level progression
-		if (gameLevel < maxLevel) {
-			riseSpeed = scr_getRiseSpeed(gameLevel);
+		if (global.gameLevel < global.maxLevel) {
+			riseSpeed = scr_getRiseSpeed(global.gameLevel);
 		}
 	}
 	
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,par_entity)){
 		scr_createRow(-1);
-		if !(newRowInc) && (gameLevel < maxLevel) {
+		if !(newRowInc) && (global.gameLevel < global.maxLevel) {
 			gameScore++;
-			gameLevel++;
+			global.gameLevel++;
 			newRowInc = true;
 		}
 	} else newRowInc = false;
@@ -120,7 +122,7 @@ if ((global.active) &&
 		freeze = false;
 		freezeTime = 0;
 		//checks if piece is gonna rise into game over territory
-		if (scr_checkRow(boardHeight)) {
+		if (scr_checkRow(global.boardHeight)) {
 			global.gameover = true;
 		}
 		else {

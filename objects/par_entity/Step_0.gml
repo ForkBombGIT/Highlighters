@@ -10,7 +10,7 @@ if (!global.gameover) {
 			obj_controller.riseTimer = current_time;
 		}
 		else {
-			if ((y - global.forceRiseSpeed) < scr_getRowPos(obj_controller.boardHeight - 1)) {
+			if ((y - global.forceRiseSpeed) < scr_getRowPos(global.boardHeight - 1)) {
 				global.gameover = true;
 			}
 			y -= global.forceRiseSpeed;	
@@ -34,10 +34,7 @@ if (!(swap) &&
 #endregion
 
 #region Rising Pieces
-if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) {
-	if !match && !(global.gameover) {
-		squish = true;
-	}
+if (y <= scr_getRowPos(global.boardHeight - 1)) {
 	if (obj_controller.freezeTime == 0) &&
 	!(instance_exists(obj_matchmaker)) {
 		if !(alarm[1]) {
@@ -46,18 +43,6 @@ if (y <= scr_getRowPos(obj_controller.boardHeight - 1)) {
 		}
 	}
 } 
-
-//checks for piece above, and if its squished, make this piece squish as well
-var pieceAbove = instance_position(x,y - pieceSize,par_entity);
-if (instance_exists(pieceAbove)) {
-	if (y <= scr_getRowPos(obj_controller.boardHeight - 3))
-		squish = pieceAbove.squish;
-}
-
-if (squish) && !(global.gameover) {
-	image_index = index + 3;
-}
-
 #endregion
 
 #region Highlight Animation
@@ -72,8 +57,8 @@ if (highlight) {
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { 
 	bottomEntity = true; 
-} else if (position_meeting(x,y+pieceSize,par_entity)) {
-	var below = instance_place(x,y+pieceSize,par_entity);
+} else if (position_meeting(x,y+global.pieceSize,par_entity)) {
+	var below = instance_place(x,y+global.pieceSize,par_entity);
 	bottomEntity = below.bottomEntity
 } else {
 	if !(global.riseUp) && !(global.forceRise)
@@ -89,7 +74,7 @@ if ((bottomEntity) && (falling)) {
 if (bottomEntity) && 
    (!(global.gameover)) && 
    (!(match)) {
-	var entity = instance_position(x,y + pieceSize,par_entity);
+	var entity = instance_position(x,y + global.pieceSize,par_entity);
 	if (instance_exists(entity)) {
 		if (entity.match) && !(match) image_index = index + 3;
 	}
@@ -109,7 +94,7 @@ if (swap) {
 	ds_list_clear(adjacent);
 	//checks if there is a col value stored in targetX, 
 	//if there is, assign it the x position of the col
-	if (targetX < obj_controller.boardWidth) {
+	if (targetX < global.boardWidth) {
 		col = targetX;
 		targetX = scr_getColPos(targetX);
 	}
@@ -123,7 +108,7 @@ if (swap) {
 
 #region Fall Control
 //checks if there is no piece below, and ensure the piece below isnt swapping
-var pieceBelow = instance_place(x, y + pieceSize, par_entity);
+var pieceBelow = instance_place(x, y + global.pieceSize, par_entity);
 var notSwapping = true;
 if (instance_exists(pieceBelow) && (pieceBelow.swap))
 	notSwapping = false;
@@ -150,7 +135,7 @@ if !(global.gameover) &&
 	// landing animation index control
 	if !(bounce) {
 		landAnimIndex += animSpeed;
-		if (floor(landAnimIndex) >= index + 3) {
+		if (floor(landAnimIndex) > index + 2) {
 			landAnimIndex = index; landAnim = false;
 		}
 	}
@@ -158,15 +143,34 @@ if !(global.gameover) &&
 	//bounce index is controller in controller for all pieces to bounce uniformly
 	image_index = (bounce) ? scr_getBounceIndex(floor(obj_controller.bounceIndex)) + index : floor(landAnimIndex) ;
 }
+#endregion
 
+#region Warning Notifications
 //checks for piece above, and if its bouncing, make this piece bounce as well
-var pieceAbove = instance_position(x,y - pieceSize,par_entity);
+var pieceAbove = instance_position(x,y - global.pieceSize,par_entity);
 if (y <= scr_getRowPos(0) && 
-   (y <= scr_getRowPos(obj_controller.boardHeight - 3))) 
+   (y <= scr_getRowPos(global.boardHeight - 3)) &&
+   (obj_controller.freezeTime == 0) && 
+   (!instance_exists(obj_matchmaker))) {
 	bounce = true;
-else bounce = false;
+} else bounce = false;
 
-
+//enables squish when y is in top row
+if (y <= scr_getRowPos(global.boardHeight - 1)) {
+	squish = true;	
+	bounce = false;
+}
+//enables squish for pieces
+else if (instance_exists(pieceAbove)) {
+	if (y <= scr_getRowPos(global.boardHeight - 3))
+		squish = pieceAbove.squish;
+}
+//squish when piece is at top of stack
+if (squish) && 
+  !(global.gameover) {
+	bounce = false;
+	image_index = index + 3;
+}
 #endregion
 
 #region Match Control
@@ -180,7 +184,7 @@ if ((bottomEntity) &&
 	ds_list_clear(adjacent);
 	
 	//check for a matching left piece
-	left = instance_position(x - pieceSize, y, par_entity);
+	left = instance_position(x - global.pieceSize, y, par_entity);
 	if (instance_exists(left)) {
 		if (left.index == index && 
 		!left.match && 
@@ -193,7 +197,7 @@ if ((bottomEntity) &&
 	} else left = noone;
 	
 	//check for a matching right piece
-	right = instance_position(x + pieceSize, y, par_entity);
+	right = instance_position(x + global.pieceSize, y, par_entity);
 	if (instance_exists(right)) {
 		if (right.index == index && 
 		!right.match && 
@@ -206,7 +210,7 @@ if ((bottomEntity) &&
 	} else right = noone;
 	
 	//check for a valid match down
-	down = instance_position(x, y + pieceSize, par_entity);
+	down = instance_position(x, y + global.pieceSize, par_entity);
 	if (instance_exists(down)) {
 		if (down.index == index && 
 		!down.match && 
@@ -219,7 +223,7 @@ if ((bottomEntity) &&
 	} else down = noone;
 	
 	//check for a valid match up
-	up = instance_position(x, y - pieceSize, par_entity);
+	up = instance_position(x, y - global.pieceSize, par_entity);
 	if (instance_exists(up)) {
 		if (up.index == index && 
 		!up.match && 

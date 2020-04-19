@@ -1,9 +1,6 @@
 //controls flicker
 flash = false;
 
-//previous game settings
-startGameLevel = obj_controller.startGameLevel;
-
 //gameover menu
 endCursor = 0;
 endOptionAnim = 0;

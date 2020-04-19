@@ -21,8 +21,8 @@ if !(global.gameover) {
 	//displaces the cursor if its about to go out of view
 	if (global.riseUp) || 
 	  ((global.forceRise) && 
-	  (!scr_checkRow(obj_controller.boardHeight - 1))) {
-		if (y - global.riseSpeed < scr_getRowPos(8)) {
+	  (!scr_checkRow(global.boardHeight - 1))) {
+		if (y < scr_getRowPos(global.boardHeight - 1)) {
 			var yDisplacement = (((abs(instance_nearest(x,y,par_entity).y - y)/spr_charm.sprite_height)) - ((abs(instance_nearest(x,y,par_entity).y - y)/spr_charm.sprite_height) - 1)) * spr_charm.sprite_height;
 			y += yDisplacement;
 		}

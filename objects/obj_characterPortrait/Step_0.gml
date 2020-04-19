@@ -7,10 +7,23 @@ if (instance_exists(obj_gui) && !obj_gui.pause) || !(instance_exists(obj_gui)) {
 		var charAnimSpeed = charFramerateArr[characterState] / room_speed;
 		var stateOffset, animMaxIndex;
 		
-		if (global.active) characterState = 0;
-		if (instance_exists(obj_controller))
-			if (obj_controller.bounce) characterState = 1;
+		show_debug_message(characterState);
 		if (global.gameover) characterState = 3;
+		else {
+			if (scr_checkRow(global.boardHeight - 3)) {
+				var rowPieces = scr_getRow(global.boardHeight - 3);	
+				for (var j = 0; j < ds_list_size(rowPieces); j++) {
+					var entity = ds_list_find_value(rowPieces,j);
+					if (entity.y <= scr_getRowPos(global.boardHeight - 3)) {
+						characterState = 1;
+						break;
+					} 
+				}
+			} else {
+				if (global.active) characterState = 0;
+			}
+			
+		}
 		
 		switch (characterState) {
 			case 0:
@@ -30,14 +43,14 @@ if (instance_exists(obj_gui) && !obj_gui.pause) || !(instance_exists(obj_gui)) {
 		}
 		
 		characterAnimIndex += charAnimSpeed;
-		if (floor(characterAnimIndex) >= animMaxIndex){
-			characterAnimIndex = stateOffset + charAnimSpeed;
+		if (floor(characterAnimIndex) > animMaxIndex - 1){
+			characterAnimIndex = stateOffset;
 		}
 		
 		if (instance_exists(obj_controller)) {
 			if (obj_controller.freeze) {
 				durmaAnimIndex += charAnimSpeed;
-				if (floor(durmaAnimIndex) >= 9) {
+				if (floor(durmaAnimIndex) > 8) {
 					durmaAnimIndex = 7;
 				}  
 			}

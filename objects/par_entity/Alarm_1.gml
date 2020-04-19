@@ -1,4 +1,4 @@
-if ((y <= scr_getRowPos(obj_controller.boardHeight - 1)) && 
+if ((y <= scr_getRowPos(global.boardHeight - 1)) && 
 	(bottomEntity) && 
 	(obj_controller.freezeTime == 0) &&
 	!instance_exists(obj_matchmaker)){

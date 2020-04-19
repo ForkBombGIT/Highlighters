@@ -6,7 +6,7 @@ else {
 	draw_sprite(spr_menu_title,0,0,0);
 	if (start == 4) {
 		draw_sprite(spr_practice_prompt,0,105,198);
-		draw_sprite(spr_start,0,120,360);
+		//draw_sprite(spr_start,0,120,360);
 	}
 }
 switch (start) {
@@ -24,7 +24,7 @@ switch (start) {
 	case 2: 
 		draw_sprite(spr_menu_options_input,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
 		//draw_sprite(spr_menu_options_av,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
-		draw_sprite(spr_menu_footer,0,100,360);
+		//draw_sprite(spr_menu_footer,0,100,360);
 		break;
 	case 3:
 		draw_sprite((option == 0) ? spr_menu_input : spr_menu_av, 0,0,0);

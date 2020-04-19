@@ -5,7 +5,7 @@ if (key == ds_map_find_value(global.controls,"LEFT")) {
 		}
 }
 if (key == ds_map_find_value(global.controls,"RIGHT")) {
-	if (col < obj_controller.boardWidth - 2){
+	if (col < global.boardWidth - 2){
 		col += 1;
 	}
 }

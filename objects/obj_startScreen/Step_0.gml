@@ -13,7 +13,7 @@ if (floor(optionAnimationIndex) > 6) {
 
 var optionBackgroundAnimation = 0.2;
 optionBackgroundAnimationIndex += optionBackgroundAnimation;
-if (floor(optionBackgroundAnimationIndex) >= 32){
+if (floor(optionBackgroundAnimationIndex) > 31){
 	optionBackgroundAnimationIndex = 0;
 }  
 #endregion
