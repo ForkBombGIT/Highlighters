@@ -55,9 +55,10 @@ if !(global.gameover) {
 						var entity = ds_list_find_value(final,i);
 						instance_destroy(entity);
 					}
-					obj_controller.gameScore += (ds_list_size(final) * baseScoreInc) + (comboSize * comboBonus);
-					if (global.gameLevel < global.maxLevel)
-						global.gameLevel += (comboSize > 0) + 1
+					global.gameScore = min(global.gameScore + (ds_list_size(final) * baseScoreInc) + (comboSize * comboBonus),
+										   global.victoryScore);
+					global.gameLevel = min(global.gameLevel + (comboSize > 0) + 1,
+										   global.maxLevel);
 					instance_destroy();
 				}		
 			}	

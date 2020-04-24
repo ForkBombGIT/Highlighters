@@ -14,7 +14,8 @@ global.restart = false;
 char = 0;
 
 //game score
-gameScore = 0;
+global.gameScore = 9990;
+global.victoryScore = (global.practice) ? 9999 : 999999;
 
 //game rule variables
 global.boardWidth = 6;
@@ -22,7 +23,6 @@ global.boardHeight = 9;
 board = 0;
 global.maxLevel = 1000;
 fadeToBlack = false;
-victoryScore = 999999;
 
 //controls game loop 
 orgriseSpeed = 90;

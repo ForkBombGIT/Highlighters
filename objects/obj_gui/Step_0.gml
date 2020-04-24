@@ -49,6 +49,9 @@ if (global.active) {
 			pause = true;
 			par_entity.visible = false;
 			obj_cursor.visible = false;
+			if (instance_exists(obj_combo)) {
+				obj_combo.visible = false;	
+			}
 			pauseAnim = 0;
 		}
 		

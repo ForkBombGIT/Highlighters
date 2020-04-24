@@ -7,6 +7,9 @@ switch (pauseCursor) {
 		instance_activate_all();
 		par_entity.visible = true;
 		obj_cursor.visible = true;
+		if (instance_exists(obj_combo)) {
+			obj_combo.visible = true;	
+		}
 		screenShot = noone;
 		resume = false;
 		pause = false;

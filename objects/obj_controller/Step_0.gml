@@ -4,14 +4,21 @@ if (instance_number(obj_matchmaker) == 0) {
 }
 
 #region Game States
+if (global.gameScore >= global.victoryScore) {
+	global.gameover = true;
+}
 //handles restart logic
 if (global.restart) {
 	selectedEntities = scr_generateColors();
 	//set global variables
 	global.active = false;
 	global.restart = false;
+	//reset freeze
+	freeze = false;
+	freezeTime = 0;
+	freezeTimer = current_time;
 	//reset game variable
-	gameScore = 0;
+	global.gameScore = 0;
 	//delete old objects
 	instance_destroy(par_entity);
 	instance_destroy(obj_cursor);
@@ -107,9 +114,9 @@ if ((global.active) &&
 	//creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,par_entity)){
 		scr_createRow(-1);
-		if !(newRowInc) && (global.gameLevel < global.maxLevel) {
-			gameScore++;
-			global.gameLevel++;
+		if !(newRowInc) {
+			global.gameScore = min(global.gameScore + 1,global.victoryScore);
+			global.gameLevel = min(global.gameLevel + 1,global.maxLevel);
 			newRowInc = true;
 		}
 	} else newRowInc = false;

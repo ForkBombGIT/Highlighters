@@ -151,12 +151,20 @@ var pieceAbove = instance_position(x,y - global.pieceSize,par_entity);
 if (y <= scr_getRowPos(0) && 
    (y <= scr_getRowPos(global.boardHeight - 3)) &&
    (obj_controller.freezeTime == 0) && 
-   (!instance_exists(obj_matchmaker))) {
-	bounce = true;
+   !(instance_exists(obj_matchmaker))) && 
+   !(global.gameover) &&
+   !(match) {
+	   if !(bounce) {
+			image_index = index;
+			bounce = true;
+	   }
 } else bounce = false;
 
 //enables squish when y is in top row
-if (y <= scr_getRowPos(global.boardHeight - 1)) {
+if (y <= scr_getRowPos(global.boardHeight - 1)) &&
+  !(global.gameover) &&
+  !(squish){
+	image_index = index;
 	squish = true;	
 	bounce = false;
 }
@@ -167,7 +175,8 @@ else if (instance_exists(pieceAbove)) {
 }
 //squish when piece is at top of stack
 if (squish) && 
-  !(global.gameover) {
+  !(global.gameover) &&
+  !(match) {
 	bounce = false;
 	image_index = index + 3;
 }

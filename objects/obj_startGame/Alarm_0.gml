@@ -1,6 +1,7 @@
 if (start != -1) {
 	flash = false;
 	start = true;
+	global.startGameLevel = global.gameLevel;
 	room_goto(1);
 }
 else {
