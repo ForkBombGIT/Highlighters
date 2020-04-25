@@ -34,7 +34,7 @@
             "Key": "00f44bc5-c261-4536-afdb-57bbdeb7346c",
             "Value": {
                 "id": "7d70a725-09ff-4982-a5b9-6f11b0076259",
-                "resourcePath": "sprites\\spr_gameover\\spr_gameover.yy",
+                "resourcePath": "sprites\\spr_gameoverLose\\spr_gameoverLose.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -255,6 +255,14 @@
             }
         },
         {
+            "Key": "2be5900b-637f-4955-818d-e174f5759913",
+            "Value": {
+                "id": "5d51f9bc-994d-444a-849e-24e7acbadf81",
+                "resourcePath": "sprites\\spr_gameoverWin\\spr_gameoverWin.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "33854ed0-bcf1-42c2-8a8b-f3f0f4eab6e7",
             "Value": {
                 "id": "51658822-4889-433d-8868-ef58f08b6bd5",
@@ -343,6 +351,14 @@
             }
         },
         {
+            "Key": "4c8a6d59-737d-4c3e-93e8-ac45f0998a6d",
+            "Value": {
+                "id": "d29fa726-9ef2-49d7-9812-f11a971ad644",
+                "resourcePath": "sprites\\spr_splash\\spr_splash.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "4fdd7cd8-c58c-441f-abe0-aa38dcf62583",
             "Value": {
                 "id": "eec6ed7d-275c-4e06-abc7-106687ec7cd3",
@@ -399,6 +415,14 @@
             }
         },
         {
+            "Key": "61d8714f-fe03-4d90-84a5-8c4d3908043e",
+            "Value": {
+                "id": "432b106c-cd78-4788-9aff-d801f7ed5a1f",
+                "resourcePath": "objects\\obj_splash\\obj_splash.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "62d353eb-252e-4c53-8008-1451c429dd05",
             "Value": {
                 "id": "2ddd026e-9bbb-4302-bdbf-31d05fef49be",
@@ -420,6 +444,14 @@
                 "id": "03e747cc-8e08-41c7-8767-9c2cb12b2edf",
                 "resourcePath": "scripts\\scr_loadControls\\scr_loadControls.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "643a3e85-fad1-48ab-a153-aa870084169d",
+            "Value": {
+                "id": "c2e46541-88df-4adc-9761-3f717002bc37",
+                "resourcePath": "sprites\\spr_fadeToWhite\\spr_fadeToWhite.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

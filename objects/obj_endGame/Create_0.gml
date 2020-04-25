@@ -1,3 +1,6 @@
+//holds the exit state of the game
+endState = -1;
+
 //controls flicker
 flash = false;
 

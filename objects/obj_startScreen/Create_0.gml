@@ -1,4 +1,8 @@
 randomize();
+//creates splash object
+if (instance_number(obj_splash) == 0) {
+	instance_create_layer(0,0,"Instances",obj_splash);	
+}
 //holds key settings
 global.controls = ds_map_create();
 if (!file_exists("data.json")) {

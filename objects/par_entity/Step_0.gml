@@ -151,6 +151,7 @@ var pieceAbove = instance_position(x,y - global.pieceSize,par_entity);
 if (y <= scr_getRowPos(0) && 
    (y <= scr_getRowPos(global.boardHeight - 3)) &&
    (obj_controller.freezeTime == 0) && 
+   !(global.forceRise) &&
    !(instance_exists(obj_matchmaker))) && 
    !(global.gameover) &&
    !(match) {

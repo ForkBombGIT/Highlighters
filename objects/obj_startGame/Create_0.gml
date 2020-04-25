@@ -1,5 +1,6 @@
 if (instance_exists(obj_controller)) instance_destroy(obj_controller);
 if (instance_exists(obj_startScreen)) instance_destroy(obj_startScreen);
+
 //sets font to use
 numFont = font_add_sprite_ext(spr_menunumbers, "0123456789", true, 3);
 

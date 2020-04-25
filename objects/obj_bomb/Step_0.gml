@@ -2,11 +2,12 @@ event_inherited();
 if (matchOverride) match = true;
 #region Match Control
 if (global.active) && 
-	!(global.riseUp) && 
-	!(matchOverride) && 
-	!(match) && 
-	!(swap) && 
-	!(instance_exists(matchmaker)) {
+  !(global.riseUp) && 
+  !(matchOverride) && 
+  !(match) && 
+  !(swap) && 
+  (global.gameScore < global.victoryScore) &&
+  !(instance_exists(matchmaker)) {
 	switch (ds_list_size(adjacent)) {
 		case 4: //match behavior for 4 adjacent pieces
 		case 3: //match behavior for 3 adjacent pieces, automatic match

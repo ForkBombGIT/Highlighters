@@ -4,9 +4,17 @@ if (instance_number(obj_matchmaker) == 0) {
 }
 
 #region Game States
-if (global.gameScore >= global.victoryScore) {
+
+if (global.gameScore >= global.victoryScore) && 
+   !(instance_exists(obj_matchmaker)) {
 	global.gameover = true;
+	var pieceCount = instance_number(par_entity);
+	for (var i = 0; i < pieceCount; i++) {
+		var entity = instance_find(par_entity,i);
+		if !(entity.bottomEntity) global.gameover = false;
+	}
 }
+
 //handles restart logic
 if (global.restart) {
 	selectedEntities = scr_generateColors();
@@ -48,6 +56,7 @@ if (global.gameover) {
 
 //freeze timer
 if (freeze) &&
+   (global.gameScore < global.victoryScore) &&
    !instance_exists(obj_matchmaker) &&
    !par_entity.falling {
 	if ((current_time - freezeTimer)/1000 > 1) {
