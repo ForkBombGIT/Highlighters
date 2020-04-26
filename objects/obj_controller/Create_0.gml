@@ -15,7 +15,7 @@ global.restart = false;
 char = 0;
 
 //game score
-global.gameScore = 9990;
+global.gameScore = 0;
 global.victoryScore = (global.practice) ? 9999 : 999999;
 
 //game rule variables
