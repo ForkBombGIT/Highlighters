@@ -1,10 +1,12 @@
 #region Positioning Control
 //updates position based of row and col
 x = scr_getColPos(col) + sprite_get_width(spr_charm) / 2;
-visible = !global.gameover;
+visible = !global.gameover && 
+          !global.victory;
 
 //ensure that the cursor remains in line with the pieces as the board rises
-if !(global.gameover) {
+if !(global.gameover) &&
+   !(global.victory) {
 	if (global.forceRise) {
 		if (y == initY - targY) {
 			initY = -1;
@@ -32,7 +34,8 @@ if !(global.gameover) {
 
 #region Piece Swapping
 if ((global.active) && 
-	(!global.gameover)) {
+	!(global.gameover) &&
+	!(global.victory)) {
 	if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))){
 		//holds the piece on the left and right of the cursor
 		var left = instance_position(x-24,y,par_entity);
@@ -82,7 +85,8 @@ leftB = keyboard_check(ds_map_find_value(global.controls,"LEFT"));
 rightB = keyboard_check(ds_map_find_value(global.controls,"RIGHT"));
 upB = keyboard_check(ds_map_find_value(global.controls,"UP"));
 downB = keyboard_check(ds_map_find_value(global.controls,"DOWN"));
-if !(global.gameover){
+if !(global.gameover) &&
+   !(global.victory) {
 	if (leftB || rightB || upB || downB) {
 		var key = (leftB) ? ds_map_find_value(global.controls,"LEFT") : 
 				  ((rightB) ? ds_map_find_value(global.controls,"RIGHT") :

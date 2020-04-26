@@ -1,4 +1,5 @@
-if !(global.gameover) {
+if !(global.gameover) || 
+   !(global.victory) {
 	if (ds_list_size(final) >= matchSize) {
 		//initializes match animation
 		if !(animating) {
@@ -57,8 +58,9 @@ if !(global.gameover) {
 					}
 					global.gameScore = min(global.gameScore + (ds_list_size(final) * baseScoreInc) + (comboSize * comboBonus),
 										   global.victoryScore);
-					global.gameLevel = min(global.gameLevel + (comboSize > 0) + 1,
-										   global.maxLevel);
+					if !(global.practice)
+						global.gameLevel = min(global.gameLevel + (comboSize > 0) + 1,
+											   global.maxLevel);
 					instance_destroy();
 				}		
 			}	

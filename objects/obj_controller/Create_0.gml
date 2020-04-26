@@ -2,6 +2,7 @@ randomize();
 
 //holds gameover state
 global.gameover = false;
+global.victory = false;
 gameoverDelay = global.practice ? 180 : 150;
 anim = false;
 animRow = 8;

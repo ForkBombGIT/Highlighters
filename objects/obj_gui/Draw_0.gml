@@ -6,11 +6,11 @@ if !(pause) || !sprite_exists(screenShot) {
 	//draws board
 	draw_sprite(boards[obj_controller.board],0,0,0);
 	//draws gui
-	draw_set_font(timeFont);
+	draw_set_font(global.timeFont);
 	//time
-	draw_text(369,369,string_replace(string_format(minutes,2,0)," ", "0"));
-	draw_text(414,369,string_replace(string_format(seconds,2,0)," ","0"));
-	draw_set_font(numFont);
+	draw_text(369,369,string_replace(string_format(global.minutes,2,0)," ", "0"));
+	draw_text(414,369,string_replace(string_format(global.seconds,2,0)," ","0"));
+	draw_set_font(global.numFont);
 	//score
 	draw_sprite(spr_score,0,360,72);
 	draw_text(377,99,string_replace_all(string_format(global.gameScore,6,0)," ", "0"));

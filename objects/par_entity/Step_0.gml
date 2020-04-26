@@ -1,6 +1,7 @@
 #region Force Rise
 //rise if the force rise button is pressed
-if (!global.gameover) {
+if !(global.gameover) &&
+   !(global.victory) {
 	if (global.forceRise) { 
 		if (y <= (initY - targY)) {
 			initY = -1;
@@ -24,6 +25,7 @@ if (!global.gameover) {
 #region Grey Pieces
 if (!(swap) && 
 	!(global.gameover) && 
+	!(global.victory) &&
 	!(match) &&
 	!(landAnim)) {
 	if (y <= scr_getRowPos(0)) {
@@ -72,7 +74,8 @@ if ((bottomEntity) && (falling)) {
 }
 
 if (bottomEntity) && 
-   (!(global.gameover)) && 
+   !(global.gameover) && 
+   !(global.victory) &&
    (!(match)) {
 	var entity = instance_position(x,y + global.pieceSize,par_entity);
 	if (instance_exists(entity)) {
@@ -116,6 +119,7 @@ if (!(bottomEntity) &&
 	!(match) && 
 	!(swap) && 
 	!(global.gameover) &&
+    !(global.victory) &&
 	 (notSwapping) &&
 	!(floating)) {
 	if !alarm[0] alarm[0] = fallCheckDelay;
@@ -123,6 +127,7 @@ if (!(bottomEntity) &&
 
 //controls landing animation
 if !(global.gameover) &&
+   !(global.victory) &&
    ((landAnim) || 
    ((bounce) && 
    !(squish) &&
@@ -154,6 +159,7 @@ if (y <= scr_getRowPos(0) &&
    !(global.forceRise) &&
    !(instance_exists(obj_matchmaker))) && 
    !(global.gameover) &&
+   !(global.victory) &&
    !(match) {
 	   if !(bounce) {
 			image_index = index;
@@ -164,6 +170,7 @@ if (y <= scr_getRowPos(0) &&
 //enables squish when y is in top row
 if (y <= scr_getRowPos(global.boardHeight - 1)) &&
   !(global.gameover) &&
+   !(global.victory) &&
   !(squish){
 	image_index = index;
 	squish = true;	
@@ -177,6 +184,7 @@ else if (instance_exists(pieceAbove)) {
 //squish when piece is at top of stack
 if (squish) && 
   !(global.gameover) &&
+  !(global.victory) &&
   !(match) {
 	bounce = false;
 	image_index = index + 3;
@@ -189,6 +197,7 @@ if ((bottomEntity) &&
 	!(match) &&
 	!(swap) &&
 	!(global.gameover) && 
+    !(global.victory) &&
 	(y <= scr_getRowPos(0))) {
 	//clear adjacent list
 	ds_list_clear(adjacent);

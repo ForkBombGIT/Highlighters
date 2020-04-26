@@ -6,7 +6,7 @@ if (scr_checkRow(animRow)) {
 		if (instance_exists(piece)) {
 			piece.landAnim = false;
 			piece.image_index = piece.index;
-			piece.image_index += (global.gameScore >= global.victoryScore) ? 15 : 14;	
+			piece.image_index += (global.victory) ? 15 : 14;	
 		}
 	}
 }

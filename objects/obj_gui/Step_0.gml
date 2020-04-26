@@ -1,14 +1,16 @@
-if (global.restart) { totalMillis = 0; minutes = 0; seconds = 0; milli = 0; }
+if (global.restart) { totalMillis = 0; global.minutes = 0; global.seconds = 0; milli = 0; }
 
 if (global.active) {
 	#region Time Counting
-	if !(pause) && !(global.gameover) {	
+	if !(pause) && 
+	   !(global.gameover) && 
+	   !(global.victory) {	
 		milli++;
 		totalMillis++;
 		if (milli >= room_speed) {
-			milli = 0; seconds++;
+			milli = 0; global.seconds++;
 		} 
-		if (seconds >= 60) {seconds = 0; minutes += 1;}	
+		if (global.seconds >= 60) {global.seconds = 0; global.minutes += 1;}	
 	}
 	#endregion
 	#region Pause Handling

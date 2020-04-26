@@ -7,10 +7,8 @@ if (instance_exists(obj_gui) && !obj_gui.pause) || !(instance_exists(obj_gui)) {
 		var charAnimSpeed = charFramerateArr[characterState] / room_speed;
 		var stateOffset, animMaxIndex;
 		
-		if (global.gameover) {
-			if (global.gameScore >= global.victoryScore) characterState = 2;
-			else characterState = 3;
-		}
+		if (global.gameover) characterState = 3;
+		else if (global.victory) characterState = 2
 		else {
 			if (scr_checkRow(global.boardHeight - 3)) {
 				var rowPieces = scr_getRow(global.boardHeight - 3);	

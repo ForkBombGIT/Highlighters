@@ -7,11 +7,11 @@ if (instance_number(obj_matchmaker) == 0) {
 
 if (global.gameScore >= global.victoryScore) && 
    !(instance_exists(obj_matchmaker)) {
-	global.gameover = true;
+	global.victory = true;
 	var pieceCount = instance_number(par_entity);
 	for (var i = 0; i < pieceCount; i++) {
 		var entity = instance_find(par_entity,i);
-		if !(entity.bottomEntity) global.gameover = false;
+		if !(entity.bottomEntity) global.victory = false;
 	}
 }
 
@@ -42,7 +42,8 @@ if (global.restart) {
 }
 
 //handles gameover logic
-if (global.gameover) {
+if (global.gameover) ||
+   (global.victory) {
 	global.forceRise = false;
 	global.riseUp = false;
 	global.forceRiseSpeed = 0;
@@ -112,6 +113,7 @@ if (bounce) {
 
 #region Piece Loop
 if ((global.active) && 
+   !(global.victory) &&
    !(global.gameover)) {	
 	if !(global.practice) { //disables level progression in practice
 		//handles level progression
@@ -125,7 +127,8 @@ if ((global.active) &&
 		scr_createRow(-1);
 		if !(newRowInc) {
 			global.gameScore = min(global.gameScore + 1,global.victoryScore);
-			global.gameLevel = min(global.gameLevel + 1,global.maxLevel);
+			if !(global.practice)
+				global.gameLevel = min(global.gameLevel + 1,global.maxLevel);
 			newRowInc = true;
 		}
 	} else newRowInc = false;

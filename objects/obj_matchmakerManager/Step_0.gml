@@ -1,5 +1,6 @@
 var activeMatchmakers = instance_number(obj_matchmaker);
-if !(global.gameover) {
+if !(global.gameover) &&
+   !(global.victory) {
 	if !(combo) { 
 		if (activeMatchmakers > 1) {
 			for (var i = 0; i < activeMatchmakers - 1; i++) {

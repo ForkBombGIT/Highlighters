@@ -14,4 +14,4 @@ if !(fadeToBlack) || (image_index >= 15) {
 }
 
 if (fadeToBlack)
-	draw_sprite((global.gameScore >= global.victoryScore) ? spr_fadeToWhite : spr_fadeToBlack,image_index,24,0);
+	draw_sprite((global.victory) ? spr_fadeToWhite : spr_fadeToBlack,image_index,24,0);
