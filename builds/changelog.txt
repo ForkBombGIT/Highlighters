@@ -1,0 +1,20 @@
+Apr 26, 2020
+- globalize victory variable
+- disable progression in practice
+- added score, level, and time to gameover/victory screens
+
+Apr 25, 2020
+- add fade to white for victory
+- add character victory sprites
+- add splash screens
+- turn off bounce during force rise
+- force victory to wait for processes to finish
+
+Apr 24, 2020
+- fix score not resetting to correct starting level
+- reset image index before squish and bounce
+- overwrite squish if match occurs
+- hide combo sprite on pause
+- clamp game score to max vals
+- add victory animation
+- change function used to clamp game values

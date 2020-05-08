@@ -71,16 +71,17 @@ if (freezeTime <= 0)
 #endregion
 
 #region Piece Bouncing - Panic Notif
+show_debug_message(bounce);
 var canBounce = true;
 if (scr_checkRow(global.boardHeight - 1)) {
 	var topRow = scr_getRow(global.boardHeight - 1);
 	var entity = ds_list_find_value(topRow,0);
 	if (instance_exists(entity))
-		if (entity.y <= scr_getRowPos(global.boardHeight - 1))
+		if (entity.y <= scr_getRowPos(global.boardHeight - 1)) 
 			canBounce = false;
 }
 if (canBounce) && 
-   (freezeTimer != 0) &&
+   (freezeTime == 0) &&
   !(global.forceRise) {
 	if (scr_checkRow(global.boardHeight - 3)) { 
 		global.gameover = false;

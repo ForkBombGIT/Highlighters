@@ -2,8 +2,7 @@ if (global.restart) { totalMillis = 0; global.minutes = 0; global.seconds = 0; m
 
 if (global.active) {
 	#region Time Counting
-	if !(pause) && 
-	   !(global.gameover) && 
+	if !(global.gameover) && 
 	   !(global.victory) {	
 		milli++;
 		totalMillis++;
@@ -21,6 +20,7 @@ if (global.active) {
 				pauseCursor--;	
 			}
 		}
+		
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"DOWN"))) {
 			if (pauseCursor < array_length_1d(pauseCursorPositions) - 1) {
 				pauseCursor++;	
@@ -29,7 +29,8 @@ if (global.active) {
 		
 		//menu options
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
-			flash = true;
+			if (pauseCursor != 0) 
+				flash = true;
 			if !(alarm[0]) alarm[0] = 1;
 		}
 		#endregion
