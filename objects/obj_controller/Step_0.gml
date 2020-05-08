@@ -4,7 +4,6 @@ if (instance_number(obj_matchmaker) == 0) {
 }
 
 #region Game States
-
 if (global.gameScore >= global.victoryScore) && 
    !(instance_exists(obj_matchmaker)) {
 	global.victory = true;
@@ -104,14 +103,19 @@ if (canBounce) &&
 
 //controls bounce animations, keeps pieces in sync
 if (bounce) {
-	var animSpeed = (floor(bounceIndex) == 1 || floor(bounceIndex) == 3) ? 0.25 : 0.5
+	var animSpeed = (floor(bounceIndex) == 1 || floor(bounceIndex) == 3) ? bounceAnimationFirst :
+																		   bounceAnimationLast;
 	if (bounceIndex >= 5)
 		bounceIndex = 0;
-	else bounceIndex += animSpeed
+	else bounceIndex += animSpeed;
 } else bounceIndex = 0;
 #endregion
 
 #region Piece Loop
+if keyboard_check(ds_map_find_value(global.controls,"B")) {
+	global.fastAnim = true;
+} else global.fastAnim = false;
+
 if ((global.active) && 
    !(global.victory) &&
    !(global.gameover)) {	

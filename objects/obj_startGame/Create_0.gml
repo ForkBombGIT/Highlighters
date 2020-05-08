@@ -15,8 +15,10 @@ global.gameLevel = 0;
 global.startGameLevel = 0;
 char = 0;
 
+// init character portait
 global.characterPortrait = instance_create_layer(x,y,"GUI",obj_characterPortrait);
 if (global.practice) global.characterPortrait.character = 0;
+
 //maximum values
 global.maxLevel = 1000;
 maxBoard = 2;
@@ -31,4 +33,6 @@ cursorPositions = [168,288];
 cursor = 0;
 cursorFlickerIndex = 0;
 cursorType = 0;
-image_speed = 0.033;
+
+//animation
+cursorFlickerSpeed = 0.0333

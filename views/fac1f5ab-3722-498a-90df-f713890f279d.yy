@@ -12,7 +12,7 @@
         "4c8a6d59-737d-4c3e-93e8-ac45f0998a6d"
     ],
     "filterType": "GMSprite",
-    "folderName": "GUI",
+    "folderName": "UI",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

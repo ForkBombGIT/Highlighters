@@ -10,19 +10,11 @@ if (instance_exists(obj_gui) && !obj_gui.pause) || !(instance_exists(obj_gui)) {
 		if (global.gameover) characterState = 3;
 		else if (global.victory) characterState = 2
 		else {
-			if (scr_checkRow(global.boardHeight - 3)) {
-				var rowPieces = scr_getRow(global.boardHeight - 3);	
-				for (var j = 0; j < ds_list_size(rowPieces); j++) {
-					var entity = ds_list_find_value(rowPieces,j);
-					if (entity.y <= scr_getRowPos(global.boardHeight - 3)) {
-						characterState = 1;
-						break;
-					} 
-				}
-			} else {
-				if (global.active) characterState = 0;
-			}
-			
+			//idle
+			if (global.active) characterState = 0;
+			//panic
+			if (instance_exists(obj_controller))
+				if (obj_controller.bounce) characterState = 1;
 		}
 		
 		switch (characterState) {

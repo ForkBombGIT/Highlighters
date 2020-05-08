@@ -7,13 +7,13 @@ if !(global.gameover) ||
 			final = scr_matchListSort(final,0,ds_list_size(final) - 1);
 			animating = true;
 			flicker = true;
-			alarm[0] = flickerDelay;
+			alarm[0] = flickerOffset;
 		}
 	
 		//controls flickering
 		if (flicker) {
 			//flickers until delay is reached
-			if (flickerCount++ < whiteDelay) {
+			if (flickerCount++ < flickerDelay) {
 				if (flickerCount % 2 == 0) { 
 					for (var i = 0; i < ds_list_size(final); i++) {
 						var entity = ds_list_find_value(final,i);
@@ -27,17 +27,17 @@ if !(global.gameover) ||
 							entity.image_index = entity.index + 5;
 					}
 				}
-			} else { flicker = false; postWhite = true; }
-			alarm[0] = flickerDelay
+			} else { flicker = false; postFlicker = true; }
+			alarm[0] = flickerOffset
 		} else {//if delay is reached, switch to 3rd frame of animation
-			if (postWhite) {
+			if (postFlicker) {
 				for (var i = 0; i < ds_list_size(final); i++) {
 					var entity = ds_list_find_value(final,i);
 					entity.match = true;
 					entity.image_index = entity.index + 7;
 				}
-				alarm[0] = postWhiteDelay;
-				postWhite = false;
+				alarm[0] = postFlickerDelay;
+				postFlicker = false;
 			}
 			//controls highlighting animation
 			else {
@@ -49,7 +49,7 @@ if !(global.gameover) ||
 						else if (entity.highlighting == 2) 
 							listPosition++;
 					}
-					alarm[0] = highlightDelay;
+					alarm[0] = (global.fastAnim) ? fastHighlightDelay : highlightDelay;
 				}
 				else {	
 					for (var i = 0; i < ds_list_size(final); i++) {

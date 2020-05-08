@@ -16,7 +16,6 @@ if (!file_exists("data.json")) {
 	ds_map_add(global.controls,"OFF",vk_escape);
 }
 else global.controls = scr_loadControls("data.json");
-image_speed = 0.02;
 //holds whether the user wants to practice
 global.practice = false;
 //holds what screen should be show
@@ -37,6 +36,9 @@ cursorPosition = 0;
 startFlickerIndex = 0;
 optionAnimationIndex = 0;
 optionBackgroundAnimationIndex = 0;
+startAnimationSpeed = 2; //fps
+optionAnimationSpeed = 12; //fps
+optionBackgroundAnimationSpeed = 12; //fps
 //holds the blocks to be used in the game
 selectedEntities = [];
 //input menu variables

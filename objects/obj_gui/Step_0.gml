@@ -69,7 +69,7 @@ if (global.active) {
 	#endregion
 }
 
-var pauseAnimSpeed = 0.2;
+var pauseAnimSpeed = pauseAnimationSpeed;
 pauseAnim += pauseAnimSpeed;
 if (floor(pauseAnim) > 6) {
 	pauseAnim = 1;

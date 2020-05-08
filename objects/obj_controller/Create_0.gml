@@ -21,8 +21,8 @@ global.victoryScore = (global.practice) ? 9999 : 999999;
 //game rule variables
 global.boardWidth = 6;
 global.boardHeight = 9;
-board = 0;
 global.maxLevel = 1000;
+board = 0;
 fadeToBlack = false;
 
 //controls game loop 
@@ -31,21 +31,28 @@ riseSpeed = orgriseSpeed;
 riseTimer = current_time;
 canRise = true;
 newRowInc = false;
+global.fastAnim = false;
 
-//used for row generation 
+//time freeze
 freeze = false;
 freezeTime = 0;
 freezeTimer = current_time;
+
+//used for row generation 
 global.orgRiseSpeed = 3;
 global.riseSpeed = global.orgRiseSpeed;
 global.riseUp = false;
 global.forceRise = false;
 global.forceRiseSpeed = 3;
-bounce = false;
-bounceIndex = 0;
 startingRows = 6;
 selectedEntities = scr_generateColors();
 activeMatches = ds_list_create();
+
+//animations
+bounce = false;
+bounceIndex = 0;
+bounceAnimationFirst = 0.25; //4 frames
+bounceAnimationLast = 0.5; // 2 frames 
 
 //instantiate game objects
 cursor = instance_create_layer(x,scr_getRowPos(4),"Cursor",obj_cursor);		

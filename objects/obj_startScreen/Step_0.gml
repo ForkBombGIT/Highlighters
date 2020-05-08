@@ -1,18 +1,18 @@
 #region Menu Animation
-var startFlicker = 0.033;
-startFlickerIndex += startFlicker;
+var animSpeed = startAnimationSpeed / room_speed;
+startFlickerIndex += animSpeed;
 if (floor(startFlickerIndex) > 1) {
 	startFlickerIndex = 0;
 } 
 
-var optionAnimation = 0.2;
-optionAnimationIndex += optionAnimation;
+animSpeed = optionAnimationSpeed / room_speed;
+optionAnimationIndex += animSpeed;
 if (floor(optionAnimationIndex) > 6) {
 	optionAnimationIndex = 1;
 }  
 
-var optionBackgroundAnimation = 0.2;
-optionBackgroundAnimationIndex += optionBackgroundAnimation;
+animSpeed = optionBackgroundAnimationSpeed / room_speed;
+optionBackgroundAnimationIndex += animSpeed;
 if (floor(optionBackgroundAnimationIndex) > 31){
 	optionBackgroundAnimationIndex = 0;
 }  

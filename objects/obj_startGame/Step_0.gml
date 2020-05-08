@@ -1,6 +1,6 @@
 #region Animation Control
-var cursorFlickerSpeed = 0.0333;
-cursorFlickerIndex += cursorFlickerSpeed;
+var animSpeed = cursorFlickerSpeed;
+cursorFlickerIndex += animSpeed;
 if (floor(cursorFlickerIndex) > 1){
 	cursorFlickerIndex = 0;
 }

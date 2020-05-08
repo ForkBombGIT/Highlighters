@@ -3,7 +3,6 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 	flash = true;
 	if (endCursor == 1) instance_destroy(obj_characterPortrait);
 	alarm[0] = 2;		
-	
 }
 
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"UP"))) {
@@ -20,13 +19,13 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"DOWN"))) {
 #endregion
 
 //Menu option animation
-var animSpeed = 0.2;
+var animSpeed = optionSpeed / room_speed;
 endOptionAnim += animSpeed;
 if (floor(endOptionAnim) > 6) {
 	endOptionAnim = 1;
 } 
 
-animSpeed = 0.5;
+animSpeed = gameoverSpeed / room_speed;
 gameoverAnim += animSpeed;
 if (floor(gameoverAnim) > 15) && !(stopGameoverAnim){
 	stopGameoverAnim = false;

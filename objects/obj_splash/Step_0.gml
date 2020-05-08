@@ -5,8 +5,9 @@ if (splash) {
 	}
 	var splashAnimation = 0.005;
 	splashIndex += splashAnimation;
-	if (floor(splashIndex) > 1) {
+	if (floor(splashIndex) >= sprite_get_number(spr_splash)) {
 		splash = false;
+		flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}
 }

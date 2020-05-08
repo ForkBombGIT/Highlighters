@@ -136,7 +136,8 @@ if !(global.gameover) &&
    !(instance_exists(obj_matchmaker)))) && 
    !(match) && 
     (bottomEntity) {
-	var animSpeed = (floor(landAnimIndex) == index) ? 0.25 : 0.5;
+	var animSpeed = (floor(landAnimIndex) == index) ? landingAnimationFirst : 
+													  landingAnimationRest;
 	// landing animation index control
 	if !(bounce) {
 		landAnimIndex += animSpeed;

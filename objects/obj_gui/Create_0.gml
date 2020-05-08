@@ -16,3 +16,6 @@ pauseCursorPositions = [216,252,288];
 
 //controls flash effect
 flash = false;
+
+//animations
+pauseAnimationSpeed = 0.2;

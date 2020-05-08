@@ -26,7 +26,9 @@ highlighting = false;
 bounce = false;
 squish = false;
 floating = false;
-floatDelay = global.practice ? 40 : 30;
+floatDelay = global.practice ? 30 : 3;
+landingAnimationFirst = 0.25; // 4 frames
+landingAnimationRest = 0.5; // 2 frames
 
 //position
 row = -1;

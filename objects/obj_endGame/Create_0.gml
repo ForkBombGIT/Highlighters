@@ -10,6 +10,10 @@ endOptionAnim = 0;
 gameoverAnim = 0;
 stopGameoverAnim = false;
 
+//animation speeds (in fps)
+optionSpeed = 12;
+gameoverSpeed = 30;
+
 //restart
 restart = false;
 

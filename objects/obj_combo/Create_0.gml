@@ -6,5 +6,5 @@ minComboSize = 5;
 animLength = 7;
 endAnim = false;
 //how long the combo sprite shows
-life = (global.practice ? 108 : 36) * 2;
+life = (global.practice ? 72 : 36) * 2;
 alarm[0] = life;
