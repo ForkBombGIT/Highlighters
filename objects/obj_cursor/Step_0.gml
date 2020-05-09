@@ -6,7 +6,8 @@ visible = !global.gameover &&
 
 //ensure that the cursor remains in line with the pieces as the board rises
 if !(global.gameover) &&
-   !(global.victory) {
+   !(global.victory) &&
+   !(global.riseBrake) {
 	if (global.forceRise) {
 		if (y == initY - targY) {
 			initY = -1;

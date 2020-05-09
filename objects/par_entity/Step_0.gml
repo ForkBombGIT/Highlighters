@@ -1,7 +1,8 @@
 #region Force Rise
 //rise if the force rise button is pressed
 if !(global.gameover) &&
-   !(global.victory) {
+   !(global.victory) &&
+   !(global.riseBrake) {
 	if (global.forceRise) { 
 		if (y <= (initY - targY)) {
 			initY = -1;
@@ -38,7 +39,7 @@ if (!(swap) &&
 #region Rising Pieces
 if (y <= scr_getRowPos(global.boardHeight - 1)) {
 	if (obj_controller.freezeTime == 0) &&
-	!(instance_exists(obj_matchmaker)) {
+	!(global.riseBrake) {
 		if !(alarm[1]) {
 			alarm[1] = obj_controller.gameoverDelay;
 			obj_controller.canRise = false

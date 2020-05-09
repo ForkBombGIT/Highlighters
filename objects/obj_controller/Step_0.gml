@@ -5,12 +5,10 @@ if (instance_number(obj_matchmaker) == 0) {
 
 #region Game States
 if (global.gameScore >= global.victoryScore) && 
-   !(instance_exists(obj_matchmaker)) {
+   !(global.riseBrake) {
 	global.victory = true;
-	var pieceCount = instance_number(par_entity);
-	for (var i = 0; i < pieceCount; i++) {
-		var entity = instance_find(par_entity,i);
-		if !(entity.bottomEntity) global.victory = false;
+	with (par_entity) {
+		if !(bottomEntity) global.victory = false;	
 	}
 }
 
@@ -54,11 +52,22 @@ if (global.gameover) ||
 	}
 }
 
+var pieceSwap = false
+with (par_entity) {
+	if (swap) pieceSwap = true;
+}
+
+var pieceFalling = false;
+with (par_entity) {
+	if !(bottomEntity) pieceFalling = true;
+}
+	
+global.riseBrake = (instance_exists(obj_matchmaker)) || pieceFalling || pieceSwap
+
 //freeze timer
 if (freeze) &&
    (global.gameScore < global.victoryScore) &&
-   !instance_exists(obj_matchmaker) &&
-   !par_entity.falling {
+   !(global.riseBrake) {
 	if ((current_time - freezeTimer)/1000 > 1) {
 		freezeTime--;
 		freezeTimer = current_time;
@@ -71,7 +80,6 @@ if (freezeTime <= 0)
 #endregion
 
 #region Piece Bouncing - Panic Notif
-show_debug_message(bounce);
 var canBounce = true;
 if (scr_checkRow(global.boardHeight - 1)) {
 	var topRow = scr_getRow(global.boardHeight - 1);
@@ -82,6 +90,7 @@ if (scr_checkRow(global.boardHeight - 1)) {
 }
 if (canBounce) && 
    (freezeTime == 0) &&
+  !(global.riseBrake) &&
   !(global.forceRise) {
 	if (scr_checkRow(global.boardHeight - 3)) { 
 		global.gameover = false;
@@ -140,9 +149,8 @@ if ((global.active) &&
 	
 	//manual new row
 	if (keyboard_check(ds_map_find_value(global.controls,"B")) && 
-	  !(global.forceRise)) && 
-	  !instance_exists(obj_matchmaker) &&
-	  !par_entity.falling {
+	  !(global.forceRise) && 
+	  !(global.riseBrake)) {
 		freeze = false;
 		freezeTime = 0;
 		//checks if piece is gonna rise into game over territory
@@ -166,10 +174,9 @@ if ((global.active) &&
 	}
 	
 	//rising row
-	if !freeze && 
-		canRise && 
-	   !instance_exists(obj_matchmaker) &&
-	   !par_entity.falling {
+	if !(freeze) && 
+		(canRise) && 
+	   !(global.riseBrake) {
 		if ((current_time - riseTimer)/1000 > (riseSpeed / room_speed)) { 
 			riseTimer = current_time;
 			global.riseUp = true;

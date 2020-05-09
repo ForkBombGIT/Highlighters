@@ -1,5 +1,6 @@
 //move match maker up with pieces
-if (global.riseUp) {
+if (global.riseUp) &&
+  !(global.riseBrake) {
 	y -= global.riseSpeed;
 }
 while (another) {
