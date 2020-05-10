@@ -44,8 +44,10 @@ if !(global.gameover) ||
 				if (listPosition <= ds_list_size(final) - 1) {
 					var entity = ds_list_find_value(final,listPosition);
 					if (instance_exists(entity)) {
-						if !(entity.highlighting) 
+						if !(entity.highlighting) {
 							entity.highlight = true;
+							entity.matchNumber = listPosition + 1;
+						}
 						else if (entity.highlighting == 2) 
 							listPosition++;
 					}

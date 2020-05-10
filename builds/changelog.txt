@@ -1,7 +1,28 @@
+May 10, 2020
+- add up and down controls for level selection
+- add frame skipping to piece animation rushing
+- fix inconsistent panic notifications
+
+May 9, 2020
+- add rise brake
+
+May 8, 2020
+- add animation rushing 
+- add flicker after splash
+- add ino splash
+- add timer to pause screen
+- update match 1st phase anim speed
+- update match 2nd phase anim speed
+- update match 4th phase anim speed
+- fix countdown speeds
+- fix character portrait panicking early
+- fix character potrait panicking inaccurately
+- move animation speed variables to create event
+
 Apr 26, 2020
+- add score, level, and time to gameover/victory screens
 - globalize victory variable
 - disable progression in practice
-- added score, level, and time to gameover/victory screens
 
 Apr 25, 2020
 - add fade to white for victory

@@ -90,7 +90,6 @@ if (scr_checkRow(global.boardHeight - 1)) {
 }
 if (canBounce) && 
    (freezeTime == 0) &&
-  !(global.riseBrake) &&
   !(global.forceRise) {
 	if (scr_checkRow(global.boardHeight - 3)) { 
 		global.gameover = false;
@@ -107,9 +106,12 @@ if (canBounce) &&
 		}
 	} else {
 		bounce = false;
+		bounceIndex = 0;
 	}
-} else bounce = false;
-
+} else {
+	bounce = false;
+	bounceIndex = 0;
+}
 
 //controls bounce animations, keeps pieces in sync
 if (bounce) {

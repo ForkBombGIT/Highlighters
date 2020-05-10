@@ -135,8 +135,7 @@ if !(global.gameover) &&
    !(global.forceRise) && 
     (obj_controller.freezeTime == 0) && 
    !(instance_exists(obj_matchmaker)))) && 
-   !(match) && 
-    (bottomEntity) {
+   !(match) {
 	var animSpeed = (floor(landAnimIndex) == index) ? landingAnimationFirst : 
 													  landingAnimationRest;
 	// landing animation index control
@@ -153,42 +152,51 @@ if !(global.gameover) &&
 #endregion
 
 #region Warning Notifications
-//checks for piece above, and if its bouncing, make this piece bounce as well
-var pieceAbove = instance_position(x,y - global.pieceSize,par_entity);
-if (y <= scr_getRowPos(0) && 
-   (y <= scr_getRowPos(global.boardHeight - 3)) &&
-   (obj_controller.freezeTime == 0) && 
-   !(global.forceRise) &&
-   !(instance_exists(obj_matchmaker))) && 
-   !(global.gameover) &&
-   !(global.victory) &&
-   !(match) {
-	   if !(bounce) {
-			image_index = index;
-			bounce = true;
-	   }
-} else bounce = false;
+//bounce
+if !(global.gameover) &&
+   !(global.victory) {
+	if (y < scr_getRowPos(0) && 
+	   (y <= scr_getRowPos(global.boardHeight - 3)) &&
+	   (obj_controller.freezeTime == 0) && 
+	   !(global.forceRise) &&
+	   !(instance_exists(obj_matchmaker)) && 
+	   !(match)) {
+		   if !(bounce) {
+				image_index = index;
+				bounce = true;
+		   }
+	} else bounce = false;
 
-//enables squish when y is in top row
-if (y <= scr_getRowPos(global.boardHeight - 1)) &&
-  !(global.gameover) &&
-   !(global.victory) &&
-  !(squish){
-	image_index = index;
-	squish = true;	
+	//enables squish when y is in top row
+	//checks for piece above, and if its bouncing, make this piece bounce as well
+	var pieceAbove = instance_position(x,y - global.pieceSize,par_entity);
+	if (y <= scr_getRowPos(global.boardHeight - 1)) &&
+	   (bottomEntity) {
+		  if !(squish) {
+			image_index = index;
+			squish = true;	
+		  }
+	}
+	else if (instance_exists(pieceAbove)) &&
+		(y <= scr_getRowPos(global.boardHeight - 3)) {
+		squish = pieceAbove.squish;	
+	} else {
+		if (squish)
+			image_index = index;
+		squish = false;
+	}
+}
+else {
+	squish = false;	
 	bounce = false;
 }
-//enables squish for pieces
-else if (instance_exists(pieceAbove)) {
-	if (y <= scr_getRowPos(global.boardHeight - 3))
-		squish = pieceAbove.squish;
-}
+
 //squish when piece is at top of stack
 if (squish) && 
   !(global.gameover) &&
   !(global.victory) &&
   !(match) {
-	bounce = false;
+	par_entity.bounce = false;
 	image_index = index + 3;
 }
 #endregion

@@ -18,6 +18,7 @@ fallDelay = 1;
 falling = false;
 landAnimIndex = image_index;
 landAnim = false;
+matchNumber = -1;
 highlight = false;
 highlightDelay = 2;
 highlightIndex = 8;
