@@ -13,8 +13,13 @@ if (instance_exists(obj_gui) && !obj_gui.pause) || !(instance_exists(obj_gui)) {
 			//idle
 			if (global.active) characterState = 0;
 			//panic
-			if (instance_exists(obj_controller))
-				if (obj_controller.bounce) characterState = 1;
+			if (instance_exists(obj_controller)) {
+				var panic = false;
+				with (par_entity) {
+					if (y <= scr_getRowPos(6)) panic = true;
+				}
+				if (panic) characterState = 1;
+			}
 		}
 		
 		switch (characterState) {
@@ -41,13 +46,14 @@ if (instance_exists(obj_gui) && !obj_gui.pause) || !(instance_exists(obj_gui)) {
 			characterAnimIndex = stateOffset;
 		}
 		
-		if (instance_exists(obj_controller)) {
-			if (obj_controller.freeze) {
+		if (global.freeze) {
+			if (instance_number(obj_matchmaker) == 0) {
 				durmaAnimIndex += charAnimSpeed;
 				if (floor(durmaAnimIndex) > 8) {
 					durmaAnimIndex = 7;
 				}  
 			}
 		}
+		
 	}
 } 

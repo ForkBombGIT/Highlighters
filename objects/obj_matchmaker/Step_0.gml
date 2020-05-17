@@ -3,6 +3,7 @@ if (global.riseUp) &&
   !(global.riseBrake) {
 	y -= global.riseSpeed;
 }
+//loop until no more new pieces
 while (another) {
 	var entity = (ds_stack_size(stack) == 1) ? ds_stack_top(stack) : ds_stack_pop(stack);
 	if (instance_exists(entity)) {		
@@ -12,29 +13,64 @@ while (another) {
 		entity.landAnim = false; 
 		entity.match = true;
 		//adds entity to final list
-		if (ds_list_find_index(final,entity) == -1) 
+		if (ds_list_find_index(final,entity) == -1) {
 			ds_list_add(final,entity);
+		}
 			
 		//adds all adjacent entities to stack
+		if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) 
+			ds_stack_push(stack,entity.up);
+			
 		if (instance_exists(entity.left) && (ds_list_find_index(final,entity.left) == -1)) 
 			ds_stack_push(stack,entity.left);
 		
 		if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) 
 			ds_stack_push(stack,entity.right);
 			
-		if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) 
-			ds_stack_push(stack,entity.up);
-			
 		if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) 
 			ds_stack_push(stack,entity.down);
 		
 		//if at the end, quit repeating
-		if (ds_stack_size(stack) == 1) 
+		if (ds_stack_size(stack) == 1) {
 			another = false;
+		}
 	}
 }
 
+//loops over all pieces to check if anything was missed
+if !(animating) {
+	for (var i = 0; i < ds_list_size(final); i++) {
+		var entity = ds_list_find_value(final,i);
+		if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) 
+			ds_stack_push(stack,entity.up);
+			
+		if (instance_exists(entity.left) && (ds_list_find_index(final,entity.left) == -1)) 
+			ds_stack_push(stack,entity.left);
+		
+		if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) 
+			ds_stack_push(stack,entity.right);
+			
+		if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) 
+			ds_stack_push(stack,entity.down);
+	}
+
+	//if the stack is greater than 1, loop again 
+	if (ds_stack_size(stack) > 1) {
+		another = true;
+	}
+
+	//if list is too small, abort match making
+	if (ds_list_size(final) < 4) && !(another) {
+		for (var i = 0; i < ds_list_size(final); i++) {
+			var entity = ds_list_find_value(final,i);
+			entity.match = false;
+		}
+		origin.match = false;
+		origin.matchOverride = true;
+		instance_destroy();
+	}
+}
 //begin highlighting
-if (!another) && !(animating){
+if (!another) && !(animating) {
 	if !(alarm[0]) alarm[0] = 1;
 }

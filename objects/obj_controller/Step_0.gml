@@ -19,7 +19,7 @@ if (global.restart) {
 	global.active = false;
 	global.restart = false;
 	//reset freeze
-	freeze = false;
+	global.freeze = false;
 	freezeTime = 0;
 	freezeTimer = current_time;
 	//reset game variable
@@ -28,9 +28,12 @@ if (global.restart) {
 	instance_destroy(par_entity);
 	instance_destroy(obj_cursor);
 	instance_destroy(obj_matchmaker);
+	instance_destroy(obj_star);
 	cursor = instance_create_layer(x,scr_getRowPos(4),"Cursor",obj_cursor);		
 	cursor.visible = false;
 	//restart
+	//if !(global.practice)
+	//	stars = scr_generateStars(starsGridSize,starGridUnitSize);
 	scr_initRows(0);
 	global.gameLevel = global.startGameLevel;
 	riseSpeed = scr_getRiseSpeed(global.gameLevel);
@@ -65,18 +68,20 @@ with (par_entity) {
 global.riseBrake = (instance_exists(obj_matchmaker)) || pieceFalling || pieceSwap
 
 //freeze timer
-if (freeze) &&
+if (global.freeze) &&
    (global.gameScore < global.victoryScore) &&
    !(global.riseBrake) {
-	if ((current_time - freezeTimer)/1000 > 1) {
+	if ((current_time - freezeTimer) / 1000 > 1) {
 		freezeTime--;
 		freezeTimer = current_time;
 	}
-}
+}  
 
 //turn off freeze if countdown is over
-if (freezeTime <= 0)
-	freeze = false;
+if (freezeTime <= 0) {
+	global.freeze = false;
+}
+
 #endregion
 
 #region Piece Bouncing - Panic Notif
@@ -89,7 +94,7 @@ if (scr_checkRow(global.boardHeight - 1)) {
 			canBounce = false;
 }
 if (canBounce) && 
-   (freezeTime == 0) &&
+  !(global.freeze) &&
   !(global.forceRise) {
 	if (scr_checkRow(global.boardHeight - 3)) { 
 		global.gameover = false;
@@ -143,7 +148,9 @@ if ((global.active) &&
 		scr_createRow(-1);
 		if !(newRowInc) {
 			global.gameScore = min(global.gameScore + 1,global.victoryScore);
-			if !(global.practice)
+			if !(global.practice) && 
+				// levelToMatch must be advance with a combo
+				(global.gameLevel % global.levelToMatch != global.levelToMatch - 1)
 				global.gameLevel = min(global.gameLevel + 1,global.maxLevel);
 			newRowInc = true;
 		}
@@ -153,7 +160,7 @@ if ((global.active) &&
 	if (keyboard_check(ds_map_find_value(global.controls,"B")) && 
 	  !(global.forceRise) && 
 	  !(global.riseBrake)) {
-		freeze = false;
+		global.freeze = false;
 		freezeTime = 0;
 		//checks if piece is gonna rise into game over territory
 		if (scr_checkRow(global.boardHeight)) {
@@ -161,7 +168,6 @@ if ((global.active) &&
 		}
 		else {
 			global.forceRise = true;
-			freeze = false;
 			freezeTime = 0;
 			riseTimer = current_time;
 		
@@ -176,7 +182,7 @@ if ((global.active) &&
 	}
 	
 	//rising row
-	if !(freeze) && 
+	if !(global.freeze) && 
 		(canRise) && 
 	   !(global.riseBrake) {
 		if ((current_time - riseTimer)/1000 > (riseSpeed / room_speed)) { 

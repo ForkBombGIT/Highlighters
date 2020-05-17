@@ -16,6 +16,7 @@ global.restart = false;
 char = 0;
 
 //game score
+global.levelToMatch = 100;
 global.gameScore = 0;
 global.victoryScore = (global.practice) ? 9999 : 999999;
 
@@ -35,7 +36,7 @@ newRowInc = false;
 global.fastAnim = false;
 
 //time freeze
-freeze = false;
+global.freeze = false;
 freezeTime = 0;
 freezeTimer = current_time;
 
@@ -60,5 +61,12 @@ cursor = instance_create_layer(x,scr_getRowPos(4),"Cursor",obj_cursor);
 cursor.visible = false;
 instance_create_layer(x,y,"Controller",obj_gui);
 matchmakerManager = instance_create_layer(x,y,"Controller",obj_matchmakerManager);
+
+//generate stars
+if !(global.practice) {
+	starsGridSize = 12;
+	starGridUnitSize = 24;
+	stars = scr_generateStars(starsGridSize,starGridUnitSize);
+}
 
 scr_initRows(0);

@@ -38,7 +38,7 @@ if (!(swap) &&
 
 #region Rising Pieces
 if (y <= scr_getRowPos(global.boardHeight - 1)) {
-	if (obj_controller.freezeTime == 0) &&
+	if !(global.freeze) &&
 	!(global.riseBrake) {
 		if !(alarm[1]) {
 			alarm[1] = obj_controller.gameoverDelay;
@@ -110,56 +110,16 @@ if (swap) {
 }
 #endregion
 
-#region Fall Control
-//checks if there is no piece below, and ensure the piece below isnt swapping
-var pieceBelow = instance_place(x, y + global.pieceSize, par_entity);
-var notSwapping = true;
-if (instance_exists(pieceBelow) && (pieceBelow.swap))
-	notSwapping = false;
-if (!(bottomEntity) && 
-	!(match) && 
-	!(swap) && 
-	!(global.gameover) &&
-    !(global.victory) &&
-	 (notSwapping) &&
-	!(floating)) {
-	if !alarm[0] alarm[0] = fallCheckDelay;
-} 
-
-//controls landing animation
-if !(global.gameover) &&
-   !(global.victory) &&
-   ((landAnim) || 
-   ((bounce) && 
-   !(squish) &&
-   !(global.forceRise) && 
-    (obj_controller.freezeTime == 0) && 
-   !(instance_exists(obj_matchmaker)))) && 
-   !(match) {
-	var animSpeed = (floor(landAnimIndex) == index) ? landingAnimationFirst : 
-													  landingAnimationRest;
-	// landing animation index control
-	if !(bounce) {
-		landAnimIndex += animSpeed;
-		if (floor(landAnimIndex) > index + 2) {
-			landAnimIndex = index; landAnim = false;
-		}
-	}
-	//apply animation
-	//bounce index is controller in controller for all pieces to bounce uniformly
-	image_index = (bounce) ? scr_getBounceIndex(floor(obj_controller.bounceIndex)) + index : floor(landAnimIndex) ;
-}
-#endregion
-
 #region Warning Notifications
 //bounce
 if !(global.gameover) &&
    !(global.victory) {
 	if (y < scr_getRowPos(0) && 
 	   (y <= scr_getRowPos(global.boardHeight - 3)) &&
-	   (obj_controller.freezeTime == 0) && 
+	   !(global.freeze) && 
 	   !(global.forceRise) &&
 	   !(instance_exists(obj_matchmaker)) && 
+	   !(scr_checkRow(global.boardHeight)) &&
 	   !(match)) {
 		   if !(bounce) {
 				image_index = index;
@@ -201,10 +161,49 @@ if (squish) &&
 }
 #endregion
 
+
+#region Fall Control
+//checks if there is no piece below, and ensure the piece below isnt swapping
+var pieceBelow = instance_place(x, y + global.pieceSize, par_entity);
+var notSwapping = true;
+if (instance_exists(pieceBelow) && (pieceBelow.swap))
+	notSwapping = false;
+if (!(bottomEntity) && 
+	!(match) && 
+	!(swap) && 
+	!(global.gameover) &&
+    !(global.victory) &&
+	 (notSwapping) &&
+	!(floating)) {
+	if !alarm[0] alarm[0] = fallCheckDelay;
+} 
+
+//controls landing animation
+if !(global.gameover) &&
+   !(global.victory) &&  
+   !(match) &&
+   ((landAnim) || 
+   ((bounce) && 
+   !(squish))) {
+	var animSpeed = (floor(landAnimIndex) == index) ? landingAnimationFirst : 
+													  landingAnimationRest;
+	// landing animation index control
+	if !(bounce) {
+		landAnimIndex += animSpeed;
+		if (floor(landAnimIndex) > index + 2) {
+			landAnimIndex = index; landAnim = false;
+		}
+	}
+	//apply animation
+	//bounce index is controller in controller for all pieces to bounce uniformly
+	image_index = (bounce) ? scr_getBounceIndex(floor(obj_controller.bounceIndex)) + index : floor(landAnimIndex) ;
+}
+#endregion
+
+
 #region Match Control
 //checks for adjacent matching pieces
 if ((bottomEntity) && 
-	!(match) &&
 	!(swap) &&
 	!(global.gameover) && 
     !(global.victory) &&

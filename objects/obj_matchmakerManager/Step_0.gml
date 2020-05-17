@@ -7,20 +7,36 @@ if !(global.gameover) &&
 				var matchmaker = instance_find(obj_matchmaker,i);
 				var matchmakerPlus = instance_find(obj_matchmaker,i+1);
 				var deletion = false;
-				if (instance_exists(matchmaker)) {
-					if (instance_exists(matchmakerPlus)) {
+				if (instance_exists(matchmaker) && !matchmaker.highlight) {
+					if (instance_exists(matchmakerPlus) && !matchmakerPlus.highlight) {
 						//check if the matchmakers "colorIndex" (the color they are matching)
 						//and ensure at least one of them is done their match route
 						if ((matchmaker.colorIndex == matchmakerPlus.colorIndex)) {
-							for (var j = 0; j < ds_list_size(matchmaker.final); j++){
+							var containsOther = false;
+							for (var k = 0; k < min(ds_list_size(matchmaker.final),ds_list_size(matchmakerPlus.final)); k++) {
+								var matchmakerPiece = ds_list_find_index(matchmaker.final,k);
+								var matchmakerPlusPiece = ds_list_find_index(matchmakerPlus.final,k);
+								if (matchmakerPiece.id == matchmakerPlusPiece.id) {
+									containsOther = true;
+									break;
+								}
+							}
+							if (containsOther) {
 								matchmakerPlus.origin.matchOverride = true;
-								//add missing pieces from matchmakerPlus into matchmaker
+								//add missing pieces from matchmakerPlus into matchmaker final list
 								for (var k = 0; k < ds_list_size(matchmakerPlus.final); k++) {
-									if (ds_list_find_index(matchmaker.final,ds_list_find_value(matchmakerPlus.final,k)) == -1) {
-										var matchmakerPlusEntity = ds_list_find_value(matchmakerPlus.final,k);
+									var matchmakerPlusEntity = ds_list_find_value(matchmakerPlus.final,k);
+									if (ds_list_find_index(matchmaker.final,matchmakerPlusEntity) == -1) {
 										ds_list_add(matchmaker.final,matchmakerPlusEntity);
 									}
 								}
+								//add missing pieces from matchmakerPlus into matchmaker stack list
+								while (ds_stack_size(matchmakerPlus.stack) > 0) {
+									var matchmakerPlusEntity = ds_stack_pop(matchmakerPlus.stack);
+									matchmakerPlusEntity.match = false;
+									ds_stack_push(matchmaker.stack,matchmakerPlusEntity);
+								}
+								ds_stack_push(matchmaker.stack,matchmakerPlus.origin);
 								instance_destroy(matchmakerPlus);
 								deletion = true;
 								break;
@@ -83,20 +99,22 @@ if !(global.gameover) &&
 							 ((total > 8)  ? 4 :
  							 ((total > 6)  ? 3 : 
 							 ((total > 4)  ? 2 : 0)))));
-				if (freezeTime > obj_controller.freezeTime) 
+				
+				if (freezeTime > obj_controller.freezeTime) {
 					obj_controller.freezeTime = freezeTime;
+					obj_controller.freezeTimer = current_time;
+					global.freeze = true;
+				}
 			}
 		}	
 		combo = false; 
 		activeComboSize = -1;
 		ds_list_clear(matchmakers);
 	} 
-	
 	if (instance_number(obj_matchmaker) == 0) {
 		if (obj_controller.freezeTime == freezeTime) && 
 		   (freezeTime > 0) {
 			obj_controller.freezeTimer = current_time;
-			obj_controller.freeze = true;
 			freezeTime = 0;
 		}	
 	}

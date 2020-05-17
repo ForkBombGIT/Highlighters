@@ -38,9 +38,11 @@ if !(global.gameover) ||
 				}
 				alarm[0] = postFlickerDelay;
 				postFlicker = false;
+				highlight = true;
+		
 			}
 			//controls highlighting animation
-			else {
+			if (highlight) {
 				if (listPosition <= ds_list_size(final) - 1) {
 					var entity = ds_list_find_value(final,listPosition);
 					if (instance_exists(entity)) {
