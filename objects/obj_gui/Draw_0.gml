@@ -12,7 +12,7 @@ if !(pause) || !sprite_exists(screenShot) {
 	draw_text(377,99,string_replace_all(string_format(global.gameScore,6,0)," ", "0"));
 	//game level
 	draw_sprite(spr_speed,0,360,144);
-	draw_text(422,168,string_replace_all(string_format(global.gameLevel,3,0)," ", "0"));
+	draw_text((global.practice) ? 446 : 422 ,168,(global.practice) ? "-" : string_replace_all(string_format(global.gameLevel,3,0)," ", "0"));
 } 
 #endregion
 #region Pause Control

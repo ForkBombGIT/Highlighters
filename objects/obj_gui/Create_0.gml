@@ -1,5 +1,5 @@
 totalMillis = 0; global.minutes = 0; global.seconds = 0; milli = 0; 
-global.numFont = font_add_sprite_ext(spr_ignumbers, "0123456789", true, 3); 
+global.numFont = font_add_sprite_ext(spr_ignumbers, "0123456789-", true, 0); 
 global.timeFont = font_add_sprite_ext(spr_timenumbers, "0123456789:", true, 0); 
 freezeFont = font_add_sprite_ext(spr_freezenumbers, "0123456789", true, 3); 
 

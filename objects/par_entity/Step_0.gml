@@ -69,8 +69,9 @@ if (y >= scr_getRowPos(0)) {
 }
 	
 if ((bottomEntity) && (falling)) {
-	landAnim = true;
+	image_index = index;
 	landAnimIndex = index;	
+	landAnim = true;
 	falling = false;
 }
 
@@ -182,6 +183,7 @@ if (!(bottomEntity) &&
 if !(global.gameover) &&
    !(global.victory) &&  
    !(match) &&
+   (bottomEntity) &&
    ((landAnim) || 
    ((bounce) && 
    !(squish))) {

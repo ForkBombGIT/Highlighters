@@ -135,7 +135,30 @@ if keyboard_check(ds_map_find_value(global.controls,"B")) {
 
 if ((global.active) && 
    !(global.victory) &&
-   !(global.gameover)) {	
+   !(global.gameover)) {
+	   
+	// bomb pulse animation
+	var animSpeed = global.pulse ? global.pulse : pulseAnimationSpeed;
+	pulseIndex += animSpeed;
+	//pulse after the first frame lasts for 9 frames
+	if (floor(pulseIndex) > pulseStartIndex) {
+		global.pulse = true;	
+	}
+	//pulse animation
+	if (floor(pulseIndex) > pulseEndIndex) {
+		//reset pulse animation variables
+		if (pulseReset) {
+			pulseIndex = 0;
+			pulseReset = false;
+			global.pulse = false;
+		}
+		//reset pulseIndex to 17 once before turning of pulse
+		else {
+			pulseIndex = pulseStartIndex;	
+			pulseReset = true;
+		}
+	}
+	   
 	if !(global.practice) { //disables level progression in practice
 		//handles level progression
 		if (global.gameLevel < global.maxLevel) {

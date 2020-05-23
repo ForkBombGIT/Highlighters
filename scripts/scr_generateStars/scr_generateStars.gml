@@ -4,7 +4,8 @@ starsGridSize = argument0;
 starsGridUnitSize = argument1;
 starsGridArea = power(starsGridSize,2);
 sessionMinStars = 15;
-sessionMaxStars = irandom_range(sessionMinStars,floor(starsGridArea / 2.5));
+sessionMaxStars = 24;
+sessionMaxStars = irandom_range(sessionMinStars,sessionMaxStars);
 
 var coordinatesAttempts = 0;
 var coordinatesMaxAttempts = 6;

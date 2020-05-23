@@ -1,5 +1,20 @@
 event_inherited(); 
 if (matchOverride) match = true;
+
+//pulse animation
+if (global.pulse)  &&
+   (global.active) && 
+   (y <= scr_getRowPos(0)) &&
+  !(global.riseUp) && 
+  !(bounce) && 
+  !(squish) &&
+  !(match) && 
+  !(swap) && 
+  (global.gameScore < global.victoryScore) &&
+  !(instance_exists(matchmaker)) {
+	image_index = index + floor(obj_controller.pulseIndex);
+  }
+
 #region Match Control
 if (global.active) && 
   !(global.riseUp) && 

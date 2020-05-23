@@ -51,6 +51,12 @@ selectedEntities = scr_generateColors();
 activeMatches = ds_list_create();
 
 //animations
+global.pulse = false;
+pulseIndex = 0;
+pulseAnimationSpeed = 0.11; // 12 frames
+pulseStartIndex = 15
+pulseEndIndex = 17
+pulseReset = false;
 bounce = false;
 bounceIndex = 0;
 bounceAnimationFirst = 0.25; //4 frames

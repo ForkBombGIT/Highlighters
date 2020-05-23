@@ -18,7 +18,7 @@ var maxRetry = 6;
 var bombProb = 1;
 var canPlace = instance_exists(scr_getPieceAtPos(row,col));
 
-var pieceFrames = 16;
+var pieceFrames = 18;
 
 while !(canPlace) {
 	var left = scr_getPieceAtPos(row, col - 1),
