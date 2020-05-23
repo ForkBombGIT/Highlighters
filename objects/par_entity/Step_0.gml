@@ -49,12 +49,12 @@ if (y <= scr_getRowPos(global.boardHeight - 1)) {
 	//pause gameover delay for freezing and rise brakes
 	else {
 		if (alarm[1]) alarm[1] = lastGameoverDelay;	
+		obj_controller.canRise = false
 	}
 } 
 //reset gameover delay if piece is not in top row
 else {
 	if (alarm[1]) alarm[1] = -1;	
-	obj_controller.canRise = true;
 }
 #endregion
 

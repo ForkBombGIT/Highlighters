@@ -4,6 +4,10 @@ if (instance_number(obj_matchmaker) == 0) {
 }
 
 #region Game States
+if !(scr_checkRow(global.boardHeight - 1)) { 
+	obj_controller.canRise = true;	
+}
+
 if (global.gameScore >= global.victoryScore) && 
    !(global.riseBrake) {
 	global.victory = true;
