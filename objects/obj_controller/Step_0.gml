@@ -138,7 +138,7 @@ if ((global.active) &&
    !(global.gameover)) {
 	   
 	// bomb pulse animation
-	var animSpeed = global.pulse ? global.pulse : pulseAnimationSpeed;
+	var animSpeed = global.pulse ? pulseAnimationSpeedEnd : pulseAnimationSpeedStart;
 	pulseIndex += animSpeed;
 	//pulse after the first frame lasts for 9 frames
 	if (floor(pulseIndex) > pulseStartIndex) {

@@ -53,8 +53,9 @@ activeMatches = ds_list_create();
 //animations
 global.pulse = false;
 pulseIndex = 0;
-pulseAnimationSpeed = 0.11; // 12 frames
-pulseStartIndex = 15
+pulseAnimationSpeedStart = 0.11;
+pulseAnimationSpeedEnd = 0.1;
+pulseStartIndex = 16
 pulseEndIndex = 17
 pulseReset = false;
 bounce = false;

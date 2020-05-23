@@ -1,6 +1,8 @@
 randomize();
 global.pieceSize = 48;
 
+lastGameoverDelay = 0;
+
 //indentify charm color
 index = -1;
 
