@@ -140,20 +140,21 @@ if ((global.active) &&
 	// bomb pulse animation
 	var animSpeed = global.pulse ? pulseAnimationSpeedEnd : pulseAnimationSpeedStart;
 	pulseIndex += animSpeed;
+	show_debug_message(floor(pulseIndex));
 	//pulse after the first frame lasts for 9 frames
 	if (floor(pulseIndex) > pulseStartIndex) {
 		global.pulse = true;	
 	}
 	//pulse animation
-	if (floor(pulseIndex) > pulseEndIndex) {
+	if (floor(pulseIndex) == pulseEndIndex) &&
+	   (pulseReset) {
+		   pulseIndex = 0;
+		   pulseReset = false;
+		   global.pulse = false;
+	}
+	else if (floor(pulseIndex) > pulseEndIndex) {
 		//reset pulse animation variables
-		if (pulseReset) {
-			pulseIndex = 0;
-			pulseReset = false;
-			global.pulse = false;
-		}
-		//reset pulseIndex to 17 once before turning of pulse
-		else {
+		if !(pulseReset) {
 			pulseIndex = pulseStartIndex;	
 			pulseReset = true;
 		}
