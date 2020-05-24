@@ -36,8 +36,8 @@ if (global.restart) {
 	cursor = instance_create_layer(x,scr_getRowPos(4),"Cursor",obj_cursor);		
 	cursor.visible = false;
 	//restart
-	//if !(global.practice)
-	//	stars = scr_generateStars(starsGridSize,starGridUnitSize);
+	if !(global.practice)
+		scr_generateStars(starsGridSize,starGridUnitSize);
 	scr_initRows(0);
 	global.gameLevel = global.startGameLevel;
 	riseSpeed = scr_getRiseSpeed(global.gameLevel);
@@ -144,6 +144,7 @@ if ((global.active) &&
 	// bomb pulse animation
 	var animSpeed = global.pulse ? pulseAnimationSpeedEnd : pulseAnimationSpeedStart;
 	pulseIndex += animSpeed;
+	show_debug_message(floor(pulseIndex));
 	//pulse after the first frame lasts for 9 frames
 	if (floor(pulseIndex) > pulseStartIndex) {
 		global.pulse = true;	

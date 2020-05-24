@@ -3,7 +3,7 @@ image_speed = 1;
 y = scr_getRowPos(4);
 //cursor movement
 delayTime = current_time; //delay on cursor press
-delay = 0.05; //how long
+delay = 0.05; // delay between movement
 keyPressLength = 0; //how long the key has been pressed
 longPress = 10; //how long a key needs to be held
 lastKey = -1; //last key pressed

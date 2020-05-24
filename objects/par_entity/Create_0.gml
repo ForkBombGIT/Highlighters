@@ -29,7 +29,7 @@ highlighting = false;
 bounce = false;
 squish = false;
 floating = false;
-floatDelay = global.practice ? 30 : 3;
+floatDelay = global.practice ? 40 : 10;
 landingAnimationFirst = 0.25; // 4 frames
 landingAnimationRest = 0.5; // 2 frames
 

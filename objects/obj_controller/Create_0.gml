@@ -53,10 +53,10 @@ activeMatches = ds_list_create();
 //animations
 global.pulse = false;
 pulseIndex = 0;
-pulseAnimationSpeedStart = 0.11;
-pulseAnimationSpeedEnd = 0.16;
-pulseStartIndex = 16
+pulseStartIndex = 16 
 pulseEndIndex = 17
+pulseAnimationSpeedStart = pulseStartIndex / 150;
+pulseAnimationSpeedEnd = 0.1;
 pulseReset = false;
 bounce = false;
 bounceIndex = 0;
@@ -73,7 +73,7 @@ matchmakerManager = instance_create_layer(x,y,"Controller",obj_matchmakerManager
 if !(global.practice) {
 	starsGridSize = 12;
 	starGridUnitSize = 24;
-	stars = scr_generateStars(starsGridSize,starGridUnitSize);
+	scr_generateStars(starsGridSize,starGridUnitSize);
 }
 
 scr_initRows(0);

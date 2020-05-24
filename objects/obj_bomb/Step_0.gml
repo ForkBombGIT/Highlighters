@@ -10,7 +10,8 @@ if (global.pulse)  &&
   !(bounce) && 
   !(match) && 
   !(swap) && 
-  (global.gameScore < global.victoryScore) &&
+  !(global.gameover) &&
+  !(global.victory) &&
   !(instance_exists(matchmaker)) {
 	image_index = index + floor(obj_controller.pulseIndex);
   }
