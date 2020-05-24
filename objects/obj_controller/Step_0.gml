@@ -16,6 +16,9 @@ if (global.gameScore >= global.victoryScore) &&
 	}
 }
 
+if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1) global.requiresCombo = true;
+else global.requiresCombo = false;
+
 //handles restart logic
 if (global.restart) {
 	selectedEntities = scr_generateColors();

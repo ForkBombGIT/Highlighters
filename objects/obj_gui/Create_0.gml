@@ -14,6 +14,12 @@ pauseAnim = 0;
 pauseCursor = 0;
 pauseCursorPositions = [216,252,288];
 
+//handles score animation
+levelFlickerDelay = 0.25;
+levelFlickerIndex = 0;
+flickerOnVal = 1;
+levelFlicker = false;
+
 //controls flash effect
 flash = false;
 

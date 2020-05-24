@@ -16,6 +16,7 @@ global.restart = false;
 char = 0;
 
 //game score
+global.requiresCombo = false;
 global.levelToMatch = 100;
 global.gameScore = 0;
 global.victoryScore = (global.practice) ? 9999 : 999999;
