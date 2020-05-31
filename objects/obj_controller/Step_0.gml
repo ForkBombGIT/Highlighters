@@ -147,9 +147,8 @@ if ((global.active) &&
 	// bomb pulse animation
 	var animSpeed = global.pulse ? pulseAnimationSpeedEnd : pulseAnimationSpeedStart;
 	pulseIndex += animSpeed;
-	show_debug_message(floor(pulseIndex));
 	//pulse after the first frame lasts for 9 frames
-	if (floor(pulseIndex) > pulseStartIndex) {
+	if (floor(pulseIndex) >= pulseStartIndex) {
 		global.pulse = true;	
 	}
 	//pulse animation
@@ -165,8 +164,7 @@ if ((global.active) &&
 			pulseIndex = pulseStartIndex;	
 			pulseReset = true;
 		}
-	}
-	   
+	} 
 	if !(global.practice) { //disables level progression in practice
 		//handles level progression
 		if (global.gameLevel < global.maxLevel) {
