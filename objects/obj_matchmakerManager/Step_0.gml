@@ -9,41 +9,45 @@ if !(global.gameover) &&
 				var deletion = false;
 				if (instance_exists(matchmaker) && !matchmaker.highlight) {
 					if (instance_exists(matchmakerPlus) && !matchmakerPlus.highlight) {
-						//check if the matchmakers "colorIndex" (the color they are matching)
-						//and ensure at least one of them is done their match route
-						if ((matchmaker.colorIndex == matchmakerPlus.colorIndex)) {
-							var containsOther = false;
-							for (var k = 0; k < min(ds_list_size(matchmaker.final),ds_list_size(matchmakerPlus.final)); k++) {
-								var matchmakerPiece = ds_list_find_index(matchmaker.final,k);
-								var matchmakerPlusPiece = ds_list_find_index(matchmakerPlus.final,k);
-								if (matchmakerPiece.id == matchmakerPlusPiece.id) {
-									containsOther = true;
+						if (matchmaker.id != matchmakerPlus.id) {
+							//check if the matchmakers "colorIndex" (the color they are matching)
+							//and ensure at least one of them is done their match route
+							if ((matchmaker.colorIndex == matchmakerPlus.colorIndex)) {
+								var containsOther = false;
+								for (var k = 0; k < min(ds_list_size(matchmaker.final),ds_list_size(matchmakerPlus.final)); k++) {
+									var matchmakerPiece = ds_list_find_value(matchmaker.final,k);
+									var matchmakerPlusPiece = ds_list_find_value(matchmakerPlus.final,k);
+									show_debug_message(matchmakerPiece.id);
+									show_debug_message(matchmakerPlusPiece.id);
+									if (matchmakerPiece.id == matchmakerPlusPiece.id) {
+										containsOther = true;
+										break;
+									}
+								}
+								if (containsOther) {
+									matchmakerPlus.origin.matchOverride = true;
+									//add missing pieces from matchmakerPlus into matchmaker final list
+									for (var k = 0; k < ds_list_size(matchmakerPlus.final); k++) {
+										var matchmakerPlusEntity = ds_list_find_value(matchmakerPlus.final,k);
+										if (ds_list_find_index(matchmaker.final,matchmakerPlusEntity) == -1) {
+											ds_list_add(matchmaker.final,matchmakerPlusEntity);
+										}
+									}
+									//add missing pieces from matchmakerPlus into matchmaker stack list
+									while (ds_stack_size(matchmakerPlus.stack) > 0) {
+										var matchmakerPlusEntity = ds_stack_pop(matchmakerPlus.stack);
+										matchmakerPlusEntity.match = false;
+										ds_stack_push(matchmaker.stack,matchmakerPlusEntity);
+									}
+									ds_stack_push(matchmaker.stack,matchmakerPlus.origin);
+									instance_destroy(matchmakerPlus);
+									deletion = true;
 									break;
 								}
 							}
-							if (containsOther) {
-								matchmakerPlus.origin.matchOverride = true;
-								//add missing pieces from matchmakerPlus into matchmaker final list
-								for (var k = 0; k < ds_list_size(matchmakerPlus.final); k++) {
-									var matchmakerPlusEntity = ds_list_find_value(matchmakerPlus.final,k);
-									if (ds_list_find_index(matchmaker.final,matchmakerPlusEntity) == -1) {
-										ds_list_add(matchmaker.final,matchmakerPlusEntity);
-									}
-								}
-								//add missing pieces from matchmakerPlus into matchmaker stack list
-								while (ds_stack_size(matchmakerPlus.stack) > 0) {
-									var matchmakerPlusEntity = ds_stack_pop(matchmakerPlus.stack);
-									matchmakerPlusEntity.match = false;
-									ds_stack_push(matchmaker.stack,matchmakerPlusEntity);
-								}
-								ds_stack_push(matchmaker.stack,matchmakerPlus.origin);
-								instance_destroy(matchmakerPlus);
-								deletion = true;
-								break;
-							}
 						}
+						if (deletion) break;
 					}
-					if (deletion) break;
 				}
 			}
 		}

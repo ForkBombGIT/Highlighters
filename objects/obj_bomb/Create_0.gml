@@ -10,4 +10,5 @@ row = -1;
 col = -1;
 
 matchmaker = noone;
+matchFound = false;
 matchOverride = false

@@ -11,7 +11,6 @@ while (another) {
 		x = entity.x;
 		y = entity.y;
 		entity.landAnim = false; 
-		entity.match = true;
 		//adds entity to final list
 		if (ds_list_find_index(final,entity) == -1) {
 			ds_list_add(final,entity);
@@ -60,16 +59,18 @@ if !(animating) {
 	}
 
 	//if list is too small, abort match making
+	/*
 	if (ds_list_size(final) < 4) && !(another) {
 		for (var i = 0; i < ds_list_size(final); i++) {
 			var entity = ds_list_find_value(final,i);
 			entity.match = false;
 		}
 		origin.match = false;
-		origin.matchOverride = true;
 		instance_destroy();
 	}
+	*/
 }
+
 //begin highlighting
 if (!another) && !(animating) {
 	if !(alarm[0]) alarm[0] = 1;

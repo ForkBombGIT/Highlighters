@@ -4,6 +4,7 @@ var high = argument2;
 
 //list will be modified around this pivot
 var pivot = ds_list_find_value(list,high);
+pivot.match = true;
 var index = low - 1;
 //movves smaller elements below pivot position
 for (var i = low; i < high; i++) {
