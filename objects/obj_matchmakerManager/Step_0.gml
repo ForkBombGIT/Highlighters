@@ -6,25 +6,27 @@ if !(global.gameover) &&
 			for (var i = 0; i < activeMatchmakers - 1; i++) {
 				var matchmaker = instance_find(obj_matchmaker,i);
 				var matchmakerPlus = instance_find(obj_matchmaker,i+1);
-				var deletion = false;
-				if (instance_exists(matchmaker) && !matchmaker.highlight) {
-					if (instance_exists(matchmakerPlus) && !matchmakerPlus.highlight) {
+				if (instance_exists(matchmaker)) {
+					if (instance_exists(matchmakerPlus)) {
 						if (matchmaker.id != matchmakerPlus.id) {
 							//check if the matchmakers "colorIndex" (the color they are matching)
 							//and ensure at least one of them is done their match route
+							var delete = false;
 							if ((matchmaker.colorIndex == matchmakerPlus.colorIndex)) {
-								var containsOther = false;
-								for (var k = 0; k < min(ds_list_size(matchmaker.final),ds_list_size(matchmakerPlus.final)); k++) {
-									var matchmakerPiece = ds_list_find_value(matchmaker.final,k);
-									var matchmakerPlusPiece = ds_list_find_value(matchmakerPlus.final,k);
-									show_debug_message(matchmakerPiece.id);
-									show_debug_message(matchmakerPlusPiece.id);
-									if (matchmakerPiece.id == matchmakerPlusPiece.id) {
-										containsOther = true;
-										break;
+								if ((ds_list_size(matchmaker.final) < 4 && !(matchmaker.another)) || 
+								    (ds_list_size(matchmakerPlus.final) < 4) && !(matchmakerPlus.another))
+									delete = true;
+								else {
+									for (var k = 0; k < min(ds_list_size(matchmaker.final),ds_list_size(matchmakerPlus.final)); k++) {
+										var matchmakerPiece = ds_list_find_value(matchmaker.final,k);
+										var matchmakerPlusPiece = ds_list_find_value(matchmakerPlus.final,k);
+										if (matchmakerPiece.id == matchmakerPlusPiece.id) {
+											delete = true;
+											break;
+										}
 									}
 								}
-								if (containsOther) {
+								if (delete) {
 									matchmakerPlus.origin.matchOverride = true;
 									//add missing pieces from matchmakerPlus into matchmaker final list
 									for (var k = 0; k < ds_list_size(matchmakerPlus.final); k++) {
@@ -41,16 +43,15 @@ if !(global.gameover) &&
 									}
 									ds_stack_push(matchmaker.stack,matchmakerPlus.origin);
 									instance_destroy(matchmakerPlus);
-									deletion = true;
-									break;
 								}
+								
 							}
 						}
-						if (deletion) break;
 					}
 				}
 			}
 		}
+		
 		//find matchmaker in matchmakers list
 		//combo handling
 		for (var i = 0; i < activeMatchmakers; i++) {
@@ -86,6 +87,20 @@ if !(global.gameover) &&
 					else minXMatchmaker = matchmaker
 				}
 			}
+			var sizeOfCombo = total - (comboSize - 1);
+			global.gameScore = min(global.gameScore + (total * baseScoreInc) + max(0,sizeOfCombo * comboBonus),
+								   global.victoryScore);
+
+			if !(global.practice) {
+				//checks if level is at x99, if it is, follow normal combo behavior
+				if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1)
+					global.gameLevel = global.gameLevel + (comboSize > 0) + 1
+				//otherwise 
+				else global.gameLevel = min(global.gameLevel + (comboSize > 0) + 1,
+											(floor((global.gameLevel / global.levelToMatch) % 10) * global.levelToMatch) + global.levelToMatch - 1);
+				global.gameLevel = min(global.gameLevel, global.maxLevel - 1);
+			}
+			
 			if (total >= comboSize) {
 				var firstMaker = ds_list_find_value(matchmakers,0);
 				firstMaker.comboSize = total - (comboSize - 1);

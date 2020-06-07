@@ -30,5 +30,3 @@ highlight = false;
 
 //scoring
 comboSize = 0;
-baseScoreInc = 10;
-comboBonus = 50;

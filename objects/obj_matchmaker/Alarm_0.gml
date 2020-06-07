@@ -60,17 +60,6 @@ if !(global.gameover) ||
 						var entity = ds_list_find_value(final,i);
 						instance_destroy(entity);
 					}
-					global.gameScore = min(global.gameScore + (ds_list_size(final) * baseScoreInc) + (comboSize * comboBonus),
-										   global.victoryScore);
-					if !(global.practice) {
-						//checks if level is at x99, if it is, follow normal combo behavior
-						if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1)
-							global.gameLevel = global.gameLevel + (comboSize > 0) + 1
-						//otherwise 
-						else global.gameLevel = min(global.gameLevel + (comboSize > 0) + 1,
-												   (floor((global.gameLevel / global.levelToMatch) % 10) * global.levelToMatch) + global.levelToMatch - 1);
-						global.gameLevel = min(global.gameLevel, global.maxLevel - 1);
-					}
 					instance_destroy();
 				}		
 			}	
