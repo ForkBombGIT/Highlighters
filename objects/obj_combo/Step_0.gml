@@ -1,11 +1,11 @@
 if (comboSize != 0) {
 	if (visible == false) {
-		image_index = ((comboSize - minComboSize > sprite_get_number(spr_combo)) ? 
-					  (sprite_get_number(spr_combo) - animLength) : (comboSize - minComboSize)) * 
+		image_index = ((comboSize > sprite_get_number(spr_combo) / animLength) ? 
+					  (sprite_get_number(spr_combo) - animLength) : comboSize) * 
 					  animLength;
 	}
 	visible = true;
-	endAnim = (image_index > ((comboSize - minComboSize) * animLength) + (animLength - 1)); 
+	endAnim = (image_index > (comboSize * animLength) + (animLength - 1)); 
 	if (endAnim) 
 		image_speed = 0;
 }

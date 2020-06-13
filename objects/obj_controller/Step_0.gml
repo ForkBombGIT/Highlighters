@@ -136,14 +136,18 @@ if (bounce) {
 #endregion
 
 #region Piece Loop
-if keyboard_check(ds_map_find_value(global.controls,"B")) {
+if keyboard_check(ds_map_find_value(global.controls,"B")) && 
+  (instance_exists(obj_matchmaker) || instance_exists(obj_countdown)) {
 	global.fastAnim = true;
-} else global.fastAnim = false;
+} 
+else 
+	if (keyboard_check_released(ds_map_find_value(global.controls,"B")))
+		global.fastAnim = false;
+
 
 if ((global.active) && 
    !(global.victory) &&
    !(global.gameover)) {
-	   
 	// bomb pulse animation
 	var animSpeed = global.pulse ? pulseAnimationSpeedEnd : pulseAnimationSpeedStart;
 	pulseIndex += animSpeed;
@@ -187,6 +191,7 @@ if ((global.active) &&
 	
 	//manual new row
 	if (keyboard_check(ds_map_find_value(global.controls,"B")) && 
+	  !(global.fastAnim) &&
 	  !(global.forceRise) && 
 	  !(global.riseBrake)) {
 		global.freeze = false;

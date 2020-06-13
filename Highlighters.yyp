@@ -255,11 +255,27 @@
             }
         },
         {
+            "Key": "2521da0c-bc3d-4600-ac78-eee0e089850b",
+            "Value": {
+                "id": "2dd905c0-4ec0-45b0-ac68-8e8d1d1de3ec",
+                "resourcePath": "views\\2521da0c-bc3d-4600-ac78-eee0e089850b.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "25ae1eca-c8ac-4ea8-99bb-ccf1574540f3",
             "Value": {
                 "id": "c39198e2-5b65-4adb-99b1-85485a65f847",
                 "resourcePath": "views\\25ae1eca-c8ac-4ea8-99bb-ccf1574540f3.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "26a4e6b7-c1c9-4369-b0e2-96618f107a29",
+            "Value": {
+                "id": "b2c0adb5-4d3e-4f84-a600-4589aec6e7cb",
+                "resourcePath": "objects\\obj_chain\\obj_chain.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -1031,11 +1047,27 @@
             }
         },
         {
+            "Key": "d9a1ca65-1bcf-47db-98f2-580eb241d4ea",
+            "Value": {
+                "id": "9eb3f611-bbf5-4a34-8294-4246deabef17",
+                "resourcePath": "views\\d9a1ca65-1bcf-47db-98f2-580eb241d4ea.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "da241460-4bbb-4ab1-9a85-a23df1fa2336",
             "Value": {
                 "id": "93926bcf-e270-4c16-a2cc-a54d2fe1be39",
                 "resourcePath": "sprites\\spr_speed\\spr_speed.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "db34b8b6-17c7-48bf-a06b-e6ea8e93418b",
+            "Value": {
+                "id": "4741c217-ce2f-4bcc-a798-45c869eac43e",
+                "resourcePath": "views\\db34b8b6-17c7-48bf-a06b-e6ea8e93418b.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -1180,6 +1212,14 @@
                 "id": "f93195cf-c41e-4e84-b9c0-4394113925c2",
                 "resourcePath": "objects\\obj_startGame\\obj_startGame.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "fd64c023-4292-4dd3-bdaa-c97e49e9ed56",
+            "Value": {
+                "id": "b79e1a5e-f8d1-4bf9-950d-2a62853daea4",
+                "resourcePath": "sprites\\spr_chain\\spr_chain.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

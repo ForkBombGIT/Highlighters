@@ -12,6 +12,7 @@ targetX = -1;
 swapSpeed = global.practice ? 4 : 16; //48 
 
 //controls fall speed
+justLanded = false;
 bottomEntity = false;
 fallCheckDelay = global.practice ? 40 : 10; //alarm speed
 fallDelay = 1;

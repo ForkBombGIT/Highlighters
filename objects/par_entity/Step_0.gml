@@ -67,59 +67,6 @@ if (highlight) {
 }
 #endregion
 
-#region Grounded Management
-if (y >= scr_getRowPos(0)) { 
-	bottomEntity = true; 
-} else if (position_meeting(x,y+global.pieceSize,par_entity)) {
-	var below = instance_place(x,y+global.pieceSize,par_entity);
-	bottomEntity = below.bottomEntity
-} else {
-	if !(global.riseUp) && !(global.forceRise)
-		bottomEntity = false;
-}
-	
-if ((bottomEntity) && (falling)) {
-	image_index = index;
-	landAnimIndex = index;	
-	landAnim = true;
-	falling = false;
-}
-
-if (bottomEntity) && 
-   !(global.gameover) && 
-   !(global.victory) &&
-   (!(match)) {
-	var entity = instance_position(x,y + global.pieceSize,par_entity);
-	if (instance_exists(entity)) {
-		if (entity.match) && !(match) image_index = index + 3;
-	}
-}
-else {
-	if (floating) {
-		alarm[3] = floatDelay;
-	}
-}
-#endregion
-	
-#region Swap Control
-if (swap) { 
-	bounce = false;
-	//reset direction variables
-	left = noone; right = noone; up = noone; down = noone
-	ds_list_clear(adjacent);
-	//checks if there is a col value stored in targetX, 
-	//if there is, assign it the x position of the col
-	if (targetX < global.boardWidth) {
-		col = targetX;
-		targetX = scr_getColPos(targetX);
-	}
-	
-	//increment until position is reached
-	if (x < targetX) x += swapSpeed;
-	else if (x > targetX) x -= swapSpeed;
-	else { x = targetX; swap = false; image_index = index;}
-}
-#endregion
 
 #region Warning Notifications
 //bounce
@@ -172,7 +119,6 @@ if (squish) &&
 }
 #endregion
 
-
 #region Fall Control
 //checks if there is no piece below, and ensure the piece below isnt swapping
 var pieceBelow = instance_place(x, y + global.pieceSize, par_entity);
@@ -192,26 +138,82 @@ if (!(bottomEntity) &&
 //controls landing animation
 if !(global.gameover) &&
    !(global.victory) &&  
-   !(match) &&
    (bottomEntity) &&
    ((landAnim) || 
    ((bounce) && 
    !(squish))) {
-	var animSpeed = (floor(landAnimIndex) == index) ? landingAnimationFirst : 
-													  landingAnimationRest;
-	// landing animation index control
-	if !(bounce) {
-		landAnimIndex += animSpeed;
-		if (floor(landAnimIndex) > index + 2) {
-			landAnimIndex = index; landAnim = false;
-		}
-	}
-	//apply animation
-	//bounce index is controller in controller for all pieces to bounce uniformly
-	image_index = (bounce) ? scr_getBounceIndex(floor(obj_controller.bounceIndex)) + index : floor(landAnimIndex) ;
+	   if !(match) {
+		   var animSpeed = (floor(landAnimIndex) == index) ? landingAnimationFirst : 
+															  landingAnimationRest;
+		   // landing animation index control
+		   if !(bounce) {
+			   landAnimIndex += animSpeed;
+			   if (floor(landAnimIndex) > index + 2) {
+				 landAnimIndex = index; landAnim = false; justLanded = false;
+			   }
+		   }
+		   //apply animation
+		   //bounce index is controller in controller for all pieces to bounce uniformly
+		   image_index = (bounce) ? scr_getBounceIndex(floor(obj_controller.bounceIndex)) + index : floor(landAnimIndex) ;
+	   }
 }
 #endregion
 
+
+#region Grounded Management
+if (y >= scr_getRowPos(0)) { 
+	bottomEntity = true; 
+} else if (position_meeting(x,y+global.pieceSize,par_entity)) {
+	var below = instance_place(x,y+global.pieceSize,par_entity);
+	bottomEntity = below.bottomEntity
+} else {
+	if !(global.riseUp) && !(global.forceRise)
+		bottomEntity = false;
+}
+	
+if ((bottomEntity) && (falling)) {
+	image_index = index;
+	landAnimIndex = index;	
+	landAnim = true;
+	falling = false;
+	justLanded = true;	
+}
+
+if (bottomEntity) && 
+   !(global.gameover) && 
+   !(global.victory) &&
+   (!(match)) {
+	var entity = instance_position(x,y + global.pieceSize,par_entity);
+	if (instance_exists(entity)) {
+		if (entity.match) && !(match) image_index = index + 3;
+	}
+}
+else {
+	if (floating) {
+		alarm[3] = floatDelay;
+	}
+}
+#endregion
+	
+#region Swap Control
+if (swap) { 
+	bounce = false;
+	//reset direction variables
+	left = noone; right = noone; up = noone; down = noone
+	ds_list_clear(adjacent);
+	//checks if there is a col value stored in targetX, 
+	//if there is, assign it the x position of the col
+	if (targetX < global.boardWidth) {
+		col = targetX;
+		targetX = scr_getColPos(targetX);
+	}
+	
+	//increment until position is reached
+	if (x < targetX) x += swapSpeed;
+	else if (x > targetX) x -= swapSpeed;
+	else { x = targetX; swap = false; image_index = index;}
+}
+#endregion
 
 #region Match Control
 //checks for adjacent matching pieces

@@ -12,3 +12,8 @@ freezeTime = 0;
 //scoring
 baseScoreInc = 10;
 comboBonus = 50;
+chainBonus = 100;
+
+//chain variable
+chainSize = 0;
+chainStart = false;

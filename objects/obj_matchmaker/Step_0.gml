@@ -11,6 +11,10 @@ while (another) {
 		x = entity.x;
 		y = entity.y;
 		entity.landAnim = false; 
+		
+		if (entity.justLanded)
+			justLandedEntity = entity;
+		
 		//adds entity to final list
 		if (ds_list_find_index(final,entity) == -1) {
 			ds_list_add(final,entity);

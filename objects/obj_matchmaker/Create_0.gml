@@ -28,5 +28,5 @@ flicker = false;
 postFlicker = false;
 highlight = false;
 
-//scoring
-comboSize = 0;
+//
+justLandedEntity = noone;;
