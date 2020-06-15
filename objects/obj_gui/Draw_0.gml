@@ -14,7 +14,8 @@ if !(pause) || !sprite_exists(screenShot) {
 	draw_sprite(spr_speed,0,360,144);
 	if (global.requiresCombo && levelFlicker) || 
 	  !(global.requiresCombo)
-		draw_text((global.practice) ? 449 : 425 ,168,(global.practice) ? "-" : string_replace_all(string_format(global.gameLevel,3,0)," ", "0"));
+		draw_text((global.practice) ? 455 : 425 ,168,(global.practice) ? 
+		          "-" : string_replace_all(string_format(global.gameLevel,3,0)," ", "0"));
 } 
 #endregion
 #region Pause Control

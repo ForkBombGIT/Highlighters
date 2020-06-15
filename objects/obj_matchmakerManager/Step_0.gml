@@ -125,18 +125,27 @@ if !(global.gameover) &&
 				comboObj.comboSize = sizeOfCombo;
 				combo = true;
 			}
+			
+			//Combo freeze time
 			if (total > 4) {
 				freezeTime = ((total > 12) ? 6 :
 							 ((total > 10) ? 5 :
 							 ((total > 8)  ? 4 :
  							 ((total > 6)  ? 3 : 
 							 ((total > 4)  ? 2 : 0)))));
-				
-				if (freezeTime > obj_controller.freezeTime) {
-					obj_controller.freezeTime = freezeTime;
-					obj_controller.freezeTimer = current_time;
-					global.freeze = true;
-				}
+			}
+			
+			//Chain freeze time
+			if (chainSize > 0) {
+				// plus one to chainsize, as it's offset by 1
+				freezeTime += (chainSize + 1) + 2;
+			}
+			
+			//Update freeze time, if needed
+			if (freezeTime > obj_controller.freezeTime) {
+				obj_controller.freezeTime = freezeTime;
+				obj_controller.freezeTimer = current_time;
+				global.freeze = true;
 			}
 			chainStart = true;
 		}	
@@ -156,7 +165,7 @@ if !(global.gameover) &&
 			if (floating) || !(bottomEntity) || (justLanded)
 				continueChain = true;
 		}
-			show_debug_message(continueChain);
+		
 		if !(continueChain) && chainStart {
 			chainSize = 0;
 			chainStart = false;

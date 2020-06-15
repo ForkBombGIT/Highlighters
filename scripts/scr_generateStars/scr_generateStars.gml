@@ -3,8 +3,8 @@ var stars = ds_list_create();
 var starsGridSize = argument0;
 var starsGridUnitSize = argument1;
 var minStars = 16;
-var maxStars = 24;
-var sessionMaxStars = irandom_range(minStars,maxStars);
+//var maxStars = 24;
+var sessionMaxStars = minStars; //irandom_range(minStars,maxStars);
 var coordinatesMaxAttempts = 6;
 
 for (var i = 0; i < sessionMaxStars; i++) {
