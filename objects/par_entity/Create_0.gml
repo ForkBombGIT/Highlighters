@@ -16,6 +16,7 @@ justLanded = false;
 bottomEntity = false;
 fallCheckDelay = global.practice ? 40 : 10; //alarm speed
 fallDelay = 1;
+inMatchCol = false;
 
 //animation variables
 falling = false;

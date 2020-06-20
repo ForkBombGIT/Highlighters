@@ -12,7 +12,8 @@
         "e142592c-e65b-48e1-a69a-5a8bc4507782",
         "a03282c2-4c96-45f0-9765-e4bd83a4b06a",
         "7448b97a-d8c7-4563-a040-773d01acc06c",
-        "1737e252-7527-4126-a096-f7c766adab98"
+        "1737e252-7527-4126-a096-f7c766adab98",
+        "34dec059-3d5e-430e-b834-1f5a4b96a098"
     ],
     "filterType": "GMScript",
     "folderName": "Piece Utility",

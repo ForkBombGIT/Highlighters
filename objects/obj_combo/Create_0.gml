@@ -9,4 +9,4 @@ life = (global.practice ? 72 : 36) * 2;
 alarm[0] = life;
 
 //size of the combo
-comboSize = 0;
+comboSize = -1;

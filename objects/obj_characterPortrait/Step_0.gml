@@ -46,13 +46,12 @@ if (instance_exists(obj_gui) && !obj_gui.pause) || !(instance_exists(obj_gui)) {
 			characterAnimIndex = stateOffset;
 		}
 		
-		if (global.freeze) {
-			if (instance_number(obj_matchmaker) == 0) {
-				durmaAnimIndex += charAnimSpeed;
-				if (floor(durmaAnimIndex) > 8) {
-					durmaAnimIndex = 7;
-				}  
-			}
+		if (global.freeze) &&
+		  !(global.riseBrake){
+			durmaAnimIndex += charAnimSpeed;
+			if (floor(durmaAnimIndex) > 8) {
+				durmaAnimIndex = 7;
+			}  
 		}
 		
 	}

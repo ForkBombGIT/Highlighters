@@ -311,6 +311,14 @@
             }
         },
         {
+            "Key": "34dec059-3d5e-430e-b834-1f5a4b96a098",
+            "Value": {
+                "id": "bb039480-5e9e-434a-a8e5-27330fe5cec4",
+                "resourcePath": "scripts\\scr_checkColForMatch\\scr_checkColForMatch.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "352a368b-6092-4333-a261-418d0c22e89f",
             "Value": {
                 "id": "c9234ce8-02e0-45cf-adb1-557d0cb84db9",
@@ -1269,6 +1277,7 @@
         "a03282c2-4c96-45f0-9765-e4bd83a4b06a",
         "7448b97a-d8c7-4563-a040-773d01acc06c",
         "1737e252-7527-4126-a096-f7c766adab98",
+        "34dec059-3d5e-430e-b834-1f5a4b96a098",
         "cf27b2b1-aec6-48ed-8234-abca63277067",
         "6342e71b-89fb-412a-817e-dd00ca40bbe6",
         "6a61621a-f168-437a-8de6-7820e650a194",

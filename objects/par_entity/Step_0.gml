@@ -135,6 +135,12 @@ if (!(bottomEntity) &&
 	if !alarm[0] alarm[0] = fallCheckDelay;
 } 
 
+if (instance_exists(obj_matchmaker)) &&
+  !(inMatchCol) &&
+  !(match) {
+	inMatchCol = scr_checkColForMatch(col,y);
+}
+
 //controls landing animation
 if !(global.gameover) &&
    !(global.victory) &&  
@@ -149,7 +155,7 @@ if !(global.gameover) &&
 		   if !(bounce) {
 			   landAnimIndex += animSpeed;
 			   if (floor(landAnimIndex) > index + 2) {
-				 landAnimIndex = index; landAnim = false; justLanded = false;
+				 landAnimIndex = index; landAnim = false; justLanded = false; inMatchCol = false;
 			   }
 		   }
 		   //apply animation
@@ -176,7 +182,8 @@ if ((bottomEntity) && (falling)) {
 	landAnimIndex = index;	
 	landAnim = true;
 	falling = false;
-	justLanded = true;	
+	if (inMatchCol)
+		justLanded = true;	
 }
 
 if (bottomEntity) && 

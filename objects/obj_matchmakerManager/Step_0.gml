@@ -1,7 +1,7 @@
 var activeMatchmakers = instance_number(obj_matchmaker);
 if !(global.gameover) &&
    !(global.victory) {
-	if !(combo) { 
+	if !(global.combo) { 
 		if (activeMatchmakers > 1) {
 			for (var i = 0; i < activeMatchmakers - 1; i++) {
 				var matchmaker = instance_find(obj_matchmaker,i);
@@ -42,6 +42,7 @@ if !(global.gameover) &&
 										ds_stack_push(matchmaker.stack,matchmakerPlusEntity);
 									}
 									ds_stack_push(matchmaker.stack,matchmakerPlus.origin);
+									show_debug_message(matchmakerPlus)
 									instance_destroy(matchmakerPlus);
 								}
 							}
@@ -50,7 +51,6 @@ if !(global.gameover) &&
 				}
 			}
 		}
-		
 		//Create a list of matchmakers that have just finished building their match
 		for (var i = 0; i < activeMatchmakers; i++) {
 			var matchmaker = instance_find(obj_matchmaker,i);
@@ -73,6 +73,7 @@ if !(global.gameover) &&
 		
 		//Match size calculation
 		if (ds_list_size(matchmakers) > 0) {
+			show_debug_message(ds_list_size(matchmakers));
 			var total = 0;
 			var minXMatchmaker = noone;
 			for (var i = 0; i < ds_list_size(matchmakers); i++) {
@@ -99,13 +100,16 @@ if !(global.gameover) &&
 			}
 			
 			//Score and level increase calculations
-			var sizeOfCombo = total - (comboSize - 1);
+			var sizeOfCombo = total - (comboSize);
 			global.gameScore = min(global.gameScore + (total * baseScoreInc) + max(0,sizeOfCombo * comboBonus) + max(0,chainSize * chainBonus),
 								   global.victoryScore);
+								   
+			global.combo = sizeOfCombo > 0;
+			global.chain = (chainStart && chainSize > 0);
 
 			if !(global.practice) {
 				//checks if level is at x99, if it is, follow normal combo behavior
-				var comboChain = (sizeOfCombo > 0) && (chainStart && chainSize > 0);
+				var comboChain = global.combo && global.chain;
 				var levelIncrement = (comboChain) ? 4 : (sizeOfCombo > 0) + ((chainStart && chainSize > 0) * 2) + 1
 				if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1)
 					global.gameLevel = global.gameLevel + levelIncrement;
@@ -115,19 +119,16 @@ if !(global.gameover) &&
 				global.gameLevel = min(global.gameLevel, global.maxLevel - 1);
 			}
 			
-			//Freeze length calculation
 			if (total >= comboSize) {
+				show_debug_message(sizeOfCombo)
 				var comboObj = instance_create_layer(ds_list_find_value(minXMatchmaker.final,0).x - 24,
 													 ds_list_find_value(minXMatchmaker.final,0).y - 24,
 													 "GUI",
 													 obj_combo
 										 			);
 				comboObj.comboSize = sizeOfCombo;
-				combo = true;
-			}
-			
-			//Combo freeze time
-			if (total > 4) {
+				
+				//Combo freeze time
 				freezeTime = ((total > 12) ? 6 :
 							 ((total > 10) ? 5 :
 							 ((total > 8)  ? 4 :
@@ -138,7 +139,7 @@ if !(global.gameover) &&
 			//Chain freeze time
 			if (chainSize > 0) {
 				// plus one to chainsize, as it's offset by 1
-				freezeTime += (chainSize + 1) + 2;
+				freezeTime = (chainSize + 1) + 2;
 			}
 			
 			//Update freeze time, if needed
@@ -149,7 +150,7 @@ if !(global.gameover) &&
 			}
 			chainStart = true;
 		}	
-		combo = false; 
+		global.combo = false; 
 		activeComboSize = -1;
 		ds_list_clear(matchmakers);
 	} 
@@ -169,6 +170,7 @@ if !(global.gameover) &&
 		if !(continueChain) && chainStart {
 			chainSize = 0;
 			chainStart = false;
+			global.chain = false;
 		}
 	}
 }
