@@ -66,6 +66,9 @@ if (global.active) {
 			if (instance_exists(obj_combo)) {
 				obj_combo.visible = false;	
 			}
+			if (instance_exists(obj_chain)) {
+				obj_chain.visible = false;	
+			}
 			pauseAnim = 0;
 		}
 		

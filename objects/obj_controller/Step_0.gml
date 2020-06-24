@@ -25,23 +25,24 @@ if (global.restart) {
 	//set global variables
 	global.active = false;
 	global.restart = false;
-	//reset freeze
+	global.gameScore = 0;
 	global.freeze = false;
+	global.forceRise = false;
+	//reset freeze
 	freezeTime = 0;
 	freezeTimer = current_time;
-	//reset game variable
-	global.gameScore = 0;
-	//delete old objects
+	//delete session objects
+	instance_destroy(obj_matchmaker);
 	instance_destroy(par_entity);
 	instance_destroy(obj_cursor);
-	instance_destroy(obj_matchmaker);
-	instance_destroy(obj_star);
+	//recreate new session objects
 	cursor = instance_create_layer(x,scr_getRowPos(4),"Cursor",obj_cursor);		
 	cursor.visible = false;
-	//restart
+	//regenerate stars
 	if !(global.practice)
 		scr_generateStars(starsGridSize,starGridUnitSize);
 	scr_initRows(0);
+	//reset level
 	global.gameLevel = global.startGameLevel;
 	riseSpeed = scr_getRiseSpeed(global.gameLevel);
 	canRise = true;
