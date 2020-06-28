@@ -68,7 +68,7 @@ bounceAnimationLast = 0.5; // 2 frames
 cursor = instance_create_layer(x,scr_getRowPos(4),"Cursor",obj_cursor);		
 cursor.visible = false;
 instance_create_layer(x,y,"Controller",obj_gui);
-matchmakerManager = instance_create_layer(x,y,"Controller",obj_matchmakerManager);
+instance_create_layer(x,y,"Controller",obj_matchmakerManager);
 
 //generate stars
 if !(global.practice) {

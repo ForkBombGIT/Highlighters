@@ -35,6 +35,7 @@ if (global.restart) {
 	instance_destroy(obj_matchmaker);
 	instance_destroy(par_entity);
 	instance_destroy(obj_cursor);
+	instance_destroy(obj_matchmakerManager);
 	//recreate new session objects
 	cursor = instance_create_layer(x,scr_getRowPos(4),"Cursor",obj_cursor);		
 	cursor.visible = false;
@@ -47,6 +48,7 @@ if (global.restart) {
 	riseSpeed = scr_getRiseSpeed(global.gameLevel);
 	canRise = true;
 	instance_create_layer(168, window_get_height()/4,"GUI",obj_countdown);	
+	instance_create_layer(x,y,"Controller",obj_matchmakerManager);
 }
 
 //handles gameover logic

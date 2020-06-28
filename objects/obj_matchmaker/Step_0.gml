@@ -7,11 +7,14 @@ if (global.riseUp) &&
 while (another) {
 	var entity = (ds_stack_size(stack) == 1) ? ds_stack_top(stack) : ds_stack_pop(stack);
 	if (instance_exists(entity)) {	
-		show_debug_message(string(id) + " Position " + string(x) + " " + string(y));
 		//sets position to next entity in stack
 		x = entity.x;
 		y = entity.y;
 		entity.landAnim = false; 
+		
+		if (object_get_name(entity.object_index) == "obj_bomb") {
+			ds_list_add(bombs,entity);	
+		}
 		
 		if (entity.justLanded)
 			justLandedEntity = entity;

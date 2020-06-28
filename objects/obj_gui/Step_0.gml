@@ -59,7 +59,9 @@ if (global.active) {
 	else {
 		#region Pause Conditions
 		//pause on escape press
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE"))){
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE")) &&
+		   !(global.gameover) && 
+		   !(global.victory)) {
 			pause = true;
 			par_entity.visible = false;
 			obj_cursor.visible = false;

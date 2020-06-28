@@ -88,8 +88,7 @@ if !(global.gameover) &&
 	//enables squish when y is in top row
 	//checks for piece above, and if its bouncing, make this piece bounce as well
 	var pieceAbove = instance_position(x,y - global.pieceSize,par_entity);
-	if (y <= scr_getRowPos(global.boardHeight - 1)) &&
-	   (bottomEntity) {
+	if (y <= scr_getRowPos(global.boardHeight - 1)) {
 		  if !(squish) {
 			image_index = index;
 			squish = true;	
@@ -147,7 +146,8 @@ if !(global.gameover) &&
    (bottomEntity) &&
    ((landAnim) || 
    ((bounce) && 
-   !(squish))) {
+   !(squish) &&
+   !(global.forceRise || keyboard_check(ds_map_find_value(global.controls,"B"))))) {
 	   if !(match) {
 		   var animSpeed = (floor(landAnimIndex) == index) ? landingAnimationFirst : 
 															  landingAnimationRest;
@@ -164,7 +164,6 @@ if !(global.gameover) &&
 	   }
 }
 #endregion
-
 
 #region Grounded Management
 if (y >= scr_getRowPos(0)) { 
@@ -186,13 +185,13 @@ if ((bottomEntity) && (falling)) {
 		justLanded = true;	
 }
 
-if (bottomEntity) && 
-   !(global.gameover) && 
+//squish if piece below is matched
+if !(global.gameover) && 
    !(global.victory) &&
    (!(match)) {
-	var entity = instance_position(x,y + global.pieceSize,par_entity);
-	if (instance_exists(entity)) {
-		if (entity.match) && !(match) image_index = index + 3;
+	var entityBelow = instance_position(x,y + global.pieceSize,par_entity);
+	if (instance_exists(entityBelow)) {
+		if (entityBelow.match) && !(match) image_index = index + 3;
 	}
 }
 else {
