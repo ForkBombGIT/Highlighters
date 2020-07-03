@@ -8,8 +8,7 @@ if !(scr_checkRow(global.boardHeight - 1)) {
 	obj_controller.canRise = true;	
 }
 
-if (global.gameScore >= global.victoryScore) && 
-   !(global.riseBrake) {
+if (global.gameScore >= global.victoryScore) {
 	global.victory = true;
 	with (par_entity) {
 		if !(bottomEntity) global.victory = false;	

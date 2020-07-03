@@ -8,7 +8,7 @@
         "26a4e6b7-c1c9-4369-b0e2-96618f107a29"
     ],
     "filterType": "GMObject",
-    "folderName": "Panic Notifications",
+    "folderName": "Notifications",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

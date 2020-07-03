@@ -7,14 +7,25 @@ lastGameoverDelay = 0;
 index = -1;
 
 //swapping variables
+swapSpeeds = ds_list_create();
+if (global.practice) { 
+	ds_list_add(swapSpeeds,24);
+	ds_list_add(swapSpeeds,18);
+	ds_list_add(swapSpeeds,6);
+}
+else {
+	ds_list_add(swapSpeeds,24);
+	ds_list_add(swapSpeeds,18);
+	ds_list_add(swapSpeeds,6);
+}
 swap = false;
+swapState = 0;
 targetX = -1;
 swapSpeed = global.practice ? 4 : 16; //48 
 
 //controls fall speed
 justLanded = false;
 bottomEntity = false;
-fallCheckDelay = global.practice ? 40 : 10; //alarm speed
 fallDelay = 1;
 inMatchCol = false;
 
@@ -30,8 +41,9 @@ highlightLength = 14;
 highlighting = false;
 bounce = false;
 squish = false;
-floating = false;
 floatDelay = global.practice ? 40 : 10;
+aboveMatch = false;
+floatAboveMatchDelay = global.practice ? 30 : 3;
 landingAnimationFirst = 0.25; // 4 frames
 landingAnimationRest = 0.5; // 2 frames
 

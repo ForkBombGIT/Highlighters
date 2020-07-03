@@ -1,4 +1,4 @@
-if !(global.gameover) || 
+if !(global.gameover) &&
    !(global.victory) {
 	if (ds_list_size(final) >= matchSize) {
 		//initializes match animation
@@ -64,7 +64,5 @@ if !(global.gameover) ||
 				}		
 			}	
 		}
-	} else {
-		instance_destroy();	
-	}
-}
+	} 
+} 

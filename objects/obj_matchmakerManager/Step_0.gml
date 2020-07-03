@@ -126,7 +126,7 @@ if !(global.gameover) &&
 		ds_list_clear(matchmakers);
 		var continueChain = false;
 		with (par_entity) {
-			if (floating) || !(bottomEntity) || (justLanded)
+			if (falling) || !(bottomEntity) || (justLanded)
 				continueChain = true;
 		}
 		

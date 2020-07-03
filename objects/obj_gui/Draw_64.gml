@@ -1,5 +1,7 @@
-if !(pause) || 
-   !(sprite_exists(screenShot)) {
+if (!(pause) || 
+   !(sprite_exists(screenShot))) &&
+   !(global.gameover || global.victory)
+   {
 	//draws freeze sprite
 	if (global.freeze) {
 		draw_set_font(freezeFont);

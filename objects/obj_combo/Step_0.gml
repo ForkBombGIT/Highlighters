@@ -10,6 +10,7 @@ if (comboSize != -1) {
 		image_speed = 0;
 }
 
-if (global.restart) {
+if (global.restart) ||
+   (global.victory) {
 	instance_destroy();	
 }

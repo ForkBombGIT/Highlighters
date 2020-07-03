@@ -129,9 +129,9 @@ if (!(bottomEntity) &&
 	!(swap) && 
 	!(global.gameover) &&
     !(global.victory) &&
-	 (notSwapping) &&
-	!(floating)) {
-	if !alarm[0] alarm[0] = fallCheckDelay;
+	 (notSwapping)) {
+	if !alarm[0] alarm[0] = (aboveMatch) ? floatAboveMatchDelay : floatDelay;
+	aboveMatch = false;
 } 
 
 if (instance_exists(obj_matchmaker)) &&
@@ -191,12 +191,8 @@ if !(global.gameover) &&
    (!(match)) {
 	var entityBelow = instance_position(x,y + global.pieceSize,par_entity);
 	if (instance_exists(entityBelow)) {
-		if (entityBelow.match) && !(match) image_index = index + 3;
-	}
-}
-else {
-	if (floating) {
-		alarm[3] = floatDelay;
+		if (entityBelow.match) && !(match) { image_index = index + 3; aboveMatch = true; }
+		
 	}
 }
 #endregion
@@ -213,11 +209,11 @@ if (swap) {
 		col = targetX;
 		targetX = scr_getColPos(targetX);
 	}
-	
+	swapSpeed = ds_list_find_value(swapSpeeds,swapState++);
 	//increment until position is reached
 	if (x < targetX) x += swapSpeed;
 	else if (x > targetX) x -= swapSpeed;
-	else { x = targetX; swap = false; image_index = index;}
+	else { x = targetX; swap = false; image_index = index; swapState = 0;}
 }
 #endregion
 
