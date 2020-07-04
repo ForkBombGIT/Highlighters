@@ -31,6 +31,7 @@ inMatchCol = false;
 
 //animation variables
 falling = false;
+skipDelay = false;
 landAnimIndex = image_index;
 landAnim = false;
 matchNumber = -1;

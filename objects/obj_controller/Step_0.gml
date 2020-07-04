@@ -9,7 +9,6 @@ if !(scr_checkRow(global.boardHeight - 1)) {
 }
 
 if (global.gameScore >= global.victoryScore) {
-	global.victory = true;
 	with (par_entity) {
 		if !(bottomEntity) global.victory = false;	
 	}
@@ -56,11 +55,15 @@ if (global.gameover) ||
 	global.forceRise = false;
 	global.riseUp = false;
 	global.forceRiseSpeed = 0;
+	instance_destroy(obj_matchmaker);
 	if !(anim) { 
 		//sets starting point for character portrait
-		global.characterPortrait.characterAnimIndex = 5;
+		with (par_entity) {
+			image_index = index;	
+		}
+		global.characterPortrait.characterAnimIndex = 5; 
 		anim = true; 
-		alarm[0] = 1; 
+		alarm[0] = global.victory ? room_speed * 2 : 1; 
 	}
 }
 

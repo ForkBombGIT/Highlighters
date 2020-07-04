@@ -1,5 +1,4 @@
-if !(global.gameover) &&
-   !(global.victory) {
+if !(global.gameover || global.victory) {
 	if (ds_list_size(final) >= matchSize) {
 		//initializes match animation
 		if !(animating) {

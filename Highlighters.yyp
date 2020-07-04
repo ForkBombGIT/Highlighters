@@ -658,7 +658,7 @@
             "Key": "80b4828c-cc9b-490b-ac6f-d0b27916fc43",
             "Value": {
                 "id": "d3e751cb-a0eb-46fe-a489-1395e3450ba8",
-                "resourcePath": "sprites\\spr_ignumbers\\spr_ignumbers.yy",
+                "resourcePath": "sprites\\spr_boardnumbers\\spr_boardnumbers.yy",
                 "resourceType": "GMSprite"
             }
         },

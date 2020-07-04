@@ -73,6 +73,8 @@ if !(global.gameover) &&
 			global.gameScore = min(global.gameScore + (total * baseScoreInc) + max(0,sizeOfCombo * comboBonus) + max(0,chainSize * chainBonus),
 								   global.victoryScore);
 								   
+			if (global.gameScore >= global.victoryScore) global.victory = true;
+								   
 			global.combo = sizeOfCombo > 0;
 			global.chain = (chainStart && chainSize > 0);
 

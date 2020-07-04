@@ -119,18 +119,14 @@ if (squish) &&
 #endregion
 
 #region Fall Control
-//checks if there is no piece below, and ensure the piece below isnt swapping
-var pieceBelow = instance_place(x, y + global.pieceSize, par_entity);
-var notSwapping = true;
-if (instance_exists(pieceBelow) && (pieceBelow.swap))
-	notSwapping = false;
+//checks if there is no piece below
 if (!(bottomEntity) && 
 	!(match) && 
 	!(swap) && 
 	!(global.gameover) &&
-    !(global.victory) &&
-	 (notSwapping)) {
-	if !alarm[0] alarm[0] = (aboveMatch) ? floatAboveMatchDelay : floatDelay;
+    !(global.victory)) {
+	if !alarm[0] alarm[0] = (skipDelay) ? 1 : 
+							((aboveMatch) ? floatAboveMatchDelay : floatDelay);
 	aboveMatch = false;
 } 
 
@@ -166,13 +162,20 @@ if !(global.gameover) &&
 #endregion
 
 #region Grounded Management
+var pieceBelow = instance_place(x, y + global.pieceSize, par_entity);
+var notSwapping = true;
+if (instance_exists(pieceBelow) && (pieceBelow.swap))
+	notSwapping = false;
 if (y >= scr_getRowPos(0)) { 
 	bottomEntity = true; 
 } else if (position_meeting(x,y+global.pieceSize,par_entity)) {
 	var below = instance_place(x,y+global.pieceSize,par_entity);
 	bottomEntity = below.bottomEntity
+	if !(bottomEntity) skipDelay = true;
 } else {
-	if !(global.riseUp) && !(global.forceRise)
+	if !(global.riseUp) && 
+	   !(global.forceRise) &&
+		(notSwapping)
 		bottomEntity = false;
 }
 	
