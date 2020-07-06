@@ -40,6 +40,7 @@ if (global.active) {
 		
 		//menu options
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+			audio_play_sound(snd_ok,1,0);
 			if (pauseCursor != 0) 
 				flash = true;
 			if !(alarm[0]) alarm[0] = 1;
@@ -63,6 +64,7 @@ if (global.active) {
 		   !(global.gameover) && 
 		   !(global.victory)) {
 			pause = true;
+			audio_play_sound(snd_pausea,1,0);
 			par_entity.visible = false;
 			obj_cursor.visible = false;
 			if (instance_exists(obj_combo)) {
@@ -75,12 +77,13 @@ if (global.active) {
 		}
 		
 		//pause when window loses focus
-		/*if !(window_has_focus()) {
+		if !(window_has_focus()) {
+			audio_play_sound(snd_pausea,1,0);
 			pause = true;
 			par_entity.visible = false;
 			obj_cursor.visible = false;
 			pauseAnim = 0;
-		}*/
+		}
 		#endregion
 	}	
 	#endregion

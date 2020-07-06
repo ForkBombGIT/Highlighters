@@ -1,5 +1,9 @@
 randomize();
 
+//sound variables
+global.playLandSound = false;
+playLandSound = false;
+
 //holds gameover state
 global.gameover = false;
 global.victory = false;

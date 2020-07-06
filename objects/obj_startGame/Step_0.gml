@@ -11,12 +11,14 @@ if (global.practice) {
 	if !(alarm[0]) alarm[0] = 1;	
 }
 else if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+	audio_play_sound(snd_ok,1,0);
 	if (++cursor == 2) {
 		flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}
 }
 else if (keyboard_check_pressed(ds_map_find_value(global.controls,"B"))) {
+	audio_play_sound(snd_back,1,0);
 	if (--cursor == -1) {
 		flash = true;
 		start = -1;

@@ -1,8 +1,8 @@
 var key = argument0;
 if (key == ds_map_find_value(global.controls,"LEFT")) {
-		if (col > 0){
-			col -= 1;
-		}
+	if (col > 0){
+		col -= 1;
+	}
 }
 if (key == ds_map_find_value(global.controls,"RIGHT")) {
 	if (col < global.boardWidth - 2){

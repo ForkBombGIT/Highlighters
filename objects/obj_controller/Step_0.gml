@@ -17,6 +17,20 @@ if (global.gameScore >= global.victoryScore) {
 if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1) global.requiresCombo = true;
 else global.requiresCombo = false;
 
+//audio control
+if (global.playLandSound) {
+	if !(playLandSound) {
+		audio_play_sound(snd_drop,1,0);	
+		playLandSound = true;
+		
+	}
+	with (par_entity) {
+		if (landAnimIndex > 0) { 
+			global.playLandSound = false;
+		}
+	}
+} else playLandSound = false;
+
 //handles restart logic
 if (global.restart) {
 	selectedEntities = scr_generateColors();
@@ -57,6 +71,8 @@ if (global.gameover) ||
 	global.forceRiseSpeed = 0;
 	instance_destroy(obj_matchmaker);
 	if !(anim) { 
+		if (global.gameover) 
+			audio_play_sound(snd_lose,1,0);
 		//sets starting point for character portrait
 		with (par_entity) {
 			image_index = index;	

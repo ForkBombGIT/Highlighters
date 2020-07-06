@@ -1,5 +1,6 @@
 #region Menu navigation
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+	audio_play_sound(snd_ok,1,0);
 	flash = true;
 	if (endCursor == 1) instance_destroy(obj_characterPortrait);
 	alarm[0] = 2;		

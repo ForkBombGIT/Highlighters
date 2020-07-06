@@ -184,6 +184,9 @@ if ((bottomEntity) && (falling)) {
 	landAnimIndex = index;	
 	landAnim = true;
 	falling = false;
+	if !(audio_is_playing(snd_drop)) {
+		audio_play_sound(snd_drop,1,0);
+	}
 	if (inMatchCol)
 		justLanded = true;	
 }

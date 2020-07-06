@@ -37,7 +37,7 @@ if !(global.gameover) &&
 if ((global.active) && 
 	!(global.gameover) &&
 	!(global.victory)) {
-	if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))){
+	if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 		//holds the piece on the left and right of the cursor
 		var left = instance_position(x-24,y,par_entity);
 		var right = instance_position(x+24,y,par_entity);
@@ -53,6 +53,7 @@ if ((global.active) &&
 				   (leftUpBottomEntity) && (rightUpBottomEntity) &&
 				   (!(left.match) && !(right.match)) &&
 				   (left.bottomEntity) && (right.bottomEntity)) {
+					audio_play_sound(snd_swap,1,0);
 					left.targetX = col + 1;
 					left.swap = true;
 					left.image_index = left.index + 4;
@@ -66,6 +67,7 @@ if ((global.active) &&
 				//applies swap to left piece
 				if (instance_exists(left)) {
 					if !(left.swap) && !(left.match) && (left.bottomEntity) && (rightUpBottomEntity) {
+						audio_play_sound(snd_swap,1,0);
 						left.targetX = col + 1;
 						left.swap = true;
 						left.image_index = left.index + 4;
@@ -75,6 +77,7 @@ if ((global.active) &&
 				//applies swap to right piece
 				else if (instance_exists(right)){
 					if !(right.swap) && !(right.match) && (right.bottomEntity) && (leftUpBottomEntity) {
+						audio_play_sound(snd_swap,1,0);
 						right.targetX = col;
 						right.swap = true;
 						right.image_index = right.index + 4;
@@ -99,7 +102,7 @@ if !(global.gameover) &&
 				  ((upB) ? ds_map_find_value(global.controls,"UP") : ds_map_find_value(global.controls,"DOWN")));
 		//single press behavior
 		if (lastKey != key) keyPressLength = 0;
-		if (++keyPressLength == 1) { scr_cursorMovement(key); }
+		if (++keyPressLength == 1) { scr_cursorMovement(key); audio_play_sound(snd_move,1,0); }
 		lastKey = key;
 	} 
 	else 

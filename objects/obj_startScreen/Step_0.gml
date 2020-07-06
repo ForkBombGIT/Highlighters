@@ -24,6 +24,7 @@ if !(obj_splash.splash) {
 		//menu item selection
 		if !(inputChangeKey) {
 			if (keyboard_check_pressed(ds_map_find_value(global.controls,"B"))) {
+				audio_play_sound(snd_back,1,0);
 				if (start == 4) start = 2;
 				start--; flash = true;
 				if !(alarm[0]) alarm[0] = 2;
@@ -49,6 +50,7 @@ if !(obj_splash.splash) {
 		case 0:
 			//menu item selection
 			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+				audio_play_sound(snd_ok,1,0);
 				start = 1; flash = true;
 				if !(alarm[0]) alarm[0] = 2;
 			}
@@ -56,6 +58,7 @@ if !(obj_splash.splash) {
 		case 1:
 			global.practice = false;
 			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+				audio_play_sound(snd_ok,1,0);
 				switch (cursorPosition) {
 					case 0: //classic
 						start = 5;
@@ -74,6 +77,7 @@ if !(obj_splash.splash) {
 		case 2:
 			option = -1;
 			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+				audio_play_sound(snd_ok,1,0);
 				switch (cursorPosition) {
 					case 0: //input
 						option = 0
@@ -159,6 +163,7 @@ if !(obj_splash.splash) {
 			break;
 		case 4:
 			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+				audio_play_sound(snd_ok,1,0);
 				start++;
 				global.practice = true;
 			}
