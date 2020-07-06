@@ -41,13 +41,18 @@ if ((global.active) &&
 		//holds the piece on the left and right of the cursor
 		var left = instance_position(x-24,y,par_entity);
 		var right = instance_position(x+24,y,par_entity);
+		var leftUp = instance_position(x-24,y-48,par_entity);
+		var rightUp = instance_position(x+24,y-48,par_entity);
+		var leftUpBottomEntity = instance_exists(leftUp) ? leftUp.bottomEntity : true;
+		var rightUpBottomEntity = instance_exists(rightUp) ? rightUp.bottomEntity : true;
 	
 		//applies swap to both pieces if there are a left and right piece
 		if (!par_entity.swap) {
 			if (instance_exists(right) && instance_exists(left)) { 
-				if (!(left.swap) && !(right.swap))   &&
+				if (!(left.swap) && !(right.swap) && 
+				   (leftUpBottomEntity) && (rightUpBottomEntity) &&
 				   (!(left.match) && !(right.match)) &&
-				   (left.bottomEntity) && (right.bottomEntity) {
+				   (left.bottomEntity) && (right.bottomEntity)) {
 					left.targetX = col + 1;
 					left.swap = true;
 					left.image_index = left.index + 4;
@@ -59,8 +64,8 @@ if ((global.active) &&
 			}
 			else {
 				//applies swap to left piece
-				if (instance_exists(left)){
-					if !(left.swap) && !(left.match) && (left.bottomEntity) {
+				if (instance_exists(left)) {
+					if !(left.swap) && !(left.match) && (left.bottomEntity) && (rightUpBottomEntity) {
 						left.targetX = col + 1;
 						left.swap = true;
 						left.image_index = left.index + 4;
@@ -69,7 +74,7 @@ if ((global.active) &&
 	
 				//applies swap to right piece
 				else if (instance_exists(right)){
-					if !(right.swap) && !(right.match) && (right.bottomEntity) {
+					if !(right.swap) && !(right.match) && (right.bottomEntity) && (leftUpBottomEntity) {
 						right.targetX = col;
 						right.swap = true;
 						right.image_index = right.index + 4;
