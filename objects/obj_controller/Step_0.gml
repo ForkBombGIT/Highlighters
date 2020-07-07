@@ -71,8 +71,7 @@ if (global.gameover) ||
 	global.forceRiseSpeed = 0;
 	instance_destroy(obj_matchmaker);
 	if !(anim) { 
-		if (global.gameover) 
-			audio_play_sound(snd_lose,1,0);
+		audio_play_sound(global.gameover ? snd_lose : snd_win,1,0);
 		//sets starting point for character portrait
 		with (par_entity) {
 			image_index = index;	

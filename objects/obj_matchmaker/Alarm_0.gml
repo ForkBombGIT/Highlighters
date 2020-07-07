@@ -48,7 +48,9 @@ if !(global.gameover || global.victory) {
 						if !(entity.highlighting) {
 							entity.highlight = true;
 							entity.matchNumber = listPosition + 1;
-							audio_play_sound(snd_clearb,1,0);
+							var sound = (global.fastAnim) ? snd_clearb : snd_cleara;
+							if !(audio_is_playing(sound))
+								audio_play_sound(sound,1,0);
 						}
 						else if (entity.highlighting == 2) 
 							listPosition++;

@@ -75,8 +75,12 @@ if !(global.gameover) &&
 								   
 			if (global.gameScore >= global.victoryScore) global.victory = true;
 								   
-			global.combo = sizeOfCombo > 0;
+			global.combo = sizeOfCombo >= 0;
 			global.chain = (chainStart && chainSize > 0);
+			
+			if (global.combo || global.chain) {
+				audio_play_sound(snd_combo_chain,2,0);	
+			}
 
 			if !(global.practice) {
 				//checks if level is at x99, if it is, follow normal combo behavior
