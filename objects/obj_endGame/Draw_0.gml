@@ -6,7 +6,7 @@ draw_text(414,369,string_replace(string_format(global.seconds,2,0)," ","0"));
 draw_set_font(global.numFont);
 //score
 draw_sprite(spr_score,0,360,72);
-draw_text(380,99,string_replace_all(string_format(global.gameScore,6,0)," ", "0"));
+draw_text(380,99,string_replace_all(string_format(global.gameScore,(global.practice) ? 4 : 6,0)," ", "0"));
 //game level
 draw_sprite(spr_speed,0,360,144);
 draw_text((global.practice) ? 455 : 425 ,168,(global.practice) ? "-" : string_replace_all(string_format(global.gameLevel,3,0)," ", "0"));

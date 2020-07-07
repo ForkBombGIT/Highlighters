@@ -149,13 +149,13 @@ if !(global.gameover) &&
 															  landingAnimationRest;
 		   // landing animation index control
 		   if !(bounce) {
-			   if (floor(landAnimIndex) >= index + 3) {
+			   if (floor(landAnimIndex) > index + 3) {
 				 landAnimIndex = index; landAnim = false; justLanded = false; inMatchCol = false;
 			   }
 		   }
 		   //apply animation
 		   //bounce index is controller in controller for all pieces to bounce uniformly
-		   image_index = (bounce) ? scr_getBounceIndex(floor(obj_controller.bounceIndex)) + index : floor(landAnimIndex) ;
+		   image_index = (bounce) ? scr_getBounceIndex(floor(obj_controller.bounceIndex)) + index : floor(landAnimIndex);
 		   landAnimIndex += animSpeed;
 	}
 }
