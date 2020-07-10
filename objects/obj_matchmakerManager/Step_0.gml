@@ -24,7 +24,10 @@ if !(global.gameover) &&
 				if (matchmaker.animating) {
 					var val = ds_list_find_index(matchmakers,matchmaker)
 					//if exists, remove it from active matchmakers list
-					if (val != -1) ds_list_delete(matchmakers,val);
+					if (val != -1) {
+						if (current_time - matchmaker.creationTime >= 100)
+							ds_list_delete(matchmakers,val);
+					}
 					//otherwise
 					else {
 						//if it has never been seen before, add to both arrays (seen, and active)
@@ -41,17 +44,20 @@ if !(global.gameover) &&
 		if (ds_list_size(matchmakers) > 0) {
 			var total = 0;
 			var minXMatchmaker = noone;
+			var entityChainStart = false;
 			for (var i = 0; i < ds_list_size(matchmakers); i++) {
 				var matchmaker = ds_list_find_value(matchmakers,i);
 				if (instance_exists(matchmaker)) {
 					if (instance_exists(matchmaker.justLandedEntity)) {
-						if (chainStart) {
+						if (chainStart) && (current_time - lastChainCreation >= 100) {
 							var chainObj = instance_create_layer(matchmaker.justLandedEntity.x - 24,
 																 matchmaker.justLandedEntity.y - 24,
 													             "GUI",
 													             obj_chain
 							);
 							chainObj.chainSize = chainSize++;
+							lastChainCreation = current_time;
+							entityChainStart = true;
 						}
 					}
 					
@@ -67,6 +73,8 @@ if !(global.gameover) &&
 					}
 				}
 			}
+			
+			if !(entityChainStart) global.chain = false;
 			
 			//Score and level increase calculations
 			var sizeOfCombo = total - (comboSize);
@@ -129,7 +137,7 @@ if !(global.gameover) &&
 		freezeTime = 0;
 	} 
 	if (instance_number(obj_matchmaker) == 0) {
-		ds_list_clear(matchmakers);
+		ds_list_clear(matchmakers);	
 		var continueChain = false;
 		with (par_entity) {
 			if (falling) || !(bottomEntity) || (justLanded)

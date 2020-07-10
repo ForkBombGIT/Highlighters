@@ -60,29 +60,30 @@ if (global.active) {
 	else {
 		#region Pause Conditions
 		//pause on escape press
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE")) &&
-		   !(global.gameover) && 
-		   !(global.victory)) {
-			pause = true;
-			audio_play_sound(snd_pausea,1,0);
-			par_entity.visible = false;
-			obj_cursor.visible = false;
-			if (instance_exists(obj_combo)) {
-				obj_combo.visible = false;	
+		if !(global.gameover) && 
+		   !(global.victory) {
+			if (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE"))) {
+				pause = true;
+				audio_play_sound(snd_pausea,1,0);
+				par_entity.visible = false;
+				obj_cursor.visible = false;
+				if (instance_exists(obj_combo)) {
+					obj_combo.visible = false;	
+				}
+				if (instance_exists(obj_chain)) {
+					obj_chain.visible = false;	
+				}
+				pauseAnim = 0;
 			}
-			if (instance_exists(obj_chain)) {
-				obj_chain.visible = false;	
-			}
-			pauseAnim = 0;
-		}
 		
-		//pause when window loses focus
-		if !(window_has_focus()) {
-			audio_play_sound(snd_pausea,1,0);
-			pause = true;
-			par_entity.visible = false;
-			obj_cursor.visible = false;
-			pauseAnim = 0;
+			//pause when window loses focus
+			if !(window_has_focus()) {
+				audio_play_sound(snd_pausea,1,0);
+				pause = true;
+				par_entity.visible = false;
+				obj_cursor.visible = false;
+				pauseAnim = 0;
+			}
 		}
 		#endregion
 	}	

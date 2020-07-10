@@ -16,5 +16,6 @@ chainBonus = 100;
 
 //chain variable
 global.chain = false;
+lastChainCreation = current_time;
 chainSize = 0;
 chainStart = false;
