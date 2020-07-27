@@ -14,11 +14,11 @@ for (var i = 0; i < sessionMaxStars; i++) {
 	while (!coordinatesPass) {
 		starX = irandom_range(0,starsGridSize - 1) * starsGridUnitSize + starsGridUnitSize;
 		starY = irandom_range(0,starsGridSize - 1) * starsGridUnitSize + starsGridUnitSize;
-		var left = instance_position(starX - starsGridUnitSize,starY,obj_star), 
-		    right = instance_position(starX + starsGridUnitSize,starY,obj_star), 
-			up = instance_position(starX,starY - starsGridUnitSize,obj_star), 
-			down = instance_position(starX,starY + starsGridUnitSize,obj_star);
-		coordinatesPass = !instance_exists(instance_position(starX,starY,obj_star)) &&
+		var left = instance_position(starX - starsGridUnitSize,starY,objUI_star), 
+		    right = instance_position(starX + starsGridUnitSize,starY,objUI_star), 
+			up = instance_position(starX,starY - starsGridUnitSize,objUI_star), 
+			down = instance_position(starX,starY + starsGridUnitSize,objUI_star);
+		coordinatesPass = !instance_exists(instance_position(starX,starY,objUI_star)) &&
 						  !instance_exists(left) &&
 						  !instance_exists(right) &&
 						  !instance_exists(up) &&
@@ -44,7 +44,7 @@ for (var i = 0; i < sessionMaxStars; i++) {
 		}
 	}
 	
-	var star = instance_create_layer(starX,starY,"Stars",obj_star);
+	var star = instance_create_layer(starX,starY,"Stars",objUI_star);
 	star.image_index = imageIndex;
 	ds_list_add(stars,imageIndex);
 };

@@ -1,12 +1,7 @@
-// Animation control
-visible = false;
-image_speed = 1;
-animLength = 7;
-endAnim = false;
+event_inherited();
 
-//Life time of panic notification
-life = (global.practice ? 72 : 36) * 2;
-alarm[0] = life;
+// Animation control
+animLength = 7;
 
 //size of the combo
 comboSize = -1;

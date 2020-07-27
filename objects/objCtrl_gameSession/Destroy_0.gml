@@ -1,0 +1,2 @@
+instance_destroy(obj_matchmakerManager);
+instance_destroy(objUI_characterPortrait);

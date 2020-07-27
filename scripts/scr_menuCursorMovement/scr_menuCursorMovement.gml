@@ -25,7 +25,7 @@ if (keyCode == ds_map_find_value(global.controls,"RIGHT")) {
 			global.gameLevel = min(global.gameLevel + 1,global.maxLevel - 1)
 			break;
 		case 1:
-			board = clamp(board + 1,1,maxBoard)
+			global.character = clamp(global.character + 1,1,global.maxChar)
 			break;
 	}
 }
@@ -36,7 +36,7 @@ if (keyCode == ds_map_find_value(global.controls,"LEFT")) {
 			global.gameLevel = max(global.gameLevel - 1,0)
 			break;
 		case 1:
-			board = clamp(board - 1,1,maxBoard)
+			global.character = clamp(global.character - 1,1,global.maxChar)
 			break;
 	}
 }

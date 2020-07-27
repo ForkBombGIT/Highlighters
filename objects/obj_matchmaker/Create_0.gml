@@ -1,7 +1,7 @@
 creationTime = current_time;
-show_debug_message(creationTime);
+
 //where the match maker is from
-origin = instance_position(x,y,par_entity);
+origin = instance_position(x,y,objPar_piece);
 
 //checks color to be matched
 colorIndex = -1;
@@ -13,16 +13,16 @@ another = true;
 final = ds_list_create();
 stack = ds_stack_create();
 bombs = ds_list_create();
-var startingPiece = instance_position(x,y,par_entity);
+var startingPiece = instance_position(x,y,objPar_piece);
 ds_list_add(final,startingPiece);
 ds_stack_push(stack,startingPiece);
 
 //controls match animation
 listPosition = 0;
-highlightDelay = global.practice ? 12 : 6;
-fastHighlightDelay = global.practice ? 6 : 3;
-flickerDelay = global.practice ? 54 : 36;
-postFlickerDelay = global.practice ? 36 : 24;
+highlightDelay = global.gameMode == 1 ? 12 : 6;
+fastHighlightDelay = global.gameMode == 1 ? 6 : 3;
+flickerDelay = global.gameMode == 1 ? 54 : 36;
+postFlickerDelay = global.gameMode == 1 ? 36 : 24;
 flickerOffset = 2;
 flickerCount = 0;
 animating = false;

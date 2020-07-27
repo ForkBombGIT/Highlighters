@@ -1,7 +1,7 @@
 //move match maker up with pieces
 if (global.riseUp) &&
   !(global.riseBrake) {
-	y -= global.riseSpeed;
+	y -= global.riseAmount;
 }
 //loop until no more new pieces
 while (another) {

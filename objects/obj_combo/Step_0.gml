@@ -9,8 +9,3 @@ if (comboSize != -1) {
 	if (endAnim) 
 		image_speed = 0;
 }
-
-if (global.restart) ||
-   (global.victory) {
-	instance_destroy();	
-}

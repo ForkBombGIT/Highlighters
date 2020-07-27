@@ -2,7 +2,7 @@
 var col = argument0;
 var colList = ds_list_create();
 
-for (var i = 0; i < global.boardHeight; i++) {
+for (var i = 0; i < objCtrl_gameSession.boardHeight; i++) {
 	var entity = scr_getPieceAtPos(i,col);
 	if (instance_exists(entity)) {
 		ds_list_add(colList,entity);

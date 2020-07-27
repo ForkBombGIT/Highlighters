@@ -5,7 +5,7 @@ var bombHistory = argument3;
 var rowHistory = argument4;
 var historyFrequency = ds_map_create();
 var bombCount = ds_list_size(bombHistory);
-var availablePieces = obj_controller.selectedEntities;
+var availablePieces = objCtrl_gameSession.selectedEntities;
 
 //algorithm conditions
 var conditionOne = false;

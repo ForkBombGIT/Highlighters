@@ -16,17 +16,17 @@ if !(global.gameover) &&
 			global.active = true; 
 		}
 		else 
-			y -= global.forceRiseSpeed;		
+			y -= global.riseAmount;		
 	}
 	else if (global.riseUp) {
-		y -= global.riseSpeed;
+		y -= global.riseAmount;
 	}
 	//displaces the cursor if its about to go out of view
 	if (global.riseUp) || 
 	  ((global.forceRise) && 
-	  (!scr_checkRow(global.boardHeight - 1))) {
-		if (y < scr_getRowPos(global.boardHeight - 1)) {
-			var yDisplacement = (((abs(instance_nearest(x,y,par_entity).y - y)/spr_charm.sprite_height)) - ((abs(instance_nearest(x,y,par_entity).y - y)/spr_charm.sprite_height) - 1)) * spr_charm.sprite_height;
+	  (!scr_checkRow(objCtrl_gameSession.boardHeight - 1))) {
+		if (y < scr_getRowPos(objCtrl_gameSession.boardHeight - 1)) {
+			var yDisplacement = (((abs(instance_nearest(x,y,objPar_piece).y - y)/spr_charm.sprite_height)) - ((abs(instance_nearest(x,y,objPar_piece).y - y)/spr_charm.sprite_height) - 1)) * spr_charm.sprite_height;
 			y += yDisplacement;
 		}
 	}
@@ -39,15 +39,15 @@ if ((global.active) &&
 	!(global.victory)) {
 	if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 		//holds the piece on the left and right of the cursor
-		var left = instance_position(x-24,y,par_entity);
-		var right = instance_position(x+24,y,par_entity);
-		var leftUp = instance_position(x-24,y-48,par_entity);
-		var rightUp = instance_position(x+24,y-48,par_entity);
+		var left = instance_position(x-24,y,objPar_piece);
+		var right = instance_position(x+24,y,objPar_piece);
+		var leftUp = instance_position(x-24,y-48,objPar_piece);
+		var rightUp = instance_position(x+24,y-48,objPar_piece);
 		var leftUpBottomEntity = instance_exists(leftUp) ? leftUp.bottomEntity : true;
 		var rightUpBottomEntity = instance_exists(rightUp) ? rightUp.bottomEntity : true;
 	
 		//applies swap to both pieces if there are a left and right piece
-		if (!par_entity.swap) {
+		if (!objPar_piece.swap) {
 			if (instance_exists(right) && instance_exists(left)) { 
 				if (!(left.swap) && !(right.swap) && 
 				   (leftUpBottomEntity) && (rightUpBottomEntity) &&
