@@ -5,6 +5,7 @@ char_other = [spr_durma_other,spr_floss_other,spr_cognac_other];
 characterAnimIndex = 0;
 durmaAnimIndex = 7;
 state = 0;
+lastState = 0;
 
 //animation data for character sprites
 characterFrameRates = ds_list_create();

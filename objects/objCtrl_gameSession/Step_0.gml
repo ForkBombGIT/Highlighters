@@ -50,25 +50,6 @@ if (global.restart) {
 	instance_create_layer(x,y,"Controllers",obj_matchmakerManager);
 }
 
-//handles gameover logic
-if (global.gameover) ||
-   (global.victory) {
-	global.forceRise = false;
-	global.riseUp = false;
-	global.forceRiseSpeed = 0;
-	instance_destroy(obj_matchmaker);
-	if !(anim) { 
-		audio_play_sound(global.gameover ? snd_lose : snd_win,1,0);
-		//sets starting point for character portrait
-		with (objPar_piece) {
-			image_index = index;	
-		}
-		objUI_characterPortrait.characterAnimIndex = 5; 
-		anim = true; 
-		alarm[0] = global.victory ? room_speed * 2 : 1; 
-	}
-}
-
 var pieceSwap = false
 with (objPar_piece) {
 	if (swap) pieceSwap = true;

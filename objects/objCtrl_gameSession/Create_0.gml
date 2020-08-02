@@ -6,9 +6,6 @@ global.victory = false;
 global.riseBrake = false;
 gameEnd = false;
 gameoverDelay = global.gameMode == 1 ? 180 : 150;
-anim = false;
-animRow = 8;
-flash = false;
 
 //restarts game
 global.restart = false;
@@ -22,7 +19,6 @@ global.victoryScore = (global.gameMode == 1) ? 9999 : 999999;
 //game rule variables
 boardWidth = 6;
 boardHeight = 9;
-fadeToBlack = false;
 
 //controls game loop 
 riseTimer = current_time;
@@ -49,9 +45,10 @@ activeMatches = ds_list_create();
 //instantiate game objects
 cursor = instance_create_layer(x,scr_getRowPos(4),"Cursor",obj_cursor);		
 cursor.visible = false;
-instance_create_layer(x,y,"GUI",objUI_gameSession);
+ui = instance_create_layer(x,y,"GUI",objUI_gameSession);
 instance_create_layer(x,y,"Controllers",obj_matchmakerManager);
 instance_create_layer(x,y,"Controllers",objCtrl_gameAnimation);
+instance_create_layer(x,y,"Controllers",objCtrl_menuPause);
 
 //generate stars
 if !(global.gameMode == 1) {

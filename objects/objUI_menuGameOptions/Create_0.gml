@@ -9,10 +9,6 @@ start = false;
 //game settings
 boards = [spr_boardp,spr_board1,spr_board2];
 
-// init character portait
-instance_create_layer(x,y,"GUI",objUI_characterPortrait);
-if (global.gameMode == 1) objUI_characterPortrait.character = 0;
-
 // Positions for cursor movement
 cursorPositions = [168,288];
 

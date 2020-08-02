@@ -5,11 +5,6 @@ state = 0;
 
 randomize();
 
-//creates splash object
-if (state == 0) {
-	instance_create_layer(0,0,"Instances",objUI_splash);	
-}
-
 //holds key settings
 global.controls = ds_map_create();
 if (!file_exists("data.json")) {
@@ -31,4 +26,9 @@ global.gameMode = 0;
 flash = false;
 
 //holds the blocks to be used in the game
-selectedEntities = [];
+selectedEntities = [];	
+
+if (state == 0) instance_create_layer(0,0,"GUI",objUI_splash);	
+
+//adds dev tool object
+instance_create_layer(x,y,"Controllers",objCtrl_devTools);

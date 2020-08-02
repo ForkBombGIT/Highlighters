@@ -6,8 +6,15 @@ ui.cursorPosition = cursorPosition;
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 	audio_play_sound(snd_ok,1,0);
 	ui.flash = true;
-	if (cursorPosition == 1) instance_destroy(objUI_characterPortrait);
-	alarm[0] = 2;		
+	switch (cursorPosition) {
+		case 0:
+			state = 1;
+		break;
+		case 1:
+			state = 2;
+			instance_destroy(objCtrl_characterPortrait);
+		break;
+	}
 }
 
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"UP"))) {

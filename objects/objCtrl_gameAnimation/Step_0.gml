@@ -1,3 +1,6 @@
+ui.gameEndTransition = gameEndTransition;
+ui.gameEndTransitionIndex = gameEndTransitionIndex;
+
 #region Piece Bouncing - Panic Notification
 var canBounce = true;
 if (scr_checkRow(objCtrl_gameSession.boardHeight - 1)) {
@@ -67,6 +70,38 @@ if ((global.active) &&
 			pulseIndex = pulseStartIndex;	
 			pulseReset = true;
 		}
+	}
+}
+#endregion
+
+#region Gameover Animations
+//handles gameover logic
+if (global.gameover) ||
+   (global.victory) {
+	global.forceRise = false;
+	global.riseUp = false;
+	global.forceRiseSpeed = 0;
+	instance_destroy(obj_matchmaker);
+	if !(gameEndAnimation) { 
+		audio_play_sound(global.gameover ? snd_lose : snd_win,1,0);
+		//sets starting point for character portrait
+		with (objPar_piece) {
+			image_index = index;	
+		}
+		objUI_characterPortrait.characterAnimIndex = 5; 
+		gameEndAnimation = true; 
+		alarm[0] = global.victory ? room_speed * 2 : 1; 
+	}
+}
+
+
+if (gameEndTransition) {
+	var animSpeed = 0.25;
+	//pulse after the first frame lasts for 9 frames
+	gameEndTransitionIndex += animSpeed;
+	if (floor(gameEndTransitionIndex) >= gameEndTransitionEndIndex) {
+		if !(alarm[1]) alarm[1] = 60;
+		gameEndTransition = false;
 	}
 }
 #endregion

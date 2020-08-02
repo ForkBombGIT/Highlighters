@@ -26,7 +26,8 @@ if !(global.gameover) &&
 	  ((global.forceRise) && 
 	  (!scr_checkRow(objCtrl_gameSession.boardHeight - 1))) {
 		if (y < scr_getRowPos(objCtrl_gameSession.boardHeight - 1)) {
-			var yDisplacement = (((abs(instance_nearest(x,y,objPar_piece).y - y)/spr_charm.sprite_height)) - ((abs(instance_nearest(x,y,objPar_piece).y - y)/spr_charm.sprite_height) - 1)) * spr_charm.sprite_height;
+			var yDisplacement = (((abs(instance_nearest(x,y,objPar_piece).y - y)/global.pieceSize)) - 
+								 ((abs(instance_nearest(x,y,objPar_piece).y - y)/global.pieceSize) - 1)) * global.pieceSize;
 			y += yDisplacement;
 		}
 	}

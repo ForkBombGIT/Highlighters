@@ -4,9 +4,10 @@ ui.cursorPosition = cursorPosition;
 
 #region Navigation
 //menu item selection
-if (keyboard_check_pressed(ds_map_find_value(global.controls,"B")) &&
-   (state != 3) &&
-   (state != 5)) {
+if (keyboard_check_pressed(ds_map_find_value(global.controls,"B")) && 
+	(state != 0) &&
+	(state != 3) &&
+	(state != 5)) {
 	audio_play_sound(snd_back,1,0);
 	if (state == 4) state = 2;
 	state = clamp(state - 1, 0, 5); ui.flash = true;

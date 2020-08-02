@@ -1,5 +1,6 @@
 #region Force Rise
 //rise if the force rise button is pressed
+if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 if !(global.gameover) &&
    !(global.victory) &&
    !(global.riseBrake) {
@@ -285,4 +286,5 @@ if ((bottomEntity) &&
 		else up = noone;
 	} else up = noone;
 }	
+}
 #endregion
