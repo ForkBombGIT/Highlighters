@@ -30,5 +30,7 @@ selectedEntities = [];
 
 if (state == 0) instance_create_layer(0,0,"GUI",objUI_splash);	
 
+ui = instance_create_layer(x,y,"GUI",objUI_game);
+
 //adds dev tool object
 instance_create_layer(x,y,"Controllers",objCtrl_devTools);

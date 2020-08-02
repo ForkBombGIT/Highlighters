@@ -18,7 +18,6 @@ switch (state) {
 	case 1:
 		// reset game mode to no selection
 		global.gameMode = 0;
-		// create main menu if it does not exist
 		if !(instance_exists(objCtrl_menuMain)) 
 			instance_create_layer(x,y,"GUI",objCtrl_menuMain);	
 		
@@ -50,12 +49,11 @@ switch (state) {
 	// Game Session
 	case 3:
 		//Ensures game is not paused
-		show_debug_message(instance_number(objCtrl_gameSession));
 		if (!(instance_exists(objCtrl_menuPause)) || !(objCtrl_menuPause.pause)) {
 			if !(instance_exists(objCtrl_gameSession)) {	
-				instance_destroy(objCtrl_menuGameOptions);
 				instance_create_layer(x,y,"Controllers",objCtrl_gameSession);
 				instance_create_layer(168,window_get_height()/4,"GUI",objUI_countdown);
+				instance_destroy(objCtrl_menuGameOptions);
 			}
 		
 			// If the game has ended, move to gameend menu
@@ -79,7 +77,11 @@ switch (state) {
 			endGame.state = (global.victory);
 			instance_destroy(objCtrl_gameSession);
 		}
-		if (objCtrl_menuGameEnd.state == 2) {
+		if (objCtrl_menuGameEnd.state == 1) {
+			instance_destroy(objCtrl_menuGameEnd);	
+			state = 3;
+		}
+		else if (objCtrl_menuGameEnd.state == 2) {
 			instance_destroy(objCtrl_menuGameEnd);	
 			objCtrl_menuMain.state = 0;
 			state = 1;

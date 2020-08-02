@@ -1,4 +1,7 @@
 ui.cursorPosition = cursorPosition; 
+
+if (!instance_exists(ui)) instance_destroy();
+
 #region Pause Handling
 if (global.active) {
 	if (pause) {
@@ -18,7 +21,7 @@ if (global.active) {
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			audio_play_sound(snd_ok,1,0);
 			if (cursorPosition != 0) 
-				ui.flash = true;
+				objCtrl_game.ui.flash = true;
 			state = 1;
 		}
 		#endregion
@@ -96,7 +99,6 @@ if (state == 1) {
 			pause = false;
 			cursorPosition = 0;
 			state = 0;
-			ui.state = 0;
 			break;
 		case 2:
 			state = 2;

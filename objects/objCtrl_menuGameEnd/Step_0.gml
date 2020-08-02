@@ -5,7 +5,7 @@ ui.cursorPosition = cursorPosition;
 #region Menu navigation
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 	audio_play_sound(snd_ok,1,0);
-	ui.flash = true;
+	objCtrl_game.ui.flash = true;
 	switch (cursorPosition) {
 		case 0:
 			state = 1;

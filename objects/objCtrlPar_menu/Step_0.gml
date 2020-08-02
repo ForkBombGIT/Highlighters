@@ -1,4 +1,4 @@
 // Reset cursor position on screen change
-if (ui.flash) {
+if (objCtrl_game.ui.flash) {
 	cursorPosition = 0;	
 }

@@ -10,7 +10,7 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"B")) &&
 	(state != 5)) {
 	audio_play_sound(snd_back,1,0);
 	if (state == 4) state = 2;
-	state = clamp(state - 1, 0, 5); ui.flash = true;
+	state = clamp(state - 1, 0, 5); objCtrl_game.ui.flash = true;
 }	
 	
 if (keyboard_check_pressed(vk_anykey)) {
@@ -27,7 +27,7 @@ switch (state) {
 		//menu item selection
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			audio_play_sound(snd_ok,1,0);
-			state = 1; ui.flash = true;
+			state = 1; objCtrl_game.ui.flash = true;
 		}
 	break;
 	case 1:
@@ -39,10 +39,10 @@ switch (state) {
 					state = 5;
 				case 1: //practice
 					if (state == 1) state = 4; 
-					ui.flash = true;
+					objCtrl_game.ui.flash = true;
 					break;
 				case 2: //options
-					state = 2; ui.flash = true;
+					state = 2; objCtrl_game.ui.flash = true;
 					break;
 			}
 		}
@@ -56,7 +56,7 @@ switch (state) {
 					option = 0
 				case 1: //audio video
 					if (option == -1) option = 1;
-					state = 3;	ui.flash = true;
+					state = 3;	objCtrl_game.ui.flash = true;
 					break;
 			}
 		}
@@ -79,7 +79,7 @@ switch (state) {
 			audio_play_sound(snd_ok,1,0);
 			state++;
 			global.gameMode = 1;
-			ui.flash = true;
+			objCtrl_game.ui.flash = true;
 		}
 	break;
 	// Classic
