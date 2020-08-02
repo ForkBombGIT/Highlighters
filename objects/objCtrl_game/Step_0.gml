@@ -64,7 +64,6 @@ switch (state) {
 		else {
 			// Returns to main menu if user quits via pause menu
 			if (objCtrl_menuPause.state == 2) {
-				instance_activate_all()
 				instance_destroy(objCtrl_gameSession);
 				objCtrl_menuMain.state = 0;
 				state = 1;

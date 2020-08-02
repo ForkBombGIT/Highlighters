@@ -102,6 +102,7 @@ if (state == 1) {
 			break;
 		case 2:
 			state = 2;
+			instance_activate_all()
 			break;
 	}
 	
