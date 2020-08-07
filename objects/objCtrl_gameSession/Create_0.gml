@@ -25,6 +25,7 @@ riseTimer = current_time;
 canRise = true;
 newRowInc = false;
 global.fastAnim = false;
+postFastAnim = 10;
 
 //time freeze
 global.freeze = false;

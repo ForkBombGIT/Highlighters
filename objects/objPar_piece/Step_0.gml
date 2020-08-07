@@ -128,7 +128,6 @@ if (!(bottomEntity) &&
     !(global.victory)) {
 	if !alarm[0] alarm[0] = (skipDelay) ? 1 : 
 							((aboveMatch) ? floatAboveMatchDelay : floatDelay);
-	aboveMatch = false;
 } 
 
 if (instance_exists(obj_matchmaker)) &&
@@ -151,7 +150,7 @@ if !(global.gameover) &&
 		   // landing animation index control
 		   if !(bounce) {
 			   if (floor(landAnimIndex) > index + 3) {
-				 landAnimIndex = index; landAnim = false; justLanded = false; inMatchCol = false;
+				 landAnimIndex = index; landAnim = false; justLanded = false; aboveMatch = false; inMatchCol = false;
 			   }
 		   }
 		   //apply animation
@@ -188,8 +187,9 @@ if ((bottomEntity) && (falling)) {
 	if !(audio_is_playing(snd_drop)) {
 		audio_play_sound(snd_drop,1,0);
 	}
-	if (inMatchCol)
-		justLanded = true;	
+	if (inMatchCol) {
+		justLanded = true;
+	}
 }
 
 //squish if piece below is matched

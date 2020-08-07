@@ -20,7 +20,11 @@ if (global.active) {
 		if (milli >= room_speed) {
 			milli = 0; global.seconds++;
 		} 
-		if (global.seconds >= 60) {global.seconds = 0; global.minutes = clamp(global.minutes + 1, 0, 99)}	
+		if (global.seconds >= 60) {
+			if (global.minutes != 99)
+				global.seconds = 0; 
+			global.minutes = clamp(global.minutes + 1, 0, 99)
+		}	
 	}
 	#endregion
 }	

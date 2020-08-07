@@ -5,7 +5,7 @@ if (instance_number(obj_matchmaker) == 0) {
 
 #region Game States
 if !(scr_checkRow(objCtrl_gameSession.boardHeight - 1)) { 
-	objCtrl_gameSession.canRise = true;	
+	canRise = true;	
 }
 
 if (global.gameScore >= global.victoryScore) {
@@ -83,10 +83,8 @@ if (freezeTime <= 0) {
 if keyboard_check(ds_map_find_value(global.controls,"B")) && 
   (instance_exists(obj_matchmaker) || instance_exists(objUI_countdown)) {
 	global.fastAnim = true;
+	alarm[0] = postFastAnim;
 } 
-else 
-	if (keyboard_check_released(ds_map_find_value(global.controls,"B")))
-		global.fastAnim = false;
 
 
 if ((global.active) && 
@@ -114,7 +112,6 @@ if ((global.active) &&
 	
 	//manual new row
 	if (keyboard_check(ds_map_find_value(global.controls,"B")) && 
-	  !(global.fastAnim) &&
 	  !(global.forceRise) && 
 	  !(global.riseBrake)) {
 		global.freeze = false;

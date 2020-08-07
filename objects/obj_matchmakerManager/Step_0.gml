@@ -134,11 +134,12 @@ if !(global.gameover) &&
 		activeComboSize = -1;
 		freezeTime = 0;
 	} 
+	
 	if (instance_number(obj_matchmaker) == 0) {
 		ds_list_clear(matchmakers);	
 		var continueChain = false;
 		with (objPar_piece) {
-			if (falling) || !(bottomEntity) || (justLanded)
+			if (aboveMatch)
 				continueChain = true;
 		}
 		
