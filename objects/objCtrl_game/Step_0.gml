@@ -17,7 +17,6 @@ switch (state) {
 	// Main Menu
 	case 1:
 		// reset game mode to no selection
-		global.gameMode = 0;
 		if !(instance_exists(objCtrl_menuMain)) 
 			instance_create_layer(x,y,"GUI",objCtrl_menuMain);	
 		

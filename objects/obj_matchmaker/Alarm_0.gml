@@ -51,8 +51,10 @@ if !(global.gameover || global.victory) {
 								audio_play_sound(sound,1,0);
 							}
 						}
-						alarm[0] = (global.fastAnim) ? fastHighlightDelay : highlightDelay;
-						listPosition += 1;
+						if (entity.highlighting == 2) {
+							listPosition += 1;
+						}
+						alarm[0] = 1;
 					}
 					else animationComplete = true;
 				}	
