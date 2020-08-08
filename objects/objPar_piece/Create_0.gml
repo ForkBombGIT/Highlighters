@@ -36,6 +36,8 @@ landAnimIndex = image_index;
 landAnim = false;
 matchNumber = -1;
 highlight = false;
+highlightTimer = 0;
+highlightFrameTime = 7;
 highlightDelay = (global.gameMode == 1) ? 2 : 1;
 highlightIndex = 8;
 highlightLength = 14;

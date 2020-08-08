@@ -19,8 +19,8 @@ ds_stack_push(stack,startingPiece);
 
 //controls match animation
 listPosition = 0;
-highlightDelay = global.gameMode == 1 ? 12 : 4;
-fastHighlightDelay = global.gameMode == 1 ? 6 : 1;
+highlightDelay = global.gameMode == 1 ? 12 : 8;
+fastHighlightDelay = global.gameMode == 1 ? 6 : 4;
 flickerDelay = global.gameMode == 1 ? 54 : 30;
 postFlickerDelay = global.gameMode == 1 ? 36 : 20;
 flickerOffset = 2;

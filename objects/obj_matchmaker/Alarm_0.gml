@@ -41,20 +41,18 @@ if !(global.gameover || global.victory) {
 			} else {
 				//controls highlighting animation
 				if (highlight) {
+					var fastAnim = listPosition > 3;
 					if (listPosition <= ds_list_size(final) - 1) {
 						var entity = ds_list_find_value(final,listPosition);
 						if (instance_exists(entity)) {
 							if !(entity.highlighting) {
 								entity.highlight = true;
-								entity.matchNumber = listPosition + 1;
-								var sound = (global.fastAnim) ? snd_clearb : snd_cleara;
+								entity.matchNumber = (listPosition++) + 1;
+								var sound = (global.fastAnim) || fastAnim ? snd_clearb : snd_cleara;
 								audio_play_sound(sound,1,0);
 							}
 						}
-						if (entity.highlighting == 2) {
-							listPosition += 1;
-						}
-						alarm[0] = 1;
+						alarm[0] = (global.fastAnim) || fastAnim ? fastHighlightDelay : highlightDelay;
 					}
 					else animationComplete = true;
 				}	
