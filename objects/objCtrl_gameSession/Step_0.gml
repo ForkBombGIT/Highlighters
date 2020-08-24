@@ -117,7 +117,7 @@ if ((global.active) &&
 		global.freeze = false;
 		freezeTime = 0;
 		//checks if piece is gonna rise into game over territory
-		if (scr_checkRow(objCtrl_gameSession.boardHeight)) {
+		if (scr_checkRow(objCtrl_gameSession.boardHeight - 1)) {
 			global.gameover = true;
 		}
 		else {

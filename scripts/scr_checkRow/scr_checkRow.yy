@@ -1,8 +1,12 @@
 {
-    "id": "7448b97a-d8c7-4563-a040-773d01acc06c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_checkRow",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Piece Utility",
+    "path": "folders/Scripts/Piece Utility.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_checkRow",
+  "tags": [],
+  "resourceType": "GMScript",
 }

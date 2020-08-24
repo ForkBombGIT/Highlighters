@@ -78,7 +78,7 @@ if !(global.gameover) &&
 	   !(global.freeze) && 
 	   !(global.forceRise) &&
 	   !(instance_exists(obj_matchmaker)) && 
-	   !(scr_checkRow(objCtrl_gameSession.boardHeight)) &&
+	   !(scr_checkRow(objCtrl_gameSession.boardHeight - 1)) &&
 	   !(match)) {
 		   if !(bounce) {
 				image_index = index;

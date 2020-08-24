@@ -1,8 +1,12 @@
 {
-    "id": "6342e71b-89fb-412a-817e-dd00ca40bbe6",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_loadControls",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Options",
+    "path": "folders/Scripts/Options.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_loadControls",
+  "tags": [],
+  "resourceType": "GMScript",
 }
