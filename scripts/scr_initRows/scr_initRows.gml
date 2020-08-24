@@ -12,7 +12,7 @@ for (var row = 0; row < startingRows; row++) {
 	ds_list_clear(bombsInRow);
 	ds_list_clear(piecesInRow);
 	//loops through columns
-	for (var col = 0; col < global.boardWidth; col++) {
+	for (var col = 0; col < objCtrl_gameSession.boardWidth; col++) {
 		//check if pieces placed are under max
 		if (pieceCount < maxPieces) {
 			//if a piece is placed, increment

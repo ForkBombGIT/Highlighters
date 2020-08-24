@@ -19,4 +19,3 @@ if (instance_exists(matchmakerOne) && instance_exists(matchmakerTwo)) {
 	ds_stack_push(matchmakerOne.stack,matchmakerTwo.origin);
 	instance_destroy(matchmakerTwo);
 }
-show_debug_message(instance_number(obj_matchmaker));

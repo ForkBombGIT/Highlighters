@@ -3,7 +3,7 @@ event_inherited();
 image_speed = 0;
 sprite_index = spr_bomb;
 spriteLength = 18;
-image_index = obj_controller.selectedEntities[irandom_range(0,array_length_1d(obj_controller.selectedEntities) - 1)] * spriteLength;
+image_index = objCtrl_gameSession.selectedEntities[irandom_range(0,array_length_1d(objCtrl_gameSession.selectedEntities) - 1)] * spriteLength;
 index = image_index;
 //holds position of bomb
 row = -1;

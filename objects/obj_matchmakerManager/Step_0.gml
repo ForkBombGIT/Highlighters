@@ -8,7 +8,6 @@ if !(global.gameover) &&
 			for (var i = 0; i < activeMatchmakers - 1; i++) {
 				var matchmaker = instance_find(obj_matchmaker,i);
 				if (instance_exists(matchmaker)) {
-					show_debug_message(ds_list_size(matchmaker.bombs));
 					for (var j = 0; j < ds_list_size(matchmaker.bombs); j++) {
 						var bomb = ds_list_find_value(matchmaker.bombs,j);
 						if (bomb.matchmaker != matchmaker)
@@ -25,8 +24,7 @@ if !(global.gameover) &&
 					var val = ds_list_find_index(matchmakers,matchmaker)
 					//if exists, remove it from active matchmakers list
 					if (val != -1) {
-						if (current_time - matchmaker.creationTime >= 100)
-							ds_list_delete(matchmakers,val);
+						ds_list_delete(matchmakers,val);
 					}
 					//otherwise
 					else {
@@ -52,7 +50,7 @@ if !(global.gameover) &&
 						if (chainStart) && (current_time - lastChainCreation >= 100) {
 							var chainObj = instance_create_layer(matchmaker.justLandedEntity.x - 24,
 																 matchmaker.justLandedEntity.y - 24,
-													             "GUI",
+													             "Notifications",
 													             obj_chain
 							);
 							chainObj.chainSize = chainSize++;
@@ -90,7 +88,7 @@ if !(global.gameover) &&
 				audio_play_sound(snd_combo_chain,2,0);	
 			}
 
-			if !(global.practice) {
+			if !(global.gameMode == 1) {
 				//checks if level is at x99, if it is, follow normal combo behavior
 				var comboChain = global.combo && global.chain;
 				var levelIncrement = (comboChain) ? 4 : (sizeOfCombo > 0) + ((chainStart && chainSize > 0) * 2) + 1
@@ -105,7 +103,7 @@ if !(global.gameover) &&
 			if (total >= comboSize) && (chainSize == 0) {
 				var comboObj = instance_create_layer(ds_list_find_value(minXMatchmaker.final,0).x - 24,
 													 ds_list_find_value(minXMatchmaker.final,0).y - 24,
-													 "GUI",
+													 "Notifications",
 													 obj_combo
 										 			);
 				comboObj.comboSize = sizeOfCombo;
@@ -125,9 +123,9 @@ if !(global.gameover) &&
 			}
 			
 			//Update freeze time, if needed
-			if (freezeTime > obj_controller.freezeTime) {
-				obj_controller.freezeTime = freezeTime;
-				obj_controller.freezeTimer = current_time;
+			if (freezeTime > objCtrl_gameSession.freezeTime) {
+				objCtrl_gameSession.freezeTime = freezeTime;
+				objCtrl_gameSession.freezeTimer = current_time;
 				global.freeze = true;
 			}
 			chainStart = true;
@@ -136,11 +134,12 @@ if !(global.gameover) &&
 		activeComboSize = -1;
 		freezeTime = 0;
 	} 
+	
 	if (instance_number(obj_matchmaker) == 0) {
 		ds_list_clear(matchmakers);	
 		var continueChain = false;
-		with (par_entity) {
-			if (falling) || !(bottomEntity) || (justLanded)
+		with (objPar_piece) {
+			if (aboveMatch)
 				continueChain = true;
 		}
 		

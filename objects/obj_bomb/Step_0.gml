@@ -13,7 +13,7 @@ if (global.pulse)  &&
   !(global.gameover) &&
   !(global.victory) &&
   !(instance_exists(matchmaker)) {
-	image_index = index + floor(obj_controller.pulseIndex);
+	image_index = index + floor(objCtrl_gameAnimation.pulseIndex);
   }
 
 #region Match Control

@@ -5,19 +5,19 @@ if (key == ds_map_find_value(global.controls,"LEFT")) {
 	}
 }
 if (key == ds_map_find_value(global.controls,"RIGHT")) {
-	if (col < global.boardWidth - 2){
+	if (col < objCtrl_gameSession.boardWidth - 2){
 		col += 1;
 	}
 }
 if (key == ds_map_find_value(global.controls,"UP")) {
-	if (y - spr_charm.sprite_height >= scr_getRowPos(8)){
-		y -= spr_charm.sprite_height;
+	if (y - global.pieceSize >= scr_getRowPos(8)){
+		y -= global.pieceSize; 
 		row --;
 	}
 }
 if (key == ds_map_find_value(global.controls,"DOWN")) {
-	if (y + spr_charm.sprite_height <= scr_getRowPos(0)){
-		y += spr_charm.sprite_height;
+	if (y + global.pieceSize <= scr_getRowPos(0)){
+		y += global.pieceSize;
 		row ++;
 	}
 }

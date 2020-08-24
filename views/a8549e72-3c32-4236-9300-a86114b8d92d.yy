@@ -11,7 +11,7 @@
         "81c93b8e-243a-43f0-9935-575e965a4fa7"
     ],
     "filterType": "GMObject",
-    "folderName": "Entities",
+    "folderName": "Game Entities",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

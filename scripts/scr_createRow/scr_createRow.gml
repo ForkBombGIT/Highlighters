@@ -12,7 +12,7 @@ for (var i = 0; i < 2; i++) {
 }
 
 //iterates the length of the board
-for (var col = 0; col < global.boardWidth; col++) {
+for (var col = 0; col < objCtrl_gameSession.boardWidth; col++) {
 	var piece = scr_pieceAlgorithm(row,col,bottomRows,placedBombs,placedPieces);
 	if (piece != pointer_null) {
 		if (object_get_name(piece.object_index) == "obj_bomb") {

@@ -1,7 +1,7 @@
 //move match maker up with pieces
 if (global.riseUp) &&
   !(global.riseBrake) {
-	y -= global.riseSpeed;
+	y -= global.riseAmount;
 }
 //loop until no more new pieces
 while (another) {
@@ -16,7 +16,7 @@ while (another) {
 			ds_list_add(bombs,entity);	
 		}
 		
-		if (entity.justLanded)
+		if (entity.justLanded && entity.aboveMatch)
 			justLandedEntity = entity;
 		
 		//adds entity to final list
@@ -83,4 +83,26 @@ if !(animating) {
 //begin highlighting
 if (!another) && !(animating) {
 	if !(alarm[0]) alarm[0] = 1;
+}
+
+if (animationComplete) {
+	for (var i = 0; i < ds_list_size(final); i++) {
+		var entity = ds_list_find_value(final,i);
+		if (entity.highlighting != 2) {
+			clearFinalList = false;
+		}	
+		
+		if (i == ds_list_size(final) - 1) {
+			if (entity.highlighting == 2)
+				clearFinalList = true;
+		}	
+	}
+}
+
+if (clearFinalList) {
+	for (var i = 0; i < ds_list_size(final); i++) {
+		var entity = ds_list_find_value(final,i);
+		instance_destroy(entity);
+	}	
+	instance_destroy();	
 }
