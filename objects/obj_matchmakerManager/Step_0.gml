@@ -48,6 +48,7 @@ if !(global.gameover) &&
 				if (instance_exists(matchmaker)) {
 					if (instance_exists(matchmaker.justLandedEntity)) {
 						if (chainStart) && (current_time - lastChainCreation >= 100) {
+							audio_play_sound(snd_combo_chain,2,0);	
 							var chainObj = instance_create_layer(matchmaker.justLandedEntity.x - 24,
 																 matchmaker.justLandedEntity.y - 24,
 													             "Notifications",
@@ -84,7 +85,7 @@ if !(global.gameover) &&
 			global.combo = sizeOfCombo >= 0;
 			global.chain = (chainStart && chainSize > 0);
 			
-			if (global.combo || global.chain) {
+			if (global.combo) {
 				audio_play_sound(snd_combo_chain,2,0);	
 			}
 
@@ -136,17 +137,18 @@ if !(global.gameover) &&
 	} 
 	
 	if (instance_number(obj_matchmaker) == 0) {
-		ds_list_clear(matchmakers);	
-		var continueChain = false;
-		with (objPar_piece) {
-			if (aboveMatch)
-				continueChain = true;
-		}
+		ds_list_clear(matchmakers);
+	}
+	
+	var continueChain = false;
+	with (objPar_piece) {
+		if (aboveMatch)
+			continueChain = true;
+	}
 		
-		if !(continueChain) && chainStart {
-			chainSize = 0;
-			chainStart = false;
-			global.chain = false;
-		}
+	if !(continueChain) && chainStart {
+		chainSize = 0;
+		chainStart = false;
+		global.chain = false;
 	}
 }

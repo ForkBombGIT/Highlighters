@@ -8,7 +8,6 @@ if !(global.gameover || global.victory) {
 			flicker = true;
 			alarm[0] = flickerOffset;
 		}
-	
 		//controls flickering
 		if (flicker) {
 			//flickers until delay is reached

@@ -78,7 +78,6 @@ if !(global.gameover) &&
 	   !(global.freeze) && 
 	   !(global.forceRise) &&
 	   !(instance_exists(obj_matchmaker)) && 
-	   !(scr_checkRow(objCtrl_gameSession.boardHeight - 1)) &&
 	   !(match)) {
 		   if !(bounce) {
 				image_index = index;
@@ -206,7 +205,9 @@ if !(global.gameover) &&
 	
 #region Swap Control
 if (swap) { 
+	aboveMatch = false;
 	bounce = false;
+	inMatchCol = false;
 	//reset direction variables
 	left = noone; right = noone; up = noone; down = noone
 	ds_list_clear(adjacent);

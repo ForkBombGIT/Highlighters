@@ -7,7 +7,7 @@ numFont = font_add_sprite_ext(spr_menunumbers, "0123456789", true, 3);
 start = false;
 
 //game settings
-boards = [spr_boardp,spr_board1,spr_board2];
+boards = [spr_boardp,spr_board1,spr_board2,spr_board3];
 
 // Positions for cursor movement
 cursorPositions = [168,288];
