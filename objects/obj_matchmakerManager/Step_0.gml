@@ -76,8 +76,14 @@ if !(global.gameover) &&
 			if !(entityChainStart) global.chain = false;
 			
 			//Score and level increase calculations
+			var panic = false;
+			with (objPar_piece) {
+				if (bounce || squish) panic = true;
+			}
 			var sizeOfCombo = total - (comboSize);
-			global.gameScore = min(global.gameScore + (total * baseScoreInc) + max(0,sizeOfCombo * comboBonus) + max(0,chainSize * chainBonus),
+			global.gameScore = min(global.gameScore + (total * baseScoreInc) + 
+									max(0,(sizeOfCombo * comboBonus) + panic) + 
+									max(0,(chainSize * chainBonus) + panic),
 								   global.victoryScore);
 								   
 			if (global.gameScore >= global.victoryScore) global.victory = true;

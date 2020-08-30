@@ -75,6 +75,7 @@ if !(global.gameover) &&
    !(global.victory) {
 	if (y < scr_getRowPos(0) && 
 	   (y <= scr_getRowPos(objCtrl_gameSession.boardHeight - 3)) &&
+	   (y != scr_getRowPos(objCtrl_gameSession.boardHeight - 1)) && 
 	   !(global.freeze) && 
 	   !(global.forceRise) &&
 	   !(instance_exists(obj_matchmaker)) && 

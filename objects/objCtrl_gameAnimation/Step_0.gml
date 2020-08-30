@@ -11,6 +11,19 @@ if (scr_checkRow(objCtrl_gameSession.boardHeight - 1)) {
 			canBounce = false;
 }
 
+// reset pieces that were bouncing
+if (!global.gameover) &&
+   (!global.victory) {
+	if !(canBounce) {
+		with (objPar_piece) {
+			if !(squish) {
+				image_index = index;
+			}
+		}
+	
+	}
+}
+
 if (canBounce) && 
   !(global.freeze) &&
   !(global.forceRise) {
