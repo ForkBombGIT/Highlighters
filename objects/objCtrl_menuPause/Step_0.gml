@@ -36,7 +36,6 @@ if (global.active) {
 		if !(resume) {
 			instance_deactivate_all(1);
 			instance_activate_object(objCtrl_game);
-			instance_activate_object(objCtrl_characterPortrait);
 			instance_activate_object(objUI_menuPause);
 			instance_activate_object(objUI_characterPortrait);
 			instance_activate_object(objUI_gameSession);

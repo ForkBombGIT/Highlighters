@@ -13,7 +13,7 @@ gameoverSpeed = 30;
 restart = false;
 
 //board sprites
-boards = [spr_boardp,spr_board1, spr_board2];
+boards = [spr_boardp,spr_board1, spr_board2,spr_board3];
 
 if (instance_exists(objCtrl_gameSession))
 	instance_destroy(objCtrl_gameSession);

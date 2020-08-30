@@ -38,7 +38,7 @@ matchNumber = -1;
 highlight = false;
 highlightTimer = 0;
 highlightFrameTime = 7;
-highlightDelay = (global.gameMode == 1) ? 2 : 1;
+highlightDelay = 1;
 highlightIndex = 8;
 highlightLength = 14;
 highlighting = false;

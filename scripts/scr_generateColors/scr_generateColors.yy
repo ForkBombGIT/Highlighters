@@ -1,8 +1,12 @@
 {
-    "id": "886c4178-698c-4f39-9fa4-cc25e6b83826",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_generateColors",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Row Building",
+    "path": "folders/Scripts/Row Building.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_generateColors",
+  "tags": [],
+  "resourceType": "GMScript",
 }

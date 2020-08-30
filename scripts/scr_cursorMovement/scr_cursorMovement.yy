@@ -1,8 +1,12 @@
 {
-    "id": "de0e5e56-e5d6-4c15-beed-11f869cc2a9b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_cursorMovement",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_cursorMovement",
+  "tags": [],
+  "resourceType": "GMScript",
 }
