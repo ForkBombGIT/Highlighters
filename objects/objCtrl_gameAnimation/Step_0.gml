@@ -16,7 +16,10 @@ if (!global.gameover) &&
    (!global.victory) {
 	if !(canBounce) {
 		with (objPar_piece) {
-			if !(squish) {
+			if !(squish) && 
+			   !(match) && 
+			   !(landAnim) &&
+			   !(swap) {
 				image_index = index;
 			}
 		}
