@@ -39,6 +39,13 @@ if ((global.active) &&
 	!(global.gameover) &&
 	!(global.victory)) {
 	if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+		buffer = 0;
+		swap = true;
+	}
+}
+
+if (swap) {
+	if (buffer++ < bufferLength) {
 		//holds the piece on the left and right of the cursor
 		var left = instance_position(x-24,y,objPar_piece);
 		var right = instance_position(x+24,y,objPar_piece);
@@ -62,30 +69,42 @@ if ((global.active) &&
 					right.targetX = col;
 					right.swap = true;
 					right.image_index = right.index + 4;
+					swap = false;
 				}	
 			}
 			else {
 				//applies swap to left piece
 				if (instance_exists(left)) {
-					if !(left.swap) && !(left.match) && (left.bottomEntity) && (rightUpBottomEntity) {
+					if !(left.swap) && 
+					   !(left.match) && 
+					   (left.bottomEntity) && 
+					   (rightUpBottomEntity) {
 						audio_play_sound(snd_swap,1,0);
 						left.targetX = col + 1;
 						left.swap = true;
 						left.image_index = left.index + 4;
+						swap = false;
 					}
 				}
 	
 				//applies swap to right piece
 				else if (instance_exists(right)){
-					if !(right.swap) && !(right.match) && (right.bottomEntity) && (leftUpBottomEntity) {
+					if !(right.swap) && 
+					   !(right.match) && 
+					   (right.bottomEntity) && 
+					   (leftUpBottomEntity) {
 						audio_play_sound(snd_swap,1,0);
 						right.targetX = col;
 						right.swap = true;
 						right.image_index = right.index + 4;
+						swap = false;
 					}
 				} 
 			}
 		}
+	} else {
+		buffer = 0;
+		swap = false;
 	}
 }
 #endregion
