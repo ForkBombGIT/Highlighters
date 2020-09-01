@@ -19,6 +19,6 @@ col = 2;
 targY = -1;
 initY = -1;
 //swap control
-bufferLength = 10;
+bufferLength = 5;
 buffer = 0;
 swap = false;

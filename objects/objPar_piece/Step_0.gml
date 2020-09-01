@@ -29,7 +29,8 @@ if (!(swap) &&
 	!(global.gameover) && 
 	!(global.victory) &&
 	!(match) &&
-	!(landAnim)) {
+	!(landAnim) &&
+	!(highlight)) {
 	if (y <= scr_getRowPos(0)) {
 		image_index = index;
 	}

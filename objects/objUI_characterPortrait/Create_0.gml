@@ -6,6 +6,7 @@ characterAnimIndex = 0;
 durmaAnimIndex = 7;
 state = 0;
 lastState = 0;
+lastFreezeTime = -1;
 
 //animation data for character sprites
 characterFrameRates = ds_list_create();
