@@ -1,5 +1,5 @@
 if !(global.gameMode == 1) && !(start) {
-	draw_sprite(boards[global.character],0,0,0);
+	draw_sprite(spr_board,global.character,0,0);
 	draw_set_font(numFont);
 	draw_sprite(spr_select,0,48,24);
 	//level portion

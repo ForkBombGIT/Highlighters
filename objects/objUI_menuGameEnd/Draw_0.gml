@@ -1,4 +1,4 @@
-draw_sprite(boards[global.character],0,0,0);
+draw_sprite(spr_board,global.character,0,0);
 draw_set_font(global.timeFont);
 //time
 draw_text(369,369,string_replace(string_format(global.minutes,2,0)," ", "0"));

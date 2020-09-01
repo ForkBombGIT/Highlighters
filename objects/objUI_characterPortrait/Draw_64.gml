@@ -13,3 +13,4 @@ if (lastFreezeTime != -1) {
 		draw_text(363,246,string_replace(string_format(lastFreezeTime,2,0)," ","0"));
 	}
 }
+	

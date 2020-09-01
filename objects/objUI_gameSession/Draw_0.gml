@@ -4,7 +4,7 @@ if !(global.active) {
 }
 
 //draws board
-draw_sprite(boards[global.character],0,0,0);
+draw_sprite(spr_board,global.character,0,0);
 //draws gui
 draw_set_font(global.numFont);
 //score
