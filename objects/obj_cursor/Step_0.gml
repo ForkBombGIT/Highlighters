@@ -122,7 +122,7 @@ if !(global.gameover) &&
 				  ((upB) ? ds_map_find_value(global.controls,"UP") : ds_map_find_value(global.controls,"DOWN")));
 		//single press behavior
 		if (lastKey != key) keyPressLength = 0;
-		if (++keyPressLength == 1) { scr_cursorMovement(key); audio_play_sound(snd_move,1,0); }
+		if (++keyPressLength == 1) { scr_cursorMovement(key,snd_move); }
 		lastKey = key;
 	} 
 	else 
@@ -133,7 +133,7 @@ if !(global.gameover) &&
 		if (keyPressLength > 0) {
 			if ((current_time - delayTime) > delay){
 				delayTime = current_time;
-				scr_cursorMovement(keyboard_key);
+				scr_cursorMovement(keyboard_key,pointer_null);
 			}
 		} 
 	}

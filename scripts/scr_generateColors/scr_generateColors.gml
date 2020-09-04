@@ -8,7 +8,7 @@ function scr_generateColors() {
 	var spriteLength = 18;
 
 	while (array_length_1d(selectedEntities) < 5) {
-		var index = floor(irandom_range(0,9));
+		var index = irandom_range(0,9);
 		var like = false;
 		var loop = 0;
 

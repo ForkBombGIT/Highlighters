@@ -1,8 +1,7 @@
 if (comboSize != -1) {
 	if (visible == false) {
-		image_index = ((comboSize > sprite_get_number(spr_combo) / animLength) ? 
-					  (sprite_get_number(spr_combo) - animLength) : comboSize) * 
-					  animLength;
+		if (comboSize > maxCombo) comboSize = maxCombo + 1;
+		image_index = comboSize * animLength;
 	}
 	visible = true;
 	endAnim = (image_index > (comboSize * animLength) + (animLength - 1)); 
