@@ -10,7 +10,6 @@ draw_text(380,99,string_replace_all(string_format(global.gameScore,(global.gameM
 //game level
 draw_sprite(spr_speed,0,360,144);
 draw_text((global.gameMode == 1) ? 455 : 425 ,168,(global.gameMode == 1) ? "-" : string_replace_all(string_format(global.gameLevel,3,0)," ", "0"));
-draw_sprite((state == 0) ? spr_fadeToBlack : spr_fadeToWhite,15,24,0);
 draw_sprite((state == 0) ? spr_gameoverLose : spr_gameoverWin,gameoverAnim,26,0);
 draw_sprite(spr_pause_options,(cursorPosition == 0) ? 7 + floor(endOptionAnim) : 7,24,258);
 draw_sprite(spr_pause_options,(cursorPosition == 1) ? 14 + floor(endOptionAnim) : 14,24,307);

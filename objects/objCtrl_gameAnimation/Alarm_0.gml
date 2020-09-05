@@ -13,8 +13,11 @@ if (scr_checkRow(animRow)) {
 
 //checks if animRow is at a valid row index
 //if it isnt, apply a longer delay
-if (--animRow < -1) {
-	alarm[2] = 60;
+if (--animRow > -1) {
+	alarm[0] = 2;
 }
-else
-	alarm[0] = 5;
+
+if (animRow == 6) {
+	alarm[2] = 1;	
+}
+	

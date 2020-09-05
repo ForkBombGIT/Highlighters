@@ -65,6 +65,7 @@ if (swap) {
 					left.targetX = col + 1;
 					left.swap = true;
 					left.image_index = left.index + 4;
+					left.depth = left.orgDepth - 100;
 			
 					right.targetX = col;
 					right.swap = true;
@@ -83,6 +84,7 @@ if (swap) {
 						left.targetX = col + 1;
 						left.swap = true;
 						left.image_index = left.index + 4;
+						left.depth = left.orgDepth - 100;
 						swap = false;
 					}
 				}

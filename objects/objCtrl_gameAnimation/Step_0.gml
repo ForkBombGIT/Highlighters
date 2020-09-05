@@ -1,5 +1,4 @@
 ui.gameEndTransition = gameEndTransition;
-ui.gameEndTransitionIndex = gameEndTransitionIndex;
 
 #region Piece Bouncing - Panic Notification
 var canBounce = true;
@@ -31,7 +30,6 @@ if (canBounce) &&
   !(global.freeze) &&
   !(global.forceRise) {
 	if (scr_checkRow(objCtrl_gameSession.boardHeight - 3)) { 
-		global.gameover = false;
 		//turn on bounce animation
 		var rowEntities = scr_getRow(objCtrl_gameSession.boardHeight - 3);
 		for (var i = 0; i < ds_list_size(rowEntities); i++) {
@@ -101,23 +99,37 @@ if (global.gameover) ||
 	if !(gameEndAnimation) { 
 		audio_play_sound(global.gameover ? snd_lose : snd_win,1,0);
 		//sets starting point for character portrait
-		with (objPar_piece) {
-			image_index = index;	
-		}
 		objUI_characterPortrait.characterAnimIndex = 5; 
 		gameEndAnimation = true; 
-		alarm[0] = global.victory ? room_speed * 2 : 1; 
+		alarm[0] = 1; 
 	}
 }
 
 
 if (gameEndTransition) {
-	var animSpeed = 0.25;
-	//pulse after the first frame lasts for 9 frames
-	gameEndTransitionIndex += animSpeed;
-	if (floor(gameEndTransitionIndex) >= gameEndTransitionEndIndex) {
-		if !(alarm[1]) alarm[1] = 60;
-		gameEndTransition = false;
+	if (gameEndState == 0) {
+		with (objPar_piece) {
+			y -= 24;	
+		}
+		gameEndState++;
+	}
+	if (gameEndState == 1) {
+		var entity = scr_getPieceAtPos(gameEndRow,gameEndCol);
+		
+		if (instance_exists(entity)) {
+			entity.gameoverFall = true;	
+		}
+		
+		if (--gameEndCol == -1) {
+			gameEndCol = objCtrl_gameSession.boardWidth - 1
+			gameEndRow ++;
+			if (gameEndRow > objCtrl_gameSession.boardHeight) {
+				gameEndState = 2;	
+			}
+		}
+	}
+	if (gameEndState == 2) { 
+		if !(alarm[1]) alarm[1] = 60;	
 	}
 }
 #endregion

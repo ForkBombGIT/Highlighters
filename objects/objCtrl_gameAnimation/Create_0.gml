@@ -15,8 +15,9 @@ bounceAnimationLast = 0.5; // 2 frames
 
 // Fade to black on game end
 gameEndTransition = false;
-gameEndTransitionIndex = 0;
-gameEndTransitionEndIndex = 15;
+gameEndState = 0;
+gameEndRow = 0;
+gameEndCol = objCtrl_gameSession.boardWidth - 1;
 gameEndAnimation = false;
 animRow = 8;
 
