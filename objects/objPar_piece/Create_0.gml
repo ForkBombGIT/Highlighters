@@ -55,6 +55,7 @@ targY = -1;
 initY = -1;
 
 //used for matches
+activeMatchmaker = noone;
 left = noone;
 right = noone;
 down = noone;

@@ -199,8 +199,18 @@ if !(global.gameover) &&
    (!(match)) {
 	var entityBelow = instance_position(x,y + global.pieceSize,objPar_piece);
 	if (instance_exists(entityBelow)) {
-		if (entityBelow.match) && !(match) { image_index = index + 3; aboveMatch = true; }
-		
+		if (entityBelow.match) {
+			var activeMatchmaker = entityBelow.activeMatchmaker;
+			var showAboveMatch = true;
+			if (instance_exists(activeMatchmaker) && activeMatchmaker.animating) {
+				var entityHighlightFrame = ds_list_find_value(activeMatchmaker.final,ds_list_size(activeMatchmaker.final) - 1).highlightIndex;
+				if (entityHighlightFrame >= 12) {
+					showAboveMatch = false;
+				}
+			}
+			
+			if (showAboveMatch) && !(match) { image_index = index + 3; aboveMatch = true; }	
+		}	
 	}
 }
 #endregion

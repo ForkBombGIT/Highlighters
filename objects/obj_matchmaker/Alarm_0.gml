@@ -46,6 +46,7 @@ if !(global.gameover || global.victory) {
 						if (instance_exists(entity)) {
 							if !(entity.highlighting) {
 								entity.highlight = true;
+								entity.activeMatchmaker = self;
 								entity.matchNumber = (listPosition++) + 1;
 								var sound = (global.fastAnim) || fastAnim ? snd_clearb : snd_cleara;
 								audio_play_sound(sound,1,0);
