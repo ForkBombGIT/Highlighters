@@ -89,7 +89,7 @@ if ((global.active) &&
 #endregion
 
 #region Gameover Animations
-//handles gameover logic
+//Starts gameover animation
 if (global.gameover) ||
    (global.victory) {
 	global.forceRise = false;
@@ -97,6 +97,7 @@ if (global.gameover) ||
 	global.forceRiseSpeed = 0;
 	instance_destroy(obj_matchmaker);
 	if !(gameEndAnimation) { 
+		instance_destroy(objCtrl_gameMusic);
 		audio_play_sound(global.gameover ? snd_lose : snd_win,1,0);
 		//sets starting point for character portrait
 		objUI_characterPortrait.characterAnimIndex = 5; 
@@ -105,15 +106,9 @@ if (global.gameover) ||
 	}
 }
 
-
+// falling pieces animation
 if (gameEndTransition) {
 	if (gameEndState == 0) {
-		with (objPar_piece) {
-			y -= 24;	
-		}
-		gameEndState++;
-	}
-	if (gameEndState == 1) {
 		var entity = scr_getPieceAtPos(gameEndRow,gameEndCol);
 		
 		if (instance_exists(entity)) {
@@ -124,11 +119,11 @@ if (gameEndTransition) {
 			gameEndCol = objCtrl_gameSession.boardWidth - 1
 			gameEndRow ++;
 			if (gameEndRow > objCtrl_gameSession.boardHeight) {
-				gameEndState = 2;	
+				gameEndState = 1;	
 			}
 		}
 	}
-	if (gameEndState == 2) { 
+	if (gameEndState == 1) { 
 		if !(alarm[1]) alarm[1] = 60;	
 	}
 }

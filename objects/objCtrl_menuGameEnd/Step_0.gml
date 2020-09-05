@@ -9,6 +9,7 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 	switch (cursorPosition) {
 		case 0:
 			state = 1;
+			instance_destroy(obj_star);
 		break;
 		case 1:
 			state = 2;

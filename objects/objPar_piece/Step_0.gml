@@ -180,6 +180,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			bottomEntity = false;
 	}
 	
+	//Starts landing animation, and plays land sound
 	if ((bottomEntity) && 
 		(falling)) {
 		image_index = index;
@@ -304,7 +305,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	#region Gameover Animation
 		if (gameoverFall) { 
 			y += gameoverFallAmount;
-			gameoverFallAmount = min(128,gameoverFallAmount * 2);
+			gameoverFallAmount = min(64,gameoverFallAmount * 2);
 			if (y > 480) {
 				instance_destroy(); 
 			}

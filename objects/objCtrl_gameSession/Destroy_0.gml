@@ -7,6 +7,4 @@ if (objCtrl_menuPause.state == 2)
 	instance_destroy(objCtrl_characterPortrait);
 instance_destroy(objCtrl_menuPause);
 instance_destroy(objCtrl_gameAnimation);
-instance_destroy(objCtrl_gameMusic);
-instance_destroy(obj_star);
 instance_destroy(ui);

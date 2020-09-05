@@ -66,6 +66,7 @@ switch (state) {
 				instance_destroy(objCtrl_gameSession);
 				objCtrl_menuMain.state = 0;
 				state = 1;
+				instance_destroy(obj_star);
 			}	
 		}
 	break;
@@ -83,6 +84,7 @@ switch (state) {
 			instance_destroy(objCtrl_menuGameEnd);	
 			objCtrl_menuMain.state = 0;
 			state = 1;
+			instance_destroy(obj_star);
 		}
 	break;
 }
