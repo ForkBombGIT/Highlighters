@@ -1,4 +1,3 @@
-draw_sprite(spr_menu_options_bg,floor(optionBackgroundAnimationIndex),0,0);
 draw_sprite((state == 0) ? spr_menu_input : spr_menu_av, 0,0,0);
 switch (state) {
 	//input menu

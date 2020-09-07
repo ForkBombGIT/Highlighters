@@ -48,6 +48,8 @@ floatAboveMatchDelay = global.gameMode == 1 ? 30 : 3;
 landingAnimationFirst = 0.25; // 4 frames
 landingAnimationRest = 0.5; // 2 frames
 orgDepth = depth;
+gameoverRise = false;
+gameoverRiseAmount = 2;
 gameoverFall = false;
 gameoverFallAmount = 2;
 

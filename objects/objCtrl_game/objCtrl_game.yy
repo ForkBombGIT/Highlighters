@@ -4,7 +4,10 @@
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "objCtrlPar_menu",
+    "path": "objects/objCtrlPar_menu/objCtrlPar_menu.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,

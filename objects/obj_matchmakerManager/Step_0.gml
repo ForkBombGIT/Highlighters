@@ -86,12 +86,16 @@ if !(global.gameover) &&
 									max(0,(chainSize * chainBonus) + panic),
 								   global.victoryScore);
 								   
-			if (global.gameScore >= global.victoryScore) global.victory = true;
+			if (global.gameScore >= global.victoryScore) {
+				global.victory = true;
+				objCtrl_gameAnimation.gameEndCol = 0;
+				objCtrl_gameAnimation.gameEndRow = objCtrl_gameSession.boardHeight - 1;
+			}
 								   
 			global.combo = sizeOfCombo >= 0;
 			global.chain = (chainStart && chainSize > 0);
 			
-			if (global.combo) {
+			if (global.combo) && !(global.victory) {
 				audio_play_sound(snd_combo_chain,2,0);	
 			}
 

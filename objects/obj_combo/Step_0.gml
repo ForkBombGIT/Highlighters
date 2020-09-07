@@ -1,3 +1,5 @@
+event_inherited();
+
 if (comboSize != -1) {
 	if (visible == false) {
 		if (comboSize > maxCombo) comboSize = maxCombo + 1;

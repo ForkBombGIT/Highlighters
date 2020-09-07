@@ -41,7 +41,8 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	#region Rising Pieces
 	if (y <= scr_getRowPos(objCtrl_gameSession.boardHeight - 1)) {
 		if !(global.freeze) &&
-		!(global.riseBrake) {
+		    !(global.riseBrake) &&
+			!(global.victory) {
 			if !(alarm[1]) {
 				alarm[1] = objCtrl_gameSession.gameoverDelay;
 				objCtrl_gameSession.canRise = false
@@ -165,20 +166,23 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	#region Grounded Management
 	var pieceBelow = instance_place(x, y + global.pieceSize, objPar_piece);
 	var notSwapping = true;
-	if (instance_exists(pieceBelow) && (pieceBelow.swap))
-		notSwapping = false;
-	if (y >= scr_getRowPos(0)) { 
-		bottomEntity = true; 
-	} else if (position_meeting(x,y+global.pieceSize,objPar_piece)) {
-		var below = instance_place(x,y+global.pieceSize,objPar_piece);
-		bottomEntity = below.bottomEntity
-		if !(bottomEntity) skipDelay = true;
-	} else {
-		if !(global.riseUp) && 
-		   !(global.forceRise) &&
-			(notSwapping)
-			bottomEntity = false;
-	}
+	
+	if (!gameoverFall && !gameoverRise) {
+		if (instance_exists(pieceBelow) && (pieceBelow.swap))
+			notSwapping = false;
+		if (y >= scr_getRowPos(0)) { 
+			bottomEntity = true; 
+		} else if (position_meeting(x,y+global.pieceSize,objPar_piece)) {
+			var below = instance_place(x,y+global.pieceSize,objPar_piece);
+			bottomEntity = below.bottomEntity
+			if !(bottomEntity) skipDelay = true;
+		} else {
+			if !(global.riseUp) && 
+			   !(global.forceRise) &&
+				(notSwapping)
+				bottomEntity = false;
+		}
+	} else bottomEntity = true;
 	
 	//Starts landing animation, and plays land sound
 	if ((bottomEntity) && 
@@ -307,6 +311,14 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			y += gameoverFallAmount;
 			gameoverFallAmount = min(64,gameoverFallAmount * 2);
 			if (y > 480) {
+				instance_destroy(); 
+			}
+		}
+		
+		if (gameoverRise) { 
+			y -= gameoverRiseAmount;
+			gameoverRiseAmount = min(64,gameoverRiseAmount * 2);
+			if (y < -24) {
 				instance_destroy(); 
 			}
 		}

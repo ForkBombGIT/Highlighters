@@ -1,6 +1,8 @@
 // Close game
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"OFF"))) {
-	game_end();
+	if !(instance_exists(objCtrl_menuQuit))
+		instance_create_layer(0,0,"Controllers",objCtrl_menuQuit);
+		
 }
 
 #region State Control
@@ -10,15 +12,16 @@ switch (state) {
 		if (instance_exists(objUI_splash)) {
 			if !(objUI_splash.splash) {
 				state++;	
-				instance_destroy(objUI_splash);
 			}
 		}
 	break;
 	// Main Menu
 	case 1:
 		// reset game mode to no selection
-		if !(instance_exists(objCtrl_menuMain)) 
+		if !(instance_exists(objCtrl_menuMain)) {
+			instance_destroy(objUI_splash);
 			instance_create_layer(x,y,"GUI",objCtrl_menuMain);	
+		}
 		
 		if (objCtrl_menuMain.state == 5)
 			state = 2;
@@ -73,7 +76,7 @@ switch (state) {
 	case 4:
 		if !(instance_exists(objCtrl_menuGameEnd)) {
 			var endGame = instance_create_layer(x,y,"Controllers",objCtrl_menuGameEnd);
-			endGame.state = (global.victory);
+			endGame.gameEndState = (global.victory);
 			instance_destroy(objCtrl_gameSession);
 		}
 		if (objCtrl_menuGameEnd.state == 1) {

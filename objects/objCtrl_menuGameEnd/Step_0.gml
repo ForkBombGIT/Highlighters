@@ -1,6 +1,7 @@
 event_inherited();
 ui.state = state;
 ui.cursorPosition = cursorPosition;
+ui.gameEndState = gameEndState;
 
 #region Menu navigation
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {

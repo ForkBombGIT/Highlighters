@@ -26,7 +26,7 @@
     {"isDnD":false,"eventNum":0,"eventType":2,"collisionObjectId":null,"parent":{"name":"objUI_menuGameEnd","path":"objects/objUI_menuGameEnd/objUI_menuGameEnd.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"parent":{"name":"objUI_menuGameEnd","path":"objects/objUI_menuGameEnd/objUI_menuGameEnd.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":1,"collisionObjectId":null,"parent":{"name":"objUI_menuGameEnd","path":"objects/objUI_menuGameEnd/objUI_menuGameEnd.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":64,"eventType":8,"collisionObjectId":null,"parent":{"name":"objUI_menuGameEnd","path":"objects/objUI_menuGameEnd/objUI_menuGameEnd.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":75,"eventType":8,"collisionObjectId":null,"parent":{"name":"objUI_menuGameEnd","path":"objects/objUI_menuGameEnd/objUI_menuGameEnd.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],

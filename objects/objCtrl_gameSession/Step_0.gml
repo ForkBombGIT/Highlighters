@@ -87,7 +87,7 @@ if keyboard_check(ds_map_find_value(global.controls,"B")) &&
 } 
 
 
-if ((global.active) && 
+if ((global.active) &&	
    !(global.victory) &&
    !(global.gameover)) { 
 	if !(global.gameMode == 1) { //disables level progression in practice

@@ -6,14 +6,14 @@ if (scr_checkRow(animRow)) {
 		if (instance_exists(piece)) {
 			piece.landAnim = false;
 			piece.image_index = piece.index;
-			piece.image_index += (global.victory) ? 7 : 14;	
+			piece.image_index += global.victory ? 7 : 14;	
 		}
 	}
 }
 
 //checks if animRow is at a valid row index
 //if it isnt, apply a longer delay
-if (--animRow > -1) {
+if (--animRow > (global.victory ? -2 : -1)) {
 	alarm[0] = 2;
 }
 

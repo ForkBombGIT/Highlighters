@@ -92,13 +92,13 @@ if ((global.active) &&
 //Starts gameover animation
 if (global.gameover) ||
    (global.victory) {
-	global.forceRise = false;
-	global.riseUp = false;
-	global.forceRiseSpeed = 0;
-	instance_destroy(obj_matchmaker);
 	if !(gameEndAnimation) { 
+		global.forceRise = false;
+		global.riseUp = false;
+		global.forceRiseSpeed = 0;
+		instance_destroy(obj_matchmaker);
 		instance_destroy(objCtrl_gameMusic);
-		audio_play_sound(global.gameover ? snd_lose : snd_win,1,0);
+		audio_play_sound(global.victory ? snd_win : snd_lose,1,0);
 		//sets starting point for character portrait
 		objUI_characterPortrait.characterAnimIndex = 5; 
 		gameEndAnimation = true; 
@@ -112,14 +112,25 @@ if (gameEndTransition) {
 		var entity = scr_getPieceAtPos(gameEndRow,gameEndCol);
 		
 		if (instance_exists(entity)) {
-			entity.gameoverFall = true;	
+			if (global.gameover) entity.gameoverFall = true;
+			if (global.victory) entity.gameoverRise = true;
 		}
-		
-		if (--gameEndCol == -1) {
-			gameEndCol = objCtrl_gameSession.boardWidth - 1
-			gameEndRow ++;
-			if (gameEndRow > objCtrl_gameSession.boardHeight) {
-				gameEndState = 1;	
+		if (global.gameover) {
+			if (--gameEndCol == -1) {
+				gameEndCol = objCtrl_gameSession.boardWidth - 1
+				gameEndRow ++;
+				if (gameEndRow > objCtrl_gameSession.boardHeight) {
+					gameEndState = 1;	
+				}
+			}
+		}
+		if (global.victory) {
+			if (++gameEndCol > objCtrl_gameSession.boardWidth - 1) {
+				gameEndCol = 0;
+				gameEndRow --;
+				if (gameEndRow == -2) {
+					gameEndState = 1;	
+				}
 			}
 		}
 	}
