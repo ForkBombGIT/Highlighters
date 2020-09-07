@@ -10,5 +10,4 @@ inputControlValues = [scr_keyToIndex(ds_map_find_value(global.controls,"UP")),
 					  scr_keyToIndex(ds_map_find_value(global.controls,"RIGHT")),
 					  scr_keyToIndex(ds_map_find_value(global.controls,"A")),
 					  scr_keyToIndex(ds_map_find_value(global.controls,"B")),
-					  scr_keyToIndex(ds_map_find_value(global.controls,"PAUSE")),
-					  scr_keyToIndex(ds_map_find_value(global.controls,"OFF"))]
+					  scr_keyToIndex(ds_map_find_value(global.controls,"PAUSE"))]

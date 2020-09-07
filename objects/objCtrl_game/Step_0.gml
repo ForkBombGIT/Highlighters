@@ -1,5 +1,5 @@
 // Close game
-if (keyboard_check_pressed(ds_map_find_value(global.controls,"OFF"))) {
+if (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE")) && state != 3) {
 	if !(instance_exists(objCtrl_menuQuit))
 		instance_create_layer(0,0,"Controllers",objCtrl_menuQuit);
 		

@@ -18,8 +18,10 @@ if (global.active) {
 		}
 		
 		//menu options
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
-			audio_play_sound(snd_ok,1,0);
+		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
+		   (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE")))) {
+			audio_play_sound((keyboard_key == ds_map_find_value(global.controls,"PAUSE")) ? snd_back : snd_ok,1,0);
+			resume = true;
 			if (cursorPosition != 0) 
 				objCtrl_game.ui.flash = true;
 			state = 1;

@@ -1,3 +1,5 @@
+creationTime = current_time;
+
 //where the match maker is from
 origin = instance_position(x,y,objPar_piece);
 

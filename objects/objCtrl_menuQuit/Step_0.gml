@@ -33,4 +33,8 @@ if (ui.image_index >= sprite_get_number(spr_menu_quit) - 1) {
 		}
 		cursorPosition = 1;
 	}
+	if (keyboard_check_released(ds_map_find_value(global.controls,"PAUSE"))) {
+		audio_play_sound(snd_back,1,0);
+		instance_destroy(self);
+	}
 }

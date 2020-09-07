@@ -14,8 +14,7 @@ if (!file_exists("data.json")) {
 	ds_map_add(global.controls,"DOWN",vk_down);	
 	ds_map_add(global.controls,"LEFT",vk_left);	
 	ds_map_add(global.controls,"RIGHT",vk_right);
-	ds_map_add(global.controls,"PAUSE",vk_enter);
-	ds_map_add(global.controls,"OFF",vk_escape);
+	ds_map_add(global.controls,"PAUSE",vk_escape);
 }
 else global.controls = scr_loadControls("data.json");
 
