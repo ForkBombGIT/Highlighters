@@ -23,7 +23,7 @@ if (global.active) {
 			audio_play_sound((keyboard_key == ds_map_find_value(global.controls,"PAUSE")) ? snd_back : snd_ok,1,0);
 			resume = true;
 			if (cursorPosition != 0) 
-				objCtrl_game.ui.flash = true;
+				objCtrl_game.ui.transition = true;
 			state = 1;
 		}
 		#endregion

@@ -1,2 +1,4 @@
 // Screen flicker control
-flash = false;
+transition = false;
+transitionAlpha = 0;
+transitionColor = c_white;

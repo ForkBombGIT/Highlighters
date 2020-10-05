@@ -6,17 +6,23 @@ state = 0;
 randomize();
 
 //holds key settings
+defaultControls = ds_map_create();
+ds_map_add(defaultControls,"A",ord("X"));
+ds_map_add(defaultControls,"B",ord("Z"));
+ds_map_add(defaultControls,"UP",vk_up);	
+ds_map_add(defaultControls,"DOWN",vk_down);	
+ds_map_add(defaultControls,"LEFT",vk_left);	
+ds_map_add(defaultControls,"RIGHT",vk_right);
+ds_map_add(defaultControls,"PAUSE",vk_escape)
+
 global.controls = ds_map_create();
-if (!file_exists("data.json")) {
-	ds_map_add(global.controls,"A",ord("X"));
-	ds_map_add(global.controls,"B",ord("Z"));
-	ds_map_add(global.controls,"UP",vk_up);	
-	ds_map_add(global.controls,"DOWN",vk_down);	
-	ds_map_add(global.controls,"LEFT",vk_left);	
-	ds_map_add(global.controls,"RIGHT",vk_right);
-	ds_map_add(global.controls,"PAUSE",vk_escape);
-}
-else global.controls = scr_loadControls("data.json");
+var defaultControlsKeys = ds_map_keys_to_array(defaultControls);
+//if (!file_exists("data.json")) {
+	for (var i = 0; i < array_length(defaultControlsKeys); i++) {
+		ds_map_add(global.controls,defaultControlsKeys[i],ds_map_find_value(objCtrl_game.defaultControls,defaultControlsKeys[i]));
+	}
+//}
+//else global.controls = scr_loadControls("data.json");
 
 // Global variable initialization 
 global.gameMode = 0;
