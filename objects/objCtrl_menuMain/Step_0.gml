@@ -3,13 +3,6 @@ ui.state = state;
 ui.cursorPosition = cursorPosition;
 
 #region Navigation
-if (transitioning) {
-	if (objCtrl_game.ui.alarm[0]) {
-		state = nextState;
-		nextState = -1;
-		transitioning = false;
-	}
-}
 //menu item selection
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"B")) && 
 	(state != 0) &&
@@ -36,7 +29,8 @@ switch (state) {
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			audio_play_sound(snd_ok,1,0);
 			nextState = 1;
-			objCtrl_game.ui.transition = true; transitioning = true;
+			objCtrl_game.ui.transition = true; 
+			transitioning = true;
 		}
 	break;
 	case 1:
@@ -81,14 +75,16 @@ switch (state) {
 		else if (objCtrl_menuOptions.state == -1) {
 			instance_destroy(objCtrl_menuOptions);
 			option = -1;
-			state = 2;
+			objCtrl_game.ui.transition = true;
+			nextState = 2;
+			transitioning = true;
 		}
 	break;
 	// Practice
 	case 4:
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			audio_play_sound(snd_ok,1,0);
-			nextState++;
+			nextState = 5;
 			global.gameMode = 1;
 			objCtrl_game.ui.transition = true; transitioning = true;
 		}

@@ -1,3 +1,4 @@
+event_inherited();
 // Close game
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE")) && state != 3) {
 	var keyChange = (instance_exists(objCtrl_menuOptions) && (objCtrl_menuOptions.inputChangeKey))
@@ -11,8 +12,11 @@ switch (state) {
 	// Splash Screen
 	case 0:
 		if (instance_exists(objUI_splash)) {
-			if !(objUI_splash.splash) {
-				state++;	
+			if !(objUI_splash.splash) && 
+			   !(transitioning){
+				nextState = 1;	
+				ui.transition = true;
+				transitioning = true;
 			}
 		}
 	break;
@@ -25,7 +29,7 @@ switch (state) {
 		}
 		
 		if (objCtrl_menuMain.state == 5)
-			state = 2;
+			nextState = 2;
 	break;
 	// Game Options
 	case 2:	
@@ -40,13 +44,15 @@ switch (state) {
 		// and return to state 1
 		if (objCtrl_menuGameOptions.state == -1) {
 			instance_destroy(objCtrl_menuGameOptions);
-			state = 1;
-			objCtrl_menuMain.state = 1;	
+			ui.transition = true;
+			objCtrl_menuMain.lastState = 1;
+			objCtrl_menuMain.transitioning = true;
+			nextState = 1;
 		}
 		
 		// if the user proceeds, change state and move to next room
 		else if (objCtrl_menuGameOptions.state == 1) {
-			state = 3;
+			nextState = 3;
 		}
 	break;
 	// Game Session
@@ -61,7 +67,7 @@ switch (state) {
 		
 			// If the game has ended, move to gameend menu
 			if (objCtrl_gameSession.gameEnd) {
-				state = 4;
+				nextState = 4;
 			}
 		}
 		else {
@@ -69,11 +75,12 @@ switch (state) {
 			if (objCtrl_menuPause.state == 2) {
 				instance_destroy(objCtrl_gameSession);
 				objCtrl_menuMain.state = 0;
-				state = 1;
+				nextState = 1;
 				instance_destroy(obj_star);
 			}	
 		}
 	break;
+	// Game Session End
 	case 4:
 		if !(instance_exists(objCtrl_menuGameEnd)) {
 			var endGame = instance_create_layer(x,y,"Controllers",objCtrl_menuGameEnd);
@@ -82,12 +89,12 @@ switch (state) {
 		}
 		if (objCtrl_menuGameEnd.state == 1) {
 			instance_destroy(objCtrl_menuGameEnd);	
-			state = 3;
+			nextState = 3;
 		}
 		else if (objCtrl_menuGameEnd.state == 2) {
 			instance_destroy(objCtrl_menuGameEnd);	
 			objCtrl_menuMain.state = 0;
-			state = 1;
+			nextState = 1;
 			instance_destroy(obj_star);
 		}
 	break;

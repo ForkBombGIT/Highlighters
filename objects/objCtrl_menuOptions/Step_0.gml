@@ -6,19 +6,11 @@ ui.inputPrompt = inputPrompt;
 maxCursorPosition = (state == 0) ? inputMaxCursorPosition : avMaxCursorPosition;
 
 #region Input Control
-if (transitioning) {
-	if (objCtrl_game.ui.alarm[0]) {
-		state = nextState;
-		nextState = -1;
-		transitioning = false;
-	}
-}
 if !(inputChangeKey) {
 	//back
 	if (keyboard_check_pressed(ds_map_find_value(global.controls,"B"))) {
 		audio_play_sound(snd_back,1,0);
-		objCtrl_game.ui.transition = true; transitioning = true;
-		nextState = -1;
+		state = -1;
 	}	
 	//moving up and down
 	if (keyboard_check_pressed(ds_map_find_value(global.controls,"UP"))) 

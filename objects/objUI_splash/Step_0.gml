@@ -8,7 +8,6 @@ if (splash) {
 	// check for last frame in splash screen
 	if (floor(splashIndex) >= sprite_get_number(spr_splash)) {
 		splash = false;
-		flash = true;
 		if !(alarm[0]) alarm[0] = 2;
 	}
 }

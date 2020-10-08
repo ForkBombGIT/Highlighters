@@ -1,0 +1,1 @@
+if (splash) draw_sprite(spr_splash,floor(splashIndex),0,0);

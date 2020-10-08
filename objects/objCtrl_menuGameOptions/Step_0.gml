@@ -15,7 +15,6 @@ else if (keyboard_check_pressed(ds_map_find_value(global.controls,"B"))) {
 	audio_play_sound(snd_back,1,0);
 	if (--cursorPosition == -1) {
 		state = -1;
-		objCtrl_game.ui.transition = true;
 	}
 }
 

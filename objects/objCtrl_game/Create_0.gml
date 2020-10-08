@@ -1,7 +1,4 @@
-randomize();
-
-//state of the game
-state = 0;
+event_inherited();
 
 randomize();
 
