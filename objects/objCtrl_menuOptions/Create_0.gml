@@ -9,3 +9,4 @@ promptLife = 3;
 inputChangeKey = false;
 inputMaxCursorPosition = 10;
 avMaxCursorPosition = 8;
+exitState = 0;

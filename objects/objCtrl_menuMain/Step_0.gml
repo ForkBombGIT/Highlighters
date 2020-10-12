@@ -52,6 +52,11 @@ switch (state) {
 		}
 	break;
 	case 2:
+		if (instance_exists(objCtrl_menuOptions)) {
+			option = -1;
+			instance_destroy(objCtrl_menuOptions);	
+		}
+		
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			audio_play_sound(snd_ok,1,0);
 			switch (cursorPosition) {
@@ -72,9 +77,7 @@ switch (state) {
 			var menuOptionsCtrl = instance_create_layer(x,y,"GUI",objCtrl_menuOptions);
 			menuOptionsCtrl.state = option;				
 		}
-		else if (objCtrl_menuOptions.state == -1) {
-			instance_destroy(objCtrl_menuOptions);
-			option = -1;
+		else if (objCtrl_menuOptions.exitState == 1) {
 			objCtrl_game.ui.transition = true;
 			nextState = 2;
 			transitioning = true;

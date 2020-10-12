@@ -8,6 +8,11 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE")) && state 
 }
 
 #region State Control
+if (nextState != -1) {
+	ui.transition = true;
+	transitioning = true;
+}
+
 switch (state) {
 	// Splash Screen
 	case 0:
@@ -15,21 +20,24 @@ switch (state) {
 			if !(objUI_splash.splash) && 
 			   !(transitioning){
 				nextState = 1;	
-				ui.transition = true;
-				transitioning = true;
 			}
 		}
 	break;
 	// Main Menu
 	case 1:
+		if (instance_exists(objCtrl_menuGameOptions)) {
+			instance_destroy(objCtrl_menuGameOptions);	
+		}
 		// reset game mode to no selection
 		if !(instance_exists(objCtrl_menuMain)) {
 			instance_destroy(objUI_splash);
 			instance_create_layer(x,y,"GUI",objCtrl_menuMain);	
 		}
 		
-		if (objCtrl_menuMain.state == 5)
+		if (objCtrl_menuMain.state == 5) && 
+		   (objCtrl_menuMain.nextState == - 1) {
 			nextState = 2;
+		}
 	break;
 	// Game Options
 	case 2:	
@@ -43,17 +51,16 @@ switch (state) {
 		// if the user returns, destroy game options object
 		// and return to state 1
 		if (objCtrl_menuGameOptions.state == -1) {
-			instance_destroy(objCtrl_menuGameOptions);
-			ui.transition = true;
-			objCtrl_menuMain.lastState = 1;
-			objCtrl_menuMain.transitioning = true;
 			nextState = 1;
+			objCtrl_menuMain.nextState = 1;
+			objCtrl_menuMain.transitioning = true;	
 		}
 		
 		// if the user proceeds, change state and move to next room
 		else if (objCtrl_menuGameOptions.state == 1) {
 			nextState = 3;
 		}
+		
 	break;
 	// Game Session
 	case 3:

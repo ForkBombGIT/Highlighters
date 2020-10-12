@@ -14,12 +14,12 @@ ds_map_add(defaultControls,"PAUSE",vk_escape)
 
 global.controls = ds_map_create();
 var defaultControlsKeys = ds_map_keys_to_array(defaultControls);
-//if (!file_exists("data.json")) {
+if (!file_exists("data.json")) {
 	for (var i = 0; i < array_length(defaultControlsKeys); i++) {
 		ds_map_add(global.controls,defaultControlsKeys[i],ds_map_find_value(objCtrl_game.defaultControls,defaultControlsKeys[i]));
 	}
-//}
-//else global.controls = scr_loadControls("data.json");
+}
+else global.controls = scr_loadControls("data.json");
 
 // Global variable initialization 
 global.gameMode = 0;
