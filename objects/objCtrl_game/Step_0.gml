@@ -28,6 +28,9 @@ switch (state) {
 		if (instance_exists(objCtrl_menuGameOptions)) {
 			instance_destroy(objCtrl_menuGameOptions);	
 		}
+		if (instance_exists(objCtrl_gameSession)) {
+			instance_destroy(objCtrl_gameSession);	
+		}
 		// reset game mode to no selection
 		if !(instance_exists(objCtrl_menuMain)) {
 			instance_destroy(objUI_splash);
@@ -79,9 +82,10 @@ switch (state) {
 		}
 		else {
 			// Returns to main menu if user quits via pause menu
-			if (objCtrl_menuPause.state == 2) {
-				instance_destroy(objCtrl_gameSession);
-				objCtrl_menuMain.state = 0;
+			if (objCtrl_menuPause.state == 2) && 
+			  !(transitioning){
+				objCtrl_menuMain.nextState = 0;
+				objCtrl_menuMain.transitioning = true;
 				nextState = 1;
 				instance_destroy(obj_star);
 			}	
@@ -89,20 +93,29 @@ switch (state) {
 	break;
 	// Game Session End
 	case 4:
-		if !(instance_exists(objCtrl_menuGameEnd)) {
+		// Create Menu Game End when transition over
+		if !(instance_exists(objCtrl_menuGameEnd)) && 
+		   !(transitioning) && 
+			(ui.transitionAlpha == 0) {
 			var endGame = instance_create_layer(x,y,"Controllers",objCtrl_menuGameEnd);
 			endGame.gameEndState = (global.victory);
 			instance_destroy(objCtrl_gameSession);
 		}
-		if (objCtrl_menuGameEnd.state == 1) {
-			instance_destroy(objCtrl_menuGameEnd);	
-			nextState = 3;
-		}
-		else if (objCtrl_menuGameEnd.state == 2) {
-			instance_destroy(objCtrl_menuGameEnd);	
-			objCtrl_menuMain.state = 0;
-			nextState = 1;
-			instance_destroy(obj_star);
+		// Game End Menu options
+		if (instance_exists(objCtrl_menuGameEnd)) {
+			// Restart Game
+			if (objCtrl_menuGameEnd.state == 1) {
+				instance_destroy(objCtrl_menuGameEnd);	
+				nextState = 3;
+			}
+			// End Game
+			else if (objCtrl_menuGameEnd.state == 2) {
+				instance_destroy(objCtrl_menuGameEnd);	
+				objCtrl_menuMain.transitioning = true;	
+				objCtrl_menuMain.nextState = 0;
+				nextState = 1;
+				instance_destroy(obj_star);
+			}
 		}
 	break;
 }
