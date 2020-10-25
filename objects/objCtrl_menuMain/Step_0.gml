@@ -29,7 +29,10 @@ switch (state) {
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			audio_play_sound(snd_ok,1,0);
 			nextState = 1;
-			objCtrl_game.ui.transition = true; 
+			objCtrl_game.ui.transitionColor = c_white;
+			objCtrl_game.ui.transition = true;
+			objCtrl_game.ui.alphaChange = objCtrl_game.ui.subMenuAlphaChange;
+			objCtrl_game.ui.transitionHold = 30;
 			transitioning = true;
 		}
 	break;
@@ -37,6 +40,8 @@ switch (state) {
 		global.gameMode = 0;
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			audio_play_sound(snd_ok,1,0);
+			objCtrl_game.ui.transitionColor = c_black;
+			objCtrl_game.ui.alphaChange = objCtrl_game.ui.mainMenuAlphaChange;
 			switch (cursorPosition) {
 				case 0: //classic
 					nextState = 5;
@@ -87,9 +92,8 @@ switch (state) {
 	case 4:
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 			audio_play_sound(snd_ok,1,0);
-			nextState = 5;
+			state = 5;
 			global.gameMode = 1;
-			objCtrl_game.ui.transition = true; transitioning = true;
 		}
 	break;
 	// Classic

@@ -7,7 +7,6 @@ if (global.gameMode == 1) state = 1;
 if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
 	audio_play_sound(snd_ok,1,0);
 	if (++cursorPosition == 2) {
-		objCtrl_game.ui.transition = true;
 		state = 1;
 	}
 }

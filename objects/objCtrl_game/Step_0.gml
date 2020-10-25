@@ -61,6 +61,9 @@ switch (state) {
 		
 		// if the user proceeds, change state and move to next room
 		else if (objCtrl_menuGameOptions.state == 1) {
+			objCtrl_game.ui.transitionColor = c_white;
+			objCtrl_game.ui.alphaChange = 1;
+			objCtrl_game.ui.transitionHold = 5;
 			nextState = 3;
 		}
 		
@@ -77,7 +80,7 @@ switch (state) {
 		
 			// If the game has ended, move to gameend menu
 			if (objCtrl_gameSession.gameEnd) {
-				nextState = 4;
+				state = 4;
 			}
 		}
 		else {
@@ -86,6 +89,9 @@ switch (state) {
 			  !(transitioning){
 				objCtrl_menuMain.nextState = 0;
 				objCtrl_menuMain.transitioning = true;
+				ui.transitionColor = c_white;
+				ui.alphaChange = 1;
+				ui.transitionHold = 5;
 				nextState = 1;
 				instance_destroy(obj_star);
 			}	
@@ -113,6 +119,9 @@ switch (state) {
 				instance_destroy(objCtrl_menuGameEnd);	
 				objCtrl_menuMain.transitioning = true;	
 				objCtrl_menuMain.nextState = 0;
+				ui.transitionColor = c_white;
+				ui.alphaChange = 1;
+				ui.transitionHold = 5;
 				nextState = 1;
 				instance_destroy(obj_star);
 			}

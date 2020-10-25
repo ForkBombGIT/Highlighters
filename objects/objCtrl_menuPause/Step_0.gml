@@ -20,9 +20,12 @@ if (global.active) {
 		//menu options
 		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
 		   (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE")))) {
+			if (keyboard_key == ds_map_find_value(global.controls,"PAUSE")) {
+				cursorPosition = 0;
+			}
 			audio_play_sound((keyboard_key == ds_map_find_value(global.controls,"PAUSE")) ? snd_back : snd_ok,1,0);
 			resume = true;
-			if (cursorPosition != 0) 
+			if (cursorPosition == 1) 
 				objCtrl_game.ui.transition = true;
 			state = 1;
 		}

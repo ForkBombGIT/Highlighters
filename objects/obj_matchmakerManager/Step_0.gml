@@ -95,7 +95,7 @@ if !(global.gameover) &&
 			global.combo = sizeOfCombo >= 0;
 			global.chain = (chainStart && chainSize > 0);
 			
-			if (global.combo) && !(global.victory) {
+			if (global.combo) && !(global.victory) && !(global.chain) {
 				audio_play_sound(snd_combo_chain,2,0);	
 			}
 
