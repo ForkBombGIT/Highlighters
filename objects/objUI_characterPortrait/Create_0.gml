@@ -8,7 +8,7 @@ state = 0;
 lastState = 0;
 lastFreezeTime = -1;
 
-visible = false;
+visible = (global.gameMode == 1) ? false : true;
 
 //animation data for character sprites
 characterFrameRates = ds_list_create();
