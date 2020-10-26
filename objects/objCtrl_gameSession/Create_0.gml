@@ -1,5 +1,7 @@
 randomize();
 
+objCtrl_characterPortrait.ui.visible = true;
+
 //holds gameover state
 global.gameover = false;
 global.victory = false;

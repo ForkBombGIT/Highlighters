@@ -17,8 +17,7 @@ switch (state) {
 	// Splash Screen
 	case 0:
 		if (instance_exists(objUI_splash)) {
-			if !(objUI_splash.splash) && 
-			   !(transitioning){
+			if !(objUI_splash.splash) {
 				nextState = 1;	
 			}
 		}
@@ -39,7 +38,8 @@ switch (state) {
 		
 		if (objCtrl_menuMain.state == 5) && 
 		   (objCtrl_menuMain.nextState == - 1) {
-			nextState = 2;
+			   if (global.gameMode == 1) state = 2;
+			   else nextState = 2;
 		}
 	break;
 	// Game Options

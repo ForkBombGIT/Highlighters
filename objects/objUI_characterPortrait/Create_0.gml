@@ -8,6 +8,8 @@ state = 0;
 lastState = 0;
 lastFreezeTime = -1;
 
+visible = false;
+
 //animation data for character sprites
 characterFrameRates = ds_list_create();
 ds_list_add(characterFrameRates,[4,6,3,2]);

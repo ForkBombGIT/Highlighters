@@ -1,5 +1,5 @@
 event_inherited();
-ui.state = state;
+ui.state = ((state == 5) && (global.gameMode == 1) && !(instance_exists(objCtrl_gameSession))) ? 4 : state;
 ui.cursorPosition = cursorPosition;
 
 #region Navigation
