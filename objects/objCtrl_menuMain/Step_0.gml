@@ -12,6 +12,8 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"B")) &&
 	if (state == 4) nextState = 1;
 	else nextState = clamp(state - 1, 0, 5); 
 	objCtrl_game.ui.transition = true; transitioning = true;
+	objCtrl_game.ui.transitionColor = c_black;
+	objCtrl_game.ui.alphaChange = objCtrl_game.ui.mainMenuAlphaChange;
 }	
 	
 if (keyboard_check_pressed(vk_anykey)) {
