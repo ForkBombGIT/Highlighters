@@ -27,83 +27,85 @@ if (keyboard_check_pressed(vk_anykey)) {
 }
 
 // Main Menu State control
-switch (state) {
-	case 0:
-		//menu item selection
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
-			audio_play_sound(snd_ok,1,0);
-			nextState = 1;
-			objCtrl_game.ui.transitionColor = c_white;
-			objCtrl_game.ui.transition = true;
-			objCtrl_game.ui.alphaChange = objCtrl_game.ui.subMenuAlphaChange;
-			objCtrl_game.ui.transitionHold = 30;
-			transitioning = true;
-		}
-	break;
-	case 1:
-		global.gameMode = 0;
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
-			audio_play_sound(snd_ok,1,0);
-			objCtrl_game.ui.transitionColor = c_black;
-			objCtrl_game.ui.alphaChange = objCtrl_game.ui.mainMenuAlphaChange;
-			switch (cursorPosition) {
-				case 0: //classic
-					nextState = 5;
-				case 1: //practice
-					if (nextState != 5) nextState = 4; 
-					objCtrl_game.ui.transition = true; transitioning = true;
-					break;
-				case 2: //options
-					nextState = 2;
-					objCtrl_game.ui.transition = true; transitioning = true;
-					break;
+if (objCtrl_game.ui.transitionAlpha == 0) {
+	switch (state) {
+		case 0:
+			//menu item selection
+			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+				audio_play_sound(snd_ok,1,0);
+				nextState = 1;
+				objCtrl_game.ui.transitionColor = c_white;
+				objCtrl_game.ui.transition = true;
+				objCtrl_game.ui.alphaChange = objCtrl_game.ui.subMenuAlphaChange;
+				objCtrl_game.ui.transitionHold = 30;
+				transitioning = true;
 			}
-		}
-	break;
-	case 2:
-		if (instance_exists(objCtrl_menuOptions)) {
-			option = -1;
-			instance_destroy(objCtrl_menuOptions);	
-		}
+		break;
+		case 1:
+			global.gameMode = 0;
+			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+				audio_play_sound(snd_ok,1,0);
+				objCtrl_game.ui.transitionColor = c_black;
+				objCtrl_game.ui.alphaChange = objCtrl_game.ui.mainMenuAlphaChange;
+				switch (cursorPosition) {
+					case 0: //classic
+						nextState = 5;
+					case 1: //practice
+						if (nextState != 5) nextState = 4; 
+						objCtrl_game.ui.transition = true; transitioning = true;
+						break;
+					case 2: //options
+						nextState = 2;
+						objCtrl_game.ui.transition = true; transitioning = true;
+						break;
+				}
+			}
+		break;
+		case 2:
+			if (instance_exists(objCtrl_menuOptions)) {
+				option = -1;
+				instance_destroy(objCtrl_menuOptions);	
+			}
 		
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
-			audio_play_sound(snd_ok,1,0);
-			switch (cursorPosition) {
-				case 0: //input
-					option = 0
-				case 1: //audio video
-					if (option == -1) option = 1;
-					nextState = 3;
-					objCtrl_game.ui.transition = true; transitioning = true;
-					break;
+			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+				audio_play_sound(snd_ok,1,0);
+				switch (cursorPosition) {
+					case 0: //input
+						option = 0
+					case 1: //audio video
+						if (option == -1) option = 1;
+						nextState = 3;
+						objCtrl_game.ui.transition = true; transitioning = true;
+						break;
+				}
 			}
-		}
-	break;
-	//Options Menu
-	case 3:
-		// Create options menu, if not created
-		if !(instance_exists(objCtrl_menuOptions)) {
-			var menuOptionsCtrl = instance_create_layer(x,y,"GUI",objCtrl_menuOptions);
-			menuOptionsCtrl.state = option;				
-		}
-		else if (objCtrl_menuOptions.exitState == 1) {
-			objCtrl_game.ui.transition = true;
-			nextState = 2;
-			transitioning = true;
-		}
-	break;
-	// Practice
-	case 4:
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
-			audio_play_sound(snd_ok,1,0);
-			state = 5;
-			global.gameMode = 1;
-		}
-	break;
-	// Classic
-	case 5:
-		if (global.gameMode == 0)
-			global.gameMode = 2;
-	break;
+		break;
+		//Options Menu
+		case 3:
+			// Create options menu, if not created
+			if !(instance_exists(objCtrl_menuOptions)) {
+				var menuOptionsCtrl = instance_create_layer(x,y,"GUI",objCtrl_menuOptions);
+				menuOptionsCtrl.state = option;				
+			}
+			else if (objCtrl_menuOptions.exitState == 1) {
+				objCtrl_game.ui.transition = true;
+				nextState = 2;
+				transitioning = true;
+			}
+		break;
+		// Practice
+		case 4:
+			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+				audio_play_sound(snd_ok,1,0);
+				state = 5;
+				global.gameMode = 1;
+			}
+		break;
+		// Classic
+		case 5:
+			if (global.gameMode == 0)
+				global.gameMode = 2;
+		break;
+	}
 }
 #endregion
