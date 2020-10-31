@@ -96,6 +96,7 @@ if (state == 0) {
 					for (var i = 0; i < array_length(defaultControlsKeys); i++) {
 						ds_map_add(global.controls,defaultControlsKeys[i],ds_map_find_value(objCtrl_game.defaultControls,defaultControlsKeys[i]));
 					}
+					scr_saveControls("data.json");
 				}
 				else if (cursorPosition > 1)  && (cursorPosition < 8) {
 					inputChangeKey = true;	

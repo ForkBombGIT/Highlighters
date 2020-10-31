@@ -4,7 +4,8 @@ ui.cursorPosition = cursorPosition;
 #region Input Control
 //advance to practice
 if (global.gameMode == 1) state = 1;
-if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) && 
+   (objCtrl_game.ui.transitionAlpha == 0)) {
 	audio_play_sound(snd_ok,1,0);
 	if (++cursorPosition == 2) {
 		state = 1;

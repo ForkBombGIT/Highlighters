@@ -1,4 +1,5 @@
-draw_sprite(spr_options_menus,state,0,0);
+if (state != -1)
+	draw_sprite(spr_options_menus,state,0,0);
 
 switch (state) {
 	//input menu

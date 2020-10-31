@@ -1,5 +1,5 @@
 event_inherited();
-
+state = -1;
 // Input Options 
-inputPrompt = 0;
+inputPrompt = -1;
 inputChangeKey = false;

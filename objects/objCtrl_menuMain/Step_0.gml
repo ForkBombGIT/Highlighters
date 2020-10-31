@@ -76,6 +76,9 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 						if (option == -1) option = 1;
 						nextState = 3;
 						objCtrl_game.ui.transition = true; transitioning = true;
+						objCtrl_game.ui.transitionColor = c_white;
+						objCtrl_game.ui.alphaChange = 1;
+						objCtrl_game.ui.transitionHold = 5;
 						break;
 				}
 			}

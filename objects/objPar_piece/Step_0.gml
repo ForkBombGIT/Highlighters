@@ -30,7 +30,8 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		!(global.victory) &&
 		!(match) &&
 		!(landAnim) &&
-		!(highlight)) {
+		!(highlight) &&
+		!(aboveMatch)) {
 		if (y <= scr_getRowPos(0)) {
 			image_index = index;
 		}
@@ -74,7 +75,8 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	#region Warning Notifications
 	//bounce
 	if !(global.gameover) &&
-	   !(global.victory) {
+	   !(global.victory) && 
+	   !(aboveMatch) {
 		if (y < scr_getRowPos(0) && 
 		   (y <= scr_getRowPos(objCtrl_gameSession.boardHeight - 3)) &&
 		   (y != scr_getRowPos(objCtrl_gameSession.boardHeight - 1)) && 

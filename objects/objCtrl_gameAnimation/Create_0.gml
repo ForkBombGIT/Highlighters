@@ -21,4 +21,6 @@ gameEndCol = objCtrl_gameSession.boardWidth - 1;
 gameEndAnimation = false;
 animRow = 8;
 
+fallDelay = 0;
+
 ui = instance_create_layer(x,y,"GUI",objUI_gameAnimation);

@@ -18,7 +18,8 @@ if (!global.gameover) &&
 			if !(squish) && 
 			   !(match) && 
 			   !(landAnim) &&
-			   !(swap) {
+			   !(swap) &&
+			   !(aboveMatch) {
 				image_index = index;
 			}
 		}
@@ -109,30 +110,32 @@ if (global.gameover) ||
 // falling pieces animation
 if (gameEndTransition) {
 	if (gameEndState == 0) {
-		var entity = scr_getPieceAtPos(gameEndRow,gameEndCol);
-		
-		if (instance_exists(entity)) {
-			if (global.gameover) entity.gameoverFall = true;
-			if (global.victory) entity.gameoverRise = true;
-		}
-		if (global.gameover) {
-			if (--gameEndCol == -1) {
-				gameEndCol = objCtrl_gameSession.boardWidth - 1
-				gameEndRow ++;
-				if (gameEndRow > objCtrl_gameSession.boardHeight) {
-					gameEndState = 1;	
+		if (fallDelay == 0) {
+			var entity = scr_getPieceAtPos(gameEndRow,gameEndCol);
+			fallDelay++;
+			if (instance_exists(entity)) {
+				if (global.gameover) entity.gameoverFall = true;
+				if (global.victory) entity.gameoverRise = true;
+			}
+			if (global.gameover) {
+				if (--gameEndCol == -1) {
+					gameEndCol = objCtrl_gameSession.boardWidth - 1
+					gameEndRow ++;
+					if (gameEndRow > objCtrl_gameSession.boardHeight) {
+						gameEndState = 1;	
+					}
 				}
 			}
-		}
-		if (global.victory) {
-			if (++gameEndCol > objCtrl_gameSession.boardWidth - 1) {
-				gameEndCol = 0;
-				gameEndRow --;
-				if (gameEndRow == -2) {
-					gameEndState = 1;	
+			if (global.victory) {
+				if (++gameEndCol > objCtrl_gameSession.boardWidth - 1) {
+					gameEndCol = 0;
+					gameEndRow --;
+					if (gameEndRow == -2) {
+						gameEndState = 1;	
+					}
 				}
 			}
-		}
+		} else fallDelay = 0;
 	}
 	if (gameEndState == 1) { 
 		if !(alarm[1]) alarm[1] = 60;	
