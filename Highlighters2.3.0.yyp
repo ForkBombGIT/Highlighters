@@ -38,6 +38,7 @@
     {"id":{"name":"spr_gameoverWin","path":"sprites/spr_gameoverWin/spr_gameoverWin.yy",},"order":11,},
     {"id":{"name":"spr_practice_prompt","path":"sprites/spr_practice_prompt/spr_practice_prompt.yy",},"order":12,},
     {"id":{"name":"spr_fadeToBlack","path":"sprites/spr_fadeToBlack/spr_fadeToBlack.yy",},"order":13,},
+    {"id":{"name":"sng_floss","path":"sounds/sng_floss/sng_floss.yy",},"order":15,},
     {"id":{"name":"spr_fadeToWhite","path":"sprites/spr_fadeToWhite/spr_fadeToWhite.yy",},"order":14,},
     {"id":{"name":"spr_menunumbers","path":"sprites/spr_menunumbers/spr_menunumbers.yy",},"order":0,},
     {"id":{"name":"spr_options_menus","path":"sprites/spr_options_menus/spr_options_menus.yy",},"order":12,},
