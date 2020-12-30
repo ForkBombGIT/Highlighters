@@ -1,4 +1,5 @@
 //clear active match list if no matchmakers exist
+var inputMap = ds_map_find_value(global.options,"input");
 if (instance_number(obj_matchmaker) == 0) {
 	ds_list_clear(activeMatches)	
 }
@@ -46,7 +47,7 @@ if (global.restart) {
 	global.gameLevel = global.startGameLevel;
 	global.riseSpeed = scr_getRiseSpeed(global.gameLevel);
 	canRise = true;
-	instance_create_layer(168, window_get_height()/4,"GUI",objUI_countdown);	
+	instance_create_layer(168, 132,"GUI",objUI_countdown);	
 	instance_create_layer(x,y,"Controllers",obj_matchmakerManager);
 }
 
@@ -80,7 +81,7 @@ if (freezeTime <= 0) {
 #endregion
 
 #region Piece Loop
-if keyboard_check(ds_map_find_value(global.controls,"B")) && 
+if keyboard_check(ds_map_find_value(inputMap,"B")) && 
   (instance_exists(obj_matchmaker) || instance_exists(objUI_countdown)) {
 	global.fastAnim = true;
 	alarm[0] = postFastAnim;
@@ -111,7 +112,7 @@ if ((global.active) &&
 	} else newRowInc = false;
 	
 	//manual new row
-	if (keyboard_check(ds_map_find_value(global.controls,"B")) && 
+	if (keyboard_check(ds_map_find_value(inputMap,"B")) && 
 	  !(global.forceRise) && 
 	  !(global.riseBrake)) {
 		global.freeze = false;

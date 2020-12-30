@@ -1,4 +1,6 @@
 var activeMatchmakers = instance_number(obj_matchmaker);
+var avMap = ds_map_find_value(global.options,"av");
+var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 
 // matchmaker management loop
 if !(global.gameover) &&
@@ -49,6 +51,7 @@ if !(global.gameover) &&
 					if (instance_exists(matchmaker.justLandedEntity)) {
 						if (chainStart) && (current_time - lastChainCreation >= 100) {
 							audio_play_sound(snd_combo_chain,2,0);	
+							audio_sound_gain(snd_combo_chain,soundVol,0);
 							var chainObj = instance_create_layer(matchmaker.justLandedEntity.x - 24,
 																 matchmaker.justLandedEntity.y - 24,
 													             "Notifications",
@@ -97,6 +100,7 @@ if !(global.gameover) &&
 			
 			if (global.combo) && !(global.victory) && !(global.chain) {
 				audio_play_sound(snd_combo_chain,2,0);	
+				audio_sound_gain(snd_combo_chain,soundVol,0);
 			}
 
 			if !(global.gameMode == 1) {

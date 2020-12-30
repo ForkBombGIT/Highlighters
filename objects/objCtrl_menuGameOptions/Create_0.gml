@@ -13,7 +13,7 @@ else global.character = 1
 global.maxLevel = 1000;
 global.gameLevel = 0;	
 global.startGameLevel = 0;
-global.maxChar = 3;
+global.maxChar = 4;
 
 // Controls delay on level picking
 delay = 0.05;

@@ -1,6 +1,7 @@
 event_inherited();
+var inputMap = ds_map_find_value(global.options,"input");
 // Close game
-if (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE")) && state != 3) {
+if (keyboard_check_pressed(ds_map_find_value(inputMap,"PAUSE")) && state != 3) {
 	var keyChange = (instance_exists(objCtrl_menuOptions) && (objCtrl_menuOptions.inputChangeKey))
 	if !(instance_exists(objCtrl_menuQuit)) && !(keyChange)
 		instance_create_layer(0,0,"Controllers",objCtrl_menuQuit);
@@ -74,7 +75,7 @@ switch (state) {
 		if (!(instance_exists(objCtrl_menuPause)) || !(objCtrl_menuPause.pause)) {
 			if !(instance_exists(objCtrl_gameSession)) {	
 				instance_create_layer(x,y,"Controllers",objCtrl_gameSession);
-				instance_create_layer(168,window_get_height()/4,"GUI",objUI_countdown);
+				instance_create_layer(168,132,"GUI",objUI_countdown);
 				instance_destroy(objCtrl_menuGameOptions);
 			}
 		

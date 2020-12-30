@@ -4,26 +4,31 @@ if (!instance_exists(ui)) instance_destroy();
 
 #region Pause Handling
 if (global.active) {
+	var inputMap = ds_map_find_value(global.options,"input");
+	var avMap = ds_map_find_value(global.options,"av");
+	var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 	if (pause) {
 		#region Menu Control
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"UP"))) {
+		if (keyboard_check_pressed(ds_map_find_value(inputMap,"UP"))) {
 			if (cursorPosition > 0) {
 				cursorPosition--;	
 			}
 		}
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"DOWN"))) {
+		if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) {
 			if (cursorPosition < array_length_1d(ui.pauseCursorPositions) - 1) {
 				cursorPosition++;	
 			}
 		}
 		
 		//menu options
-		if (keyboard_check_pressed(ds_map_find_value(global.controls,"A")) || 
-		   (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE")))) {
-			if (keyboard_key == ds_map_find_value(global.controls,"PAUSE")) {
+		if (keyboard_check_pressed(ds_map_find_value(inputMap,"A")) || 
+		   (keyboard_check_pressed(ds_map_find_value(inputMap,"PAUSE")))) {
+			if (keyboard_key == ds_map_find_value(inputMap,"PAUSE")) {
 				cursorPosition = 0;
 			}
-			audio_play_sound((keyboard_key == ds_map_find_value(global.controls,"PAUSE")) ? snd_back : snd_ok,1,0);
+			var sound = (keyboard_key == ds_map_find_value(inputMap,"PAUSE")) ? snd_back : snd_ok;
+			audio_play_sound(sound,1,0);
+			audio_sound_gain(sound,soundVol,0);
 			resume = true;
 			if (cursorPosition == 1) 
 				objCtrl_game.ui.transition = true;
@@ -52,9 +57,10 @@ if (global.active) {
 		//pause on escape press
 		if !(global.gameover) && 
 			!(global.victory) {
-			if (keyboard_check_pressed(ds_map_find_value(global.controls,"PAUSE"))) {
+			if (keyboard_check_pressed(ds_map_find_value(inputMap,"PAUSE"))) {
 				pause = true;
 				audio_play_sound(snd_pausea,1,0);
+				audio_sound_gain(snd_pausea,soundVol,0);
 				objPar_piece.visible = false;
 				obj_cursor.visible = false;
 				if (instance_exists(obj_combo)) {
@@ -70,6 +76,7 @@ if (global.active) {
 			//pause when window loses focus
 			if !(window_has_focus()) {
 				audio_play_sound(snd_pausea,1,0);
+				audio_sound_gain(snd_pausea,soundVol,0);
 				pause = true;
 				objPar_piece.visible = false;
 				obj_cursor.visible = false;

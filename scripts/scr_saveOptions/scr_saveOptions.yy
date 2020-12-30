@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Options.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_loadControls",
+  "name": "scr_saveOptions",
   "tags": [],
   "resourceType": "GMScript",
 }

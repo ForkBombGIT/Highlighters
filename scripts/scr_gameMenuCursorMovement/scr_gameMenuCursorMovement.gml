@@ -1,10 +1,10 @@
-function scr_menuCursorMovement(argument0, argument1) {
+function scr_gameMenuCursorMovement(argument0, argument1) {
 	//used for cursor movement in menus
 	//keyRight and keyLeft should be defined in calling obj
 	var cursorPosition = argument0;
 	var keyCode = argument1;
-
-	if (keyCode == ds_map_find_value(global.controls,"UP")) {
+	var inputMap = ds_map_find_value(global.options,"input");
+	if (keyCode == ds_map_find_value(inputMap,"UP")) {
 		switch (cursorPosition) {
 			case 0:
 				global.gameLevel = min(global.gameLevel + 100,global.maxLevel - 1)
@@ -12,7 +12,7 @@ function scr_menuCursorMovement(argument0, argument1) {
 		}
 	}
 
-	if (keyCode == ds_map_find_value(global.controls,"DOWN")) {
+	if (keyCode == ds_map_find_value(inputMap,"DOWN")) {
 		switch (cursorPosition) {
 			case 0:
 				global.gameLevel = max(global.gameLevel - 100,0)
@@ -20,7 +20,7 @@ function scr_menuCursorMovement(argument0, argument1) {
 		}
 	}
 
-	if (keyCode == ds_map_find_value(global.controls,"RIGHT")) {
+	if (keyCode == ds_map_find_value(inputMap,"RIGHT")) {
 		switch (cursorPosition) {
 			case 0:
 				global.gameLevel = min(global.gameLevel + 1,global.maxLevel - 1)
@@ -31,7 +31,7 @@ function scr_menuCursorMovement(argument0, argument1) {
 		}
 	}
 
-	if (keyCode == ds_map_find_value(global.controls,"LEFT")) {
+	if (keyCode == ds_map_find_value(inputMap,"LEFT")) {
 		switch (cursorPosition) {
 			case 0:
 				global.gameLevel = max(global.gameLevel - 1,0)

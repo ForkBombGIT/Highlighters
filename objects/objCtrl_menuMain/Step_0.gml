@@ -1,4 +1,7 @@
 event_inherited();
+var inputMap = ds_map_find_value(global.options,"input");
+var avMap = ds_map_find_value(global.options,"av");
+var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 ui.state = ((state == 5) && (global.gameMode == 1) && 
           !(instance_exists(objCtrl_gameSession)) && 
           !(instance_exists(objCtrl_menuGameEnd))) ? 4 : state;
@@ -6,11 +9,12 @@ ui.cursorPosition = cursorPosition;
 
 #region Navigation
 //menu item selection
-if (keyboard_check_pressed(ds_map_find_value(global.controls,"B")) && 
+if (keyboard_check_pressed(ds_map_find_value(inputMap,"B")) && 
 	(state != 0) &&
 	(state != 3) &&
 	(state != 5)) {
 	audio_play_sound(snd_back,1,0);
+	audio_sound_gain(snd_back,soundVol,0);
 	if (state == 4) nextState = 1;
 	else nextState = clamp(state - 1, 0, 5); 
 	objCtrl_game.ui.transition = true; transitioning = true;
@@ -20,9 +24,9 @@ if (keyboard_check_pressed(ds_map_find_value(global.controls,"B")) &&
 	
 if (keyboard_check_pressed(vk_anykey)) {
 	//moving up and down
-	if (keyboard_key == ds_map_find_value(global.controls,"UP")) 
+	if (keyboard_key == ds_map_find_value(inputMap,"UP")) 
 		cursorPosition = clamp(cursorPosition - 1,0, 2);
-	else if (keyboard_key == ds_map_find_value(global.controls,"DOWN")) 
+	else if (keyboard_key == ds_map_find_value(inputMap,"DOWN")) 
 		cursorPosition = clamp(cursorPosition + 1,0, state == 2 ? 1 : 2);
 }
 
@@ -31,8 +35,9 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 	switch (state) {
 		case 0:
 			//menu item selection
-			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+			if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
 				audio_play_sound(snd_ok,1,0);
+				audio_sound_gain(snd_ok,soundVol,0);
 				nextState = 1;
 				objCtrl_game.ui.transitionColor = c_white;
 				objCtrl_game.ui.transition = true;
@@ -43,8 +48,9 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 		break;
 		case 1:
 			global.gameMode = 0;
-			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+			if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
 				audio_play_sound(snd_ok,1,0);
+				audio_sound_gain(snd_ok,soundVol,0);
 				objCtrl_game.ui.transitionColor = c_black;
 				objCtrl_game.ui.alphaChange = objCtrl_game.ui.mainMenuAlphaChange;
 				switch (cursorPosition) {
@@ -67,8 +73,9 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 				instance_destroy(objCtrl_menuOptions);	
 			}
 		
-			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+			if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
 				audio_play_sound(snd_ok,1,0);
+				audio_sound_gain(snd_ok,soundVol,0);
 				switch (cursorPosition) {
 					case 0: //input
 						option = 0
@@ -98,8 +105,9 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 		break;
 		// Practice
 		case 4:
-			if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+			if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
 				audio_play_sound(snd_ok,1,0);
+				audio_sound_gain(snd_ok,soundVol,0);
 				state = 5;
 				global.gameMode = 1;
 			}

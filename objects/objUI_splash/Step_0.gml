@@ -1,6 +1,7 @@
 if (splash) {
 	// skip screen
-	if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+	var inputMap = ds_map_find_value(global.options,"input");
+	if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
 		splashIndex = floor(splashIndex) + 1;
 	}
 	var splashAnimation = 0.005;

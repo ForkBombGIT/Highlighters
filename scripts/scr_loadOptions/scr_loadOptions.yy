@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Utils",
-    "path": "folders/Scripts/Utils.yy",
+    "name": "Options",
+    "path": "folders/Scripts/Options.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_keyToIndex",
+  "name": "scr_loadOptions",
   "tags": [],
   "resourceType": "GMScript",
 }
