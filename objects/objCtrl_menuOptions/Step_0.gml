@@ -3,15 +3,19 @@ ui.state = state;
 ui.cursorPosition = cursorPosition;
 ui.inputChangeKey = inputChangeKey;
 ui.inputPrompt = inputPrompt;
+ui.musicTest = musicTest;
+ui.soundTest = soundTest;
 maxCursorPosition = (state == 0) ? inputMaxCursorPosition : avMaxCursorPosition;
 var inputMap = ds_map_find_value(global.options,"input");
 var avMap = ds_map_find_value(global.options,"av");
+var musicVol = ds_map_find_value(avMap,"musicVol") / 600;
 var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 
 #region Input Control
 if !(inputChangeKey) {
 	//back
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"B"))) {
+		audio_stop_all();
 		audio_play_sound(snd_back,1,0);
 		audio_sound_gain(snd_back,soundVol,0);
 		if (confirmResolution) {
@@ -113,7 +117,19 @@ if (state == 0) {
 	}
 }
 else if (state == 1) {
-	if (keyboard_check(vk_anykey)) {
+	if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
+		if (cursorPosition == 1) {
+			audio_stop_all();
+			audio_play_sound(music[musicTest],1,1);
+			audio_sound_gain(music[musicTest],musicVol,0);
+		} else if (cursorPosition == 3) {
+			audio_stop_all();
+			audio_play_sound(sounds[soundTest],1,0);
+			audio_sound_gain(sounds[soundTest],soundVol,0);
+		}
+	}
+	else if (keyboard_check(vk_anykey)) {
+		inputPrompt = -1;
 		lastKey = keyboard_key;
 		if (lastKey == keyboard_key) {
 			if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key);
@@ -127,7 +143,22 @@ else if (state == 1) {
 				}
 			} 
 		}
+		
+		if (cursorPosition != 1) && (cursorPosition != 3) {
+			// stop music sounds
+			if (audio_is_playing(music[musicTest])) {
+				audio_stop_sound(music[musicTest]);	
+			}
+			// stop sounds
+			if (audio_is_playing(sounds[soundTest])) {
+				audio_stop_sound(sounds[soundTest]);	
+			}
+		}
 	} else keyPressLength = 0;
+	
+	if (cursorPosition == 1) || (cursorPosition == 3) {
+		inputPrompt = 4;	
+	}
 	
 	if (fullscreenOption != ds_map_find_value(avMap,"fullscreen") || 
 	   (resolutionOption != ds_map_find_value(avMap,"resolution"))) {
@@ -149,8 +180,10 @@ else if (state == 1) {
 			}
 		}
 	} else {
-		confirmResolution = false;
-		inputPrompt = -1;
+		if (confirmResolution) {
+			confirmResolution = false;
+			inputPrompt = -1;
+		}
 	}
 }
 #endregion

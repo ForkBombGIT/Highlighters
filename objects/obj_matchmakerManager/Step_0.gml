@@ -85,8 +85,8 @@ if !(global.gameover) &&
 			}
 			var sizeOfCombo = total - (comboSize);
 			global.gameScore = min(global.gameScore + (total * baseScoreInc) + 
-									max(0,(sizeOfCombo * comboBonus) + panic) + 
-									max(0,(chainSize * chainBonus) + panic),
+								   max(0,((sizeOfCombo + 1) * comboBonus) + panic) + 
+								   max(0,(chainSize * chainBonus) + panic),
 								   global.victoryScore);
 								   
 			if (global.gameScore >= global.victoryScore) {
@@ -106,12 +106,15 @@ if !(global.gameover) &&
 			if !(global.gameMode == 1) {
 				//checks if level is at x99, if it is, follow normal combo behavior
 				var comboChain = global.combo && global.chain;
-				var levelIncrement = (comboChain) ? 4 : (sizeOfCombo > 0) + ((chainStart && chainSize > 0) * 2) + 1
-				if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1)
-					global.gameLevel = global.gameLevel + levelIncrement;
+				var comboLevelBonus = (sizeOfCombo >= 0) + (sizeOfCombo >= 5);
+				var levelIncrement = (comboChain) ? 4 : comboLevelBonus + ((chainStart && chainSize > 0) * 2) + 1
+				if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1) {
+					global.gameLevel = global.gameLevel + levelIncrement + carryOverLevels;
+					carryOverLevels = 0;
+				}
 				//otherwise 
 				else global.gameLevel = min(global.gameLevel + levelIncrement,
-											(floor((global.gameLevel / global.levelToMatch) % 10) * global.levelToMatch) + global.levelToMatch - 1);
+										   (floor((global.gameLevel / global.levelToMatch) % 10) * global.levelToMatch) + global.levelToMatch - 1);
 				global.gameLevel = min(global.gameLevel, global.maxLevel - 1);
 			}
 			

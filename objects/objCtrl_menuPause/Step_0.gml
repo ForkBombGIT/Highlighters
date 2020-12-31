@@ -15,7 +15,7 @@ if (global.active) {
 			}
 		}
 		if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) {
-			if (cursorPosition < array_length_1d(ui.pauseCursorPositions) - 1) {
+			if (cursorPosition < array_length(ui.pauseCursorPositions) - 1) {
 				cursorPosition++;	
 			}
 		}

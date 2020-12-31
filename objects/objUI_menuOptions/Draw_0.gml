@@ -47,12 +47,16 @@ switch (state) {
 		draw_text(384,72,string_replace_all(string_format(ds_map_find_value(avMap,"musicVol"),3,0)," ", "0"));
 		//music test
 		if (cursorPosition == 1) draw_sprite(spr_av_inputs,1,24,96);
+		draw_set_font((cursorPosition == 1) ? numFont : numFontFaded);
+		draw_text(408,96,string_replace_all(string_format(musicTest,2,0)," ", "0"));
 		//sound vol
 		if (cursorPosition == 2) draw_sprite(spr_av_inputs,2,24,120);
 		draw_set_font((cursorPosition == 2) ? numFont : numFontFaded);
 		draw_text(384,120,string_replace_all(string_format(ds_map_find_value(avMap,"soundVol"),3,0)," ", "0"));
 		//sound test
 		if (cursorPosition == 3) draw_sprite(spr_av_inputs,3,24,144);
+		draw_set_font((cursorPosition == 3) ? numFont : numFontFaded);
+		draw_text(408,144,string_replace_all(string_format(soundTest,2,0)," ", "0"));
 		//fullscreen toggle
 		if (cursorPosition == 4) draw_sprite(spr_av_inputs,4,24,192);
 		draw_sprite((cursorPosition == 4) ? spr_menu_options_etc : spr_menu_options_etc_faded,ds_map_find_value(avMap,"fullscreen"),264,192);

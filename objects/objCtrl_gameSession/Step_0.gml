@@ -103,10 +103,12 @@ if ((global.active) &&
 		scr_createRow(-1);
 		if !(newRowInc) {
 			global.gameScore = min(global.gameScore + 1,global.victoryScore);
-			if !(global.gameMode == 1) && 
+			if !(global.gameMode == 1)  
 				// levelToMatch must be advance with a combo
-				(global.gameLevel % global.levelToMatch != global.levelToMatch - 1)
-				global.gameLevel = min(global.gameLevel + 1,global.maxLevel);
+				if (global.gameLevel % global.levelToMatch != global.levelToMatch - 1)
+					global.gameLevel = min(global.gameLevel + 1,global.maxLevel);
+				else 
+					obj_matchmakerManager.carryOverLevels += 1
 			newRowInc = true;
 		}
 	} else newRowInc = false;
