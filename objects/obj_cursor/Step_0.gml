@@ -3,6 +3,9 @@
 x = scr_getColPos(col) + sprite_get_width(spr_charm) / 2;
 visible = !global.gameover && 
           !global.victory;
+var inputMap = ds_map_find_value(global.options,"input");
+var avMap = ds_map_find_value(global.options,"av");
+var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 
 //ensure that the cursor remains in line with the pieces as the board rises
 if !(global.gameover) &&
@@ -38,7 +41,14 @@ if !(global.gameover) &&
 if ((global.active) && 
 	!(global.gameover) &&
 	!(global.victory)) {
-	if (keyboard_check_pressed(ds_map_find_value(global.controls,"A"))) {
+	if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
+		buffer = 0;
+		swap = true;
+	}
+}
+
+if (swap) {
+	if (buffer++ < bufferLength) {
 		//holds the piece on the left and right of the cursor
 		var left = instance_position(x-24,y,objPar_piece);
 		var right = instance_position(x+24,y,objPar_piece);
@@ -55,55 +65,72 @@ if ((global.active) &&
 				   (!(left.match) && !(right.match)) &&
 				   (left.bottomEntity) && (right.bottomEntity)) {
 					audio_play_sound(snd_swap,1,0);
+					audio_sound_gain(snd_swap,soundVol,0);
 					left.targetX = col + 1;
 					left.swap = true;
 					left.image_index = left.index + 4;
+					left.depth = left.orgDepth - 100;
 			
 					right.targetX = col;
 					right.swap = true;
 					right.image_index = right.index + 4;
+					swap = false;
 				}	
 			}
 			else {
 				//applies swap to left piece
 				if (instance_exists(left)) {
-					if !(left.swap) && !(left.match) && (left.bottomEntity) && (rightUpBottomEntity) {
+					if !(left.swap) && 
+					   !(left.match) && 
+					   (left.bottomEntity) && 
+					   (rightUpBottomEntity) {
 						audio_play_sound(snd_swap,1,0);
+						audio_sound_gain(snd_swap,soundVol,0);
 						left.targetX = col + 1;
 						left.swap = true;
 						left.image_index = left.index + 4;
+						left.depth = left.orgDepth - 100;
+						swap = false;
 					}
 				}
 	
 				//applies swap to right piece
 				else if (instance_exists(right)){
-					if !(right.swap) && !(right.match) && (right.bottomEntity) && (leftUpBottomEntity) {
+					if !(right.swap) && 
+					   !(right.match) && 
+					   (right.bottomEntity) && 
+					   (leftUpBottomEntity) {
 						audio_play_sound(snd_swap,1,0);
+						audio_sound_gain(snd_swap,soundVol,0);
 						right.targetX = col;
 						right.swap = true;
 						right.image_index = right.index + 4;
+						swap = false;
 					}
 				} 
 			}
 		}
+	} else {
+		buffer = 0;
+		swap = false;
 	}
 }
 #endregion
 
 #region Cursor Movement
-leftB = keyboard_check(ds_map_find_value(global.controls,"LEFT"));
-rightB = keyboard_check(ds_map_find_value(global.controls,"RIGHT"));
-upB = keyboard_check(ds_map_find_value(global.controls,"UP"));
-downB = keyboard_check(ds_map_find_value(global.controls,"DOWN"));
+leftB = keyboard_check(ds_map_find_value(inputMap,"LEFT"));
+rightB = keyboard_check(ds_map_find_value(inputMap,"RIGHT"));
+upB = keyboard_check(ds_map_find_value(inputMap,"UP"));
+downB = keyboard_check(ds_map_find_value(inputMap,"DOWN"));
 if !(global.gameover) &&
    !(global.victory) {
 	if (leftB || rightB || upB || downB) {
-		var key = (leftB) ? ds_map_find_value(global.controls,"LEFT") : 
-				  ((rightB) ? ds_map_find_value(global.controls,"RIGHT") :
-				  ((upB) ? ds_map_find_value(global.controls,"UP") : ds_map_find_value(global.controls,"DOWN")));
+		var key = (leftB) ? ds_map_find_value(inputMap,"LEFT") : 
+				  ((rightB) ? ds_map_find_value(inputMap,"RIGHT") :
+				  ((upB) ? ds_map_find_value(inputMap,"UP") : ds_map_find_value(inputMap,"DOWN")));
 		//single press behavior
 		if (lastKey != key) keyPressLength = 0;
-		if (++keyPressLength == 1) { scr_cursorMovement(key); audio_play_sound(snd_move,1,0); }
+		if (++keyPressLength == 1) { scr_cursorMovement(key,snd_move); }
 		lastKey = key;
 	} 
 	else 
@@ -114,7 +141,7 @@ if !(global.gameover) &&
 		if (keyPressLength > 0) {
 			if ((current_time - delayTime) > delay){
 				delayTime = current_time;
-				scr_cursorMovement(keyboard_key);
+				scr_cursorMovement(keyboard_key,pointer_null);
 			}
 		} 
 	}

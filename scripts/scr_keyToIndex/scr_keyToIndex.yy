@@ -1,8 +1,12 @@
 {
-    "id": "7e4901c7-b089-47ce-8749-2a680733b18c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_keyToIndex",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Utils",
+    "path": "folders/Scripts/Utils.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_keyToIndex",
+  "tags": [],
+  "resourceType": "GMScript",
 }

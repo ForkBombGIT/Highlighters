@@ -1,4 +1,5 @@
 //clear active match list if no matchmakers exist
+var inputMap = ds_map_find_value(global.options,"input");
 if (instance_number(obj_matchmaker) == 0) {
 	ds_list_clear(activeMatches)	
 }
@@ -23,7 +24,6 @@ if (global.restart) {
 	selectedEntities = scr_generateColors();
 	//set global variables
 	global.active = false;
-	global.restart = false;
 	global.gameScore = 0;
 	global.freeze = false;
 	global.forceRise = false;
@@ -46,8 +46,9 @@ if (global.restart) {
 	global.gameLevel = global.startGameLevel;
 	global.riseSpeed = scr_getRiseSpeed(global.gameLevel);
 	canRise = true;
-	instance_create_layer(168, window_get_height()/4,"GUI",objUI_countdown);	
+	instance_create_layer(168, 132,"GUI",objUI_countdown);	
 	instance_create_layer(x,y,"Controllers",obj_matchmakerManager);
+	global.restart = false;
 }
 
 var pieceSwap = false
@@ -80,14 +81,14 @@ if (freezeTime <= 0) {
 #endregion
 
 #region Piece Loop
-if keyboard_check(ds_map_find_value(global.controls,"B")) && 
+if keyboard_check(ds_map_find_value(inputMap,"B")) && 
   (instance_exists(obj_matchmaker) || instance_exists(objUI_countdown)) {
 	global.fastAnim = true;
 	alarm[0] = postFastAnim;
 } 
 
 
-if ((global.active) && 
+if ((global.active) &&	
    !(global.victory) &&
    !(global.gameover)) { 
 	if !(global.gameMode == 1) { //disables level progression in practice
@@ -102,22 +103,24 @@ if ((global.active) &&
 		scr_createRow(-1);
 		if !(newRowInc) {
 			global.gameScore = min(global.gameScore + 1,global.victoryScore);
-			if !(global.gameMode == 1) && 
+			if !(global.gameMode == 1)  
 				// levelToMatch must be advance with a combo
-				(global.gameLevel % global.levelToMatch != global.levelToMatch - 1)
-				global.gameLevel = min(global.gameLevel + 1,global.maxLevel);
+				if (global.gameLevel % global.levelToMatch != global.levelToMatch - 1)
+					global.gameLevel = min(global.gameLevel + 1,global.maxLevel);
+				else 
+					obj_matchmakerManager.carryOverLevels += 1
 			newRowInc = true;
 		}
 	} else newRowInc = false;
 	
 	//manual new row
-	if (keyboard_check(ds_map_find_value(global.controls,"B")) && 
+	if (keyboard_check(ds_map_find_value(inputMap,"B")) && 
 	  !(global.forceRise) && 
 	  !(global.riseBrake)) {
 		global.freeze = false;
 		freezeTime = 0;
 		//checks if piece is gonna rise into game over territory
-		if (scr_checkRow(objCtrl_gameSession.boardHeight)) {
+		if (scr_checkRow(objCtrl_gameSession.boardHeight - 1)) {
 			global.gameover = true;
 		}
 		else {

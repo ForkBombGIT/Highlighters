@@ -5,3 +5,4 @@ animLength = 7;
 
 //size of the combo
 comboSize = -1;
+maxCombo = 8;

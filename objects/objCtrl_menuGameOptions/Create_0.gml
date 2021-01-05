@@ -5,6 +5,7 @@ ui = instance_create_layer(x,y,"GUI",objUI_menuGameOptions);
 
 // init character portait
 instance_create_layer(x,y,"GUI",objCtrl_characterPortrait);
+if (global.gameMode == 0) objCtrl_characterPortrait.ui.visible = true;
 
 //initialize global variables for game setup
 if (global.gameMode == 1) global.character = 0;
@@ -12,7 +13,7 @@ else global.character = 1
 global.maxLevel = 1000;
 global.gameLevel = 0;	
 global.startGameLevel = 0;
-global.maxChar = 2;
+global.maxChar = 4;
 
 // Controls delay on level picking
 delay = 0.05;

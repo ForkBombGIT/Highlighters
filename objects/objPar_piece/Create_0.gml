@@ -36,9 +36,7 @@ landAnimIndex = image_index;
 landAnim = false;
 matchNumber = -1;
 highlight = false;
-highlightTimer = 0;
-highlightFrameTime = 7;
-highlightDelay = (global.gameMode == 1) ? 2 : 1;
+highlightDelay = 2;
 highlightIndex = 8;
 highlightLength = 14;
 highlighting = false;
@@ -49,6 +47,11 @@ aboveMatch = false;
 floatAboveMatchDelay = global.gameMode == 1 ? 30 : 3;
 landingAnimationFirst = 0.25; // 4 frames
 landingAnimationRest = 0.5; // 2 frames
+orgDepth = depth;
+gameoverRise = false;
+gameoverRiseAmount = 2;
+gameoverFall = false;
+gameoverFallAmount = 2;
 
 //position
 row = -1;
@@ -57,6 +60,7 @@ targY = -1;
 initY = -1;
 
 //used for matches
+activeMatchmaker = noone;
 left = noone;
 right = noone;
 down = noone;

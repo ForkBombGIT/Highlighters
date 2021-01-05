@@ -18,9 +18,9 @@ if (global.active) {
 		milli++;
 		totalMillis++;
 		if (milli >= room_speed) {
-			milli = 0; global.seconds++;
+			milli = 0; global.seconds = clamp(global.seconds + 1,0, room_speed);
 		} 
-		if (global.seconds >= 60) {
+		if (global.seconds >= room_speed) {
 			if (global.minutes != 99)
 				global.seconds = 0; 
 			global.minutes = clamp(global.minutes + 1, 0, 99)

@@ -1,23 +1,48 @@
-var key = argument0;
-if (key == ds_map_find_value(global.controls,"LEFT")) {
-	if (col > 0){
-		col -= 1;
+function scr_cursorMovement(argument0, argument1) {
+	var key = argument0;
+	var sound = argument1;
+	var inputMap = ds_map_find_value(global.options,"input");
+	var avMap = ds_map_find_value(global.options,"av");
+	var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
+	
+	if (key == ds_map_find_value(inputMap,"LEFT")) {
+		if (col > 0){
+			if (sound != pointer_null) {
+				audio_play_sound(sound,1,0);
+				audio_sound_gain(sound,soundVol,0);
+			}
+			col -= 1;
+		}
 	}
-}
-if (key == ds_map_find_value(global.controls,"RIGHT")) {
-	if (col < objCtrl_gameSession.boardWidth - 2){
-		col += 1;
+	if (key == ds_map_find_value(inputMap,"RIGHT")) {
+		if (col < objCtrl_gameSession.boardWidth - 2){
+			if (sound != pointer_null) {
+				audio_play_sound(sound,1,0);
+				audio_sound_gain(sound,soundVol,0);
+			}
+			col += 1;
+		}
 	}
-}
-if (key == ds_map_find_value(global.controls,"UP")) {
-	if (y - global.pieceSize >= scr_getRowPos(8)){
-		y -= global.pieceSize; 
-		row --;
+	if (key == ds_map_find_value(inputMap,"UP")) {
+		if (y - global.pieceSize >= scr_getRowPos(8)){
+			if (sound != pointer_null) {
+				audio_play_sound(sound,1,0);
+				audio_sound_gain(sound,soundVol,0);
+			}
+			y -= global.pieceSize; 
+			row --;
+		}
 	}
-}
-if (key == ds_map_find_value(global.controls,"DOWN")) {
-	if (y + global.pieceSize <= scr_getRowPos(0)){
-		y += global.pieceSize;
-		row ++;
+	if (key == ds_map_find_value(inputMap,"DOWN")) {
+		if (y + global.pieceSize <= scr_getRowPos(0)){
+			if (sound != pointer_null) {
+				audio_play_sound(sound,1,0);
+				audio_sound_gain(sound,soundVol,0);
+			}
+			y += global.pieceSize;
+			row ++;
+		}
 	}
+
+
 }

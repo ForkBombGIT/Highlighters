@@ -18,4 +18,7 @@ col = 2;
 //force rise variables
 targY = -1;
 initY = -1;
-
+//swap control
+bufferLength = 5;
+buffer = 0;
+swap = false;

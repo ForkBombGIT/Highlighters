@@ -1,8 +1,12 @@
 {
-    "id": "517cce44-098c-41d4-9927-bc6c3da0f581",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_checkColors",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Row Building",
+    "path": "folders/Scripts/Row Building.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_checkColors",
+  "tags": [],
+  "resourceType": "GMScript",
 }

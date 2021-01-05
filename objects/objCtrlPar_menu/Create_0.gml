@@ -6,3 +6,6 @@ state = 0;
 
 //Position of the menu cursor
 cursorPosition = 0;
+
+transitioning = false;
+nextState = -1;

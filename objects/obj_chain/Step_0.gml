@@ -2,9 +2,8 @@ event_inherited();
 
 if (chainSize != -1) {
 	if (visible == false) {
-		image_index = ((chainSize > sprite_get_number(spr_combo) / animLength) ? 
-					  (sprite_get_number(spr_combo) - animLength) : 
-					  (chainSize)) * animLength;
+		if (chainSize > maxChain) chainSize = maxChain + 1;
+		image_index = chainSize * animLength;
 	}
 	visible = true;
 	endAnim = (image_index > ((chainSize) * animLength) + (animLength - 1)); 

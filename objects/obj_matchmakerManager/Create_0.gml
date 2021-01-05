@@ -9,6 +9,9 @@ activeComboSize = -1;
 //how long freeze is applied for
 freezeTime = 0;
 
+// levels accumulated on 99 levels
+carryOverLevels = 0;
+
 //scoring
 baseScoreInc = 10;
 comboBonus = 50;

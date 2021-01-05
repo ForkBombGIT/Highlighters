@@ -3,6 +3,7 @@ event_inherited();
 //gameover menu
 endOptionAnim = 0;
 gameoverAnim = 0;
+gameEndState = 0;
 stopGameoverAnim = false;
 
 //animation speeds (in fps)
@@ -11,9 +12,6 @@ gameoverSpeed = 30;
 
 //restart
 restart = false;
-
-//board sprites
-boards = [spr_boardp,spr_board1, spr_board2];
 
 if (instance_exists(objCtrl_gameSession))
 	instance_destroy(objCtrl_gameSession);

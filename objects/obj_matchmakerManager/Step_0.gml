@@ -1,4 +1,6 @@
 var activeMatchmakers = instance_number(obj_matchmaker);
+var avMap = ds_map_find_value(global.options,"av");
+var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 
 // matchmaker management loop
 if !(global.gameover) &&
@@ -48,6 +50,8 @@ if !(global.gameover) &&
 				if (instance_exists(matchmaker)) {
 					if (instance_exists(matchmaker.justLandedEntity)) {
 						if (chainStart) && (current_time - lastChainCreation >= 100) {
+							audio_play_sound(snd_combo_chain,2,0);	
+							audio_sound_gain(snd_combo_chain,soundVol,0);
 							var chainObj = instance_create_layer(matchmaker.justLandedEntity.x - 24,
 																 matchmaker.justLandedEntity.y - 24,
 													             "Notifications",
@@ -75,28 +79,43 @@ if !(global.gameover) &&
 			if !(entityChainStart) global.chain = false;
 			
 			//Score and level increase calculations
+			var panic = false;
+			with (objPar_piece) {
+				if (bounce || squish) panic = true;
+			}
 			var sizeOfCombo = total - (comboSize);
-			global.gameScore = min(global.gameScore + (total * baseScoreInc) + max(0,sizeOfCombo * comboBonus) + max(0,chainSize * chainBonus),
+			global.gameScore = min(global.gameScore + (total * baseScoreInc) + 
+								   max(0,((sizeOfCombo + 1) * comboBonus) + panic) + 
+								   max(0,(chainSize * chainBonus) + panic),
 								   global.victoryScore);
 								   
-			if (global.gameScore >= global.victoryScore) global.victory = true;
+			if (global.gameScore >= global.victoryScore) {
+				global.victory = true;
+				objCtrl_gameAnimation.gameEndCol = 0;
+				objCtrl_gameAnimation.gameEndRow = objCtrl_gameSession.boardHeight - 1;
+			}
 								   
 			global.combo = sizeOfCombo >= 0;
 			global.chain = (chainStart && chainSize > 0);
 			
-			if (global.combo || global.chain) {
+			if (global.combo) && !(global.victory) && !(global.chain) {
 				audio_play_sound(snd_combo_chain,2,0);	
+				audio_sound_gain(snd_combo_chain,soundVol,0);
 			}
 
 			if !(global.gameMode == 1) {
 				//checks if level is at x99, if it is, follow normal combo behavior
 				var comboChain = global.combo && global.chain;
-				var levelIncrement = (comboChain) ? 4 : (sizeOfCombo > 0) + ((chainStart && chainSize > 0) * 2) + 1
-				if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1)
-					global.gameLevel = global.gameLevel + levelIncrement;
+				var comboLevelBonus = (global.combo) ? (sizeOfCombo >= 0) + (sizeOfCombo >= 5) + !(comboChain) : 0;
+				var chainLevelBonus = (chainStart && chainSize > 0) ? (chainSize > 8 ? 20 : 2 + chainSize) : 0;
+				var levelIncrement = comboLevelBonus + chainLevelBonus + (comboLevelBonus + chainLevelBonus == 0)
+				if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1) {
+					global.gameLevel = global.gameLevel + levelIncrement + carryOverLevels;
+					carryOverLevels = 0;
+				}
 				//otherwise 
 				else global.gameLevel = min(global.gameLevel + levelIncrement,
-											(floor((global.gameLevel / global.levelToMatch) % 10) * global.levelToMatch) + global.levelToMatch - 1);
+										   (floor((global.gameLevel / global.levelToMatch) % 10) * global.levelToMatch) + global.levelToMatch - 1);
 				global.gameLevel = min(global.gameLevel, global.maxLevel - 1);
 			}
 			
@@ -136,17 +155,18 @@ if !(global.gameover) &&
 	} 
 	
 	if (instance_number(obj_matchmaker) == 0) {
-		ds_list_clear(matchmakers);	
-		var continueChain = false;
-		with (objPar_piece) {
-			if (aboveMatch)
-				continueChain = true;
-		}
+		ds_list_clear(matchmakers);
+	}
+	
+	var continueChain = false;
+	with (objPar_piece) {
+		if (aboveMatch)
+			continueChain = true;
+	}
 		
-		if !(continueChain) && chainStart {
-			chainSize = 0;
-			chainStart = false;
-			global.chain = false;
-		}
+	if !(continueChain) && chainStart {
+		chainSize = 0;
+		chainStart = false;
+		global.chain = false;
 	}
 }

@@ -3,7 +3,7 @@ event_inherited();
 #region Animation
 var animSpeed = startAnimationSpeed / room_speed;
 startFlickerIndex += animSpeed;
-if (floor(startFlickerIndex) > 1) {
+if (floor(startFlickerIndex) > 1) || (objCtrl_game.ui.transitionAlpha != 0) {
 	startFlickerIndex = 0;
 } 
 

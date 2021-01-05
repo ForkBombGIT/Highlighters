@@ -1,5 +1,5 @@
 //Life time of panic notification
-life = (global.gameMode == 1 ? 72 : 36) * 2;
+life = (global.gameMode == 1 ? 54 : 30) * 2;
 alarm[0] = life;
 
 // Animation control

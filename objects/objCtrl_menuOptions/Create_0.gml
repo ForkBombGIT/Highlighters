@@ -1,14 +1,28 @@
 event_inherited();
-
+transitioning = false;
+nextState = 0;
 ui = instance_create_layer(x,y,"GUI",objUI_menuOptions);
 
-inputPrompt = 0;
+inputPrompt = -1;
+promptTime = current_time;
+promptLife = 3;
 inputChangeKey = false;
-inputControlValues = [scr_keyToIndex(ds_map_find_value(global.controls,"UP")),
-					  scr_keyToIndex(ds_map_find_value(global.controls,"DOWN")),
-					  scr_keyToIndex(ds_map_find_value(global.controls,"LEFT")),
-					  scr_keyToIndex(ds_map_find_value(global.controls,"RIGHT")),
-					  scr_keyToIndex(ds_map_find_value(global.controls,"A")),
-					  scr_keyToIndex(ds_map_find_value(global.controls,"B")),
-					  scr_keyToIndex(ds_map_find_value(global.controls,"PAUSE")),
-					  scr_keyToIndex(ds_map_find_value(global.controls,"OFF"))]
+inputMaxCursorPosition = 10;
+avMaxCursorPosition = 8;
+exitState = 0;
+
+// Controls delay on level picking
+delay = 0.05;
+delayTime = current_time;
+keyPressLength = 0;
+longPress = 20;
+lastKey = -1;
+
+musicTest = 0;
+music = [sng_floss,sng_hasen,sng_milo];
+soundTest = 0;
+sounds = [snd_back,snd_cleara,snd_clearb,snd_combo_chain,snd_countdowna,snd_countdownb,snd_drop,snd_lose,snd_move,snd_ok,snd_pausea,snd_pauseb,snd_swap,snd_win];
+
+confirmResolution = false;
+fullscreenOption = ds_map_find_value(ds_map_find_value(global.options,"av"),"fullscreen");
+resolutionOption = ds_map_find_value(ds_map_find_value(global.options,"av"),"resolution");

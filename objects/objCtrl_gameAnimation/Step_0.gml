@@ -1,5 +1,4 @@
 ui.gameEndTransition = gameEndTransition;
-ui.gameEndTransitionIndex = gameEndTransitionIndex;
 
 #region Piece Bouncing - Panic Notification
 var canBounce = true;
@@ -11,11 +10,27 @@ if (scr_checkRow(objCtrl_gameSession.boardHeight - 1)) {
 			canBounce = false;
 }
 
+// reset pieces that were bouncing
+if (!global.gameover) &&
+   (!global.victory) {
+	if !(canBounce) {
+		with (objPar_piece) {
+			if !(squish) && 
+			   !(match) && 
+			   !(landAnim) &&
+			   !(swap) &&
+			   !(aboveMatch) {
+				image_index = index;
+			}
+		}
+	
+	}
+}
+
 if (canBounce) && 
   !(global.freeze) &&
   !(global.forceRise) {
 	if (scr_checkRow(objCtrl_gameSession.boardHeight - 3)) { 
-		global.gameover = false;
 		//turn on bounce animation
 		var rowEntities = scr_getRow(objCtrl_gameSession.boardHeight - 3);
 		for (var i = 0; i < ds_list_size(rowEntities); i++) {
@@ -75,33 +90,59 @@ if ((global.active) &&
 #endregion
 
 #region Gameover Animations
-//handles gameover logic
+//Starts gameover animation
 if (global.gameover) ||
    (global.victory) {
-	global.forceRise = false;
-	global.riseUp = false;
-	global.forceRiseSpeed = 0;
-	instance_destroy(obj_matchmaker);
 	if !(gameEndAnimation) { 
-		audio_play_sound(global.gameover ? snd_lose : snd_win,1,0);
+		global.forceRise = false;
+		global.riseUp = false;
+		global.forceRiseSpeed = 0;
+		instance_destroy(obj_matchmaker);
+		instance_destroy(objCtrl_gameMusic);
+		var avMap = ds_map_find_value(global.options,"av");
+		var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
+		var sound = global.victory ? snd_win : snd_lose;
+		audio_play_sound(sound,1,0);
+		audio_sound_gain(sound,soundVol,0);
 		//sets starting point for character portrait
-		with (objPar_piece) {
-			image_index = index;	
-		}
 		objUI_characterPortrait.characterAnimIndex = 5; 
 		gameEndAnimation = true; 
-		alarm[0] = global.victory ? room_speed * 2 : 1; 
+		alarm[0] = 1; 
 	}
 }
 
-
+// falling pieces animation
 if (gameEndTransition) {
-	var animSpeed = 0.25;
-	//pulse after the first frame lasts for 9 frames
-	gameEndTransitionIndex += animSpeed;
-	if (floor(gameEndTransitionIndex) >= gameEndTransitionEndIndex) {
-		if !(alarm[1]) alarm[1] = 60;
-		gameEndTransition = false;
+	if (gameEndState == 0) {
+		if (fallDelay == 0) {
+			var entity = scr_getPieceAtPos(gameEndRow,gameEndCol);
+			fallDelay++;
+			if (instance_exists(entity)) {
+				if (global.gameover) entity.gameoverFall = true;
+				if (global.victory) entity.gameoverRise = true;
+			}
+			if (global.gameover) {
+				if (--gameEndCol == -1) {
+					gameEndCol = objCtrl_gameSession.boardWidth - 1
+					gameEndRow ++;
+					if (gameEndRow > objCtrl_gameSession.boardHeight) {
+						gameEndState = 1;	
+					}
+				}
+			}
+			if (global.victory) {
+				if (++gameEndCol > objCtrl_gameSession.boardWidth - 1) {
+					gameEndCol = 0;
+					gameEndRow --;
+					if (gameEndRow == -2) {
+						gameEndState = 1;	
+					}
+				}
+			}
+		} else fallDelay = 0;
+	}
+	if (gameEndState == 1) { 
+		if !(alarm[1]) alarm[1] = 60;	
 	}
 }
 #endregion
