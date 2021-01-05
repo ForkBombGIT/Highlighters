@@ -1,4 +1,4 @@
-function scr_setInputOptions(defaultOptions){
+function scr_setInputDefaults(defaultOptions) {
 	if (ds_map_find_value(global.options,"input") != -1) {
 		ds_map_delete(global.options,"input")	
 	}

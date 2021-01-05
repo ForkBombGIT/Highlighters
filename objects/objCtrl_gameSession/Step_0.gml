@@ -24,7 +24,6 @@ if (global.restart) {
 	selectedEntities = scr_generateColors();
 	//set global variables
 	global.active = false;
-	global.restart = false;
 	global.gameScore = 0;
 	global.freeze = false;
 	global.forceRise = false;
@@ -49,6 +48,7 @@ if (global.restart) {
 	canRise = true;
 	instance_create_layer(168, 132,"GUI",objUI_countdown);	
 	instance_create_layer(x,y,"Controllers",obj_matchmakerManager);
+	global.restart = false;
 }
 
 var pieceSwap = false

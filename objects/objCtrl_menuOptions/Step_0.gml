@@ -105,8 +105,8 @@ if (state == 0) {
 			// allow the user to change the key
 			inputPrompt = -1;
 			if (keyboard_key == ds_map_find_value(inputMap,"A")) {
-				if (cursorPosition == maxCursorPosition - 1) {
-					scr_setInputOptions(objCtrl_game.defaultOptions);
+				if (cursorPosition == inputMaxCursorPosition - 1) {
+					scr_setInputDefaults(objCtrl_game.defaultOptions);
 					scr_saveOptions(global.optionsFileName);
 				}
 				else if (cursorPosition > 1)  && (cursorPosition < 8) {
@@ -126,6 +126,9 @@ else if (state == 1) {
 			audio_stop_all();
 			audio_play_sound(sounds[soundTest],1,0);
 			audio_sound_gain(sounds[soundTest],soundVol,0);
+		} else if (cursorPosition == avMaxCursorPosition - 1) {
+			scr_setAudioVideoDefaults(objCtrl_game.defaultOptions);
+			scr_saveOptions(global.optionsFileName);
 		}
 	}
 	else if (keyboard_check(vk_anykey)) {
@@ -165,18 +168,25 @@ else if (state == 1) {
 		if !(confirmResolution) {
 			confirmResolution = true;
 		} else {
-			inputPrompt = 3;	
-			if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
-				if (cursorPosition == 4) {
-					fullscreenOption = ds_map_find_value(avMap,"fullscreen");
-					window_set_fullscreen(fullscreenOption);
+			if (cursorPosition != avMaxCursorPosition - 1) { 
+				inputPrompt = 3;	
+				if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
+					if (cursorPosition == 4) {
+						fullscreenOption = ds_map_find_value(avMap,"fullscreen");
+						window_set_fullscreen(fullscreenOption);
+					}
+					if (cursorPosition == 5) {
+						resolutionOption = ds_map_find_value(avMap,"resolution");
+					}
+					scr_setResolution(ds_map_find_value(avMap,"resolution"));
+					confirmResolution = false;
+					inputPrompt = -1;
 				}
-				if (cursorPosition == 5) {
-					resolutionOption = ds_map_find_value(avMap,"resolution");
-				}
-				scr_setResolution(ds_map_find_value(avMap,"resolution"));
-				confirmResolution = false;
-				inputPrompt = -1;
+			} else {
+				fullscreenOption = ds_map_find_value(avMap,"fullscreen");
+				resolutionOption = ds_map_find_value(avMap,"resolution");
+				window_set_fullscreen(fullscreenOption);
+				scr_setResolution(resolutionOption);
 			}
 		}
 	} else {

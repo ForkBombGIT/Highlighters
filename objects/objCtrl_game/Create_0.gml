@@ -26,7 +26,7 @@ global.optionsFileName = "options.hl"
 global.options = ds_map_create();
 if (!file_exists(global.optionsFileName)) {
 	//apply default input to options map
-	scr_setInputOptions(defaultOptions);
+	scr_setInputDefaults(defaultOptions);
 	//apply default av settings to options map
 	scr_setAudioVideoDefaults(defaultOptions)
 	scr_saveOptions(global.optionsFileName)

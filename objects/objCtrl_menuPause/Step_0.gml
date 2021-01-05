@@ -29,9 +29,9 @@ if (global.active) {
 			var sound = (keyboard_key == ds_map_find_value(inputMap,"PAUSE")) ? snd_back : snd_ok;
 			audio_play_sound(sound,1,0);
 			audio_sound_gain(sound,soundVol,0);
-			resume = true;
 			if (cursorPosition == 1) 
 				objCtrl_game.ui.transition = true;
+			resume = true;
 			state = 1;
 		}
 		#endregion

@@ -5,6 +5,6 @@ transitionColor = c_black;
 
 transitionHold = 30;
 
-subMenuAlphaChange = 1/6;
-mainMenuAlphaChange = 1/8;
+subMenuAlphaChange = 1/8;
+mainMenuAlphaChange = 1/6;
 alphaChange = mainMenuAlphaChange;

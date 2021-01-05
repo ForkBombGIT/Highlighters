@@ -106,8 +106,9 @@ if !(global.gameover) &&
 			if !(global.gameMode == 1) {
 				//checks if level is at x99, if it is, follow normal combo behavior
 				var comboChain = global.combo && global.chain;
-				var comboLevelBonus = (sizeOfCombo >= 0) + (sizeOfCombo >= 5);
-				var levelIncrement = (comboChain) ? 4 : comboLevelBonus + ((chainStart && chainSize > 0) * 2) + 1
+				var comboLevelBonus = (global.combo) ? (sizeOfCombo >= 0) + (sizeOfCombo >= 5) + !(comboChain) : 0;
+				var chainLevelBonus = (chainStart && chainSize > 0) ? (chainSize > 8 ? 20 : 2 + chainSize) : 0;
+				var levelIncrement = comboLevelBonus + chainLevelBonus + (comboLevelBonus + chainLevelBonus == 0)
 				if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1) {
 					global.gameLevel = global.gameLevel + levelIncrement + carryOverLevels;
 					carryOverLevels = 0;
