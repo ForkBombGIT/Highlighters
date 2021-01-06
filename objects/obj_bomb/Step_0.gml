@@ -22,6 +22,7 @@ if (global.active) &&
   !(matchOverride) && 
   !(match) && 
   !(swap) && 
+  !(global.gameover) &&
   (global.gameScore < global.victoryScore) &&
   !(instance_exists(matchmaker)) {
 	switch (ds_list_size(adjacent)) {

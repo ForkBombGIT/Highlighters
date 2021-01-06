@@ -26,7 +26,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 			bottom = scr_getPieceAtPos(row - 1, col),
 			up = scr_getPieceAtPos(row + 1, col),
 			right = scr_getPieceAtPos(row, min(objCtrl_gameSession.boardWidth - 1,col + 1));
-		var colorIndex = irandom_range(0,array_length_1d(availablePieces) - 1);
+		var colorIndex = irandom_range(0,array_length(availablePieces) - 1);
 		var color = availablePieces[colorIndex] * pieceFrames;
 		var pieceType = (bombCount < 2) ? 
 						((irandom_range(1,6) > bombProb) ? obj_charm : obj_bomb) : obj_charm;
@@ -135,7 +135,5 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 			return entity;
 		}
 	}
-
-
-
+	ds_map_destroy(historyFrequency);
 }

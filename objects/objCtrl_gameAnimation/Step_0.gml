@@ -8,6 +8,7 @@ if (scr_checkRow(objCtrl_gameSession.boardHeight - 1)) {
 	if (instance_exists(entity))
 		if (entity.y <= scr_getRowPos(objCtrl_gameSession.boardHeight - 1)) 
 			canBounce = false;
+	ds_list_destroy(topRow);
 }
 
 // reset pieces that were bouncing
@@ -42,6 +43,7 @@ if (canBounce) &&
 				bounce = true;
 			}
 		}
+		ds_list_destroy(rowEntities);
 	} else {
 		bounce = false;
 		bounceIndex = 0;

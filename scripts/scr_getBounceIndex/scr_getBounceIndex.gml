@@ -8,8 +8,8 @@ function scr_getBounceIndex(argument0) {
 	ds_map_add(indexMap,3,3);
 	ds_map_add(indexMap,4,0);
 	ds_map_add(indexMap,5,2);
-
-	return(ds_map_find_value(indexMap,indexNum));
-
-
+	
+	var bounceIndex = ds_map_find_value(indexMap,indexNum);
+	ds_map_destroy(indexMap);
+	return(bounceIndex);
 }

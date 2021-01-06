@@ -5,7 +5,6 @@ ui.inputChangeKey = inputChangeKey;
 ui.inputPrompt = inputPrompt;
 ui.musicTest = musicTest;
 ui.soundTest = soundTest;
-maxCursorPosition = (state == 0) ? inputMaxCursorPosition : avMaxCursorPosition;
 var inputMap = ds_map_find_value(global.options,"input");
 var avMap = ds_map_find_value(global.options,"av");
 var musicVol = ds_map_find_value(avMap,"musicVol") / 600;

@@ -10,7 +10,5 @@ function scr_getRow(argument0) {
 		}
 	}
 
-	return rowList
-
-
+	return rowList;
 }

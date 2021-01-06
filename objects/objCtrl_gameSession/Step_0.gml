@@ -31,6 +31,7 @@ if (global.restart) {
 	freezeTime = 0;
 	freezeTimer = current_time;
 	//delete session objects
+	ds_list_clear(activeMatches);
 	instance_destroy(obj_matchmaker);
 	instance_destroy(objPar_piece);
 	instance_destroy(obj_cursor);
@@ -102,7 +103,8 @@ if ((global.active) &&
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,objPar_piece)){
 		scr_createRow(-1);
 		if !(newRowInc) {
-			global.gameScore = min(global.gameScore + 1,global.victoryScore);
+			var panic = scr_checkRow(7);
+			global.gameScore = min(global.gameScore + (panic ? 10 : 1),global.victoryScore);
 			if !(global.gameMode == 1)  
 				// levelToMatch must be advance with a combo
 				if (global.gameLevel % global.levelToMatch != global.levelToMatch - 1)

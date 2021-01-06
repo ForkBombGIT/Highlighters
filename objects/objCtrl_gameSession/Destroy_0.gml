@@ -9,3 +9,4 @@ instance_destroy(objCtrl_menuPause);
 instance_destroy(objCtrl_gameMusic);
 instance_destroy(objCtrl_gameAnimation);
 instance_destroy(ui);
+ds_list_destroy(activeMatches);

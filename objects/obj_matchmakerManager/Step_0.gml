@@ -84,9 +84,9 @@ if !(global.gameover) &&
 				if (bounce || squish) panic = true;
 			}
 			var sizeOfCombo = total - (comboSize);
-			global.gameScore = min(global.gameScore + (total * baseScoreInc) + 
-								   max(0,((sizeOfCombo + 1) * comboBonus) + panic) + 
-								   max(0,(chainSize * chainBonus) + panic),
+			global.gameScore = min(global.gameScore + ((sizeOfCombo < 0) ? 100 * (1 + panic) : 0) + 
+								   max(0,((sizeOfCombo + 1) * (comboBonus + (panic ? 50 : 0)))) + 
+								   max(0,(chainSize * chainBonus + (panic ? 100 : 0))),
 								   global.victoryScore);
 								   
 			if (global.gameScore >= global.victoryScore) {
@@ -127,18 +127,22 @@ if !(global.gameover) &&
 										 			);
 				comboObj.comboSize = sizeOfCombo;
 				
-				//Combo freeze time
+				// Combo freeze time
 				freezeTime = ((total > 12) ? 6 :
 							 ((total > 10) ? 5 :
 							 ((total > 8)  ? 4 :
- 							 ((total > 6)  ? 3 : 
+ 								 ((total > 6)  ? 3 : 
 							 ((total > 4)  ? 2 : 0)))));
+				// panic bonus
+				if (total > 4) {
+					freezeTime += panic;	
+				}
 			}
 			
 			//Chain freeze time
 			if (chainSize > 0) {
 				// plus one to chainsize, as it's offset by 1
-				freezeTime = (chainSize + 1) + 2;
+				freezeTime = (chainSize + 1) + 2 + panic;
 			}
 			
 			//Update freeze time, if needed

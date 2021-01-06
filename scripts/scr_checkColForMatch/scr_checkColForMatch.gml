@@ -10,6 +10,5 @@ function scr_checkColForMatch(argument0, argument1) {
 			return true;	
 		}
 	}
-
-
+	ds_list_destroy(colPieces)
 }

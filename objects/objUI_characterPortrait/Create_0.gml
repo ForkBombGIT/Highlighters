@@ -17,3 +17,4 @@ ds_list_add(characterFrameRates,[12,4,12,3]);
 ds_list_add(characterFrameRates,[6,3,3,2]);
 ds_list_add(characterFrameRates,[10,2,4,2]);
 ds_list_add(characterFrameRates,[12,6,4,12]);
+show_debug_message(ds_list_size(characterFrameRates));
