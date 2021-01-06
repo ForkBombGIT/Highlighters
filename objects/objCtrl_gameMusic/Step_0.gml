@@ -18,7 +18,8 @@ if (objCtrl_menuPause.pause) {
 else { 
 	if (songPaused) {
 		if (instance_exists(objUI_countdown)) || (global.restart) {
-			audio_stop_sound(songs[global.character]);	
+			if (global.character == 3) || (global.character == 1) || (global.character == 4)
+				audio_stop_sound(songs[global.character]);	
 			songPlaying = false;
 		}
 		else if (global.character == 3) || (global.character == 1) || (global.character == 4)  {
