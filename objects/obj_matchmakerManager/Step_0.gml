@@ -131,7 +131,7 @@ if !(global.gameover) &&
 				freezeTime = ((total > 12) ? 6 :
 							 ((total > 10) ? 5 :
 							 ((total > 8)  ? 4 :
- 								 ((total > 6)  ? 3 : 
+ 						     ((total > 6)  ? 3 : 
 							 ((total > 4)  ? 2 : 0)))));
 				// panic bonus
 				if (total > 4) {

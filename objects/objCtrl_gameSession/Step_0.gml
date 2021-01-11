@@ -103,8 +103,8 @@ if ((global.active) &&
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,objPar_piece)){
 		scr_createRow(-1);
 		if !(newRowInc) {
-			var panic = scr_checkRow(7);
-			global.gameScore = min(global.gameScore + (panic ? 10 : 1),global.victoryScore);
+			var panic = scr_checkRow(6);
+			global.gameScore = min(global.gameScore + 1 + panic,global.victoryScore);
 			if !(global.gameMode == 1)  
 				// levelToMatch must be advance with a combo
 				if (global.gameLevel % global.levelToMatch != global.levelToMatch - 1)
@@ -122,7 +122,7 @@ if ((global.active) &&
 		global.freeze = false;
 		freezeTime = 0;
 		//checks if piece is gonna rise into game over territory
-		if (scr_checkRow(objCtrl_gameSession.boardHeight - 1)) {
+		if (scr_checkRow(boardHeight)) {
 			global.gameover = true;
 		}
 		else {

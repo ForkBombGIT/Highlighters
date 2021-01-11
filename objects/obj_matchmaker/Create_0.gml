@@ -30,3 +30,4 @@ highlight = false;
 justLandedEntity = noone;;
 animationComplete = false;
 clearFinalList = false;
+panic = false;

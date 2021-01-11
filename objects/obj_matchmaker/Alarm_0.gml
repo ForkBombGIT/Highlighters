@@ -47,12 +47,16 @@ if !(global.gameover || global.victory) {
 						var entity = ds_list_find_value(final,listPosition);
 						if (instance_exists(entity)) {
 							if !(entity.highlighting) {
-								entity.highlight = true;
-								entity.activeMatchmaker = self;
-								entity.matchNumber = (listPosition++) + 1;
 								var sound = (global.fastAnim) || fastAnim ? snd_clearb : snd_cleara;
 								audio_play_sound(sound,1,0);
 								audio_sound_gain(sound,soundVol,0);
+								if !(panic) panic = scr_checkRow(6);
+								if (listPosition == ds_list_size(final) - 1) && (panic)
+									global.gameScore = min(global.gameScore + 1, global.victoryScore);
+								global.gameScore = min(global.gameScore + 1, global.victoryScore);
+								entity.highlight = true;
+								entity.activeMatchmaker = self;
+								entity.matchNumber = (listPosition++) + 1;
 							}
 						}
 						alarm[0] = (global.fastAnim) || fastAnim ? fastHighlightDelay : highlightDelay;
