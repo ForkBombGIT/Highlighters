@@ -92,14 +92,14 @@ if keyboard_check(ds_map_find_value(inputMap,"B")) &&
 if ((global.active) &&	
    !(global.victory) &&
    !(global.gameover)) { 
-	if !(global.gameMode == 1) { //disables level progression in practice
-		//handles level progression
+	if !(global.gameMode == 1) { // disables level progression in practice
+		// handles level progression
 		if (global.gameLevel < global.maxLevel) {
 			global.riseSpeed = scr_getRiseSpeed(global.gameLevel);
 		}
 	}
 	
-	//creates new bottom row
+	// creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,objPar_piece)){
 		scr_createRow(-1);
 		if !(newRowInc) {
@@ -115,7 +115,7 @@ if ((global.active) &&
 		}
 	} else newRowInc = false;
 	
-	//manual new row
+	// manual new row
 	if (keyboard_check(ds_map_find_value(inputMap,"B")) && 
 	  !(global.forceRise) && 
 	  !(global.riseBrake)) {
@@ -140,7 +140,7 @@ if ((global.active) &&
 		}
 	}
 	
-	//rising row
+	// rising row
 	if !(global.freeze) && 
 		(canRise) && 
 	   !(global.riseBrake) {
