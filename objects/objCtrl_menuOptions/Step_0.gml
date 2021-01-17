@@ -5,18 +5,17 @@ ui.inputChangeKey = inputChangeKey;
 ui.inputPrompt = inputPrompt;
 ui.musicTest = musicTest;
 ui.soundTest = soundTest;
+
 var inputMap = ds_map_find_value(global.options,"input");
 var avMap = ds_map_find_value(global.options,"av");
-var musicVol = ds_map_find_value(avMap,"musicVol") / 600;
-var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 
 #region Input Control
 if !(inputChangeKey) {
 	//back
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"B"))) {
 		audio_stop_all();
+		scr_updateAudioLevels();
 		audio_play_sound(snd_back,1,0);
-		audio_sound_gain(snd_back,soundVol,0);
 		if (confirmResolution) {
 			if (fullscreenOption != ds_map_find_value(avMap,"fullscreen"))
 				ds_map_replace(avMap,"fullscreen",fullscreenOption);
@@ -117,14 +116,13 @@ if (state == 0) {
 }
 else if (state == 1) {
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
+		scr_updateAudioLevels();
 		if (cursorPosition == 1) {
 			audio_stop_all();
 			audio_play_sound(music[musicTest],1,1);
-			audio_sound_gain(music[musicTest],musicVol,0);
 		} else if (cursorPosition == 3) {
 			audio_stop_all();
 			audio_play_sound(sounds[soundTest],1,0);
-			audio_sound_gain(sounds[soundTest],soundVol,0);
 		} else if (cursorPosition == avMaxCursorPosition - 1) {
 			scr_setAudioVideoDefaults(objCtrl_game.defaultOptions);
 			scr_saveOptions(global.optionsFileName);

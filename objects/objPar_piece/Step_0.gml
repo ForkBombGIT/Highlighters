@@ -1,5 +1,3 @@
-var avMap = ds_map_find_value(global.options,"av");
-var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 #region Force Rise
 //rise if the force rise button is pressed
 if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
@@ -198,7 +196,6 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		falling = false;
 		if !(audio_is_playing(snd_drop)) {
 			audio_play_sound(snd_drop,1,0);
-			audio_sound_gain(snd_swap,soundVol,0);
 		}
 		if (inMatchCol) {
 			justLanded = true;

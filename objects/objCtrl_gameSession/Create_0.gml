@@ -52,8 +52,6 @@ ui = instance_create_layer(x,y,"GUI",objUI_gameSession);
 instance_create_layer(x,y,"Controllers",obj_matchmakerManager);
 instance_create_layer(x,y,"Controllers",objCtrl_gameAnimation);
 instance_create_layer(x,y,"Controllers",objCtrl_menuPause);
-instance_create_layer(x,y,"Controllers",objCtrl_gameMusic);
-
 //generate stars
 if !(global.gameMode == 1) {
 	starsGridSize = 12;

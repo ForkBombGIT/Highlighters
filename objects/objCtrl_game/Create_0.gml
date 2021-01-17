@@ -55,3 +55,6 @@ ui = instance_create_layer(x,y,"GUI",objUI_game);
 
 //adds dev tool object
 instance_create_layer(x,y,"Controllers",objCtrl_devTools);
+
+// audio control
+instance_create_layer(x,y,"Controllers",objCtrl_gameAudio);

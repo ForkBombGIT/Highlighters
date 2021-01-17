@@ -4,8 +4,6 @@ x = scr_getColPos(col) + sprite_get_width(spr_charm) / 2;
 visible = !global.gameover && 
           !global.victory;
 var inputMap = ds_map_find_value(global.options,"input");
-var avMap = ds_map_find_value(global.options,"av");
-var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 
 //ensure that the cursor remains in line with the pieces as the board rises
 if !(global.gameover) &&
@@ -65,7 +63,6 @@ if (swap) {
 				   (!(left.match) && !(right.match)) &&
 				   (left.bottomEntity) && (right.bottomEntity)) {
 					audio_play_sound(snd_swap,1,0);
-					audio_sound_gain(snd_swap,soundVol,0);
 					left.targetX = col + 1;
 					left.swap = true;
 					left.image_index = left.index + 4;
@@ -85,7 +82,6 @@ if (swap) {
 					   (left.bottomEntity) && 
 					   (rightUpBottomEntity) {
 						audio_play_sound(snd_swap,1,0);
-						audio_sound_gain(snd_swap,soundVol,0);
 						left.targetX = col + 1;
 						left.swap = true;
 						left.image_index = left.index + 4;
@@ -101,7 +97,6 @@ if (swap) {
 					   (right.bottomEntity) && 
 					   (leftUpBottomEntity) {
 						audio_play_sound(snd_swap,1,0);
-						audio_sound_gain(snd_swap,soundVol,0);
 						right.targetX = col;
 						right.swap = true;
 						right.image_index = right.index + 4;
