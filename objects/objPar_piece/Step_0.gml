@@ -154,6 +154,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 																  landingAnimationRest;
 			   // landing animation index control
 			   if !(bounce) {
+				   landAnimIndex += animSpeed;
 				   if (floor(landAnimIndex) > index + 3) {
 					 landAnimIndex = index; landAnim = false; justLanded = false; aboveMatch = false; inMatchCol = false;
 				   }
@@ -161,7 +162,6 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			   //apply animation
 			   //bounce index is controller in controller for all pieces to bounce uniformly
 			   image_index = (bounce) ? scr_getBounceIndex(floor(objCtrl_gameAnimation.bounceIndex)) + index : floor(landAnimIndex);
-			   landAnimIndex += animSpeed;
 		}
 	}
 	#endregion
@@ -194,6 +194,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		landAnimIndex = index;	
 		landAnim = true;
 		falling = false;
+		squish = false;
 		if !(audio_is_playing(snd_drop)) {
 			audio_play_sound(snd_drop,1,0);
 		}

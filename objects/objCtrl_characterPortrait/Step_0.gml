@@ -2,7 +2,7 @@ ui.state = state;
 if (!instance_exists(objCtrl_menuGameOptions) && !instance_exists(objUI_countdown)) {
 	// game ending state animations
 	if (instance_exists(objCtrl_gameAnimation)) {
-		if (objCtrl_gameAnimation.gameEndState == 1) {
+		if (objCtrl_gameAnimation.gameEndTransition) {
 			if (global.gameover) state = 3
 			else if (global.victory) state = 2;
 		}

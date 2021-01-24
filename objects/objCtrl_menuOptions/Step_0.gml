@@ -11,21 +11,25 @@ var avMap = ds_map_find_value(global.options,"av");
 
 #region Input Control
 if !(inputChangeKey) {
-	//back
+	// Return to  main menu
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"B"))) {
-		audio_stop_all();
+		if (testAudio) {
+			audio_stop_all();
+		}
 		scr_updateAudioLevels();
-		audio_play_sound(snd_back,1,0);
 		if (confirmResolution) {
 			if (fullscreenOption != ds_map_find_value(avMap,"fullscreen"))
 				ds_map_replace(avMap,"fullscreen",fullscreenOption);
 			if (resolutionOption != ds_map_find_value(avMap,"resolution"))
 				ds_map_replace(avMap,"resolution",resolutionOption);	
 		}
+		testAudio = false;
 		scr_saveOptions(global.optionsFileName)
+		// TODO Fix this sound not always playing
+		audio_play_sound(snd_back,1,0);
 		exitState = 1;
 	}	
-	//moving up and down
+	// Cursor movement
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"UP"))) 
 		cursorPosition = clamp(cursorPosition - 1,0,((state == 0) ? inputMaxCursorPosition : avMaxCursorPosition) - 1);
 	else if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) 
@@ -42,7 +46,6 @@ if (state == 0) {
 	if (inputChangeKey) {
 		if (keyboard_check_pressed(vk_anykey)) {
 				var keyPressed = keyboard_key;
-				show_debug_message(keyPressed);
 				// if cursor is not at select
 				if (cursorPosition - 1 >= 0) {
 					var validKey = true;
@@ -120,15 +123,24 @@ else if (state == 1) {
 		if (cursorPosition == 1) {
 			audio_stop_all();
 			audio_play_sound(music[musicTest],1,1);
+			testAudio = true;
 		} else if (cursorPosition == 3) {
 			audio_stop_all();
 			audio_play_sound(sounds[soundTest],1,0);
+			testAudio = true;
 		} else if (cursorPosition == avMaxCursorPosition - 1) {
 			scr_setAudioVideoDefaults(objCtrl_game.defaultOptions);
 			scr_saveOptions(global.optionsFileName);
 		}
 	}
 	else if (keyboard_check(vk_anykey)) {
+		// TODO Only stop if a test sound was being played
+		if (cursorPosition != 1 && cursorPosition != 3) {
+			if (testAudio) {
+				audio_stop_all();
+				testAudio = false;
+			}
+		}
 		inputPrompt = -1;
 		lastKey = keyboard_key;
 		if (lastKey == keyboard_key) {

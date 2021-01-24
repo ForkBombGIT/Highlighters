@@ -18,6 +18,7 @@ keyPressLength = 0;
 longPress = 20;
 lastKey = -1;
 
+testAudio = false;
 musicTest = 0;
 music = [sng_floss,sng_hasen,sng_milo];
 soundTest = 0;
