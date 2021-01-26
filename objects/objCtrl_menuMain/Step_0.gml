@@ -22,9 +22,9 @@ if (keyboard_check_pressed(ds_map_find_value(inputMap,"B")) &&
 if (keyboard_check_pressed(vk_anykey)) {
 	//moving up and down
 	if (keyboard_key == ds_map_find_value(inputMap,"UP")) 
-		cursorPosition = clamp(cursorPosition - 1,0, 2);
+		cursorPosition = clamp(cursorPosition - 1,0,2);
 	else if (keyboard_key == ds_map_find_value(inputMap,"DOWN")) 
-		cursorPosition = clamp(cursorPosition + 1,0, state == 2 ? 1 : 2);
+		cursorPosition = clamp(cursorPosition + 1,0,2);
 }
 
 // Main Menu State control
@@ -75,6 +75,8 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 						option = 0
 					case 1: //audio video
 						if (option == -1) option = 1;
+					case 2: // misc
+						if (option == -1) option = 2;
 						nextState = 3;
 						objCtrl_game.ui.transition = true; transitioning = true;
 						objCtrl_game.ui.transitionColor = c_white;

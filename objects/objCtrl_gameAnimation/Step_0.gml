@@ -64,9 +64,8 @@ if (bounce) {
 #endregion
 
 #region Pulse Animation
-if ((global.active) && 
-   !(global.victory) &&
-   !(global.gameover)) {
+if (!(global.victory) &&
+    !(global.gameover)) {
 	// bomb pulse animation
 	var animSpeed = global.pulse ? pulseAnimationSpeedEnd : pulseAnimationSpeedStart;
 	pulseIndex += animSpeed;

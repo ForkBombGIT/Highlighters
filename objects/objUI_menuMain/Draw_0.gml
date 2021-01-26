@@ -20,6 +20,8 @@ switch (state) {
 	case 2: 
 		draw_sprite(spr_menu_options_input,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
 		draw_sprite(spr_menu_options_av,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
+		draw_set_font(textFont);
+		draw_text(192,294,"misc");
 		break;
 	case 4:
 		draw_sprite(spr_practice_prompt,0,105,198);

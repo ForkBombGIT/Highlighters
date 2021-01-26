@@ -107,7 +107,8 @@ if (state == 0) {
 			inputPrompt = -1;
 			if (keyboard_key == ds_map_find_value(inputMap,"A")) {
 				if (cursorPosition == inputMaxCursorPosition - 1) {
-					scr_setInputDefaults(objCtrl_game.defaultOptions);
+					//apply default av settings to options map
+					scr_setOptionDefault(objCtrl_game.defaultOptions,"input");
 					scr_saveOptions(global.optionsFileName);
 				}
 				else if (cursorPosition > 1)  && (cursorPosition < 8) {
@@ -129,7 +130,7 @@ else if (state == 1) {
 			audio_play_sound(sounds[soundTest],1,0);
 			testAudio = true;
 		} else if (cursorPosition == avMaxCursorPosition - 1) {
-			scr_setAudioVideoDefaults(objCtrl_game.defaultOptions);
+			scr_setOptionDefault(objCtrl_game.defaultOptions,"av");
 			scr_saveOptions(global.optionsFileName);
 		}
 	}
@@ -144,14 +145,14 @@ else if (state == 1) {
 		inputPrompt = -1;
 		lastKey = keyboard_key;
 		if (lastKey == keyboard_key) {
-			if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key);
+			if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
 		} else keyPressLength = 0;
 	
 		if (keyPressLength > longPress) {
 			if (keyPressLength > 0) {
 				if ((current_time - delayTime) > delay){
 					delayTime = current_time;
-					scr_optionMenuCursorMovement(cursorPosition,keyboard_key);
+					scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
 				}
 			} 
 		}
@@ -203,6 +204,21 @@ else if (state == 1) {
 			confirmResolution = false;
 			inputPrompt = -1;
 		}
+	}
+}
+else if (state == 2) {
+	lastKey = keyboard_key;
+	if (lastKey == keyboard_key) {
+		if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
+	} else keyPressLength = 0;
+	
+	if (keyPressLength > longPress) {
+		if (keyPressLength > 0) {
+			if ((current_time - delayTime) > delay){
+				delayTime = current_time;
+				scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
+			}
+		} 
 	}
 }
 #endregion

@@ -3,7 +3,6 @@ if (matchOverride) match = true;
 
 //pulse animation
 if (global.pulse)  &&
-   (global.active) && 
    (y <= scr_getRowPos(0)) &&
    (image_index != index + 3) &&
   !(global.riseUp) && 

@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Options.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_setInputDefaults",
+  "name": "scr_setOptionDefaults",
   "tags": [],
   "resourceType": "GMScript",
 }
