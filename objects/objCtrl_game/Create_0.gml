@@ -30,7 +30,7 @@ ds_map_add_map(defaultOptions,"misc",defaultMisc);
 //holds active options
 global.optionsFileName = "options.hl"
 global.options = ds_map_create();
-//if (!file_exists(global.optionsFileName)) {
+if (!file_exists(global.optionsFileName)) {
 	//apply default input to options map
 	scr_setOptionDefault(defaultOptions,"input");
 	//apply default av settings to options map
@@ -38,8 +38,8 @@ global.options = ds_map_create();
 	//apply default av settings to options map
 	scr_setOptionDefault(defaultOptions,"misc");
 	scr_saveOptions(global.optionsFileName)
-//}
-//else global.options = scr_loadOptions(global.optionsFileName);
+}
+else global.options = scr_loadOptions(global.optionsFileName);
 
 avMap = ds_map_find_value(global.options,"av");
 window_set_fullscreen(ds_map_find_value(avMap,"fullscreen"))
