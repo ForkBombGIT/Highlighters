@@ -90,4 +90,19 @@ switch (state) {
 		// junk skin
 		draw_set_font((cursorPosition == 3) ? numFont : numFontFaded);
 		draw_text(408,168,string_replace_all(string_format(ds_map_find_value(miscMap,"junkSkin"),2,0)," ", "0"));		
+		var sprite = noone;
+		if (cursorPosition == 1) sprite = spr_charm;
+		if (cursorPosition == 2) sprite = bomb_sprites[ds_map_find_value(miscMap,"bombSkin")];
+		if (cursorPosition == 1 || cursorPosition == 2) {
+			draw_sprite(sprite, 0 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 96, 244)
+			draw_sprite(sprite, 18 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 168, 244)
+			draw_sprite(sprite, 36 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 240, 244)
+			draw_sprite(sprite, 54 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 312, 244)
+			draw_sprite(sprite, 72 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 384, 244)
+			draw_sprite(sprite, 90 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 96, 316)
+			draw_sprite(sprite, 108 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 168, 316)
+			draw_sprite(sprite, 126 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 240, 316)
+			draw_sprite(sprite, 144 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 312, 316)
+			draw_sprite(sprite, 162 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 384, 316)
+		}
 }

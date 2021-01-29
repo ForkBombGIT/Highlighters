@@ -76,7 +76,8 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	//bounce
 	if !(global.gameover) &&
 	   !(global.victory) && 
-	   !(aboveMatch) {
+	   !(aboveMatch) &&
+	   !(landAnim) {
 		if (y < scr_getRowPos(0) && 
 		   (y <= scr_getRowPos(objCtrl_gameSession.boardHeight - 3)) &&
 		   (y != scr_getRowPos(objCtrl_gameSession.boardHeight - 1)) && 

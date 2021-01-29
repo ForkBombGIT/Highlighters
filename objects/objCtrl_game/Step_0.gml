@@ -88,7 +88,7 @@ switch (state) {
 			// Returns to main menu if user quits via pause menu
 			if (objCtrl_menuPause.state == 2) && 
 			  !(transitioning){
-				objCtrl_menuMain.nextState = 0;
+				objCtrl_menuMain.nextState = 1;
 				objCtrl_menuMain.transitioning = true;
 				ui.transitionColor = c_white;
 				ui.alphaChange = 1;
@@ -119,7 +119,7 @@ switch (state) {
 			else if (objCtrl_menuGameEnd.state == 2) {
 				instance_destroy(objCtrl_menuGameEnd);	
 				objCtrl_menuMain.transitioning = true;	
-				objCtrl_menuMain.nextState = 0;
+				objCtrl_menuMain.nextState = 1;
 				ui.transitionColor = c_white;
 				ui.alphaChange = 1;
 				ui.transitionHold = 5;

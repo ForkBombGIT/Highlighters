@@ -30,6 +30,7 @@ if (keyboard_check_pressed(vk_anykey)) {
 // Main Menu State control
 if (objCtrl_game.ui.transitionAlpha == 0) {
 	switch (state) {
+		// Landing Screen
 		case 0:
 			//menu item selection
 			if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
@@ -42,6 +43,7 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 				transitioning = true;
 			}
 		break;
+		// Main Menu
 		case 1:
 			global.gameMode = 0;
 			if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
