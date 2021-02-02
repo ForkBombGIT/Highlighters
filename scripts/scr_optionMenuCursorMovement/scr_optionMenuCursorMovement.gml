@@ -26,7 +26,7 @@ function scr_optionMenuCursorMovement(argument0, argument1, argument2) {
 			case 1:
 				if (option == 1) objCtrl_menuOptions.musicTest = min(objCtrl_menuOptions.musicTest + 1, array_length(objCtrl_menuOptions.music) - 1)
 				else if (option == 2) {
-					charmSkin = min(charmSkin + 1,0);
+					charmSkin = min(charmSkin + 1,1);
 					ds_map_replace(miscMap,"charmSkin",charmSkin);
 				}
 				break;

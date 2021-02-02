@@ -81,17 +81,22 @@ switch (state) {
 		break;
 	//misc
 	case 2:
+		//language
+		if (cursorPosition == 0) draw_sprite(spr_misc_inputs,0,24,72);
 		// charm skin
+		if (cursorPosition == 1) draw_sprite(spr_misc_inputs,2,24,120);
 		draw_set_font((cursorPosition == 1) ? numFont : numFontFaded);
 		draw_text(408,120,string_replace_all(string_format(ds_map_find_value(miscMap,"charmSkin"),2,0)," ", "0"));	
 		// bomb skin
+		if (cursorPosition == 2) draw_sprite(spr_misc_inputs,3,24,144);
 		draw_set_font((cursorPosition == 2) ? numFont : numFontFaded);
 		draw_text(408,144,string_replace_all(string_format(ds_map_find_value(miscMap,"bombSkin"),2,0)," ", "0"));
 		// junk skin
+		if (cursorPosition == 3) draw_sprite(spr_misc_inputs,4,24,168);
 		draw_set_font((cursorPosition == 3) ? numFont : numFontFaded);
 		draw_text(408,168,string_replace_all(string_format(ds_map_find_value(miscMap,"junkSkin"),2,0)," ", "0"));		
 		var sprite = noone;
-		if (cursorPosition == 1) sprite = spr_charm;
+		if (cursorPosition == 1) sprite = charm_sprites[ds_map_find_value(miscMap,"charmSkin")];;
 		if (cursorPosition == 2) sprite = bomb_sprites[ds_map_find_value(miscMap,"bombSkin")];
 		if (cursorPosition == 1 || cursorPosition == 2) {
 			draw_sprite(sprite, 0 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 96, 244)
@@ -105,4 +110,5 @@ switch (state) {
 			draw_sprite(sprite, 144 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 312, 316)
 			draw_sprite(sprite, 162 + ((cursorPosition == 2 && pulse) ? floor(pulseIndex) : 0), 384, 316)
 		}
+		if (cursorPosition == 4) draw_sprite(spr_misc_inputs,5,24,384);
 }

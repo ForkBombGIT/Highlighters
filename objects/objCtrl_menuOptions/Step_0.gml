@@ -30,14 +30,18 @@ if !(inputChangeKey) {
 		exitState = 1;
 	}	
 	// Cursor movement
+	var maxCursorPosition;
+	if (state == 0) maxCursorPosition = inputMaxCursorPosition;
+	else if (state == 1) maxCursorPosition = avMaxCursorPosition; 
+	else if (state == 2) maxCursorPosition = miscMaxCursorPosition; 
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"UP"))) 
-		cursorPosition = clamp(cursorPosition - 1,0,((state == 0) ? inputMaxCursorPosition : avMaxCursorPosition) - 1);
+		cursorPosition = clamp(cursorPosition - 1,0,maxCursorPosition - 1);
 	else if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) 
-		cursorPosition = clamp(cursorPosition + 1,0,((state == 0) ? inputMaxCursorPosition : avMaxCursorPosition) - 1);
+		cursorPosition = clamp(cursorPosition + 1,0,maxCursorPosition - 1);
 	
 }
 
-// if the user is changing the key
+// INPUT SETTINGS
 if (state == 0) {
 	if ((current_time - promptTime) / 1000 >= promptLife) {
 		promptTime = current_time;
@@ -118,6 +122,7 @@ if (state == 0) {
 		}
 	}
 }
+// AUDIO VIDEO SETTINGS
 else if (state == 1) {
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
 		scr_updateAudioLevels();
@@ -206,19 +211,28 @@ else if (state == 1) {
 		}
 	}
 }
+// MISC SETTINGS
 else if (state == 2) {
-	lastKey = keyboard_key;
-	if (lastKey == keyboard_key) {
-		if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
-	} else keyPressLength = 0;
-	
-	if (keyPressLength > longPress) {
-		if (keyPressLength > 0) {
-			if ((current_time - delayTime) > delay){
-				delayTime = current_time;
-				scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
-			}
-		} 
+	if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
+		if (cursorPosition == miscMaxCursorPosition - 1) {
+			scr_setOptionDefault(objCtrl_game.defaultOptions,"misc");
+			scr_saveOptions(global.optionsFileName);
+		}
 	}
+	else if (keyboard_check(vk_anykey)) {
+		lastKey = keyboard_key;
+		if (lastKey == keyboard_key) {
+			if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
+		} else keyPressLength = 0;
+	
+		if (keyPressLength > longPress) {
+			if (keyPressLength > 0) {
+				if ((current_time - delayTime) > delay){
+					delayTime = current_time;
+					scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
+				}
+			} 
+		}
+	} else keyPressLength = 0;
 }
 #endregion

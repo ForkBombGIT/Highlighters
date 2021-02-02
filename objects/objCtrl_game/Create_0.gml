@@ -21,7 +21,7 @@ ds_map_add(defaultAudioVideo,"resolution",2);
 defaultMisc = ds_map_create();
 ds_map_add(defaultMisc,"language",0);
 ds_map_add(defaultMisc,"charmSkin",0);
-ds_map_add(defaultMisc,"bombSkin",1);
+ds_map_add(defaultMisc,"bombSkin",0);
 ds_map_add(defaultMisc,"junkSkin",0);
 //add default option maps to default option map 
 ds_map_add_map(defaultOptions,"input",defaultInput);

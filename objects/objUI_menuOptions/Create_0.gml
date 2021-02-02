@@ -9,7 +9,8 @@ inputChangeKey = false;
 numFont = font_add_sprite_ext(spr_optionnumbers, "0123456789", true, 3);
 numFontFaded = font_add_sprite_ext(spr_optionnumbers_faded, "0123456789", true, 3);
 
-bomb_sprites = [spr_bomb,spr_bomb_2]
+charm_sprites = [spr_charm,spr_charm_2]
+bomb_sprites = [spr_bomb,spr_bomb_2,]
 miscMap = ds_map_find_value(global.options,"misc");
 
 // pulse animation
