@@ -34,11 +34,26 @@ if !(inputChangeKey) {
 	if (state == 0) maxCursorPosition = inputMaxCursorPosition;
 	else if (state == 1) maxCursorPosition = avMaxCursorPosition; 
 	else if (state == 2) maxCursorPosition = miscMaxCursorPosition; 
-	if (keyboard_check_pressed(ds_map_find_value(inputMap,"UP"))) 
+	var lastCursorPosition = cursorPosition;
+	//moving up and down
+	if (keyboard_check_pressed(ds_map_find_value(inputMap,"UP"))) {
 		cursorPosition = clamp(cursorPosition - 1,0,maxCursorPosition - 1);
-	else if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) 
-		cursorPosition = clamp(cursorPosition + 1,0,maxCursorPosition - 1);
-	
+		if (lastCursorPosition != cursorPosition) {
+			if (audio_is_playing(snd_move)) {
+				audio_stop_sound(snd_move)	
+			}
+			audio_play_sound(snd_move,1,0);	
+		}
+	}
+	else if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) {
+		cursorPosition = clamp(cursorPosition + 1,0,maxCursorPosition - 1)
+		if (lastCursorPosition != cursorPosition) {
+			if (audio_is_playing(snd_move)) {
+				audio_stop_sound(snd_move)	
+			}
+			audio_play_sound(snd_move,1,0);	
+		}
+	}
 }
 
 // INPUT SETTINGS

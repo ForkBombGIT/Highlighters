@@ -19,12 +19,31 @@ if (keyboard_check_pressed(ds_map_find_value(inputMap,"B")) &&
 	objCtrl_game.ui.alphaChange = objCtrl_game.ui.mainMenuAlphaChange;
 }	
 	
-if (keyboard_check_pressed(vk_anykey)) {
+if (keyboard_check_pressed(vk_anykey) && 
+   (state < 3) && 
+   (state > 0) &&
+   (objCtrl_game.ui.transitionAlpha == 0)) {
+	// Cursor movement
+	var lastCursorPosition = cursorPosition;
 	//moving up and down
-	if (keyboard_key == ds_map_find_value(inputMap,"UP")) 
+	if (keyboard_key == ds_map_find_value(inputMap,"UP")) {
 		cursorPosition = clamp(cursorPosition - 1,0,2);
-	else if (keyboard_key == ds_map_find_value(inputMap,"DOWN")) 
+		if (lastCursorPosition != cursorPosition) {
+			if (audio_is_playing(snd_move)) {
+				audio_stop_sound(snd_move)	
+			}
+			audio_play_sound(snd_move,1,0);	
+		}
+	}
+	else if (keyboard_key == ds_map_find_value(inputMap,"DOWN")) {
 		cursorPosition = clamp(cursorPosition + 1,0,2);
+		if (lastCursorPosition != cursorPosition) {
+			if (audio_is_playing(snd_move)) {
+				audio_stop_sound(snd_move)	
+			}
+			audio_play_sound(snd_move,1,0);	
+		}
+	}
 }
 
 // Main Menu State control

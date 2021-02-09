@@ -19,10 +19,23 @@ else if (keyboard_check_pressed(ds_map_find_value(inputMap,"B"))) {
 	}
 }
 
-if (keyboard_check(vk_anykey)) {
+if (keyboard_check(vk_anykey) &&
+   (objCtrl_game.ui.transitionAlpha == 0)) {
 	lastKey = keyboard_key;
 	if (lastKey == keyboard_key) {
-		if (++keyPressLength == 1) scr_gameMenuCursorMovement(cursorPosition,keyboard_key);
+		if (++keyPressLength == 1) {
+			var preLevel = global.gameLevel;
+			var preChar = global.character;
+			scr_gameMenuCursorMovement(cursorPosition,keyboard_key);
+			#region Movement Sounds
+			if (preLevel != global.gameLevel || preChar != global.character) {
+				if (audio_is_playing(snd_move)) {
+					audio_stop_sound(snd_move)	
+				}
+				audio_play_sound(snd_move,1,0);	
+			}
+			#endregion
+		}
 	} else keyPressLength = 0;
 	
 	if (keyPressLength > longPress) {

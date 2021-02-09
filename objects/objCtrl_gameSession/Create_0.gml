@@ -7,7 +7,7 @@ global.gameover = false;
 global.victory = false;
 global.riseBrake = false;
 gameEnd = false;
-gameoverDelay = global.gameMode == 1 ? 180 : 150;
+gameoverDelay = global.gameMode == 1 ? 180 : 60;
 
 //restarts game
 global.restart = false;

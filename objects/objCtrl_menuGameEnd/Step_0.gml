@@ -20,15 +20,25 @@ if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
 	}
 }
 
+// Cursor movement
+var lastCursorPosition = cursorPosition;
+//moving up and down
 if (keyboard_check_pressed(ds_map_find_value(inputMap,"UP"))) {
-	if (cursorPosition > 0) {
-		cursorPosition--;	
+	cursorPosition = clamp(cursorPosition - 1,0,1);
+	if (lastCursorPosition != cursorPosition) {
+		if (audio_is_playing(snd_move)) {
+			audio_stop_sound(snd_move)	
+		}
+		audio_play_sound(snd_move,1,0);	
 	}
 }
-
-if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) {
-	if (cursorPosition < 1) {
-		cursorPosition++;	
+else if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) {
+	cursorPosition = clamp(cursorPosition + 1,0,1)
+	if (lastCursorPosition != cursorPosition) {
+		if (audio_is_playing(snd_move)) {
+			audio_stop_sound(snd_move)	
+		}
+		audio_play_sound(snd_move,1,0);	
 	}
 }
 #endregion

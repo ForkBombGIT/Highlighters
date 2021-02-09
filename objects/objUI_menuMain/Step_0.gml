@@ -9,6 +9,7 @@ if (state == 0) {
 	drawStart = false;
 	drawStartTimer = current_time - (drawStartDelay * 1000);
 }
+
 #region Animation
 var animSpeed = startAnimationSpeed / room_speed;
 startFlickerIndex += animSpeed;

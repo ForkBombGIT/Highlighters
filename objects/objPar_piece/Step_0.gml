@@ -210,13 +210,17 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	   (!(match)) {
 		var entityBelow = instance_position(x,y + global.pieceSize,objPar_piece);
 		if (instance_exists(entityBelow)) {
+			if (entityBelow.aboveMatch)
+				aboveMatch = true;
 			if (entityBelow.match) {
 				var activeMatchmaker = entityBelow.activeMatchmaker;
+				// flag that controls whether to show squish index
 				var showAboveMatch = true;
 				if (instance_exists(activeMatchmaker) && activeMatchmaker.animating) {
 					var entityHighlightFrame = ds_list_find_value(activeMatchmaker.final,ds_list_size(activeMatchmaker.final) - 1).highlightIndex;
 					if (entityHighlightFrame >= 12) {
 						showAboveMatch = false;
+						image_index = index;
 					}
 				}
 			

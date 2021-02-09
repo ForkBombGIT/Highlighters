@@ -95,6 +95,7 @@ if (!(global.victory) &&
 if (global.gameover) ||
    (global.victory) {
 	if !(gameEndAnimation) { 
+		gameEndAnimation = true; 
 		global.forceRise = false;
 		global.riseUp = false;
 		global.forceRiseSpeed = 0;
@@ -103,7 +104,6 @@ if (global.gameover) ||
 		audio_play_sound(sound,1,0);
 		//sets starting point for character portrait
 		objUI_characterPortrait.characterAnimIndex = 5; 
-		gameEndAnimation = true; 
 		alarm[0] = 1; 
 	}
 }

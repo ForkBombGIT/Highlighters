@@ -13,7 +13,6 @@ if (ui.image_index >= sprite_get_number(spr_menu_quit) - 1) {
 		if (cursorPosition == 1)
 			cursorPosition--;
 	}
-
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"RIGHT"))) {
 		if (cursorPosition == 0)
 			cursorPosition++;
