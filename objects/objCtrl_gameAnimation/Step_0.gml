@@ -8,6 +8,7 @@ if (scr_checkRow(objCtrl_gameSession.boardHeight - 1)) {
 	if (instance_exists(entity))
 		if (entity.y <= scr_getRowPos(objCtrl_gameSession.boardHeight - 1)) 
 			canBounce = false;
+	ds_list_destroy(topRow);
 }
 
 // reset pieces that were bouncing
@@ -42,6 +43,7 @@ if (canBounce) &&
 				bounce = true;
 			}
 		}
+		ds_list_destroy(rowEntities);
 	} else {
 		bounce = false;
 		bounceIndex = 0;
@@ -62,9 +64,8 @@ if (bounce) {
 #endregion
 
 #region Pulse Animation
-if ((global.active) && 
-   !(global.victory) &&
-   !(global.gameover)) {
+if (!(global.victory) &&
+    !(global.gameover)) {
 	// bomb pulse animation
 	var animSpeed = global.pulse ? pulseAnimationSpeedEnd : pulseAnimationSpeedStart;
 	pulseIndex += animSpeed;
@@ -94,19 +95,15 @@ if ((global.active) &&
 if (global.gameover) ||
    (global.victory) {
 	if !(gameEndAnimation) { 
+		gameEndAnimation = true; 
 		global.forceRise = false;
 		global.riseUp = false;
 		global.forceRiseSpeed = 0;
 		instance_destroy(obj_matchmaker);
-		instance_destroy(objCtrl_gameMusic);
-		var avMap = ds_map_find_value(global.options,"av");
-		var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 		var sound = global.victory ? snd_win : snd_lose;
 		audio_play_sound(sound,1,0);
-		audio_sound_gain(sound,soundVol,0);
 		//sets starting point for character portrait
 		objUI_characterPortrait.characterAnimIndex = 5; 
-		gameEndAnimation = true; 
 		alarm[0] = 1; 
 	}
 }

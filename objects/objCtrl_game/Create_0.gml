@@ -18,17 +18,25 @@ ds_map_add(defaultAudioVideo,"musicVol",80);
 ds_map_add(defaultAudioVideo,"soundVol",80);
 ds_map_add(defaultAudioVideo,"fullscreen",0);
 ds_map_add(defaultAudioVideo,"resolution",2);
+defaultMisc = ds_map_create();
+ds_map_add(defaultMisc,"language",0);
+ds_map_add(defaultMisc,"charmSkin",0);
+ds_map_add(defaultMisc,"bombSkin",0);
+ds_map_add(defaultMisc,"junkSkin",0);
 //add default option maps to default option map 
 ds_map_add_map(defaultOptions,"input",defaultInput);
 ds_map_add_map(defaultOptions,"av",defaultAudioVideo);
+ds_map_add_map(defaultOptions,"misc",defaultMisc);
 //holds active options
 global.optionsFileName = "options.hl"
 global.options = ds_map_create();
 if (!file_exists(global.optionsFileName)) {
 	//apply default input to options map
-	scr_setInputDefaults(defaultOptions);
+	scr_setOptionDefault(defaultOptions,"input");
 	//apply default av settings to options map
-	scr_setAudioVideoDefaults(defaultOptions)
+	scr_setOptionDefault(defaultOptions,"av");
+	//apply default av settings to options map
+	scr_setOptionDefault(defaultOptions,"misc");
 	scr_saveOptions(global.optionsFileName)
 }
 else global.options = scr_loadOptions(global.optionsFileName);
@@ -55,3 +63,6 @@ ui = instance_create_layer(x,y,"GUI",objUI_game);
 
 //adds dev tool object
 instance_create_layer(x,y,"Controllers",objCtrl_devTools);
+
+// audio control
+instance_create_layer(x,y,"Controllers",objCtrl_gameAudio);

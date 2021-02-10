@@ -3,7 +3,7 @@ function scr_createEntity(argument0, argument1, argument2, argument3) {
 	var col = argument1;
 	var object = argument2;
 	var color = argument3;
-
+	
 	var gamePiece = instance_create_layer(scr_getColPos(col),
 										  scr_getRowPos(row),
 										  "Entities",

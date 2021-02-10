@@ -8,7 +8,11 @@ if (state != 3) &&
 switch (state) {
 	case 0:
 		//title screen
-		draw_sprite(spr_menu_enter,floor(startFlickerIndex),120,360);
+		draw_set_font(upperCase);
+		if (drawStart) {
+			var key = scr_keyIndexToString(scr_keyToIndex(ds_map_find_value(inputMap,"A")));
+			draw_text(168 - ceil((string_length(key) * 24)/2),360,"PRESS " + key);
+		}
 		break;
 	case 1:
 		#region Menu Drawing
@@ -20,6 +24,7 @@ switch (state) {
 	case 2: 
 		draw_sprite(spr_menu_options_input,(cursorPosition == 0) ? floor(optionAnimationIndex) : 0,120,198);
 		draw_sprite(spr_menu_options_av,(cursorPosition == 1) ? floor(optionAnimationIndex) : 0,120,246);
+		draw_sprite(spr_menu_options_misc,(cursorPosition == 2) ? floor(optionAnimationIndex) : 0,120,294);
 		break;
 	case 4:
 		draw_sprite(spr_practice_prompt,0,105,198);

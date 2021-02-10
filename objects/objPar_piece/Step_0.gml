@@ -1,5 +1,3 @@
-var avMap = ds_map_find_value(global.options,"av");
-var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 #region Force Rise
 //rise if the force rise button is pressed
 if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
@@ -78,7 +76,8 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	//bounce
 	if !(global.gameover) &&
 	   !(global.victory) && 
-	   !(aboveMatch) {
+	   !(aboveMatch) &&
+	   !(landAnim) {
 		if (y < scr_getRowPos(0) && 
 		   (y <= scr_getRowPos(objCtrl_gameSession.boardHeight - 3)) &&
 		   (y != scr_getRowPos(objCtrl_gameSession.boardHeight - 1)) && 
@@ -156,6 +155,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 																  landingAnimationRest;
 			   // landing animation index control
 			   if !(bounce) {
+				   landAnimIndex += animSpeed;
 				   if (floor(landAnimIndex) > index + 3) {
 					 landAnimIndex = index; landAnim = false; justLanded = false; aboveMatch = false; inMatchCol = false;
 				   }
@@ -163,7 +163,6 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			   //apply animation
 			   //bounce index is controller in controller for all pieces to bounce uniformly
 			   image_index = (bounce) ? scr_getBounceIndex(floor(objCtrl_gameAnimation.bounceIndex)) + index : floor(landAnimIndex);
-			   landAnimIndex += animSpeed;
 		}
 	}
 	#endregion
@@ -196,9 +195,9 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		landAnimIndex = index;	
 		landAnim = true;
 		falling = false;
+		squish = false;
 		if !(audio_is_playing(snd_drop)) {
 			audio_play_sound(snd_drop,1,0);
-			audio_sound_gain(snd_swap,soundVol,0);
 		}
 		if (inMatchCol) {
 			justLanded = true;
@@ -211,13 +210,17 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	   (!(match)) {
 		var entityBelow = instance_position(x,y + global.pieceSize,objPar_piece);
 		if (instance_exists(entityBelow)) {
+			if (entityBelow.aboveMatch)
+				aboveMatch = true;
 			if (entityBelow.match) {
 				var activeMatchmaker = entityBelow.activeMatchmaker;
+				// flag that controls whether to show squish index
 				var showAboveMatch = true;
 				if (instance_exists(activeMatchmaker) && activeMatchmaker.animating) {
 					var entityHighlightFrame = ds_list_find_value(activeMatchmaker.final,ds_list_size(activeMatchmaker.final) - 1).highlightIndex;
 					if (entityHighlightFrame >= 12) {
 						showAboveMatch = false;
+						image_index = index;
 					}
 				}
 			

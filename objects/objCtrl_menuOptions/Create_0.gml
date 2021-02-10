@@ -9,6 +9,7 @@ promptLife = 3;
 inputChangeKey = false;
 inputMaxCursorPosition = 10;
 avMaxCursorPosition = 8;
+miscMaxCursorPosition = 5;
 exitState = 0;
 
 // Controls delay on level picking
@@ -18,6 +19,7 @@ keyPressLength = 0;
 longPress = 20;
 lastKey = -1;
 
+testAudio = false;
 musicTest = 0;
 music = [sng_floss,sng_hasen,sng_milo];
 soundTest = 0;

@@ -18,6 +18,9 @@ function scr_removeMatchmaker(argument0, argument1) {
 			ds_stack_push(matchmakerOne.stack,matchmakerTwoEntity);
 		}
 		ds_stack_push(matchmakerOne.stack,matchmakerTwo.origin);
+		ds_list_destroy(matchmakerTwo.final);
+		ds_stack_destroy(matchmakerTwo.stack);
+		ds_list_destroy(matchmakerTwo.bombs);
 		instance_destroy(matchmakerTwo);
 	}
 

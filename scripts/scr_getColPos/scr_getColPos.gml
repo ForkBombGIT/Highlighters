@@ -9,6 +9,4 @@ function scr_getColPos(argument0) {
 		case 4: return 240;
 		case 5: return 288;
 	}
-
-
 }

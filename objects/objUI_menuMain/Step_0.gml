@@ -1,4 +1,14 @@
 event_inherited();
+// Start text flicker
+if (state == 0) {
+	if (((current_time - drawStartTimer) / 1000) > drawStartDelay) {
+		drawStart = !drawStart;	
+		drawStartTimer = current_time;
+	}
+} else {
+	drawStart = false;
+	drawStartTimer = current_time - (drawStartDelay * 1000);
+}
 
 #region Animation
 var animSpeed = startAnimationSpeed / room_speed;

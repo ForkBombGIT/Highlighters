@@ -5,37 +5,58 @@ ui.inputChangeKey = inputChangeKey;
 ui.inputPrompt = inputPrompt;
 ui.musicTest = musicTest;
 ui.soundTest = soundTest;
-maxCursorPosition = (state == 0) ? inputMaxCursorPosition : avMaxCursorPosition;
+
 var inputMap = ds_map_find_value(global.options,"input");
 var avMap = ds_map_find_value(global.options,"av");
-var musicVol = ds_map_find_value(avMap,"musicVol") / 600;
-var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 
 #region Input Control
 if !(inputChangeKey) {
-	//back
+	// Return to  main menu
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"B"))) {
-		audio_stop_all();
-		audio_play_sound(snd_back,1,0);
-		audio_sound_gain(snd_back,soundVol,0);
+		if (testAudio) {
+			audio_stop_all();
+		}
+		scr_updateAudioLevels();
 		if (confirmResolution) {
 			if (fullscreenOption != ds_map_find_value(avMap,"fullscreen"))
 				ds_map_replace(avMap,"fullscreen",fullscreenOption);
 			if (resolutionOption != ds_map_find_value(avMap,"resolution"))
 				ds_map_replace(avMap,"resolution",resolutionOption);	
 		}
+		testAudio = false;
 		scr_saveOptions(global.optionsFileName)
+		// TODO Fix this sound not always playing
+		audio_play_sound(snd_back,1,0);
 		exitState = 1;
 	}	
+	// Cursor movement
+	var maxCursorPosition;
+	if (state == 0) maxCursorPosition = inputMaxCursorPosition;
+	else if (state == 1) maxCursorPosition = avMaxCursorPosition; 
+	else if (state == 2) maxCursorPosition = miscMaxCursorPosition; 
+	var lastCursorPosition = cursorPosition;
 	//moving up and down
-	if (keyboard_check_pressed(ds_map_find_value(inputMap,"UP"))) 
-		cursorPosition = clamp(cursorPosition - 1,0,((state == 0) ? inputMaxCursorPosition : avMaxCursorPosition) - 1);
-	else if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) 
-		cursorPosition = clamp(cursorPosition + 1,0,((state == 0) ? inputMaxCursorPosition : avMaxCursorPosition) - 1);
-	
+	if (keyboard_check_pressed(ds_map_find_value(inputMap,"UP"))) {
+		cursorPosition = clamp(cursorPosition - 1,0,maxCursorPosition - 1);
+		if (lastCursorPosition != cursorPosition) {
+			if (audio_is_playing(snd_move)) {
+				audio_stop_sound(snd_move)	
+			}
+			audio_play_sound(snd_move,1,0);	
+		}
+	}
+	else if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) {
+		cursorPosition = clamp(cursorPosition + 1,0,maxCursorPosition - 1)
+		if (lastCursorPosition != cursorPosition) {
+			if (audio_is_playing(snd_move)) {
+				audio_stop_sound(snd_move)	
+			}
+			audio_play_sound(snd_move,1,0);	
+		}
+	}
 }
 
-// if the user is changing the key
+// INPUT SETTINGS
 if (state == 0) {
 	if ((current_time - promptTime) / 1000 >= promptLife) {
 		promptTime = current_time;
@@ -44,7 +65,6 @@ if (state == 0) {
 	if (inputChangeKey) {
 		if (keyboard_check_pressed(vk_anykey)) {
 				var keyPressed = keyboard_key;
-				show_debug_message(keyPressed);
 				// if cursor is not at select
 				if (cursorPosition - 1 >= 0) {
 					var validKey = true;
@@ -106,7 +126,8 @@ if (state == 0) {
 			inputPrompt = -1;
 			if (keyboard_key == ds_map_find_value(inputMap,"A")) {
 				if (cursorPosition == inputMaxCursorPosition - 1) {
-					scr_setInputDefaults(objCtrl_game.defaultOptions);
+					//apply default av settings to options map
+					scr_setOptionDefault(objCtrl_game.defaultOptions,"input");
 					scr_saveOptions(global.optionsFileName);
 				}
 				else if (cursorPosition > 1)  && (cursorPosition < 8) {
@@ -116,33 +137,42 @@ if (state == 0) {
 		}
 	}
 }
+// AUDIO VIDEO SETTINGS
 else if (state == 1) {
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
+		scr_updateAudioLevels();
 		if (cursorPosition == 1) {
 			audio_stop_all();
 			audio_play_sound(music[musicTest],1,1);
-			audio_sound_gain(music[musicTest],musicVol,0);
+			testAudio = true;
 		} else if (cursorPosition == 3) {
 			audio_stop_all();
 			audio_play_sound(sounds[soundTest],1,0);
-			audio_sound_gain(sounds[soundTest],soundVol,0);
+			testAudio = true;
 		} else if (cursorPosition == avMaxCursorPosition - 1) {
-			scr_setAudioVideoDefaults(objCtrl_game.defaultOptions);
+			scr_setOptionDefault(objCtrl_game.defaultOptions,"av");
 			scr_saveOptions(global.optionsFileName);
 		}
 	}
 	else if (keyboard_check(vk_anykey)) {
+		// TODO Only stop if a test sound was being played
+		if (cursorPosition != 1 && cursorPosition != 3) {
+			if (testAudio) {
+				audio_stop_all();
+				testAudio = false;
+			}
+		}
 		inputPrompt = -1;
 		lastKey = keyboard_key;
 		if (lastKey == keyboard_key) {
-			if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key);
+			if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
 		} else keyPressLength = 0;
 	
 		if (keyPressLength > longPress) {
 			if (keyPressLength > 0) {
 				if ((current_time - delayTime) > delay){
 					delayTime = current_time;
-					scr_optionMenuCursorMovement(cursorPosition,keyboard_key);
+					scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
 				}
 			} 
 		}
@@ -195,5 +225,29 @@ else if (state == 1) {
 			inputPrompt = -1;
 		}
 	}
+}
+// MISC SETTINGS
+else if (state == 2) {
+	if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
+		if (cursorPosition == miscMaxCursorPosition - 1) {
+			scr_setOptionDefault(objCtrl_game.defaultOptions,"misc");
+			scr_saveOptions(global.optionsFileName);
+		}
+	}
+	else if (keyboard_check(vk_anykey)) {
+		lastKey = keyboard_key;
+		if (lastKey == keyboard_key) {
+			if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
+		} else keyPressLength = 0;
+	
+		if (keyPressLength > longPress) {
+			if (keyPressLength > 0) {
+				if ((current_time - delayTime) > delay){
+					delayTime = current_time;
+					scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
+				}
+			} 
+		}
+	} else keyPressLength = 0;
 }
 #endregion

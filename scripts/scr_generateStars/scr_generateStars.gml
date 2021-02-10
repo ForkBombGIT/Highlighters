@@ -50,5 +50,6 @@ function scr_generateStars(argument0, argument1) {
 		ds_list_add(stars,imageIndex);
 	};
 
+	ds_list_destroy(stars);
 
 }

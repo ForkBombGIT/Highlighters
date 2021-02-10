@@ -14,8 +14,8 @@ carryOverLevels = 0;
 
 //scoring
 baseScoreInc = 10;
-comboBonus = 50;
-chainBonus = 100;
+comboBonus = 200;
+chainBonus = 500;
 
 //chain variable
 global.chain = false;

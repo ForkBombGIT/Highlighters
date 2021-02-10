@@ -5,18 +5,26 @@ if (!instance_exists(ui)) instance_destroy();
 #region Pause Handling
 if (global.active) {
 	var inputMap = ds_map_find_value(global.options,"input");
-	var avMap = ds_map_find_value(global.options,"av");
-	var soundVol = ds_map_find_value(avMap,"soundVol") / 100;
 	if (pause) {
 		#region Menu Control
+		var lastCursorPosition = cursorPosition;
+		//moving up and down
 		if (keyboard_check_pressed(ds_map_find_value(inputMap,"UP"))) {
-			if (cursorPosition > 0) {
-				cursorPosition--;	
+			cursorPosition = clamp(cursorPosition - 1,0,array_length(ui.pauseCursorPositions) - 1);
+			if (lastCursorPosition != cursorPosition) {
+				if (audio_is_playing(snd_move)) {
+					audio_stop_sound(snd_move)	
+				}
+				audio_play_sound(snd_move,1,0);	
 			}
 		}
-		if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) {
-			if (cursorPosition < array_length(ui.pauseCursorPositions) - 1) {
-				cursorPosition++;	
+		else if (keyboard_check_pressed(ds_map_find_value(inputMap,"DOWN"))) {
+			cursorPosition = clamp(cursorPosition + 1,0,array_length(ui.pauseCursorPositions) - 1)
+			if (lastCursorPosition != cursorPosition) {
+				if (audio_is_playing(snd_move)) {
+					audio_stop_sound(snd_move)	
+				}
+				audio_play_sound(snd_move,1,0);	
 			}
 		}
 		
@@ -28,7 +36,6 @@ if (global.active) {
 			}
 			var sound = (keyboard_key == ds_map_find_value(inputMap,"PAUSE")) ? snd_back : snd_ok;
 			audio_play_sound(sound,1,0);
-			audio_sound_gain(sound,soundVol,0);
 			if (cursorPosition == 1) 
 				objCtrl_game.ui.transition = true;
 			resume = true;
@@ -60,7 +67,6 @@ if (global.active) {
 			if (keyboard_check_pressed(ds_map_find_value(inputMap,"PAUSE"))) {
 				pause = true;
 				audio_play_sound(snd_pausea,1,0);
-				audio_sound_gain(snd_pausea,soundVol,0);
 				objPar_piece.visible = false;
 				obj_cursor.visible = false;
 				if (instance_exists(obj_combo)) {
@@ -76,7 +82,6 @@ if (global.active) {
 			//pause when window loses focus
 			if !(window_has_focus()) {
 				audio_play_sound(snd_pausea,1,0);
-				audio_sound_gain(snd_pausea,soundVol,0);
 				pause = true;
 				objPar_piece.visible = false;
 				obj_cursor.visible = false;

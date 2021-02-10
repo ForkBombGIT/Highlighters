@@ -13,9 +13,6 @@ function scr_checkColors(argument0, argument1) {
 	var colorArray = ds_map_find_value(colorMappings,previousColor);
 	var one = -1, two = -1;
 	if (colorArray != undefined) { one = colorArray[0]; two = colorArray[1]; }
-	return (colorArray == undefined) ? true : ((one != color) && (two != color));
-
-	
-
-
+	ds_map_destroy(colorMappings);
+	return (colorArray == undefined) ? true : ((one != color) && (two != color));;
 }

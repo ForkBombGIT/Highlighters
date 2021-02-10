@@ -10,8 +10,9 @@ function scr_createRow(argument0) {
 		for (var j = 0; j < ds_list_size(rowPieces); j++) {
 			ds_list_add(bottomRows,ds_list_find_value(rowPieces,j).index);	
 		}
+		ds_list_destroy(rowPieces);
 	}
-
+	
 	//iterates the length of the board
 	for (var col = 0; col < objCtrl_gameSession.boardWidth; col++) {
 		var piece = scr_pieceAlgorithm(row,col,bottomRows,placedBombs,placedPieces);

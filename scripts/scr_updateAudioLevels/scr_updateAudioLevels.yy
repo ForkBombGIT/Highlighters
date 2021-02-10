@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Options",
-    "path": "folders/Scripts/Options.yy",
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_setInputDefaults",
+  "name": "scr_updateAudioLevels",
   "tags": [],
   "resourceType": "GMScript",
 }

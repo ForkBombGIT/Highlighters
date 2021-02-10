@@ -104,5 +104,8 @@ if (clearFinalList) {
 		var entity = ds_list_find_value(final,i);
 		instance_destroy(entity);
 	}	
+	ds_list_destroy(final);
+	ds_list_destroy(bombs);
+	ds_stack_destroy(stack);
 	instance_destroy();	
 }
