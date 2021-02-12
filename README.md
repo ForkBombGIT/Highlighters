@@ -1,18 +1,22 @@
 # Highlighters
-Highlighters is our entry in the action-puzzle genre, and is particularly inspired by games from the 90s (Tetris Attack, Puzzle Fighter). They're visually super stylish, easy to pick up, and a skilled player can take advantage of its design and be rewarded for it.
 
-## Game Rules
-The game is made up of two pieces: charms and bombs
+<img src="./screenshots/floss.PNG" width="25%" alt="Screenshot of gameplay as the Floss character"/>
+&nbsp;
+<img src="./screenshots/cognac-panic.PNG" width="25%" alt="Screenshot of gameplay as the Cognac character, displaying Cognac appearing stressed"/>
+&nbsp;
+<img src="./screenshots/milo.PNG" width="25%" alt="Screenshot of gameplay as the Milo character"/>
 
-To perform a match, line up 4 or more like-coloured pieces adjacent to each other; at least one of them must be a bomb
+## About
+Highlighters is the next entry in the action-puzzle genre, inspired by the charming and stylish titles of the 90s like Tetris Attack and Puzzle Fighter. This game is easy on beginners, but also has a lot to offer for the skilled players of competitive, completionist and speedrunning tastes!
 
-## Game Controls
-X: Swap pieces
+## Rules
+Clear tiles by matching 4 or more like-colored pieces together, with at least one of them being a bomb (cross-shaped).
 
-Z: Rise stack, Rush animations
+## Default Controls
+**X:** Swap pieces, advance in menus, confirm
 
-Arrow Keys: Cursor movement
+**Z:** Rise stack, speed up match animations, return in menus, cancel
 
-Enter (In game): Pause
+**Arrow Keys:** Cursor movement
 
-ESC: Quit game
+**ESC:** Quit game in menus, pause game in session

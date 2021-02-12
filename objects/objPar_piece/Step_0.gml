@@ -231,6 +231,22 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	#endregion
 	
 	#region Swap Control
+	if (longSwap != 0) &&
+	  !(match){
+		if !(swap) {
+			swap = true;
+			targetX =  col + longSwap;
+			var dir = instance_position(x + longSwap * 48,y,objPar_piece);
+			show_debug_message(targetX);
+			if (instance_exists(dir) || 
+			    targetX == objCtrl_gameSession.boardWidth || 
+				targetX < 0 ||
+			   !bottomEntity) {
+				swap = false;
+				longSwap = 0;
+			}
+		}
+	}
 	if (swap) { 
 		aboveMatch = false;
 		bounce = false;

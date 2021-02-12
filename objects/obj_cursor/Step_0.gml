@@ -43,13 +43,19 @@ if ((global.active) &&
 		buffer = 0;
 		swap = true;
 	}
+	if (keyboard_check(ds_map_find_value(inputMap,"A"))) {
+		swapPressLength++;
+	}
+	if (keyboard_check_released(ds_map_find_value(inputMap,"A"))) {
+		swapPressLength = 0;
+	}
 }
 
 if (swap) {
 	if (buffer++ < bufferLength) {
 		//holds the piece on the left and right of the cursor
-		var left = instance_position(x-24,y,objPar_piece);
-		var right = instance_position(x+24,y,objPar_piece);
+		leftPiece = instance_position(x-24,y,objPar_piece);
+		rightPiece = instance_position(x+24,y,objPar_piece);
 		var leftUp = instance_position(x-24,y-48,objPar_piece);
 		var rightUp = instance_position(x+24,y-48,objPar_piece);
 		var leftUpBottomEntity = instance_exists(leftUp) ? leftUp.bottomEntity : true;
@@ -57,49 +63,49 @@ if (swap) {
 	
 		//applies swap to both pieces if there are a left and right piece
 		if (!objPar_piece.swap) {
-			if (instance_exists(right) && instance_exists(left)) { 
-				if (!(left.swap) && !(right.swap) && 
+			if (instance_exists(rightPiece) && instance_exists(leftPiece)) { 
+				if (!(leftPiece.swap) && !(rightPiece.swap) && 
 				   (leftUpBottomEntity) && (rightUpBottomEntity) &&
-				   (!(left.match) && !(right.match)) &&
-				   (left.bottomEntity) && (right.bottomEntity)) {
+				   (!(leftPiece.match) && !(rightPiece.match)) &&
+				   (leftPiece.bottomEntity) && (rightPiece.bottomEntity)) {
 					audio_play_sound(snd_swap,1,0);
-					left.targetX = col + 1;
-					left.swap = true;
-					left.image_index = left.index + 4;
-					left.depth = left.orgDepth - 100;
+					leftPiece.targetX = col + 1;
+					leftPiece.swap = true;
+					leftPiece.image_index = leftPiece.index + 4;
+					leftPiece.depth = leftPiece.orgDepth - 100;
 			
-					right.targetX = col;
-					right.swap = true;
-					right.image_index = right.index + 4;
+					rightPiece.targetX = col;
+					rightPiece.swap = true;
+					rightPiece.image_index = rightPiece.index + 4;
 					swap = false;
 				}	
 			}
 			else {
 				//applies swap to left piece
-				if (instance_exists(left)) {
-					if !(left.swap) && 
-					   !(left.match) && 
-					   (left.bottomEntity) && 
+				if (instance_exists(leftPiece)) {
+					if !(leftPiece.swap) && 
+					   !(leftPiece.match) && 
+					   (leftPiece.bottomEntity) && 
 					   (rightUpBottomEntity) {
 						audio_play_sound(snd_swap,1,0);
-						left.targetX = col + 1;
-						left.swap = true;
-						left.image_index = left.index + 4;
-						left.depth = left.orgDepth - 100;
+						leftPiece.targetX = col + 1;
+						leftPiece.swap = true;
+						leftPiece.image_index = leftPiece.index + 4;
+						leftPiece.depth = leftPiece.orgDepth - 100;
 						swap = false;
 					}
 				}
 	
 				//applies swap to right piece
-				else if (instance_exists(right)){
-					if !(right.swap) && 
-					   !(right.match) && 
-					   (right.bottomEntity) && 
+				else if (instance_exists(rightPiece)){
+					if !(rightPiece.swap) && 
+					   !(rightPiece.match) && 
+					   (rightPiece.bottomEntity) && 
 					   (leftUpBottomEntity) {
 						audio_play_sound(snd_swap,1,0);
-						right.targetX = col;
-						right.swap = true;
-						right.image_index = right.index + 4;
+						rightPiece.targetX = col;
+						rightPiece.swap = true;
+						rightPiece.image_index = rightPiece.index + 4;
 						swap = false;
 					}
 				} 
@@ -109,6 +115,18 @@ if (swap) {
 		buffer = 0;
 		swap = false;
 	}
+}
+
+if (swapPressLength > longPress) {
+	if (instance_exists(leftPiece)) {
+		leftPiece.longSwap = 1;	
+	}
+	if (instance_exists(rightPiece)) {
+		rightPiece.longSwap = -1;	
+	}
+	leftPiece = noone;
+	rightPiece = noone;
+	swapPressLength = 0;
 }
 #endregion
 

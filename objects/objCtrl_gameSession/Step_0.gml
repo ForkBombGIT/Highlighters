@@ -52,17 +52,12 @@ if (global.restart) {
 	global.restart = false;
 }
 
-var pieceSwap = false
-with (objPar_piece) {
-	if (swap) pieceSwap = true;
-}
-
 var pieceFalling = false;
 with (objPar_piece) {
 	if !(bottomEntity) pieceFalling = true;
 }
 	
-global.riseBrake = (instance_exists(obj_matchmaker)) || pieceFalling || pieceSwap
+global.riseBrake = (instance_exists(obj_matchmaker)) || pieceFalling
 
 //freeze timer
 if (global.freeze) &&

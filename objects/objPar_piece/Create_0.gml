@@ -22,6 +22,7 @@ swap = false;
 swapState = 0;
 targetX = -1;
 swapSpeed = global.gameMode == 1 ? 4 : 16; //48 
+longSwap = false;
 
 //controls fall speed
 justLanded = false;
