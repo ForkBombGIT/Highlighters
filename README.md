@@ -1,11 +1,11 @@
 # Highlighters
 
 <p>
-  <img src="./screenshots/floss.PNG" width="20%" alt="Screenshot of gameplay as the Floss character"/>
+  <img src="./screenshots/floss.PNG" width="25%" alt="Screenshot of gameplay as the Floss character"/>
   &nbsp;
-  <img src="./screenshots/cognac-panic.PNG" width="20%" alt="Screenshot of gameplay as the Cognac character, displaying Cognac appearing stressed"/>
+  <img src="./screenshots/cognac-panic.PNG" width="25%" alt="Screenshot of gameplay as the Cognac character, displaying Cognac appearing stressed"/>
   &nbsp;
-  <img src="./screenshots/milo.PNG" width="20%" alt="Screenshot of gameplay as the Milo character"/>
+  <img src="./screenshots/milo.PNG" width="25%" alt="Screenshot of gameplay as the Milo character"/>
 </p>
 
 ## About
