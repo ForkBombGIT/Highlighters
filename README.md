@@ -1,10 +1,12 @@
 # Highlighters
 
-<img src="./screenshots/floss.PNG" width="25%" alt="Screenshot of gameplay as the Floss character"/>
-&nbsp;
-<img src="./screenshots/cognac-panic.PNG" width="25%" alt="Screenshot of gameplay as the Cognac character, displaying Cognac appearing stressed"/>
-&nbsp;
-<img src="./screenshots/milo.PNG" width="25%" alt="Screenshot of gameplay as the Milo character"/>
+<p>
+  <img src="./screenshots/floss.PNG" width="20%" alt="Screenshot of gameplay as the Floss character"/>
+  &nbsp;
+  <img src="./screenshots/cognac-panic.PNG" width="20%" alt="Screenshot of gameplay as the Cognac character, displaying Cognac appearing stressed"/>
+  &nbsp;
+  <img src="./screenshots/milo.PNG" width="20%" alt="Screenshot of gameplay as the Milo character"/>
+</p>
 
 ## About
 Highlighters is the next entry in the action-puzzle genre, inspired by the charming and stylish titles of the 90s like Tetris Attack and Puzzle Fighter. This game is easy on beginners, but also has a lot to offer for the skilled players of competitive, completionist and speedrunning tastes!
