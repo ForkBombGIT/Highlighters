@@ -22,7 +22,7 @@ swap = false;
 swapState = 0;
 targetX = -1;
 swapSpeed = global.gameMode == 1 ? 4 : 16; //48 
-longSwap = false;
+zipSwap = false;
 
 //controls fall speed
 justLanded = false;
@@ -41,11 +41,14 @@ highlightDelay = 2;
 highlightIndex = 8;
 highlightLength = 14;
 highlighting = false;
+
 //panic animations
 bounce = false;
 squish = false;
+
 //how long piece stays floating after its no longer bottom entity
 floatDelay = global.gameMode == 1 ? 15 : 10;
+
 // used for chain detections
 aboveMatch = false;
 floatAboveMatchDelay = global.gameMode == 1 ? 30 : 3;

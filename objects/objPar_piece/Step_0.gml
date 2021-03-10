@@ -231,19 +231,27 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	#endregion
 	
 	#region Swap Control
-	if (longSwap != 0) &&
+	// Zip Swap
+	// Check if the piece is matching, and a direction for zipSwap has been set
+	if (zipSwap != 0) &&
 	  !(match){
 		if !(swap) {
 			swap = true;
-			targetX =  col + longSwap;
-			var dir = instance_position(x + longSwap * 48,y,objPar_piece);
-			show_debug_message(targetX);
-			if (instance_exists(dir) || 
-			    targetX == objCtrl_gameSession.boardWidth || 
-				targetX < 0 ||
+			targetX =  col + zipSwap;
+			var dir = instance_position(x + zipSwap * 48,y,objPar_piece);
+			var collision = instance_exists(dir) || 
+						    targetX == objCtrl_gameSession.boardWidth || 
+							targetX < 0;
+			if (collision) {
+				if (audio_is_playing(snd_drop)) {
+					audio_stop_sound(snd_drop)	
+				}
+				audio_play_sound(snd_drop,1,0);
+			}
+			if (collision ||
 			   !bottomEntity) {
 				swap = false;
-				longSwap = 0;
+				zipSwap = 0;
 			}
 		}
 	}
@@ -260,7 +268,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			col = targetX;
 			targetX = scr_getColPos(targetX);
 		}
-		swapSpeed = ds_list_find_value(swapSpeeds,swapState++);
+		swapSpeed = (zipSwap) ? global.pieceSize : ds_list_find_value(swapSpeeds,swapState++);
 		//increment until position is reached
 		if (x < targetX) x += swapSpeed;
 		else if (x > targetX) x -= swapSpeed;

@@ -44,10 +44,11 @@ if ((global.active) &&
 		swap = true;
 	}
 	if (keyboard_check(ds_map_find_value(inputMap,"A"))) {
-		swapPressLength++;
+		if (release) swapPressLength++;
 	}
 	if (keyboard_check_released(ds_map_find_value(inputMap,"A"))) {
 		swapPressLength = 0;
+		release = true;
 	}
 }
 
@@ -116,17 +117,34 @@ if (swap) {
 		swap = false;
 	}
 }
-
+// Zip Swap
 if (swapPressLength > longPress) {
 	if (instance_exists(leftPiece)) {
-		leftPiece.longSwap = 1;	
+		var canZip = true;
+		// if piece is furthest to right, set right to itself to flip canZip flag
+		var right = (leftPiece.col == objCtrl_gameSession.boardWidth - 1) ? leftPiece : 
+																			scr_getPieceAtPos(scr_getRowFromPos(leftPiece.y), 
+																							  leftPiece.col + 1);
+		
+		if (instance_exists(right)) 
+			canZip = false;
+		// long swap set to 1 so piece will move right
+		if (canZip) leftPiece.zipSwap = 1;	
 	}
 	if (instance_exists(rightPiece)) {
-		rightPiece.longSwap = -1;	
+		var canZip = true;
+		// if piece is furthest to left, set left to itself to flip canZip flag
+		var left = (rightPiece.col == 0) ? rightPiece : 
+										   scr_getPieceAtPos(scr_getRowFromPos(rightPiece.y), 
+														     rightPiece.col - 1);
+		if (instance_exists(left)) canZip = false;
+		// long swap set to -1 so piece will move left
+		if (canZip) rightPiece.zipSwap = -1;	
 	}
 	leftPiece = noone;
 	rightPiece = noone;
 	swapPressLength = 0;
+	release = false;
 }
 #endregion
 

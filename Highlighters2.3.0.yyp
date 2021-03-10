@@ -108,6 +108,7 @@
     {"id":{"name":"scr_getColPos","path":"scripts/scr_getColPos/scr_getColPos.yy",},"order":0,},
     {"id":{"name":"scr_getRowPos","path":"scripts/scr_getRowPos/scr_getRowPos.yy",},"order":1,},
     {"id":{"name":"scr_getPieceAtPos","path":"scripts/scr_getPieceAtPos/scr_getPieceAtPos.yy",},"order":2,},
+    {"id":{"name":"scr_getRowFromPos","path":"scripts/scr_getRowFromPos/scr_getRowFromPos.yy",},"order":10,},
     {"id":{"name":"scr_createEntity","path":"scripts/scr_createEntity/scr_createEntity.yy",},"order":3,},
     {"id":{"name":"scr_createMatchmaker","path":"scripts/scr_createMatchmaker/scr_createMatchmaker.yy",},"order":4,},
     {"id":{"name":"scr_getRow","path":"scripts/scr_getRow/scr_getRow.yy",},"order":5,},

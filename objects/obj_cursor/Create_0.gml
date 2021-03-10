@@ -25,5 +25,4 @@ swap = false;
 leftPiece = noone;
 rightPiece = noone;
 swapPressLength = 0;
-swapDelayLength = 0.05;
-swapDelayTime = current_time;
+release = true;
