@@ -268,7 +268,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			col = targetX;
 			targetX = scr_getColPos(targetX);
 		}
-		swapSpeed = (zipSwap) ? global.pieceSize : ds_list_find_value(swapSpeeds,swapState++);
+		swapSpeed = (zipSwap != 0) ? global.pieceSize : ds_list_find_value(swapSpeeds,swapState++);
 		//increment until position is reached
 		if (x < targetX) x += swapSpeed;
 		else if (x > targetX) x -= swapSpeed;
