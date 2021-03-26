@@ -23,6 +23,7 @@ swapState = 0;
 targetX = -1;
 swapSpeed = global.gameMode == 1 ? 4 : 16; //48 
 zipSwap = false;
+zipSwapLength = 0;
 
 //controls fall speed
 justLanded = false;
@@ -31,7 +32,14 @@ fallDelay = 1;
 inMatchCol = false;
 
 //animation variables
+//to-do: make better comments
+tail = ds_list_create();
+zipSwapDirection = zipSwap;
+tailDeleteDelay = 60;
+maxTailLength = 2;
+tailDrawLength = maxTailLength;
 falling = false;
+fallHeight = 0;
 skipDelay = false;
 landAnimIndex = image_index;
 landAnim = false;

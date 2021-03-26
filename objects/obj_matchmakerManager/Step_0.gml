@@ -146,7 +146,7 @@ if !(global.gameover) &&
 			}
 			
 			//Chain freeze time
-			if (chainSize > 0) {
+			if (global.chain) {
 				// plus one to chainsize, as it's offset by 1
 				freezeTime = min((((chainSize > 6) ? chainSize + 1:
 								 ((chainSize > 4) ? 6 :

@@ -140,7 +140,7 @@ if ((global.active) &&
 		(canRise) && 
 	   !(global.riseBrake) &&
 	   !(global.forceRise) {
-		if ((current_time - riseTimer)/1000 > (global.riseSpeed / room_speed)) { 
+		if ((current_time - riseTimer) / 1000 > (global.riseSpeed / room_speed)) { 
 			riseTimer = current_time;
 			global.riseUp = true;
 		} else global.riseUp = false;

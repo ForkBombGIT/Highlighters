@@ -13,9 +13,6 @@ var avMap = ds_map_find_value(global.options,"av");
 if !(inputChangeKey) {
 	// Return to  main menu
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"B"))) {
-		if (testAudio) {
-			audio_stop_all();
-		}
 		scr_updateAudioLevels();
 		if (confirmResolution) {
 			if (fullscreenOption != ds_map_find_value(avMap,"fullscreen"))

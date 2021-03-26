@@ -74,10 +74,18 @@ if (swap) {
 					leftPiece.swap = true;
 					leftPiece.image_index = leftPiece.index + 4;
 					leftPiece.depth = leftPiece.orgDepth - 100;
+					if (leftPiece.zipSwapDirection != 1) {
+						ds_list_clear(leftPiece.tail)
+						leftPiece.alarm[3] = 1;
+					}
 			
 					rightPiece.targetX = col;
 					rightPiece.swap = true;
 					rightPiece.image_index = rightPiece.index + 4;
+					if (rightPiece.zipSwapDirection != -1) {
+						ds_list_clear(rightPiece.tail);
+						rightPiece.alarm[3] = 1;
+					}
 					swap = false;
 				}	
 			}
@@ -93,6 +101,10 @@ if (swap) {
 						leftPiece.swap = true;
 						leftPiece.image_index = leftPiece.index + 4;
 						leftPiece.depth = leftPiece.orgDepth - 100;
+						if (leftPiece.zipSwapDirection != 1) {
+							ds_list_clear(leftPiece.tail)
+							leftPiece.alarm[3] = 1;
+						}
 						swap = false;
 					}
 				}
@@ -107,6 +119,10 @@ if (swap) {
 						rightPiece.targetX = col;
 						rightPiece.swap = true;
 						rightPiece.image_index = rightPiece.index + 4;
+						if (rightPiece.zipSwapDirection != -1) {
+						ds_list_clear(rightPiece.tail);
+						rightPiece.alarm[3] = 1;
+						}
 						swap = false;
 					}
 				} 
@@ -129,7 +145,10 @@ if (swapPressLength > longPress) {
 		if (instance_exists(right)) 
 			canZip = false;
 		// long swap set to 1 so piece will move right
-		if (canZip) leftPiece.zipSwap = 1;	
+		if (canZip) {
+			leftPiece.zipSwap = 1;	
+			leftPiece.zipSwapLength = 1;
+		}
 	}
 	if (instance_exists(rightPiece)) {
 		var canZip = true;
@@ -139,7 +158,12 @@ if (swapPressLength > longPress) {
 														     rightPiece.col - 1);
 		if (instance_exists(left)) canZip = false;
 		// long swap set to -1 so piece will move left
-		if (canZip) rightPiece.zipSwap = -1;	
+		if (canZip) {
+			rightPiece.zipSwap = -1;	
+			rightPiece.zipSwapLength = 1;
+			rightPiece.tailDrawLength = rightPiece.maxTailLength;
+			ds_list_clear(rightPiece.tail)
+		}
 	}
 	leftPiece = noone;
 	rightPiece = noone;
