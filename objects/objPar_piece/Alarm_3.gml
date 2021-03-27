@@ -1,8 +1,8 @@
-if (ds_list_size(tail) > 0) {
-	ds_list_delete(tail,ds_list_size(tail) - 1);
-	alarm[3] = tailDeleteDelay;
+if (ds_list_size(trail) > 0) {
+	ds_list_delete(trail,ds_list_size(trail) - 1);
+	alarm[3] = trailDeleteDelay;
 } else {
-	tailDrawLength = maxTailLength;
+	trailDrawLength = maxTrailLength;
 	fallHeight = 0; 
 	if (zipSwap) {
 		zipSwapDirection = 0;

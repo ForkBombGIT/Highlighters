@@ -1,5 +1,6 @@
 //rise if the force rise button is pressed
 if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
+	
 	#region Force Rise
 	if !(global.gameover) &&
 	   !(global.victory) &&
@@ -72,8 +73,18 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		//clear adjacent list
 		ds_list_clear(adjacent);
 	
-		//check for a matching left piece
+		// get piece right
 		left = instance_position(x - global.pieceSize, y, objPar_piece);
+		// cancel trail if there is a piece left, and zip swapping right
+		if (ds_list_size(trail) > 0) {
+			if (zipSwapLength > maxTrailLength) {
+				if (instance_exists(left) && (zipSwapDirection == 1)) {
+					ds_list_clear(trail);
+					alarm[3] = 1;
+				}
+			}
+		}
+		//check for a matching left piece
 		if (instance_exists(left)) {
 			if (left.index == index && 
 			!left.match && 
@@ -85,8 +96,18 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			else left = noone;
 		} else left = noone;
 	
-		//check for a matching right piece
+		// get piece right
 		right = instance_position(x + global.pieceSize, y, objPar_piece);
+		// cancel trail if there is a piece right, and zip swapping left
+		if (ds_list_size(trail) > 0) {
+			if (zipSwapLength > maxTrailLength) {
+				if (instance_exists(right) && (zipSwapDirection == -1)) {
+					ds_list_clear(trail);
+					alarm[3] = 1;
+				}
+			}
+		}
+		//check for a valid match right
 		if (instance_exists(right)) {
 			if (right.index == index && 
 			!right.match && 
@@ -98,8 +119,9 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			else right = noone;
 		} else right = noone;
 	
-		//check for a valid match down
+		// get piece below
 		down = instance_position(x, y + global.pieceSize, objPar_piece);
+		//check for a valid match down
 		if (instance_exists(down)) {
 			if (down.index == index && 
 			!down.match && 
@@ -111,8 +133,18 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			else down = noone;
 		} else down = noone;
 	
-		//check for a valid match up
+		// get piece above
 		up = instance_position(x, y - global.pieceSize, objPar_piece);
+		// cancel trail if there is a piece above, and falling
+		if (ds_list_size(trail) > 0) {
+			if (fallHeight > maxTrailLength) {
+				if (instance_exists(up)) {
+					ds_list_clear(trail);
+					alarm[3] = 1;
+				}
+			}
+		}
+		//check for a valid match up
 		if (instance_exists(up)) {
 			if (up.index == index && 
 			!up.match && 
@@ -126,7 +158,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		} else up = noone;
 	}	
 	#endregion
-
+	
 	#region Highlight Animation
 	if (highlight) {
 		image_index = index + highlightIndex;
@@ -135,7 +167,6 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		highlighting = 1;
 	}
 	#endregion
-
 
 	#region Warning Notifications
 	//bounce
@@ -226,7 +257,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 				if !(bounce) {
 				   landAnimIndex += animSpeed;
 				   if !(alarm[3]) {
-					   alarm[3] = tailDeleteDelay;   
+					   alarm[3] = trailDeleteDelay;   
 				   }
 				   if (floor(landAnimIndex) > index + 3) {
 					 landAnimIndex = index; 
@@ -330,17 +361,17 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 				swap = false;
 				zipSwap = 0;
 				if !(bottomEntity) {
-					tailDrawLength = maxTailLength;
-					ds_list_clear(tail);
+					trailDrawLength = maxTrailLength;
+					ds_list_clear(trail);
 					zipSwapDirection = 0;
 				}
 				if !(alarm[3]) {
-					alarm[3] = tailDeleteDelay;   
+					alarm[3] = trailDeleteDelay;   
 				} 
 			} else {
 				zipSwapLength += 1;
-				if (ds_list_size(tail) < maxTailLength) 
-					ds_list_add(tail,sprite_index);	
+				if (ds_list_size(trail) < maxTrailLength) 
+					ds_list_add(trail,sprite_index);	
 			}
 		}
 	}
@@ -359,11 +390,11 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		}
 		if (zipSwap != 0) {
 			if (swapState == 0) {
-				if (ds_list_size(tail) >= maxTailLength) 
-					tailDrawLength = max(tailDrawLength - 1, 0);	
+				if (ds_list_size(trail) >= maxTrailLength) 
+					trailDrawLength = max(trailDrawLength - 1, 0);	
 			}
 		} else {
-			ds_list_clear(tail);
+			ds_list_clear(trail);
 			if (alarm[3])
 				alarm[3] = 1;
 		}
@@ -380,6 +411,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		}
 	}
 	#endregion
+	
 	#region Gameover Animation
 		if (gameoverFall) { 
 			y += gameoverFallAmount;

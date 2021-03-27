@@ -75,7 +75,7 @@ if (swap) {
 					leftPiece.image_index = leftPiece.index + 4;
 					leftPiece.depth = leftPiece.orgDepth - 100;
 					if (leftPiece.zipSwapDirection != 1) {
-						ds_list_clear(leftPiece.tail)
+						ds_list_clear(leftPiece.trail)
 						leftPiece.alarm[3] = 1;
 					}
 			
@@ -83,7 +83,7 @@ if (swap) {
 					rightPiece.swap = true;
 					rightPiece.image_index = rightPiece.index + 4;
 					if (rightPiece.zipSwapDirection != -1) {
-						ds_list_clear(rightPiece.tail);
+						ds_list_clear(rightPiece.trail);
 						rightPiece.alarm[3] = 1;
 					}
 					swap = false;
@@ -102,7 +102,7 @@ if (swap) {
 						leftPiece.image_index = leftPiece.index + 4;
 						leftPiece.depth = leftPiece.orgDepth - 100;
 						if (leftPiece.zipSwapDirection != 1) {
-							ds_list_clear(leftPiece.tail)
+							ds_list_clear(leftPiece.trail)
 							leftPiece.alarm[3] = 1;
 						}
 						swap = false;
@@ -120,7 +120,7 @@ if (swap) {
 						rightPiece.swap = true;
 						rightPiece.image_index = rightPiece.index + 4;
 						if (rightPiece.zipSwapDirection != -1) {
-						ds_list_clear(rightPiece.tail);
+						ds_list_clear(rightPiece.trail);
 						rightPiece.alarm[3] = 1;
 						}
 						swap = false;
@@ -161,8 +161,8 @@ if (swapPressLength > longPress) {
 		if (canZip) {
 			rightPiece.zipSwap = -1;	
 			rightPiece.zipSwapLength = 1;
-			rightPiece.tailDrawLength = rightPiece.maxTailLength;
-			ds_list_clear(rightPiece.tail)
+			rightPiece.trailDrawLength = rightPiece.maxTrailLength;
+			ds_list_clear(rightPiece.trail)
 		}
 	}
 	leftPiece = noone;

@@ -33,11 +33,11 @@ inMatchCol = false;
 
 //animation variables
 //to-do: make better comments
-tail = ds_list_create();
+trail = ds_list_create();
 zipSwapDirection = zipSwap;
-tailDeleteDelay = 60;
-maxTailLength = 2;
-tailDrawLength = maxTailLength;
+trailDeleteDelay = 1;
+maxTrailLength = 2;
+trailDrawLength = maxTrailLength;
 falling = false;
 fallHeight = 0;
 skipDelay = false;
