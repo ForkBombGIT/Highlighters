@@ -14,6 +14,4 @@ function scr_getRowPos(argument0) {
 		case 8: return 24;
 		case 9: return 0;
 	}
-
-
 }

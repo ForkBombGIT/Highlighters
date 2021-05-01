@@ -1,6 +1,4 @@
-function scr_cursorMovement(argument0, argument1) {
-	var key = argument0;
-	var sound = argument1;
+function scr_cursorMovement(key, sound) {
 	var inputMap = ds_map_find_value(global.options,"input");
 	
 	if (key == ds_map_find_value(inputMap,"LEFT")) {
@@ -25,7 +23,7 @@ function scr_cursorMovement(argument0, argument1) {
 				audio_play_sound(sound,1,0);
 			}
 			y -= global.pieceSize; 
-			row --;
+			row++;
 		}
 	}
 	if (key == ds_map_find_value(inputMap,"DOWN")) {
@@ -34,7 +32,7 @@ function scr_cursorMovement(argument0, argument1) {
 				audio_play_sound(sound,1,0);
 			}
 			y += global.pieceSize;
-			row ++;
+			row--;
 		}
 	}
 

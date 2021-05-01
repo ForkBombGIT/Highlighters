@@ -52,17 +52,12 @@ if (global.restart) {
 	global.restart = false;
 }
 
-var pieceSwap = false
-with (objPar_piece) {
-	if (swap) pieceSwap = true;
-}
-
 var pieceFalling = false;
 with (objPar_piece) {
 	if !(bottomEntity) pieceFalling = true;
 }
 	
-global.riseBrake = (instance_exists(obj_matchmaker)) || pieceFalling || pieceSwap
+global.riseBrake = (instance_exists(obj_matchmaker)) || pieceFalling
 
 //freeze timer
 if (global.freeze) &&
@@ -145,7 +140,7 @@ if ((global.active) &&
 		(canRise) && 
 	   !(global.riseBrake) &&
 	   !(global.forceRise) {
-		if ((current_time - riseTimer)/1000 > (global.riseSpeed / room_speed)) { 
+		if ((current_time - riseTimer) / 1000 > (global.riseSpeed / room_speed)) { 
 			riseTimer = current_time;
 			global.riseUp = true;
 		} else global.riseUp = false;

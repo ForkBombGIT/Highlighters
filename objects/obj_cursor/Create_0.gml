@@ -22,3 +22,7 @@ initY = -1;
 bufferLength = 5;
 buffer = 0;
 swap = false;
+leftPiece = noone;
+rightPiece = noone;
+swapPressLength = 0;
+release = true;

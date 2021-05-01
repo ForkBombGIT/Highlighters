@@ -1,2 +1,2 @@
-if (global.character == 1) || (global.character == 3) || (global.character == 4)
+if (global.character != 2)
 	audio_stop_sound(songs[global.character]);	

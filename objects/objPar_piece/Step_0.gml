@@ -1,6 +1,7 @@
-#region Force Rise
 //rise if the force rise button is pressed
 if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
+	
+	#region Force Rise
 	if !(global.gameover) &&
 	   !(global.victory) &&
 	   !(global.riseBrake) {
@@ -53,7 +54,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		//pause gameover delay for freezing and rise brakes
 		else {
 			if (alarm[1]) alarm[1] = lastGameoverDelay;	
-			objCtrl_gameSession.canRise = false
+			objCtrl_gameSession.canRise = false;
 		}
 	} 
 	//reset gameover delay if piece is not in top row
@@ -61,7 +62,103 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		if (alarm[1]) alarm[1] = -1;	
 	}
 	#endregion
-
+	
+	#region Match Control
+	//checks for adjacent matching pieces
+	if ((bottomEntity) && 
+		!(swap) &&
+		!(global.gameover) && 
+	    !(global.victory) &&
+		(y <= scr_getRowPos(0))) {
+		//clear adjacent list
+		ds_list_clear(adjacent);
+	
+		// get piece right
+		left = instance_position(x - global.pieceSize, y, objPar_piece);
+		// cancel trail if there is a piece left, and zip swapping right
+		if (ds_list_size(trail) > 0) {
+			if (zipSwapLength > maxTrailLength) {
+				if (instance_exists(left) && (zipSwapDirection == 1)) {
+					ds_list_clear(trail);
+					alarm[3] = 1;
+				}
+			}
+		}
+		//check for a matching left piece
+		if (instance_exists(left)) {
+			if (left.index == index && 
+			!left.match && 
+			!left.swap &&
+			left.bottomEntity && 
+			left.y <= scr_getRowPos(0) &&
+			left != id)
+				ds_list_add(adjacent,left);
+			else left = noone;
+		} else left = noone;
+	
+		// get piece right
+		right = instance_position(x + global.pieceSize, y, objPar_piece);
+		// cancel trail if there is a piece right, and zip swapping left
+		if (ds_list_size(trail) > 0) {
+			if (zipSwapLength > maxTrailLength) {
+				if (instance_exists(right) && (zipSwapDirection == -1)) {
+					ds_list_clear(trail);
+					alarm[3] = 1;
+				}
+			}
+		}
+		//check for a valid match right
+		if (instance_exists(right)) {
+			if (right.index == index && 
+			!right.match && 
+			!right.swap &&
+			right.bottomEntity && 
+			right.y <= scr_getRowPos(0) && 
+			right != id)
+				ds_list_add(adjacent,right);
+			else right = noone;
+		} else right = noone;
+	
+		// get piece below
+		down = instance_position(x, y + global.pieceSize, objPar_piece);
+		//check for a valid match down
+		if (instance_exists(down)) {
+			if (down.index == index && 
+			!down.match && 
+			!(down.swap) &&
+			down.bottomEntity && 
+			down.y <= scr_getRowPos(0) && 
+			down != id)
+				ds_list_add(adjacent,down);
+			else down = noone;
+		} else down = noone;
+	
+		// get piece above
+		up = instance_position(x, y - global.pieceSize, objPar_piece);
+		// cancel trail if there is a piece above, and falling
+		if (ds_list_size(trail) > 0) {
+			if (fallHeight > maxTrailLength) {
+				if (instance_exists(up)) {
+					ds_list_clear(trail);
+					alarm[3] = 1;
+				}
+			}
+		}
+		//check for a valid match up
+		if (instance_exists(up)) {
+			if (up.index == index && 
+			!up.match && 
+			!up.swap &&
+			(up.zipSwap == 0) &&
+			up.bottomEntity && 
+			up.y <= scr_getRowPos(0) && 
+			up != id)
+				ds_list_add(adjacent,up);
+			else up = noone;
+		} else up = noone;
+	}	
+	#endregion
+	
 	#region Highlight Animation
 	if (highlight) {
 		image_index = index + highlightIndex;
@@ -70,7 +167,6 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		highlighting = 1;
 	}
 	#endregion
-
 
 	#region Warning Notifications
 	//bounce
@@ -129,10 +225,14 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	if (!(bottomEntity) && 
 		!(match) && 
 		!(swap) && 
+		!(falling) &&
 		!(global.gameover) &&
 	    !(global.victory)) {
-		if !alarm[0] alarm[0] = (skipDelay) ? 1 : 
-								((aboveMatch) ? floatAboveMatchDelay : floatDelay);
+			if !alarm[0] {
+				fallHeight = 1;
+				alarm[0] = (skipDelay) ? 1 : 
+									((aboveMatch) ? floatAboveMatchDelay : floatDelay);
+			}
 	} 
 
 	if (instance_exists(obj_matchmaker)) &&
@@ -151,13 +251,20 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	   !(squish) &&
 	   !(global.forceRise || keyboard_check(ds_map_find_value(inputMap,"B"))))) {
 		   if !(match) {
-			   var animSpeed = (floor(landAnimIndex) == index) ? landingAnimationFirst : 
+				var animSpeed = (floor(landAnimIndex) == index) ? landingAnimationFirst : 
 																  landingAnimationRest;
-			   // landing animation index control
-			   if !(bounce) {
+				// landing animation index control
+				if !(bounce) {
 				   landAnimIndex += animSpeed;
+				   if !(alarm[3]) {
+					   alarm[3] = trailDeleteDelay;   
+				   }
 				   if (floor(landAnimIndex) > index + 3) {
-					 landAnimIndex = index; landAnim = false; justLanded = false; aboveMatch = false; inMatchCol = false;
+					 landAnimIndex = index; 
+					 landAnim = false; 
+					 justLanded = false; 
+					 aboveMatch = false; 
+					 inMatchCol = false; 
 				   }
 			   }
 			   //apply animation
@@ -231,6 +338,43 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	#endregion
 	
 	#region Swap Control
+	// Zip Swap
+	// Check if the piece is matching, and a direction for zipSwap has been set
+	if (zipSwap != 0) &&
+	  !(match) {
+		if !(swap) {
+			zipSwapDirection = zipSwap;
+			swap = true;
+			targetX =  col + zipSwap;
+			var dir = instance_position(x + zipSwap * 48,y,objPar_piece);
+			var collision = instance_exists(dir) || 
+						    targetX == objCtrl_gameSession.boardWidth || 
+							targetX < 0;
+			if (collision) {
+				if (audio_is_playing(snd_drop)) {
+					audio_stop_sound(snd_drop)	
+				}
+				audio_play_sound(snd_drop,1,0);
+			}
+			if (collision ||
+			   !bottomEntity) {
+				swap = false;
+				zipSwap = 0;
+				if !(bottomEntity) {
+					trailDrawLength = maxTrailLength;
+					ds_list_clear(trail);
+					zipSwapDirection = 0;
+				}
+				if !(alarm[3]) {
+					alarm[3] = trailDeleteDelay;   
+				} 
+			} else {
+				zipSwapLength += 1;
+				if (ds_list_size(trail) < maxTrailLength) 
+					ds_list_add(trail,sprite_index);	
+			}
+		}
+	}
 	if (swap) { 
 		aboveMatch = false;
 		bounce = false;
@@ -244,76 +388,29 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			col = targetX;
 			targetX = scr_getColPos(targetX);
 		}
-		swapSpeed = ds_list_find_value(swapSpeeds,swapState++);
+		if (zipSwap != 0) {
+			if (swapState == 0) {
+				if (ds_list_size(trail) >= maxTrailLength) 
+					trailDrawLength = max(trailDrawLength - 1, 0);	
+			}
+		} else {
+			ds_list_clear(trail);
+			if (alarm[3])
+				alarm[3] = 1;
+		}
+		swapSpeed = (zipSwap != 0) ? global.pieceSize : ds_list_find_value(swapSpeeds,swapState++);
 		//increment until position is reached
 		if (x < targetX) x += swapSpeed;
 		else if (x > targetX) x -= swapSpeed;
-		else { x = targetX; swap = false; image_index = index; swapState = 0; depth = orgDepth;}
+		else { 
+			x = targetX; 
+			swap = false; 
+			image_index = index; 
+			swapState = 0; 
+			depth = orgDepth; 
+		}
 	}
 	#endregion
-
-	#region Match Control
-	//checks for adjacent matching pieces
-	if ((bottomEntity) && 
-		!(swap) &&
-		!(global.gameover) && 
-	    !(global.victory) &&
-		(y <= scr_getRowPos(0))) {
-		//clear adjacent list
-		ds_list_clear(adjacent);
-	
-		//check for a matching left piece
-		left = instance_position(x - global.pieceSize, y, objPar_piece);
-		if (instance_exists(left)) {
-			if (left.index == index && 
-			!left.match && 
-			!left.swap &&
-			left.bottomEntity && 
-			left.y <= scr_getRowPos(0) &&
-			left != id)
-				ds_list_add(adjacent,left);
-			else left = noone;
-		} else left = noone;
-	
-		//check for a matching right piece
-		right = instance_position(x + global.pieceSize, y, objPar_piece);
-		if (instance_exists(right)) {
-			if (right.index == index && 
-			!right.match && 
-			!right.swap &&
-			right.bottomEntity && 
-			right.y <= scr_getRowPos(0) && 
-			right != id)
-				ds_list_add(adjacent,right);
-			else right = noone;
-		} else right = noone;
-	
-		//check for a valid match down
-		down = instance_position(x, y + global.pieceSize, objPar_piece);
-		if (instance_exists(down)) {
-			if (down.index == index && 
-			!down.match && 
-			!down.swap &&
-			down.bottomEntity && 
-			down.y <= scr_getRowPos(0) && 
-			down != id)
-				ds_list_add(adjacent,down);
-			else down = noone;
-		} else down = noone;
-	
-		//check for a valid match up
-		up = instance_position(x, y - global.pieceSize, objPar_piece);
-		if (instance_exists(up)) {
-			if (up.index == index && 
-			!up.match && 
-			!up.swap &&
-			up.bottomEntity && 
-			up.y <= scr_getRowPos(0) && 
-			up != id)
-				ds_list_add(adjacent,up);
-			else up = noone;
-		} else up = noone;
-	}	
 	
 	#region Gameover Animation
 		if (gameoverFall) { 
@@ -333,4 +430,3 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		}
 	#endregion
 }
-#endregion
