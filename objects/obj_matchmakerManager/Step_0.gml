@@ -43,9 +43,12 @@ if !(global.gameover) &&
 			var total = 0;
 			var minXMatchmaker = noone;
 			var entityChainStart = false;
+			// interate through all possibly existing matchmakers
 			for (var i = 0; i < ds_list_size(matchmakers); i++) {
 				var matchmaker = ds_list_find_value(matchmakers,i);
+				// check if matchmaker exists
 				if (instance_exists(matchmaker)) {
+					// check if the matchmaker has a recently landed piece in the match
 					if (instance_exists(matchmaker.justLandedEntity)) {
 						if (chainStart) && ((current_time - lastChainCreation) >= 100) {
 							// play sound for chain
@@ -59,8 +62,10 @@ if !(global.gameover) &&
 													             obj_chain
 							);
 							chainObj.chainSize = chainSize++;
-							lastChainCreation = current_time;
+							chainObj.justLandedEntity = matchmaker.justLandedEntity;
 							entityChainStart = true;
+							lastChainCreation = current_time;
+							forceRise = true;
 						}
 					}
 					
@@ -113,7 +118,7 @@ if !(global.gameover) &&
 				// combo level bonus = size of combo - 4
 				var comboLevelBonus = (global.combo) ? (sizeOfCombo > 9 ? 10 : sizeOfCombo + 1) : 0;
 				// chain level bonus = 3 * chainsize, x chain rewards 30 levels
-				var chainLevelBonus = (chainStart && chainSize > 0) ? (chainSize > 8 ? 30 : 3 * chainSize) : 0;
+				var chainLevelBonus = (global.chain) ? (chainSize > 8 ? 30 : 3 * chainSize) : 0;
 				// combo bonus + chain bonus, if there are no bonuses, award 1 for basic match
 				var levelIncrement = comboLevelBonus + chainLevelBonus + (comboLevelBonus + chainLevelBonus == 0)	
 				if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1) {
@@ -173,7 +178,7 @@ if !(global.gameover) &&
 	
 	var continueChain = false;
 	with (objPar_piece) {
-		if (aboveMatch)
+		if (aboveMatch) || (global.forceRise)
 			continueChain = true;
 	}
 		
