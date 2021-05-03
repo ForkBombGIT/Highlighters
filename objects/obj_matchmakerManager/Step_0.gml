@@ -65,7 +65,7 @@ if !(global.gameover) &&
 							chainObj.justLandedEntity = matchmaker.justLandedEntity;
 							entityChainStart = true;
 							lastChainCreation = current_time;
-							forceRise = true;
+							if !(scr_checkRow(objCtrl_gameSession.boardHeight)) forceRise = true;
 						}
 					}
 					

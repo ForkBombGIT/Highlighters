@@ -114,7 +114,7 @@ if ((global.active) &&
 	// manual new row
 	if (keyboard_check(ds_map_find_value(inputMap,"B")) && 
 	  !(global.forceRise) && 
-	  !(global.riseBrake) || (obj_matchmakerManager.forceRise && !(scr_checkRow(boardHeight)))) {
+	  !(global.riseBrake) || (obj_matchmakerManager.forceRise)) {
 		  if !(obj_matchmakerManager.forceRise) {
 			global.freeze = false;
 			freezeTime = 0;

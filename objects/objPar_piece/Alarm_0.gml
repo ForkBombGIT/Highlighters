@@ -17,5 +17,5 @@ if (!(bottomEntity) && !(swap) && (notSwapping)) {
 		bounce = false;
 		skipDelay = false;
 		zipSwapDirection = 0;
-	} 
+	} else falling = false; 
 }	
