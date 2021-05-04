@@ -155,6 +155,7 @@
     {"id":{"name":"objUI_countdown","path":"objects/objUI_countdown/objUI_countdown.yy",},"order":0,},
     {"id":{"name":"objUI_gameSession","path":"objects/objUI_gameSession/objUI_gameSession.yy",},"order":1,},
     {"id":{"name":"sng_hasen","path":"sounds/sng_hasen/sng_hasen.yy",},"order":1,},
+    {"id":{"name":"snd_swapb","path":"sounds/snd_swapb/snd_swapb.yy",},"order":14,},
     {"id":{"name":"objUI_gameAnimation","path":"objects/objUI_gameAnimation/objUI_gameAnimation.yy",},"order":2,},
     {"id":{"name":"objUI_game","path":"objects/objUI_game/objUI_game.yy",},"order":3,},
     {"id":{"name":"objUI_menuMain","path":"objects/objUI_menuMain/objUI_menuMain.yy",},"order":0,},

@@ -146,6 +146,7 @@ if (swapPressLength > longPress) {
 			canZip = false;
 		// long swap set to 1 so piece will move right
 		if (canZip) {
+			audio_play_sound(snd_swapb,1,0);
 			leftPiece.zipSwap = 1;	
 			leftPiece.zipSwapLength = 1;
 		}
@@ -159,6 +160,7 @@ if (swapPressLength > longPress) {
 		if (instance_exists(left)) canZip = false;
 		// long swap set to -1 so piece will move left
 		if (canZip) {
+			audio_play_sound(snd_swapb,1,0);
 			rightPiece.zipSwap = -1;	
 			rightPiece.zipSwapLength = 1;
 			//rightPiece.trailDrawLength = rightPiece.maxTrailLength;
