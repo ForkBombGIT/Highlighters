@@ -76,14 +76,14 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		// get piece right
 		left = instance_position(x - global.pieceSize, y, objPar_piece);
 		// cancel trail if there is a piece left, and zip swapping right
-		if (ds_list_size(trail) > 0) {
+		/*if (ds_list_size(trail) > 0) {
 			if (zipSwapLength > maxTrailLength) {
 				if (instance_exists(left) && (zipSwapDirection == 1)) {
 					ds_list_clear(trail);
 					alarm[3] = 1;
 				}
 			}
-		}
+		}*/
 		//check for a matching left piece
 		if (instance_exists(left)) {
 			if (left.index == index && 
@@ -99,14 +99,14 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		// get piece right
 		right = instance_position(x + global.pieceSize, y, objPar_piece);
 		// cancel trail if there is a piece right, and zip swapping left
-		if (ds_list_size(trail) > 0) {
+		/*if (ds_list_size(trail) > 0) {
 			if (zipSwapLength > maxTrailLength) {
 				if (instance_exists(right) && (zipSwapDirection == -1)) {
 					ds_list_clear(trail);
 					alarm[3] = 1;
 				}
 			}
-		}
+		}*/
 		//check for a valid match right
 		if (instance_exists(right)) {
 			if (right.index == index && 
@@ -136,14 +136,14 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		// get piece above
 		up = instance_position(x, y - global.pieceSize, objPar_piece);
 		// cancel trail if there is a piece above, and falling
-		if (ds_list_size(trail) > 0) {
+		/*if (ds_list_size(trail) > 0) {
 			if (fallHeight > maxTrailLength) {
 				if (instance_exists(up)) {
 					ds_list_clear(trail);
 					alarm[3] = 1;
 				}
 			}
-		}
+		}*/
 		//check for a valid match up
 		if (instance_exists(up)) {
 			if (up.index == index && 
@@ -256,9 +256,9 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 				// landing animation index control
 				if !(bounce) {
 				   landAnimIndex += animSpeed;
-				   if !(alarm[3]) {
+				   /*if !(alarm[3]) {
 					   alarm[3] = trailDeleteDelay;   
-				   }
+				   }*/
 				   if (floor(landAnimIndex) > index + 3) {
 					 landAnimIndex = index; 
 					 landAnim = false; 
@@ -356,22 +356,14 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 				}
 				audio_play_sound(snd_drop,1,0);
 			}
+			
 			if (collision ||
 			   !bottomEntity) {
 				swap = false;
 				zipSwap = 0;
 				if !(bottomEntity) {
-					trailDrawLength = maxTrailLength;
-					ds_list_clear(trail);
 					zipSwapDirection = 0;
 				}
-				if !(alarm[3]) {
-					alarm[3] = trailDeleteDelay;   
-				} 
-			} else {
-				zipSwapLength += 1;
-				if (ds_list_size(trail) < maxTrailLength) 
-					ds_list_add(trail,sprite_index);	
 			}
 		}
 	}
@@ -388,6 +380,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			col = targetX;
 			targetX = scr_getColPos(targetX);
 		}
+		/*
 		if (zipSwap != 0) {
 			if (swapState == 0) {
 				if (ds_list_size(trail) >= maxTrailLength) 
@@ -398,6 +391,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			if (alarm[3])
 				alarm[3] = 1;
 		}
+		*/
 		swapSpeed = (zipSwap != 0) ? global.pieceSize : ds_list_find_value(swapSpeeds,swapState++);
 		//increment until position is reached
 		if (x < targetX) x += swapSpeed;

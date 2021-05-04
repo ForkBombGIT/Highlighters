@@ -1,3 +1,4 @@
+/*
 if (fallHeight > maxTrailLength) || (zipSwapLength > maxTrailLength) && !(match) {
 	for (var i = 0; i < ds_list_size(trail) - trailDrawLength; i++) {
 		var offset = 0;
@@ -16,3 +17,4 @@ if (fallHeight > maxTrailLength) || (zipSwapLength > maxTrailLength) && !(match)
 															  yPos);
 	}
 }
+*/
