@@ -5,7 +5,7 @@ function scr_createRow(argument0) {
 	var bottomRows = ds_list_create();
 
 	//get the two bottom rows of the board
-	for (var i = 0; i < 2; i++) {
+	for (var i = 0; i < objCtrl_gameSession.boardHeight; i++) {
 		var rowPieces = scr_getRow(i);
 		for (var j = 0; j < ds_list_size(rowPieces); j++) {
 			ds_list_add(bottomRows,ds_list_find_value(rowPieces,j).index);	

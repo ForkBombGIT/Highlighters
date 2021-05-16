@@ -1,3 +1,7 @@
+# directories
 /builds
 /sprites
 /sounds
+
+# files
+.DS_Store

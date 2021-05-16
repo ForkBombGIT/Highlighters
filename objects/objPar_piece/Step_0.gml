@@ -361,9 +361,17 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 			   !bottomEntity) {
 				swap = false;
 				zipSwap = 0;
+				zipSwapLength = 0;
 				if !(bottomEntity) {
 					zipSwapDirection = 0;
 				}
+			} else {
+				if (++zipSwapLength == 1) {
+					if (audio_is_playing(snd_swapb)) {
+						audio_stop_sound(snd_swapb)	
+					}
+					audio_play_sound(snd_swapb,1,0);
+				}	
 			}
 		}
 	}

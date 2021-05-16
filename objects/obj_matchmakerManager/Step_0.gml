@@ -94,7 +94,7 @@ if !(global.gameover) &&
 			// chain detection
 			global.chain = (chainStart && chainSize > 0);
 			// play sound for combo 
-			if (global.combo) && !(global.victory) && !(global.chain) {
+			if (global.combo) && !(global.victory) && (lastChainCreation != current_time) {
 				if (audio_is_playing(snd_combo_chain)) {
 					audio_stop_sound(snd_combo_chain);	
 				}
