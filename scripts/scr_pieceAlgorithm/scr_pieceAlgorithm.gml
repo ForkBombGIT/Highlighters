@@ -67,7 +67,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 			// c.2 logic
 			// avoid a piece color that has been placed
 			if (conditionTwoRetry < maxRetry) && canPlace {
-				if (ds_list_find_index(history,color) != -1) {
+				if (ds_list_find_index(rowHistory,color) != -1) {
 					canPlace = false;
 					conditionTwoRetry++;
 				}
@@ -75,11 +75,11 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 		
 			// c.3 logic
 			// if a piece of the same color has been placed >= 3 times, try to generate a piece 
-			// not in history
+			// not in rowHistory
 			if (conditionThreeRetry < maxRetry) && canPlace {
 				var counter = 0;
-				for (var j = 0; j < ds_list_size(history); j++) {
-					if (ds_list_find_value(history,j) == color) counter++;
+				for (var j = 0; j < ds_list_size(rowHistory); j++) {
+					if (ds_list_find_value(rowHistory,j) == color) counter++;
 				}
 				canPlace = counter < maxSameColor;
 				if (counter >= maxSameColor) {
