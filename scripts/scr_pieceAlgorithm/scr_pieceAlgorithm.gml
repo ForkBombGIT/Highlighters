@@ -51,14 +51,16 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 					}
 				}
 				// Tries to generate a bomb at a higher probability
-				pieceType = (irandom_range(1,2) > bombProb) ? obj_charm : obj_bomb;
-				if (pieceType == obj_bomb) {
-					conditionOneRetry++;
-					do {
-						canPlace = (ds_list_find_index(bombHistory,color) == -1);
-						if (canPlace) break;
-						else color = availablePieces[irandom_range(0,array_length_1d(availablePieces) - 1)] * pieceFrames;
-					} until (canPlace);
+				if (conditionOne) {
+					pieceType = (irandom_range(1,2) > bombProb) ? obj_charm : obj_bomb;
+					if (pieceType == obj_bomb) {
+						conditionOneRetry++;
+						do {
+							canPlace = (ds_list_find_index(bombHistory,color) == -1);
+							if (canPlace) break;
+							else color = availablePieces[irandom_range(0,array_length_1d(availablePieces) - 1)] * pieceFrames;
+						} until (canPlace);
+					}
 				}
 			}
 		
