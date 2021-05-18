@@ -1,5 +1,5 @@
 var activeMatchmakers = instance_number(obj_matchmaker);
-
+framesSinceChain++;
 // matchmaker management loop
 if !(global.gameover) &&
    !(global.victory) {
@@ -65,9 +65,10 @@ if !(global.gameover) &&
 							chainObj.justLandedEntity = matchmaker.justLandedEntity;
 							entityChainStart = true;
 							lastChainCreation = current_time;
+							framesSinceChain = 0;
 							if !(scr_checkRow(objCtrl_gameSession.boardHeight)) forceRise = true;
 						}
-					}
+					} 
 					
 					total += ds_list_size(matchmaker.final);
 					if (minXMatchmaker != noone) {
@@ -94,7 +95,7 @@ if !(global.gameover) &&
 			// chain detection
 			global.chain = (chainStart && chainSize > 0);
 			// play sound for combo 
-			if (global.combo) && !(global.victory) && (lastChainCreation != current_time) {
+			if (global.combo) && !(global.victory) && (framesSinceChain != 0) {
 				if (audio_is_playing(snd_combo_chain)) {
 					audio_stop_sound(snd_combo_chain);	
 				}
@@ -132,7 +133,7 @@ if !(global.gameover) &&
 			}
 			#endregion
 			#region Freeze Time calculations
-			if (total >= comboSize) && (chainSize == 0) {
+			if (total >= comboSize) && (framesSinceChain != 0) {
 				var comboObj = instance_create_layer(ds_list_find_value(minXMatchmaker.final,0).x - 24,
 													 ds_list_find_value(minXMatchmaker.final,0).y - 24,
 													 "Notifications",

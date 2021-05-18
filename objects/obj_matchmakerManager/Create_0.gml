@@ -19,6 +19,7 @@ chainBonus = 500;
 //chain variable
 global.chain = false;
 lastChainCreation = current_time;
+framesSinceChain = 0;
 chainSize = 0;
 chainStart = false;
 forceRise = false;

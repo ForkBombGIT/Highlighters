@@ -43,7 +43,6 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 						conditionOne = false;
 						if (pieceFrequency >= 3) {
 							color = entity;
-							conditionOneRetry++;
 							conditionOne = true;
 							break;
 						}
@@ -51,9 +50,10 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 						else ds_map_set(historyFrequency,entity,++pieceFrequency);
 					}
 				}
-			
-				pieceType = (irandom_range(1,conditionOne ? 2 : 6) > bombProb) ? obj_charm : obj_bomb;
+				// Tries to generate a bomb at a higher probability
+				pieceType = (irandom_range(1,2) > bombProb) ? obj_charm : obj_bomb;
 				if (pieceType == obj_bomb) {
+					conditionOneRetry++;
 					do {
 						canPlace = (ds_list_find_index(bombHistory,color) == -1);
 						if (canPlace) break;
