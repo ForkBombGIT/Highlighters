@@ -41,7 +41,7 @@ if (global.restart) {
 	cursor.visible = false;
 	//regenerate stars
 	if !(global.gameMode == 1)
-		scr_generateStars(starsGridSize,starGridUnitSize);
+		scr_generateStars(starsGridSize,starGridUnitSize,global.character);
 	scr_initRows(0);
 	//reset level
 	global.gameLevel = global.startGameLevel;
