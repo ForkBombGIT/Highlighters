@@ -19,4 +19,4 @@ if (!(bottomEntity) && !(swap) && (notSwapping)) {
 		skipDelay = false;
 		zipSwapDirection = 0;
 	} else falling = false; 
-}	
+} else falling = false; 
