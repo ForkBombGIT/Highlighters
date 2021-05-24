@@ -49,17 +49,19 @@ while (another) {
 if !(animating) {
 	for (var i = 0; i < ds_list_size(final); i++) {
 		var entity = ds_list_find_value(final,i);
-		if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) 
-			ds_stack_push(stack,entity.up);
+		if (instance_exists(entity)) {
+			if (instance_exists(entity.up) && (ds_list_find_index(final,entity.up) == -1)) 
+				ds_stack_push(stack,entity.up);
 			
-		if (instance_exists(entity.left) && (ds_list_find_index(final,entity.left) == -1)) 
-			ds_stack_push(stack,entity.left);
+			if (instance_exists(entity.left) && (ds_list_find_index(final,entity.left) == -1)) 
+				ds_stack_push(stack,entity.left);
 		
-		if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) 
-			ds_stack_push(stack,entity.right);
+			if (instance_exists(entity.right) && (ds_list_find_index(final,entity.right) == -1)) 
+				ds_stack_push(stack,entity.right);
 			
-		if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) 
-			ds_stack_push(stack,entity.down);
+			if  (instance_exists(entity.down) && (ds_list_find_index(final,entity.down) == -1)) 
+				ds_stack_push(stack,entity.down);
+		}
 	}
 
 	//if the stack is greater than 1, loop again 

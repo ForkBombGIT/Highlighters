@@ -85,6 +85,7 @@
     {"id":{"name":"snd_cleara","path":"sounds/snd_cleara/snd_cleara.yy",},"order":1,},
     {"id":{"name":"snd_clearb","path":"sounds/snd_clearb/snd_clearb.yy",},"order":2,},
     {"id":{"name":"snd_move","path":"sounds/snd_move/snd_move.yy",},"order":8,},
+    {"id":{"name":"scr_renderText","path":"scripts/scr_renderText/scr_renderText.yy",},"order":14,},
     {"id":{"name":"snd_swap","path":"sounds/snd_swap/snd_swap.yy",},"order":12,},
     {"id":{"name":"snd_pauseb","path":"sounds/snd_pauseb/snd_pauseb.yy",},"order":11,},
     {"id":{"name":"spr_bomb_2","path":"sprites/spr_bomb_2/spr_bomb_2.yy",},"order":3,},

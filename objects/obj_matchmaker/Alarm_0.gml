@@ -46,7 +46,7 @@ if !(global.gameover || global.victory) {
 						if (instance_exists(entity)) {
 							if !(entity.highlighting) {
 								var sound = (global.fastAnim) || fastAnim ? snd_clearb : snd_cleara;
-								audio_play_sound(sound,1,0);
+								if !(audio_is_playing(sound)) audio_play_sound(sound,1,0);
 								if !(panic) panic = scr_checkRow(6);
 								if (listPosition == ds_list_size(final) - 1) && (panic)
 									global.gameScore = min(global.gameScore + 1, global.victoryScore);
