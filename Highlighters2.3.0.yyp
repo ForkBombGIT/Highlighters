@@ -81,6 +81,7 @@
     {"id":{"name":"spr_stars_floss","path":"sprites/spr_stars_floss/spr_stars_floss.yy",},"order":1,},
     {"id":{"name":"spr_time_hasen","path":"sprites/spr_time_hasen/spr_time_hasen.yy",},"order":3,},
     {"id":{"name":"snd_drop","path":"sounds/snd_drop/snd_drop.yy",},"order":6,},
+    {"id":{"name":"sng_cognac","path":"sounds/sng_cognac/sng_cognac.yy",},"order":4,},
     {"id":{"name":"scr_setResolution","path":"scripts/scr_setResolution/scr_setResolution.yy",},"order":5,},
     {"id":{"name":"snd_cleara","path":"sounds/snd_cleara/snd_cleara.yy",},"order":1,},
     {"id":{"name":"snd_clearb","path":"sounds/snd_clearb/snd_clearb.yy",},"order":2,},
