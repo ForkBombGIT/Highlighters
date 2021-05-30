@@ -179,6 +179,7 @@
     {"id":{"name":"objUI_devTools","path":"objects/objUI_devTools/objUI_devTools.yy",},"order":5,},
     {"id":{"name":"objCtrl_devTools","path":"objects/objCtrl_devTools/objCtrl_devTools.yy",},"order":3,},
     {"id":{"name":"rm_main","path":"rooms/rm_main/rm_main.yy",},"order":0,},
+    {"id":{"name":"scr_generateHistoryFrequency","path":"scripts/scr_generateHistoryFrequency/scr_generateHistoryFrequency.yy",},"order":5,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},

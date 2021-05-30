@@ -4,7 +4,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 	var history = argument2;
 	var bombHistory = argument3;
 	var rowHistory = argument4;
-	var historyFrequency = ds_map_create();
+	var historyFrequency = scr_generateHistoryFrequency(history);
 	var bombCount = ds_list_size(bombHistory);
 	var availablePieces = objCtrl_gameSession.selectedEntities;
 
@@ -37,19 +37,22 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 				// if a piece of the same color has been placed >= 3 times, try to generate a bomb 
 				// of the same color
 				if (conditionOneRetry < maxRetry) {
-					for (var i = 0; i < ds_list_size(history); i++) {
-						var entity = ds_list_find_value(history,i);
-						var pieceFrequency = ds_map_find_value(historyFrequency,entity);
-						conditionOne = false;
-						if (pieceFrequency >= 3) {
-							color = entity;
-							conditionOne = true;
-							break;
+					var freqKeys = ds_map_keys_to_array(historyFrequency);
+					var maxFrequency = 3;
+					var colorToSet = color;
+					for (var i = 0; i < array_length(freqKeys); i++){
+						var frequency = ds_map_find_value(historyFrequency,array_get(freqKeys,i));
+						if (frequency > maxFrequency) {
+							maxFrequency = frequency;
+							colorToSet = array_get(freqKeys,i);
 						}
-						else if (pieceFrequency == undefined) ds_map_add(historyFrequency,entity,0);
-						else ds_map_set(historyFrequency,entity,++pieceFrequency);
+					}
+					if (maxFrequency > 3) {
+						conditionOne = true;
+						color = colorToSet;
 					}
 				}
+				
 				// Tries to generate a bomb at a higher probability
 				if (conditionOne) {
 					pieceType = (irandom_range(1,2) > bombProb) ? obj_charm : obj_bomb;
@@ -58,7 +61,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 						do {
 							canPlace = (ds_list_find_index(bombHistory,color) == -1);
 							if (canPlace) break;
-							else color = availablePieces[irandom_range(0,array_length_1d(availablePieces) - 1)] * pieceFrames;
+							else color = availablePieces[irandom_range(0,array_length(availablePieces) - 1)] * pieceFrames;
 						} until (canPlace);
 					}
 				}
