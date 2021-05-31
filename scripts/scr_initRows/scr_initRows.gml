@@ -37,6 +37,8 @@ function scr_initRows(argument0) {
 		} else break;	
 	
 	}
-
+	ds_list_destroy(lastTwelve);
+	ds_list_destroy(piecesInRow);
+	ds_list_destroy(bombsInRow);
 
 }

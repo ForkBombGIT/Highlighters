@@ -16,7 +16,8 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 	var maxSameColor = 3;
 	var maxRetry = 6;
 
-	var bombProb = 1;
+	var bombProb = 0.167;
+	var boostedBombProb = 0.75;
 	var canPlace = instance_exists(scr_getPieceAtPos(row,col));
 
 	var pieceFrames = 18;
@@ -29,7 +30,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 		var colorIndex = irandom_range(0,array_length(availablePieces) - 1);
 		var color = availablePieces[colorIndex] * pieceFrames;
 		var pieceType = (bombCount < 2) ? 
-						((irandom_range(1,6) > bombProb) ? obj_charm : obj_bomb) : obj_charm;
+						((random_range(0,1) < bombProb) ? obj_bomb : obj_charm) : obj_charm;
 		canPlace = (pieceType == obj_bomb) ? (ds_list_find_index(bombHistory,color) == -1) : true;
 		if (ds_list_size(rowHistory) > 0) && canPlace {
 			if (bombCount < 2) {
@@ -41,28 +42,22 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 					var maxFrequency = 3;
 					var colorToSet = color;
 					for (var i = 0; i < array_length(freqKeys); i++){
-						var frequency = ds_map_find_value(historyFrequency,array_get(freqKeys,i));
-						if (frequency > maxFrequency) {
-							maxFrequency = frequency;
-							colorToSet = array_get(freqKeys,i);
+						if (ds_list_find_index(bombHistory,array_get(freqKeys,i)) == -1) {
+							var frequency = ds_map_find_value(historyFrequency,array_get(freqKeys,i));
+							if (frequency > maxFrequency) {
+								maxFrequency = frequency;
+								colorToSet = array_get(freqKeys,i);
+							
+							}
 						}
 					}
+					// if the max frequecy has changed, try to generate a bomb at a higher prob.
 					if (maxFrequency > 3) {
 						conditionOne = true;
 						color = colorToSet;
-					}
-				}
-				
-				// Tries to generate a bomb at a higher probability
-				if (conditionOne) {
-					pieceType = (irandom_range(1,2) > bombProb) ? obj_charm : obj_bomb;
-					if (pieceType == obj_bomb) {
 						conditionOneRetry++;
-						do {
-							canPlace = (ds_list_find_index(bombHistory,color) == -1);
-							if (canPlace) break;
-							else color = availablePieces[irandom_range(0,array_length(availablePieces) - 1)] * pieceFrames;
-						} until (canPlace);
+						if (pieceType == obj_charm)
+							pieceType = (random_range(0,1) < boostedBombProb) ? obj_bomb : obj_charm;
 					}
 				}
 			}
