@@ -5,19 +5,22 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 	var bombHistory = argument3;
 	var rowHistory = argument4;
 	var historyFrequency = scr_generateHistoryFrequency(history);
-	var bombCount = ds_list_size(bombHistory);
+	var bombFrequency = scr_generateBombFrequency();
+	var rowBombCount = ds_list_size(bombHistory);
 	var availablePieces = objCtrl_gameSession.selectedEntities;
+	var maxBombFreq = 5;
 
 	//algorithm conditions
 	var conditionOne = false;
-	var conditionOneRetry = 0; //  generate a matching color if three of the same have been placed
+	var conditionOneRetry = 0;   //  generate a matching color if three of the same have been placed
 	var conditionTwoRetry = 0;   //  generate a piece not in history
 	var conditionThreeRetry = 0; //  generate a piece not in hisotry, if 3 same have been created 
-	var maxSameColor = 3;
+	var conditionFourRetry = 0;  //  if generating a bomb, ensure it's no more than the max amount of bombs
+	var maxSameColor = 4;
 	var maxRetry = 6;
 
-	var bombProb = 0.167;
-	var boostedBombProb = 0.75;
+	var bombProb = 0.34;
+	var boostedBombProb = 1;
 	var canPlace = instance_exists(scr_getPieceAtPos(row,col));
 
 	var pieceFrames = 18;
@@ -29,11 +32,12 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 			right = scr_getPieceAtPos(row, min(objCtrl_gameSession.boardWidth - 1,col + 1));
 		var colorIndex = irandom_range(0,array_length(availablePieces) - 1);
 		var color = availablePieces[colorIndex] * pieceFrames;
-		var pieceType = (bombCount < 2) ? 
+		var pieceType = (rowBombCount < 2) ? 
 						((random_range(0,1) < bombProb) ? obj_bomb : obj_charm) : obj_charm;
+		//avoids same color bomb in row
 		canPlace = (pieceType == obj_bomb) ? (ds_list_find_index(bombHistory,color) == -1) : true;
 		if (ds_list_size(rowHistory) > 0) && canPlace {
-			if (bombCount < 2) {
+			if (rowBombCount < 2) {
 				// c.1 logic
 				// if a piece of the same color has been placed >= 3 times, try to generate a bomb 
 				// of the same color
@@ -43,8 +47,10 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 					var colorToSet = color;
 					for (var i = 0; i < array_length(freqKeys); i++){
 						if (ds_list_find_index(bombHistory,array_get(freqKeys,i)) == -1) {
-							var frequency = ds_map_find_value(historyFrequency,array_get(freqKeys,i));
-							if (frequency > maxFrequency) {
+							var freqColor = array_get(freqKeys,i);
+							var frequency = ds_map_find_value(historyFrequency,freqColor);
+							if (frequency > maxFrequency) && 
+							   (ds_map_find_value(bombFrequency,freqColor) < maxBombFreq) {
 								maxFrequency = frequency;
 								colorToSet = array_get(freqKeys,i);
 							
@@ -63,7 +69,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 			}
 		
 			// c.2 logic
-			// avoid a piece color that has been placed
+			// avoid a piece color that has been placed in row
 			if (conditionTwoRetry < maxRetry) && canPlace {
 				if (ds_list_find_index(rowHistory,color) != -1) {
 					canPlace = false;
@@ -84,7 +90,16 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 					conditionThreeRetry++;
 				}
 			}	
-		
+			
+			// c.4
+			// prevent more than maxBombFreq
+			if (conditionFourRetry  < maxRetry) && canPlace && (pieceType == obj_bomb){
+				var bombFreq = ds_map_find_value(bombFrequency,color);
+				if (bombFreq != undefined) {
+					canPlace = bombFreq > maxBombFreq
+					conditionFourRetry++;
+				}
+			}
 			//// c.4 logic
 			//// no more than x amount of pieces can exist in the history
 			//if (conditionFourRetry < 6) {
@@ -136,4 +151,5 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 		}
 	}
 	ds_map_destroy(historyFrequency);
+	ds_map_destroy(bombFrequency);
 }

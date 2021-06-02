@@ -177,6 +177,7 @@
     {"id":{"name":"objUI_splash","path":"objects/objUI_splash/objUI_splash.yy",},"order":3,},
     {"id":{"name":"objUI_characterPortrait","path":"objects/objUI_characterPortrait/objUI_characterPortrait.yy",},"order":4,},
     {"id":{"name":"objUI_devTools","path":"objects/objUI_devTools/objUI_devTools.yy",},"order":5,},
+    {"id":{"name":"scr_generateBombFrequency","path":"scripts/scr_generateBombFrequency/scr_generateBombFrequency.yy",},"order":6,},
     {"id":{"name":"objCtrl_devTools","path":"objects/objCtrl_devTools/objCtrl_devTools.yy",},"order":3,},
     {"id":{"name":"rm_main","path":"rooms/rm_main/rm_main.yy",},"order":0,},
     {"id":{"name":"scr_generateHistoryFrequency","path":"scripts/scr_generateHistoryFrequency/scr_generateHistoryFrequency.yy",},"order":5,},
