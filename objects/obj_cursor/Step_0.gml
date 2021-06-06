@@ -8,7 +8,7 @@ var inputMap = ds_map_find_value(global.options,"input");
 //ensure that the cursor remains in line with the pieces as the board rises
 if !(global.gameover) &&
    !(global.victory) &&
-   !(global.riseBrake) {
+   (!(global.riseBrake) || global.forceRise) {
 	if (global.forceRise) {
 		if (y == initY - targY) {
 			initY = -1;
