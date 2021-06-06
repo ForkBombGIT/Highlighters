@@ -1,5 +1,7 @@
 event_inherited();
 
+justLandedEntity = noone;
+
 // Animation control
 animLength = 6;
 

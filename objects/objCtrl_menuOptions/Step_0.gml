@@ -96,9 +96,11 @@ else if (state == 1) {
 	if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
 		scr_updateAudioLevels();
 		if (cursorPosition == 1) {
+			audio_stop_all()
 			audio_play_sound(music[musicTest],1,1);
 			testAudio = true;
 		} else if (cursorPosition == 3) {
+			audio_stop_all()
 			audio_play_sound(sounds[soundTest],1,0);
 			testAudio = true;
 		} else if (cursorPosition == avMaxCursorPosition - 1) {
@@ -107,8 +109,6 @@ else if (state == 1) {
 		}
 	}
 	else if (keyboard_check(vk_anykey)) {
-		// TODO Only stop if a test sound was being played
-		show_debug_message(keyboard_key)
 		if (keyboard_key != ds_map_find_value(inputMap,"A")) {
 			if (testAudio) {
 				audio_stop_all();

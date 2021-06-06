@@ -16,7 +16,7 @@ global.startGameLevel = 0;
 global.maxChar = 4;
 
 // Controls delay on level picking
-delay = 0.05;
+delay = 45;
 delayTime = current_time;
 keyPressLength = 0;
 longPress = 20;

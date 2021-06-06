@@ -41,7 +41,7 @@ if (global.restart) {
 	cursor.visible = false;
 	//regenerate stars
 	if !(global.gameMode == 1)
-		scr_generateStars(starsGridSize,starGridUnitSize);
+		scr_generateStars(starsGridSize,starGridUnitSize,global.character);
 	scr_initRows(0);
 	//reset level
 	global.gameLevel = global.startGameLevel;
@@ -57,12 +57,13 @@ with (objPar_piece) {
 	if !(bottomEntity) pieceFalling = true;
 }
 	
-global.riseBrake = (instance_exists(obj_matchmaker)) || pieceFalling
+global.riseBrake = instance_exists(obj_matchmaker) || pieceFalling || objPar_piece.match;
 
 //freeze timer
 if (global.freeze) &&
    (global.gameScore < global.victoryScore) &&
-   !(global.riseBrake) {
+   !(global.riseBrake) && 
+   !(global.chain) {
 	if ((current_time - freezeTimer) / 1000 > 1) {
 		freezeTime--;
 		freezeTimer = current_time;
@@ -111,28 +112,31 @@ if ((global.active) &&
 	} else newRowInc = false;
 	
 	// manual new row
-	if (keyboard_check(ds_map_find_value(inputMap,"B")) && 
-	  !(global.forceRise) && 
-	  !(global.riseBrake)) {
-		global.freeze = false;
-		freezeTime = 0;
-		//checks if piece is gonna rise into game over territory
-		if (scr_checkRow(boardHeight)) {
-			global.gameover = true;
-		}
-		else {
-			global.forceRise = true;
+	if (((keyboard_check(ds_map_find_value(inputMap,"B")) && 
+	   !(global.riseBrake)) || (obj_matchmakerManager.forceRise)) && 
+	   !(global.forceRise)) {
+		  if !(obj_matchmakerManager.forceRise) {
+			global.freeze = false;
 			freezeTime = 0;
-			riseTimer = current_time;
+		  } 
+		  if (obj_matchmakerManager.forceRise)
+			  obj_matchmakerManager.forceRise = false;
+		  //checks if piece is gonna rise into game over territory
+		  if (scr_checkRow(boardHeight)) {
+			global.gameover = true;
+		  }
+		  else {
+			  global.forceRise = true;
+			  riseTimer = current_time;
 		
-			var targY = abs(432 - (instance_position(scr_getColPos(0),432,objPar_piece).y + 24));
-			for (var i = 0; i < instance_number(objPar_piece); i++) {
+			  var targY = abs(432 - (instance_position(scr_getColPos(0),432,objPar_piece).y + 24));
+			  for (var i = 0; i < instance_number(objPar_piece); i++) {
 				var instance = instance_find(objPar_piece,i);
-				instance.targY = targY;
-				instance.initY = instance.y;
-				instance.initY = instance.y;
+					instance.targY = targY;
+					instance.initY = instance.y;
+					instance.initY = instance.y;
+				}
 			}
-		}
 	}
 	
 	// rising row

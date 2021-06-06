@@ -1,4 +1,8 @@
 event_inherited();
+if (instance_exists(justLandedEntity)) {
+	x = justLandedEntity.x - 24;
+	y = justLandedEntity.y - 24;
+}
 
 if (chainSize != -1) {
 	if (visible == false) {

@@ -1,8 +1,9 @@
-function scr_generateStars(argument0, argument1) {
+function scr_generateStars(argument0, argument1, argument2) {
 	//generate stars
 	var stars = ds_list_create();
 	var starsGridSize = argument0;
 	var starsGridUnitSize = argument1;
+	var character = argument2;
 	var minStars = 16;
 	//var maxStars = 24;
 	var sessionMaxStars = minStars; //irandom_range(minStars,maxStars);
@@ -33,12 +34,12 @@ function scr_generateStars(argument0, argument1) {
 	
 		var imageIndex = -1;
 		while (imageIndex == -1) {
-			var maxIndexProb = power(sprite_get_number(spr_stars),2);
+			var maxIndexProb = power(sprite_get_number(spr_stars_default),2);
 			var indexProb = irandom_range(0,maxIndexProb);
-			for (var j = 0; j < sprite_get_number(spr_stars) - 1; j++) {
+			for (var j = 0; j < sprite_get_number(spr_stars_default) - 1; j++) {
 				if (indexProb >= power(j,2)) && 
 				   (indexProb < power(j + 1,2)) { 
-					var posIndex = sprite_get_number(spr_stars) - j; 
+					var posIndex = sprite_get_number(spr_stars_default) - j; 
 					if (ds_list_find_index(stars,posIndex) == -1)
 						imageIndex = posIndex;
 				}
@@ -46,6 +47,7 @@ function scr_generateStars(argument0, argument1) {
 		}
 	
 		var star = instance_create_layer(starX,starY,"Stars",obj_star);
+		star.sprite_index = star.starSprites[character]
 		star.image_index = imageIndex;
 		ds_list_add(stars,imageIndex);
 	};

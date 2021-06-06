@@ -6,8 +6,9 @@ function scr_generateColors() {
 	var likeCounter = 0;
 	var likeMax = 3;
 	var spriteLength = 18;
+	var maxColors = 4;
 
-	while (array_length(selectedEntities) < 5) {
+	while (array_length(selectedEntities) < maxColors) {
 		var index = irandom_range(0,9);
 		var like = false;
 		var loop = 0;

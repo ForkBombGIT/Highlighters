@@ -1,3 +1,4 @@
+//Removes duplicate matchmaker that occurs from two bombs in one match
 function scr_removeMatchmaker(argument0, argument1) {
 	var matchmakerOne = argument0;
 	var matchmakerTwo = argument1;

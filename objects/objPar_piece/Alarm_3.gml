@@ -1,3 +1,4 @@
+/*
 if (ds_list_size(trail) > 0) {
 	ds_list_delete(trail,ds_list_size(trail) - 1);
 	alarm[3] = trailDeleteDelay;
@@ -9,3 +10,4 @@ if (ds_list_size(trail) > 0) {
 		zipSwapLength = 0;
 	}
 }
+*/

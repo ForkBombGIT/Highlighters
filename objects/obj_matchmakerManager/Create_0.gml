@@ -1,6 +1,5 @@
 seenMatchmakers = ds_list_create();
 matchmakers = ds_list_create();
-
 //determines whether a combo has been triggered or not
 global.combo = false;
 comboSize = 5;
@@ -20,5 +19,7 @@ chainBonus = 500;
 //chain variable
 global.chain = false;
 lastChainCreation = current_time;
+framesSinceChain = 0;
 chainSize = 0;
 chainStart = false;
+forceRise = false;

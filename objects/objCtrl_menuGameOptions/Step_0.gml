@@ -40,7 +40,7 @@ if (keyboard_check(vk_anykey) &&
 	
 	if (keyPressLength > longPress) {
 		if (keyPressLength > 0) {
-			if ((current_time - delayTime) > delay){
+			if ((current_time - delayTime) > delay) {
 				delayTime = current_time;
 				scr_gameMenuCursorMovement(cursorPosition,keyboard_key);
 			}

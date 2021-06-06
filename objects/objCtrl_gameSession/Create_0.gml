@@ -56,7 +56,7 @@ instance_create_layer(x,y,"Controllers",objCtrl_menuPause);
 if !(global.gameMode == 1) {
 	starsGridSize = 12;
 	starGridUnitSize = 24;
-	scr_generateStars(starsGridSize,starGridUnitSize);
+	scr_generateStars(starsGridSize,starGridUnitSize, global.character);
 }
 
 scr_initRows(0);
