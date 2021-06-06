@@ -57,7 +57,7 @@ with (objPar_piece) {
 	if !(bottomEntity) pieceFalling = true;
 }
 	
-global.riseBrake = (instance_exists(obj_matchmaker) && !global.chain) || pieceFalling
+global.riseBrake = instance_exists(obj_matchmaker) || pieceFalling || objPar_piece.match;
 
 //freeze timer
 if (global.freeze) &&
@@ -112,9 +112,9 @@ if ((global.active) &&
 	} else newRowInc = false;
 	
 	// manual new row
-	if (keyboard_check(ds_map_find_value(inputMap,"B")) && 
-	  !(global.forceRise) && 
-	  !(global.riseBrake) || (obj_matchmakerManager.forceRise)) {
+	if (((keyboard_check(ds_map_find_value(inputMap,"B")) && 
+	   !(global.riseBrake)) || (obj_matchmakerManager.forceRise)) && 
+	   !(global.forceRise)) {
 		  if !(obj_matchmakerManager.forceRise) {
 			global.freeze = false;
 			freezeTime = 0;

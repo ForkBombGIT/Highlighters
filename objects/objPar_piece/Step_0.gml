@@ -4,7 +4,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	#region Force Rise
 	if !(global.gameover) &&
 	   !(global.victory) &&
-	   !(global.riseBrake) {
+	   (!(global.riseBrake) || (global.forceRise)) {
 		if (global.forceRise) { 
 			if (y <= (initY - targY)) {
 				initY = -1;
