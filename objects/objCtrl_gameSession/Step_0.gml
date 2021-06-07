@@ -57,7 +57,8 @@ with (objPar_piece) {
 	if !(bottomEntity) pieceFalling = true;
 }
 	
-global.riseBrake = instance_exists(obj_matchmaker) || pieceFalling || objPar_piece.match;
+global.riseBrake = !(global.gameover || global.victory) && 
+					(instance_exists(obj_matchmaker) || pieceFalling || objPar_piece.match);
 
 //freeze timer
 if (global.freeze) &&
