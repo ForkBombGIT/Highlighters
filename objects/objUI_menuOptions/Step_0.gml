@@ -1,4 +1,4 @@
-event_inherited();
+ event_inherited();
 // Flickers ready for input menu
 if (inputChangeKey) {
 	if (((current_time - drawReadyTimer) / 1000) > drawReadyDelay)	{

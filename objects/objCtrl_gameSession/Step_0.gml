@@ -99,18 +99,18 @@ if ((global.active) &&
 	// creates new bottom row
 	if (!position_meeting(scr_getColPos(0),scr_getRowPos(0)+24,objPar_piece)){
 		scr_createRow(-1);
-		if !(newRowInc) {
-			var panic = scr_checkRow(6);
-			global.gameScore = min(global.gameScore + 1 + panic,global.victoryScore);
-			if !(global.gameMode == 1)  
+		//if !(newRowInc) {
+			//var panic = scr_checkRow(6);
+			//global.gameScore = min(global.gameScore + 1 + panic,global.victoryScore);
+			//if !(global.gameMode == 1)  
 				// levelToMatch must be advance with a combo
-				if (global.gameLevel % global.levelToMatch != global.levelToMatch - 1)
-					global.gameLevel = min(global.gameLevel + 1,global.maxLevel);
-				else 
-					obj_matchmakerManager.carryOverLevels += 1
-			newRowInc = true;
-		}
-	} else newRowInc = false;
+				//if (global.gameLevel % global.levelToMatch != global.levelToMatch - 1)
+				//	global.gameLevel = min(global.gameLevel + 1,global.maxLevel);
+				//else 
+				//	obj_matchmakerManager.carryOverLevels += 1
+			//newRowInc = true;
+		//}
+	}//  else newRowInc = false;
 	
 	// manual new row
 	if (((keyboard_check(ds_map_find_value(inputMap,"B")) && 

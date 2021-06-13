@@ -37,7 +37,7 @@ switch (state) {
 			instance_create_layer(x,y,"GUI",objCtrl_menuMain);	
 		}
 		
-		if (objCtrl_menuMain.state == 5) && 
+		if (objCtrl_menuMain.state == 3) && 
 		   (objCtrl_menuMain.nextState == - 1) {
 			   if (global.gameMode == 1) state = 2;
 			   else nextState = 2;
@@ -58,6 +58,9 @@ switch (state) {
 			nextState = 1;
 			objCtrl_menuMain.nextState = 1;
 			objCtrl_menuMain.transitioning = true;	
+			objCtrl_game.ui.transitionColor = c_black;								
+			objCtrl_game.ui.alphaChange = objCtrl_game.ui.mainMenuAlphaChange;
+
 		}
 		
 		// if the user proceeds, change state and move to next room

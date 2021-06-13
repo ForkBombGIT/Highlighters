@@ -56,20 +56,16 @@ switch (state) {
 	case 1:
 		//music vol
 		if (cursorPosition == 0) draw_sprite(spr_av_inputs,0,24,72);
-		draw_set_font((cursorPosition == 0) ? numFont : numFontFaded);
-		draw_text(384,72,string_replace_all(string_format(ds_map_find_value(avMap,"musicVol"),3,0)," ", "0"));
+		scr_renderText((cursorPosition == 0) ? numFont : numFontFaded,string_replace_all(string_format(ds_map_find_value(avMap,"musicVol"),3,0)," ", "0"),396,72,24);
 		//music test
 		if (cursorPosition == 1) draw_sprite(spr_av_inputs,1,24,96);
-		draw_set_font((cursorPosition == 1) ? numFont : numFontFaded);
-		draw_text(408,96,string_replace_all(string_format(musicTest,2,0)," ", "0"));
+		scr_renderText((cursorPosition == 1) ? numFont : numFontFaded,string_replace_all(string_format(musicTest,2,0)," ", "0"),420,96,24);
 		//sound vol
 		if (cursorPosition == 2) draw_sprite(spr_av_inputs,2,24,120);
-		draw_set_font((cursorPosition == 2) ? numFont : numFontFaded);
-		draw_text(384,120,string_replace_all(string_format(ds_map_find_value(avMap,"soundVol"),3,0)," ", "0"));
+		scr_renderText((cursorPosition == 2) ? numFont : numFontFaded,string_replace_all(string_format(ds_map_find_value(avMap,"soundVol"),3,0)," ", "0"),396,120,24);
 		//sound test
 		if (cursorPosition == 3) draw_sprite(spr_av_inputs,3,24,144);
-		draw_set_font((cursorPosition == 3) ? numFont : numFontFaded);
-		draw_text(408,144,string_replace_all(string_format(soundTest,2,0)," ", "0"));
+		scr_renderText((cursorPosition == 3) ? numFont : numFontFaded,string_replace_all(string_format(soundTest,2,0)," ", "0"),420,144,24);
 		//fullscreen toggle
 		if (cursorPosition == 4) draw_sprite(spr_av_inputs,4,24,192);
 		draw_sprite((cursorPosition == 4) ? spr_menu_options_av_select : spr_menu_options_av_select_faded,ds_map_find_value(avMap,"fullscreen"),264,192);
@@ -85,16 +81,13 @@ switch (state) {
 		if (cursorPosition == 0) draw_sprite(spr_misc_inputs,0,24,72);
 		// charm skin
 		if (cursorPosition == 1) draw_sprite(spr_misc_inputs,2,24,120);
-		draw_set_font((cursorPosition == 1) ? numFont : numFontFaded);
-		draw_text(408,120,string_replace_all(string_format(ds_map_find_value(miscMap,"charmSkin"),2,0)," ", "0"));	
+		scr_renderText((cursorPosition == 1) ? numFont : numFontFaded,string_replace_all(string_format(ds_map_find_value(miscMap,"charmSkin"),2,0)," ", "0"),420,120,24);
 		// bomb skin
 		if (cursorPosition == 2) draw_sprite(spr_misc_inputs,3,24,144);
-		draw_set_font((cursorPosition == 2) ? numFont : numFontFaded);
-		draw_text(408,144,string_replace_all(string_format(ds_map_find_value(miscMap,"bombSkin"),2,0)," ", "0"));
+		scr_renderText((cursorPosition == 2) ? numFont : numFontFaded,string_replace_all(string_format(ds_map_find_value(miscMap,"bombSkin"),2,0)," ", "0"),420,144,24);
 		// junk skin
 		if (cursorPosition == 3) draw_sprite(spr_misc_inputs,4,24,168);
-		draw_set_font((cursorPosition == 3) ? numFont : numFontFaded);
-		draw_text(408,168,string_replace_all(string_format(ds_map_find_value(miscMap,"junkSkin"),2,0)," ", "0"));		
+		scr_renderText((cursorPosition == 3) ? numFont : numFontFaded,string_replace_all(string_format(ds_map_find_value(miscMap,"junkSkin"),2,0)," ", "0"),420,168,24);
 		var sprite = noone;
 		if (cursorPosition == 1) sprite = charm_sprites[ds_map_find_value(miscMap,"charmSkin")];;
 		if (cursorPosition == 2) sprite = bomb_sprites[ds_map_find_value(miscMap,"bombSkin")];

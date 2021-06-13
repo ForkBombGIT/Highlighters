@@ -23,7 +23,6 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 	// Algorithm conditions
 	var conditionOne = false;
 	var algRetry = 0;
-	var maxSameColor = 4;
 	var maxRetry = 6;
 
 	var bombProb = 0.5;

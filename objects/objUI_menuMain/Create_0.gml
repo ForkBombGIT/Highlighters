@@ -11,3 +11,7 @@ startFlickerIndex = 0;
 optionAnimationIndex = 0;
 startAnimationSpeed = 2; //fps
 optionAnimationSpeed = 12; //fps
+
+menuSection = 0
+menuSectionIndex = 0;
+menuSectionSpeed = 2;

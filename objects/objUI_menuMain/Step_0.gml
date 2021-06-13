@@ -22,4 +22,10 @@ optionAnimationIndex += animSpeed;
 if (floor(optionAnimationIndex) > 6) {
 	optionAnimationIndex = 1;
 }  
+
+animSpeed = menuSectionSpeed / room_speed;
+menuSectionIndex += animSpeed;
+if (floor(menuSectionIndex) > 1) {
+	menuSectionIndex = 0;
+} 
 #endregion

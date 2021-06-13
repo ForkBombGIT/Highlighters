@@ -1,10 +1,11 @@
 //rise if the force rise button is pressed
-if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
+if (instance_exists(objCtrl_menuPause) && 
+  !(objCtrl_menuPause.pause)) &&
+  !(global.gameover) && 
+  !(global.victory) {
 	
 	#region Force Rise
-	if !(global.gameover) &&
-	   !(global.victory) &&
-	   (!(global.riseBrake) || (global.forceRise)) {
+	if (!(global.riseBrake) || (global.forceRise)) {
 		if (global.forceRise) { 
 			if (y <= (initY - targY)) {
 				initY = -1;
@@ -27,8 +28,6 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 
 	#region Grey Pieces
 	if (!(swap) && 
-		!(global.gameover) && 
-		!(global.victory) &&
 		!(match) &&
 		!(landAnim) &&
 		!(highlight) &&
@@ -67,8 +66,6 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	//checks for adjacent matching pieces
 	if ((bottomEntity) && 
 		!(swap) &&
-		!(global.gameover) && 
-	    !(global.victory) &&
 		(y <= scr_getRowPos(0))) {
 		//clear adjacent list
 		ds_list_clear(adjacent);
@@ -170,9 +167,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 
 	#region Warning Notifications
 	//bounce
-	if !(global.gameover) &&
-	   !(global.victory) && 
-	   !(aboveMatch) &&
+	if !(aboveMatch) &&
 	   !(landAnim) {
 		if (y < scr_getRowPos(0) && 
 		   (y <= scr_getRowPos(objCtrl_gameSession.boardHeight - 3)) &&
@@ -212,8 +207,6 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 
 	//squish when piece is at top of stack
 	if (squish) && 
-	  !(global.gameover) &&
-	  !(global.victory) &&
 	  !(match) {
 		objPar_piece.bounce = false;
 		image_index = index + 3;
@@ -225,9 +218,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	if (!(bottomEntity) && 
 		!(match) && 
 		!(swap) && 
-		!(falling) &&
-		!(global.gameover) &&
-	    !(global.victory)) {
+		!(falling)) {
 			if !alarm[0] {
 				fallHeight = 1;
 				alarm[0] = (skipDelay) ? 1 : 
@@ -243,9 +234,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	
 	var inputMap = ds_map_find_value(global.options,"input");
 	//controls landing animation
-	if !(global.gameover) &&
-	   !(global.victory) &&  
-	   (bottomEntity) &&
+	if (bottomEntity) &&
 	   ((landAnim) || 
 	   ((bounce) && 
 	   !(squish) &&
@@ -312,9 +301,7 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 	}
 
 	//squish if piece below is matched
-	if !(global.gameover) && 
-	   !(global.victory) &&
-	   (!(match)) {
+	if (!(match)) {
 		var entityBelow = instance_position(x,y + global.pieceSize,objPar_piece);
 		if (instance_exists(entityBelow)) {
 			if (entityBelow.aboveMatch)
@@ -413,22 +400,22 @@ if (instance_exists(objCtrl_menuPause) && !(objCtrl_menuPause.pause)) {
 		}
 	}
 	#endregion
-	
-	#region Gameover Animation
-		if (gameoverFall) { 
-			y += gameoverFallAmount;
-			gameoverFallAmount = min(64,gameoverFallAmount * 2);
-			if (y > 480) {
-				instance_destroy(); 
-			}
-		}
-		
-		if (gameoverRise) { 
-			y -= gameoverRiseAmount;
-			gameoverRiseAmount = min(64,gameoverRiseAmount * 2);
-			if (y < -24) {
-				instance_destroy(); 
-			}
-		}
-	#endregion
 }
+	
+#region Gameover Animation
+if (gameoverFall) { 
+	y += gameoverFallAmount;
+	gameoverFallAmount = min(64,gameoverFallAmount * 2);
+	if (y > 480) {
+		instance_destroy(); 
+	}
+}
+		
+if (gameoverRise) { 
+	y -= gameoverRiseAmount;
+	gameoverRiseAmount = min(64,gameoverRiseAmount * 2);
+	if (y < -24) {
+		instance_destroy(); 
+	}
+}
+#endregion

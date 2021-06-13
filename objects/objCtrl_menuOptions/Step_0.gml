@@ -108,7 +108,7 @@ else if (state == 1) {
 			scr_saveOptions(global.optionsFileName);
 		}
 	}
-	else if (keyboard_check(vk_anykey)) {
+	if (keyboard_check(vk_anykey)) {
 		if (keyboard_key != ds_map_find_value(inputMap,"A")) {
 			if (testAudio) {
 				audio_stop_all();
@@ -117,6 +117,7 @@ else if (state == 1) {
 		}
 		inputPrompt = -1;
 		lastKey = keyboard_key;
+		show_debug_message(keyPressLength);
 		if (lastKey == keyboard_key) {
 			if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
 		} else keyPressLength = 0;
