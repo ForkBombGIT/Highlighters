@@ -14,10 +14,8 @@ if (keyboard_check_pressed(ds_map_find_value(inputMap,"B")) &&
 	audio_play_sound(snd_back,1,0);
 	if (state == 4) nextState = 1;
 	else nextState = clamp(state - 1, 0, 5); 
-	if (nextState == 0) menuSection = 0;
-	objCtrl_game.ui.transition = true; transitioning = true;
-	objCtrl_game.ui.transitionColor = c_black;
-	objCtrl_game.ui.alphaChange = objCtrl_game.ui.mainMenuAlphaChange;
+	transitioning = true;
+	scr_menuTransition(c_black,objCtrl_game.ui.mainMenuAlphaChange,30);
 }	
 	
 if (keyboard_check_pressed(vk_anykey) && 
@@ -92,10 +90,8 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 			if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
 				audio_play_sound(snd_ok,1,0);
 				nextState = 1;
-				objCtrl_game.ui.transitionColor = c_white;
-				objCtrl_game.ui.transition = true;
-				objCtrl_game.ui.alphaChange = objCtrl_game.ui.subMenuAlphaChange;
-				objCtrl_game.ui.transitionHold = 30;
+				menuSection = 0;
+				scr_menuTransition(c_white,objCtrl_game.ui.subMenuAlphaChange,30);
 				transitioning = true;
 			}
 		break;
@@ -107,16 +103,16 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 			}
 			global.gameMode = 0;
 			if (keyboard_check_pressed(ds_map_find_value(inputMap,"A"))) {
-				audio_play_sound(snd_ok,1,0);
-				objCtrl_game.ui.transitionColor = c_white;
-				objCtrl_game.ui.alphaChange = objCtrl_game.ui.subMenuAlphaChange;
+				var optionSelected = false;
 				switch (menuSection) {
 					case 0: 
 						#region Single Player
 						switch (cursorPosition) {
 							case 0: //classic
 								nextState = 3;
-								objCtrl_game.ui.transition = true; transitioning = true;
+								transitioning = true;
+								scr_menuTransition(c_white,objCtrl_game.ui.subMenuAlphaChange,30);
+								optionSelected = true;
 								break;
 						}
 						#endregion
@@ -125,7 +121,9 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 						switch (cursorPosition) {
 							case 0: //practice
 								nextState = 2; 	
-								objCtrl_game.ui.transition = true; transitioning = true;
+								transitioning = true;
+								scr_menuTransition(c_white,objCtrl_game.ui.subMenuAlphaChange,30);
+								optionSelected = true;
 								break;
 						}
 						break
@@ -138,16 +136,16 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 								if (option == -1) option = 1;
 							case 2: // misc
 								if (option == -1) option = 2;
+								optionSelected = true;
 								nextState = 4;
-								objCtrl_game.ui.transition = true; transitioning = true;
-								objCtrl_game.ui.transitionColor = c_white;
-								objCtrl_game.ui.alphaChange = 1;
-								objCtrl_game.ui.alphaChange = objCtrl_game.ui.subMenuAlphaChange;
+								transitioning = true;
+								scr_menuTransition(c_white,objCtrl_game.ui.subMenuAlphaChange,30);
 								break;
 						}
 						#endregion
 						break;
 				}
+				if (optionSelected) audio_play_sound(snd_ok,1,0);
 			}
 			break;
 		// Practice
@@ -171,7 +169,7 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 				menuOptionsCtrl.state = option;				
 			}
 			else if (objCtrl_menuOptions.exitState == 1) {
-				objCtrl_game.ui.transition = true;
+				scr_menuTransition(c_black,objCtrl_game.ui.mainMenuAlphaChange,30);
 				nextState = 1;
 				transitioning = true;
 			}

@@ -117,7 +117,7 @@ else if (state == 1) {
 		}
 		inputPrompt = -1;
 		lastKey = keyboard_key;
-		show_debug_message(keyPressLength);
+		
 		if (lastKey == keyboard_key) {
 			if (++keyPressLength == 1) scr_optionMenuCursorMovement(cursorPosition,keyboard_key,state);
 		} else keyPressLength = 0;
@@ -130,7 +130,11 @@ else if (state == 1) {
 				}
 			} 
 		}
-	} else keyPressLength = 0;
+		scr_updateAudioLevels();
+	} 
+	else if (keyboard_check_released(vk_anykey)) {
+		keyPressLength = 0;
+	}
 	
 	if (cursorPosition == 1) || (cursorPosition == 3) {
 		inputPrompt = 4;	
@@ -207,7 +211,6 @@ if !(inputChangeKey) {
 		}
 		testAudio = false;
 		scr_saveOptions(global.optionsFileName)
-		// TODO Fix this sound not always playing
 		audio_play_sound(snd_back,1,0);
 		exitState = 1;
 	}	

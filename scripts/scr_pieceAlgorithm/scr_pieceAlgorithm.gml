@@ -4,6 +4,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 	var history = argument2;
 	var bombsInRow = argument3;
 	var charmsInRow = argument4;
+	
 	var piecesInRow = ds_list_create();
 	ds_list_copy(piecesInRow, bombsInRow);
 	for (var i = 0; i < ds_list_size(charmsInRow); i++) {
@@ -24,11 +25,12 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 	var conditionOne = false;
 	var algRetry = 0;
 	var maxRetry = 6;
-
+	var maxSame = 14;
 	var bombProb = 0.5;
 	var boostedBombProb = 1;
 	var canPlace = instance_exists(scr_getPieceAtPos(row,col));
-
+	
+	// The amount of frames in the piece sprite
 	var pieceFrames = 18;
 
 	while !(canPlace) {
@@ -41,7 +43,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 		var pieceType = (random_range(0,1) < bombProb) ? obj_bomb : obj_charm
 		
 		//avoids same color bomb in row
-		canPlace = (pieceType == obj_bomb) ? (ds_list_find_index(bombsInRow,color) == -1) : true;
+		canPlace = true;
 		
 		// Conditions
 		if (ds_list_size(piecesInRow) > 0) && 
@@ -54,15 +56,15 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 				var maxFrequency = 3;
 				var colorToSet = color;
 				for (var i = 0; i < array_length(availablePieces); i++) {
-					if (ds_list_find_index(bombsInRow,array_get(availablePieces,i)) == -1) {
-						var freqColor = array_get(availablePieces,i);
-						var frequency = ds_map_find_value(historyFrequency,freqColor);
-						if (frequency > maxFrequency) && 
-							(ds_map_find_value(bombFrequency,freqColor) < maxBombFreq) {
-							maxFrequency = frequency;
-							colorToSet = array_get(availablePieces,i);
-						}
+					//if (ds_list_find_index(bombsInRow,array_get(availablePieces,i)) == -1) {
+					var freqColor = array_get(availablePieces,i);
+					var frequency = ds_map_find_value(historyFrequency,freqColor);
+					if (frequency > maxFrequency) && 
+						(ds_map_find_value(bombFrequency,freqColor) < maxBombFreq) {
+						maxFrequency = frequency;
+						colorToSet = array_get(availablePieces,i);
 					}
+					//}
 				}
 				// if the max frequecy has changed, try to generate a bomb at a higher prob.
 				if (maxFrequency > 3) {
@@ -75,13 +77,23 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 				
 			}
 			
-			// c.4
+			// c.2
 			// prevent more than maxBombFreq
 			if canPlace && 
 			  (pieceType == obj_bomb) {
 				var bombFreq = ds_map_find_value(bombFrequency,color);
 				if (bombFreq != undefined) {
 					canPlace = bombFreq < maxBombFreq
+				//	conditionFourRetry++;
+				}
+			}
+			
+			// c.3
+			// prevent more than maxSame
+			if (canPlace) {
+				var pieceFreq = ds_map_find_value(historyFrequency,color);
+				if (pieceFreq != undefined) {
+					canPlace = pieceFreq < maxSame
 				//	conditionFourRetry++;
 				}
 			}

@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "RNG",
-    "path": "folders/Scripts/RNG.yy",
+    "name": "Menu",
+    "path": "folders/Scripts/Menu.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_pieceAlgorithm",
+  "name": "scr_menuTransition",
   "tags": [],
   "resourceType": "GMScript",
 }
