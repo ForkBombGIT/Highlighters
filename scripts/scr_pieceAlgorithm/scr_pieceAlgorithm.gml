@@ -25,7 +25,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 	var conditionOne = false;
 	var algRetry = 0;
 	var maxRetry = 6;
-	var maxSame = 14;
+	var maxSame = 15;
 	var bombProb = 0.5;
 	var boostedBombProb = 1;
 	var canPlace = instance_exists(scr_getPieceAtPos(row,col));
@@ -49,10 +49,20 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 		if (ds_list_size(piecesInRow) > 0) && 
 		   (canPlace) && 
 		   (algRetry < maxRetry) {
+			// c.3
+			// prevent more than maxSame
+			if (canPlace) {
+				var pieceFreq = ds_map_find_value(historyFrequency,color);
+				if (pieceFreq != undefined) {
+					canPlace = pieceFreq < maxSame
+				//	conditionFourRetry++;
+				}
+			}
+			
+			// c.1 logic
+			// if a piece of the same color has been placed >= 3 times, try to generate a bomb 
+			// of the same color
 			if (rowBombCount < maxSameBombsInRow) {
-				// c.1 logic
-				// if a piece of the same color has been placed >= 3 times, try to generate a bomb 
-				// of the same color
 				var maxFrequency = 3;
 				var colorToSet = color;
 				for (var i = 0; i < array_length(availablePieces); i++) {
@@ -84,16 +94,6 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 				var bombFreq = ds_map_find_value(bombFrequency,color);
 				if (bombFreq != undefined) {
 					canPlace = bombFreq < maxBombFreq
-				//	conditionFourRetry++;
-				}
-			}
-			
-			// c.3
-			// prevent more than maxSame
-			if (canPlace) {
-				var pieceFreq = ds_map_find_value(historyFrequency,color);
-				if (pieceFreq != undefined) {
-					canPlace = pieceFreq < maxSame
 				//	conditionFourRetry++;
 				}
 			}
