@@ -28,29 +28,34 @@ if (!global.gameover) &&
 	}
 }
 
+//turn on bounce animation
 if (canBounce) && 
   !(global.freeze) &&
-  !(global.forceRise) {
+  !(global.forceRise) && 
+  !(instance_exists(obj_matchmaker)) {
 	if (scr_checkRow(objCtrl_gameSession.boardHeight - 3)) { 
-		//turn on bounce animation
-		var rowEntities = scr_getRow(objCtrl_gameSession.boardHeight - 3);
-		for (var i = 0; i < ds_list_size(rowEntities); i++) {
-			var entity = ds_list_find_value(rowEntities,i);
-			if (entity.bottomEntity) && 
-			   !(entity.swap) &&
-			   (entity.y <= scr_getRowPos(objCtrl_gameSession.boardHeight - 3)){
-				entity.bounce = true;
-				bounce = true;
+		if !(bounce) {
+			var tallestCol = scr_getCol(scr_getTallestCol());
+			for (var i = 0; i < ds_list_size(tallestCol); i++) {
+				var entity = ds_list_find_value(tallestCol,i);
+				if (entity.bottomEntity) {
+					entity.bounce = true;
+					bounce = true;
+				}
 			}
+			ds_list_destroy(tallestCol);
 		}
-		ds_list_destroy(rowEntities);
-	} else {
+	} else canBounce = false;	
+} else canBounce = false;
+
+if !(canBounce) {
+	if (bounce) { 
 		bounce = false;
 		bounceIndex = 0;
+		with (objPar_piece) {
+			bounce = false	
+		}
 	}
-} else {
-	bounce = false;
-	bounceIndex = 0;
 }
 
 //controls bounce animations, keeps pieces in sync

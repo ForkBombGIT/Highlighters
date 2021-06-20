@@ -137,6 +137,7 @@
     {"id":{"name":"obj_combo","path":"objects/obj_combo/obj_combo.yy",},"order":0,},
     {"id":{"name":"obj_chain","path":"objects/obj_chain/obj_chain.yy",},"order":1,},
     {"id":{"name":"obj_cursor","path":"objects/obj_cursor/obj_cursor.yy",},"order":3,},
+    {"id":{"name":"scr_getTallestCol","path":"scripts/scr_getTallestCol/scr_getTallestCol.yy",},"order":11,},
     {"id":{"name":"spr_board","path":"sprites/spr_board/spr_board.yy",},"order":0,},
     {"id":{"name":"obj_star","path":"objects/obj_star/obj_star.yy",},"order":4,},
     {"id":{"name":"objCtrlPar_menu","path":"objects/objCtrlPar_menu/objCtrlPar_menu.yy",},"order":0,},

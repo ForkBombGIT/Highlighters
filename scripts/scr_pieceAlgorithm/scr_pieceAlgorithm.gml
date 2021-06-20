@@ -18,8 +18,9 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 	var rowBombCount = ds_list_size(bombsInRow);
 	var availablePieces = objCtrl_gameSession.selectedEntities;
 	var maxBombFreq = 5;
-	var maxSameBombsInRow = 3;
+	var maxSameBombsInRow = 2;
 	var maxSameCharmInRow = 3;
+	var maxBombsInRow = 3;
 	
 	// Algorithm conditions
 	var conditionOne = false;
@@ -40,7 +41,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 			right = scr_getPieceAtPos(row, min(objCtrl_gameSession.boardWidth - 1,col + 1));
 		var colorIndex = irandom_range(0,array_length(availablePieces) - 1);
 		var color = availablePieces[colorIndex] * pieceFrames;
-		var pieceType = (random_range(0,1) < bombProb) ? obj_bomb : obj_charm
+		var pieceType = (rowBombCount < maxBombsInRow) ? ((random_range(0,1) < bombProb) ? obj_bomb : obj_charm) : obj_charm;
 		
 		//avoids same color bomb in row
 		canPlace = true;
@@ -49,7 +50,7 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 		if (ds_list_size(piecesInRow) > 0) && 
 		   (canPlace) && 
 		   (algRetry < maxRetry) {
-			// c.3
+			// c.1
 			// prevent more than maxSame
 			if (canPlace) {
 				var pieceFreq = ds_map_find_value(historyFrequency,color);
@@ -58,11 +59,11 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 				//	conditionFourRetry++;
 				}
 			}
-			
-			// c.1 logic
+		
+			// c.2 logic
 			// if a piece of the same color has been placed >= 3 times, try to generate a bomb 
 			// of the same color
-			if (rowBombCount < maxSameBombsInRow) {
+			if (rowBombCount < maxBombsInRow) {
 				var maxFrequency = 3;
 				var colorToSet = color;
 				for (var i = 0; i < array_length(availablePieces); i++) {
@@ -86,17 +87,6 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 				}
 				
 			}
-			
-			// c.2
-			// prevent more than maxBombFreq
-			if canPlace && 
-			  (pieceType == obj_bomb) {
-				var bombFreq = ds_map_find_value(bombFrequency,color);
-				if (bombFreq != undefined) {
-					canPlace = bombFreq < maxBombFreq
-				//	conditionFourRetry++;
-				}
-			}
 		}
 		
 		if (algRetry == maxRetry) || (array_length(availablePieces) == 1) {
@@ -104,10 +94,10 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 		}
 		
 		// Post conditions
-		if (rowBombCount >= maxSameBombsInRow) pieceType = obj_charm;
+		//if (rowBombCount >= maxSameBombsInRow) pieceType = obj_charm;
 		
 		
-		// c.2
+		// pc.1
 		// Only two bombs of the same color can be in the same row
 		if (canPlace) &&
 			(pieceType == obj_bomb) {
@@ -116,12 +106,12 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 				var bomb = ds_list_find_value(bombsInRow,i);
 				if (bomb == color) counter++;
 			}
-			if (counter > maxSameBombsInRow) {
+			if (counter >= maxSameBombsInRow) {
 				canPlace = false;
 			}
 		}
 			
-		// c.3
+		// pc.2
 		// Only three charms of the same color can be in the same row
 		if (canPlace) &&
 			(pieceType == obj_charm) {
@@ -130,11 +120,26 @@ function scr_pieceAlgorithm(argument0, argument1, argument2, argument3, argument
 				var charm = ds_list_find_value(charmsInRow,i);
 				if (charm == color) counter++;
 			}
-			if (counter > maxSameCharmInRow) {
+			if (counter >= maxSameCharmInRow) {
 				canPlace = false;
 			}
 		}
 		
+		// pc.3
+		// prevent more than maxBombFreq
+		if canPlace && 
+			(pieceType == obj_bomb) {
+			var bombFreq = ds_map_find_value(bombFrequency,color);
+			if (bombFreq != undefined) {
+				canPlace = bombFreq < maxBombFreq
+			//	conditionFourRetry++;
+			}
+		}
+		
+		
+		// pc. 4 and 5
+		// Piece must not be part of an invalid color trio
+        // Bomb must not be same with adjacent pieces
 		if (instance_exists(up)) && canPlace {
 			//ensures that the colors touching do not fall into the "trio" of colors
 			//the trio describes colors that can not spawn together due to similarity in colors
