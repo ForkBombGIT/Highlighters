@@ -169,10 +169,9 @@ if (instance_exists(objCtrl_menuPause) &&
 	//bounce
 	if !(aboveMatch) &&
 	   !(landAnim) {
-		/*if (y < scr_getRowPos(0) && 
-		   (y <= scr_getRowPos(objCtrl_gameSession.boardHeight - 3)) &&
-		   (y != scr_getRowPos(objCtrl_gameSession.boardHeight - 1)) && 
-		   !(global.freeze) && 
+		// Bounce notification control and override
+		if ((col == objCtrl_gameAnimation.tallestCol) &&
+		   (y <= scr_getRowPos(0)) &&
 		   !(global.forceRise) &&
 		   !(instance_exists(obj_matchmaker)) && 
 		   !(match)) {
@@ -180,7 +179,7 @@ if (instance_exists(objCtrl_menuPause) &&
 					image_index = index;
 					bounce = true;
 			   }
-		} else bounce = false;*/
+		} else bounce = false;
 
 		//enables squish when y is in top row
 		//checks for piece above, and if its bouncing, make this piece bounce as well

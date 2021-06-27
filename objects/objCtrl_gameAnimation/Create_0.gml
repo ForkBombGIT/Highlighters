@@ -8,6 +8,7 @@ pulseAnimationSpeedEnd = 0.1;
 pulseReset = false;
 
 // Panic notification bounce
+tallestCol = -1;
 bounce = false;
 bounceIndex = 0;
 bounceAnimationFirst = 0.25; //4 frames

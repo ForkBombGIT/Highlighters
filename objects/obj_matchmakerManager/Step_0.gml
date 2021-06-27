@@ -66,7 +66,7 @@ if !(global.gameover) &&
 							entityChainStart = true;
 							lastChainCreation = current_time;
 							framesSinceChain = 0;
-							if !(scr_checkRow(objCtrl_gameSession.boardHeight)) forceRise = true;
+							if !(scr_checkRow(objCtrl_gameSession.boardHeight - 1)) forceRise = true;
 						}
 					} 
 					

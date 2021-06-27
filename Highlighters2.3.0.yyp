@@ -15,6 +15,7 @@
     {"id":{"name":"spr_time_milo","path":"sprites/spr_time_milo/spr_time_milo.yy",},"order":4,},
     {"id":{"name":"objUI_menuQuit","path":"objects/objUI_menuQuit/objUI_menuQuit.yy",},"order":5,},
     {"id":{"name":"spr_start","path":"sprites/spr_start/spr_start.yy",},"order":4,},
+    {"id":{"name":"scr_getColHeight","path":"scripts/scr_getColHeight/scr_getColHeight.yy",},"order":12,},
     {"id":{"name":"spr_select","path":"sprites/spr_select/spr_select.yy",},"order":5,},
     {"id":{"name":"spr_characters","path":"sprites/spr_characters/spr_characters.yy",},"order":6,},
     {"id":{"name":"spr_stars_hasen","path":"sprites/spr_stars_hasen/spr_stars_hasen.yy",},"order":3,},

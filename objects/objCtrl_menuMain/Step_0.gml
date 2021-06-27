@@ -177,5 +177,3 @@ if (objCtrl_game.ui.transitionAlpha == 0) {
 	}
 }
 #endregion
-if (instance_exists(objCtrl_menuOptions))
-	show_debug_message(objCtrl_menuOptions.state);

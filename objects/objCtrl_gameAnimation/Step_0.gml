@@ -30,21 +30,27 @@ if (!global.gameover) &&
 
 //turn on bounce animation
 if (canBounce) && 
-  !(global.freeze) &&
   !(global.forceRise) && 
   !(instance_exists(obj_matchmaker)) {
 	if (scr_checkRow(objCtrl_gameSession.boardHeight - 3)) { 
-		if !(bounce) {
-			var tallestCol = scr_getCol(scr_getTallestCol());
-			for (var i = 0; i < ds_list_size(tallestCol); i++) {
-				var entity = ds_list_find_value(tallestCol,i);
+		var currentTallestCol = tallestCol;
+		var newTallest = scr_getTallestCol();
+		
+		if !(bounce) || (scr_getColHeight(newTallest) > scr_getColHeight(currentTallestCol)) {
+			tallestCol = newTallest;
+			with (objPar_piece) {
+				bounce = false	
+			}
+			var tallestColList = scr_getCol(tallestCol);
+			for (var i = 0; i < ds_list_size(tallestColList); i++) {
+				var entity = ds_list_find_value(tallestColList,i);
 				if (entity.bottomEntity) {
 					entity.bounce = true;
 					bounce = true;
 				}
 			}
-			ds_list_destroy(tallestCol);
-		}
+			ds_list_destroy(tallestColList);
+		} 
 	} else canBounce = false;	
 } else canBounce = false;
 
@@ -52,6 +58,7 @@ if !(canBounce) {
 	if (bounce) { 
 		bounce = false;
 		bounceIndex = 0;
+		tallestCol = -1;
 		with (objPar_piece) {
 			bounce = false	
 		}
