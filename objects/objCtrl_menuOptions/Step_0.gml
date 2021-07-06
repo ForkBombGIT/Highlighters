@@ -24,7 +24,6 @@ if (state == 0) {
 				var validKey = true;
 				var inputControlKeys = ds_map_keys_to_array(inputMap);
 				//checks for duplicate keys
-					
 				if (scr_keyToIndex(keyPressed) == -1) {
 					validKey = false;
 					inputPrompt = 1;

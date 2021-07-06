@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Menu",
-    "path": "folders/Scripts/Menu.yy",
+    "name": "Utils",
+    "path": "folders/Scripts/Utils.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_updateAudioLevels",
+  "name": "scr_renderTextBouncing",
   "tags": [],
   "resourceType": "GMScript",
 }

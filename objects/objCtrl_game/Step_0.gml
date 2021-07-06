@@ -85,6 +85,8 @@ switch (state) {
 			// If the game has ended, move to gameend menu
 			if (objCtrl_gameSession.gameEnd) {
 				state = 4;
+				gameEndSong = (global.victory) ? sng_victory : sng_gameover;
+				audio_play_sound(gameEndSong,1,1);
 			}
 		}
 		else {
@@ -117,6 +119,7 @@ switch (state) {
 			if (objCtrl_menuGameEnd.state == 1) {
 				instance_destroy(objCtrl_menuGameEnd);	
 				nextState = 3;
+				audio_stop_sound(gameEndSong);
 			}
 			// End Game
 			else if (objCtrl_menuGameEnd.state == 2) {
@@ -127,6 +130,7 @@ switch (state) {
 				ui.alphaChange = 1;
 				ui.transitionHold = 5;
 				nextState = 1;
+				audio_stop_sound(gameEndSong);
 				instance_destroy(obj_star);
 			}
 		}

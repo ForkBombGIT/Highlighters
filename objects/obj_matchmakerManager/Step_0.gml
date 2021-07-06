@@ -3,7 +3,21 @@ framesSinceChain++;
 // matchmaker management loop
 if !(global.gameover) &&
    !(global.victory) {
-	if !(global.combo) { 
+	with (obj_bomb) {
+		if ((self.matchFound) && 
+			!(self.matchOverride) && 
+			!(instance_exists(self.matchmaker))) { 
+			self.matchmaker = scr_createMatchmaker(self.x,self.y,self.index);
+			/*for (var i = 0; i < self.adjacent; i++) {
+				var adjPiece = ds_list_find_value(self.adjacent,i);
+				if (object_get_name(adjPiece.object_index) == "obj_bomb") {
+					adjPiece.matchOverride = true;
+				}
+			}*/
+		}	
+	} 
+	if !(combo) { 
+		//remove extra matchmakers
 		if (activeMatchmakers > 1) {
 			for (var i = 0; i < activeMatchmakers - 1; i++) {
 				var matchmaker = instance_find(obj_matchmaker,i);
@@ -50,7 +64,7 @@ if !(global.gameover) &&
 				if (instance_exists(matchmaker)) {
 					// check if the matchmaker has a recently landed piece in the match
 					if (instance_exists(matchmaker.justLandedEntity)) {
-						if (chainStart) && ((current_time - lastChainCreation) >= 100) {
+						if (chainStart) {
 							// play sound for chain
 							if (audio_is_playing(snd_combo_chain)) {
 								audio_stop_sound(snd_combo_chain);	
@@ -91,20 +105,23 @@ if !(global.gameover) &&
 			}	
 			// Combo detection
 			var sizeOfCombo = total - (comboSize);
-			global.combo = sizeOfCombo >= 0;
+			combo = sizeOfCombo >= 0;
 			// chain detection
 			global.chain = (chainStart && chainSize > 0);
 			// play sound for combo 
-			if (global.combo) && !(global.victory) && (framesSinceChain != 0) {
+			if (combo) && !(global.victory) && (framesSinceChain != 0) {
 				if (audio_is_playing(snd_combo_chain)) {
 					audio_stop_sound(snd_combo_chain);	
 				}
 				audio_play_sound(snd_combo_chain,2,0);	
 			}
 			#region Score Calculations
+			// First Line: Basic match (100), and Panic (200)
+			// Second Line: Combos (200), and Panic (50)
+			// Third Line: Chains (500), and Panic (100)
 			global.gameScore = min(global.gameScore + ((sizeOfCombo < 0) ? 100 * (1 + panic) : 0) + 
 								   max(0,((sizeOfCombo + 1) * (comboBonus + (panic ? 50 : 0)))) + 
-								   max(0,(chainSize * chainBonus + (panic ? 100 : 0))),
+								   max(0,(chainSize * (chainBonus + (panic ? 100 : 0)))),
 								   global.victoryScore);
 								   
 			if (global.gameScore >= global.victoryScore) {
@@ -117,9 +134,9 @@ if !(global.gameover) &&
 			if !(global.gameMode == 1) {
 				//checks if level is at x99, if it is, follow normal combo behavior
 				// combo level bonus = size of combo - 4
-				var comboLevelBonus = (global.combo) ? (sizeOfCombo > 9 ? 10 : sizeOfCombo + 1) : 0;
-				// chain level bonus = 3 * chainsize, x chain rewards 30 levels
-				var chainLevelBonus = (global.chain) ? (chainSize > 8 ? 30 : 3 * chainSize) : 0;
+				var comboLevelBonus = (combo) ? (sizeOfCombo > 9 ? 2 : 1) : 0;
+				// chain level bonus = 3 * chainsize, x chain rewards 20 levels
+				var chainLevelBonus = (global.chain) ? (chainSize > 8 ? 20 : 2 * chainSize) : 0;
 				// combo bonus + chain bonus, if there are no bonuses, award 1 for basic match
 				var levelIncrement = comboLevelBonus + chainLevelBonus + (comboLevelBonus + chainLevelBonus == 0)	
 				if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1) {
@@ -168,7 +185,7 @@ if !(global.gameover) &&
 			#endregion
 			chainStart = true;
 		}	
-		global.combo = false; 
+		combo = false; 
 		activeComboSize = -1;
 		freezeTime = 0;
 	} 

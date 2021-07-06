@@ -51,8 +51,8 @@ if (!ds_map_find_value(avMap,"fullscreen")) {
 // Global variable initialization 
 global.gameMode = 0;
 
-//flash behavior
-flash = false;
+//indicates game end song
+gameEndSong = noone;
 
 //holds the blocks to be used in the game
 selectedEntities = [];	

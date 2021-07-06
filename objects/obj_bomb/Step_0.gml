@@ -62,12 +62,12 @@ if (global.active) &&
 			break;
 	}
 }
-
+/*
 if ((matchFound) && 
 	!(matchOverride) && 
 	!(instance_exists(matchmaker)) && 
 	!(global.gameover || global.victory)) { 
 	matchmaker = scr_createMatchmaker(x,y,index);
-}
+}*/
 
 #endregion

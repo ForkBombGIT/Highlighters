@@ -242,19 +242,21 @@ if (instance_exists(objCtrl_menuPause) &&
 				var animSpeed = (floor(landAnimIndex) == index) ? landingAnimationFirst : 
 																  landingAnimationRest;
 				// landing animation index control
-				if !(bounce) {
+				if !(bounce) {			
 				   landAnimIndex += animSpeed;
 				   /*if !(alarm[3]) {
 					   alarm[3] = trailDeleteDelay;   
 				   }*/
-				   if (floor(landAnimIndex) > index + 3) {
-					 landAnimIndex = index; 
-					 landAnim = false; 
-					 justLanded = false; 
-					 aboveMatch = false; 
-					 inMatchCol = false; 
+				   if (floor(landAnimIndex) > index + 1) {
+					   justLanded = false;
+					   aboveMatch = false;
 				   }
-			   }
+				   if (floor(landAnimIndex) > index + 3) {
+					   landAnimIndex = index; 
+					   landAnim = false; 
+					   inMatchCol = false; 
+				   }
+			   }		 
 			   //apply animation
 			   //bounce index is controller in controller for all pieces to bounce uniformly
 			   image_index = (bounce) ? scr_getBounceIndex(floor(objCtrl_gameAnimation.bounceIndex)) + index : floor(landAnimIndex);
@@ -298,7 +300,6 @@ if (instance_exists(objCtrl_menuPause) &&
 			justLanded = true;
 		}
 	}
-
 	//squish if piece below is matched
 	if (!(match)) {
 		var entityBelow = instance_position(x,y + global.pieceSize,objPar_piece);

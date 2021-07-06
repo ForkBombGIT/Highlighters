@@ -112,8 +112,8 @@ if (global.gameover) ||
 		global.riseUp = false;
 		global.forceRiseSpeed = 0;
 		instance_destroy(obj_matchmaker);
-		var sound = global.victory ? snd_win : snd_lose;
-		audio_play_sound(sound,1,0);
+		gameEndSound = global.victory ? snd_win : snd_lose;
+		audio_play_sound(gameEndSound,1,0);
 		//sets starting point for character portrait
 		objUI_characterPortrait.characterAnimIndex = 5; 
 		alarm[0] = 1; 
@@ -151,7 +151,8 @@ if (gameEndTransition) {
 		} else fallDelay = 0;
 	}
 	if (gameEndState == 1) { 
-		if !(alarm[1]) alarm[1] = 60;	
+		if !(audio_is_playing(gameEndSound) && !(objCtrl_gameSession.gameEnd))
+			objCtrl_gameSession.gameEnd = true;
 	}
 }
 #endregion

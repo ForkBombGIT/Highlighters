@@ -20,6 +20,7 @@ gameEndState = 0;
 gameEndRow = 0;
 gameEndCol = objCtrl_gameSession.boardWidth - 1;
 gameEndAnimation = false;
+gameEndSound = noone;
 animRow = 8;
 
 fallDelay = 0;

@@ -1,0 +1,3 @@
+text = ""
+textArray = [];
+font = noone;

@@ -1,7 +1,7 @@
 seenMatchmakers = ds_list_create();
 matchmakers = ds_list_create();
 //determines whether a combo has been triggered or not
-global.combo = false;
+combo = false;
 comboSize = 5;
 activeComboSize = -1;
 

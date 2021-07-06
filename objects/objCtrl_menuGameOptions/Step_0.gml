@@ -24,20 +24,13 @@ if (keyboard_check(vk_anykey) &&
 	lastKey = keyboard_key;
 	if (lastKey == keyboard_key) {
 		if (++keyPressLength == 1) {
-			var preLevel = global.gameLevel;
-			var preChar = global.character;
 			scr_gameMenuCursorMovement(cursorPosition,keyboard_key);
-			#region Movement Sounds
-			if (preLevel != global.gameLevel || preChar != global.character) {
-				if (audio_is_playing(snd_move)) {
-					audio_stop_sound(snd_move)	
-				}
-				audio_play_sound(snd_move,1,0);	
-			}
-			#endregion
 		}
 	} else keyPressLength = 0;
 	
+	if (cursorPosition == 1)
+		keyPressLength = 0;
+		
 	if (keyPressLength > longPress) {
 		if (keyPressLength > 0) {
 			if ((current_time - delayTime) > delay) {
@@ -45,6 +38,6 @@ if (keyboard_check(vk_anykey) &&
 				scr_gameMenuCursorMovement(cursorPosition,keyboard_key);
 			}
 		} 
-	}
+	} 
 } else keyPressLength = 0;
 #endregion

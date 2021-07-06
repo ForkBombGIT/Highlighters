@@ -59,8 +59,8 @@ if (swap) {
 		rightPiece = instance_position(x+24,y,objPar_piece);
 		var leftUp = instance_position(x-24,y-48,objPar_piece);
 		var rightUp = instance_position(x+24,y-48,objPar_piece);
-		var leftUpBottomEntity = instance_exists(leftUp) ? leftUp.bottomEntity : true;
-		var rightUpBottomEntity = instance_exists(rightUp) ? rightUp.bottomEntity : true;
+		var leftUpBottomEntity = instance_exists(leftUp) ? (leftUp.bottomEntity) : true;
+		var rightUpBottomEntity = instance_exists(rightUp) ? (rightUp.bottomEntity) : true;
 	
 		//applies swap to both pieces if there are a left and right piece
 		if (!objPar_piece.swap) {

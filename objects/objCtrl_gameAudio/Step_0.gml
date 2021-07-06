@@ -9,6 +9,7 @@ if (audio_group_is_loaded(ag_music)) {
 				
 				}
 			}
+				
 		}
 		// Pause music on pause menu
 		if (objCtrl_menuPause.pause) {
@@ -34,5 +35,5 @@ if (audio_group_is_loaded(ag_music)) {
 				songPaused = false;
 			}
 		}
-	}
+	} 
 }
