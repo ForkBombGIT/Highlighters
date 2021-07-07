@@ -210,7 +210,6 @@ if !(inputChangeKey) {
 		}
 		testAudio = false;
 		scr_saveOptions(global.optionsFileName)
-		audio_play_sound(snd_back,1,0);
 		exitState = 1;
 	}	
 	// Cursor movement

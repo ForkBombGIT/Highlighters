@@ -27,11 +27,8 @@ if (keyboard_check(vk_anykey) &&
 			scr_gameMenuCursorMovement(cursorPosition,keyboard_key);
 		}
 	} else keyPressLength = 0;
-	
-	if (cursorPosition == 1)
-		keyPressLength = 0;
 		
-	if (keyPressLength > longPress) {
+	if (keyPressLength > longPress) && (cursorPosition != 1) {
 		if (keyPressLength > 0) {
 			if ((current_time - delayTime) > delay) {
 				delayTime = current_time;

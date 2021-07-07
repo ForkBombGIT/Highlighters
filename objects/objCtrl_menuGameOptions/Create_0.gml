@@ -1,10 +1,13 @@
 event_inherited();
 
+// Create the UI associated with the control
 if (instance_exists(objCtrl_gameSession)) instance_destroy(objCtrl_gameSession);
 ui = instance_create_layer(x,y,"GUI",objUI_menuGameOptions);
 
-// init character portait
+// Create character portrait
 instance_create_layer(x,y,"GUI",objCtrl_characterPortrait);
+// The portrait initializes as invisible, as it's not needed during practice mode
+// (will probably change with updated character select)
 if (global.gameMode == 0) objCtrl_characterPortrait.ui.visible = true;
 
 //initialize global variables for game setup

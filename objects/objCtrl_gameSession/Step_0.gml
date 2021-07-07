@@ -61,6 +61,7 @@ global.riseBrake = !(global.gameover || global.victory) &&
 					(instance_exists(obj_matchmaker) || pieceFalling || objPar_piece.match);
 
 //freeze timer
+show_debug_message(global.chain);
 if (global.freeze) &&
    (global.gameScore < global.victoryScore) &&
    !(global.riseBrake) && 
