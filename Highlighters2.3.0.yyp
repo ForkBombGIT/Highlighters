@@ -152,6 +152,7 @@
     {"id":{"name":"objCtrl_gameSession","path":"objects/objCtrl_gameSession/objCtrl_gameSession.yy",},"order":1,},
     {"id":{"name":"objCtrl_gameAnimation","path":"objects/objCtrl_gameAnimation/objCtrl_gameAnimation.yy",},"order":2,},
     {"id":{"name":"objCtrl_menuMain","path":"objects/objCtrl_menuMain/objCtrl_menuMain.yy",},"order":0,},
+    {"id":{"name":"snd_win_no_transition","path":"sounds/snd_win_no_transition/snd_win_no_transition.yy",},"order":15,},
     {"id":{"name":"objCtrl_menuOptions","path":"objects/objCtrl_menuOptions/objCtrl_menuOptions.yy",},"order":1,},
     {"id":{"name":"objCtrl_menuGameOptions","path":"objects/objCtrl_menuGameOptions/objCtrl_menuGameOptions.yy",},"order":2,},
     {"id":{"name":"objCtrl_menuGameEnd","path":"objects/objCtrl_menuGameEnd/objCtrl_menuGameEnd.yy",},"order":3,},

@@ -112,7 +112,9 @@ if (global.gameover) ||
 		global.riseUp = false;
 		global.forceRiseSpeed = 0;
 		instance_destroy(obj_matchmaker);
-		gameEndSound = global.victory ? snd_win : snd_lose;
+		var avMap = ds_map_find_value(global.options,"av");
+		var victorySound = ds_map_find_value(avMap, "musicVol") == 0 ? snd_win_no_transition : snd_win;
+		gameEndSound = global.victory ? victorySound : snd_lose;
 		audio_play_sound(gameEndSound,1,0);
 		//sets starting point for character portrait
 		objUI_characterPortrait.characterAnimIndex = 5; 

@@ -23,7 +23,7 @@ testAudio = false;
 musicTest = 0;
 music = [sng_don_tut,sng_floss,sng_cognac,sng_hasen,sng_milo];
 soundTest = 0;
-sounds = [snd_back,snd_cleara,snd_clearb,snd_combo_chain,snd_countdowna,snd_countdownb,snd_drop,snd_lose,snd_move,snd_ok,snd_pausea,snd_pauseb,snd_swap,snd_win];
+sounds = [snd_back,snd_cleara,snd_clearb,snd_combo_chain,snd_countdowna,snd_countdownb,snd_drop,snd_lose,snd_move,snd_ok,snd_pausea,snd_pauseb,snd_swap,snd_win_no_transition];
 
 confirmResolution = false;
 fullscreenOption = ds_map_find_value(ds_map_find_value(global.options,"av"),"fullscreen");

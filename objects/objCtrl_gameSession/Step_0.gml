@@ -10,9 +10,12 @@ if !(scr_checkRow(objCtrl_gameSession.boardHeight - 1)) {
 }
 
 if (global.gameScore >= global.victoryScore) {
+	var notBottom = false;
 	with (objPar_piece) {
-		if !(bottomEntity) global.victory = false;	
+		if !(bottomEntity) notBottom = true;
 	}
+	global.victory = !notBottom;
+	
 }
 
 if (global.gameLevel % global.levelToMatch == global.levelToMatch - 1) global.requiresCombo = true;
